@@ -31,6 +31,9 @@ final achievementsProvider = Provider<List<Achievement>>((ref) {
   // シティハンター: Bortle 7以上の都市で10回観測
   final cityObs = observations.where((o) => o.bortleScale >= 7).length;
 
+  // ウルトラシティマスター: Bortle 8-9（最高難易度の光害）で20回観測
+  final ultraCityObs = observations.where((o) => o.bortleScale >= 8).length;
+
   // 星読み師: 全88星座を解放
   final totalUnlocked = unlockedIds.length;
 
@@ -144,6 +147,15 @@ final achievementsProvider = Provider<List<Achievement>>((ref) {
       progress: totalUnlocked.clamp(0, 50),
       goal: 50,
     ),
+    Achievement(
+      id: 'ultra_city_master',
+      title: 'ウルトラシティマスター',
+      description: '最極限の光害（Bortle 8-9）で20回観測',
+      emoji: '🌃',
+      isUnlocked: ultraCityObs >= 20,
+      progress: ultraCityObs.clamp(0, 20),
+      goal: 20,
+    ),
   ];
 });
 
@@ -152,6 +164,7 @@ final userTitleProvider = Provider<String>((ref) {
   final achievements = ref.watch(achievementsProvider);
   final unlocked = achievements.where((a) => a.isUnlocked).toList();
 
+  if (unlocked.any((a) => a.id == 'ultra_city_master')) return 'ウルトラシティマスター';
   if (unlocked.any((a) => a.id == 'star_reader')) return '星読み師';
   if (unlocked.any((a) => a.id == 'collector_50')) return '大コレクター';
   if (unlocked.any((a) => a.id == 'zodiac_complete')) return '黄道マスター';

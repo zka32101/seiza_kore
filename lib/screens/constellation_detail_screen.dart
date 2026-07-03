@@ -6,6 +6,7 @@ import '../providers/observation_provider.dart';
 import '../models/constellation.dart';
 import '../models/observation.dart';
 import '../services/constellation_art.dart';
+import '../data/stars_data.dart';
 
 class ConstellationDetailScreen extends ConsumerWidget {
   final String constellationId;
@@ -100,6 +101,12 @@ class _DetailContent extends StatelessWidget {
                   _SectionTitle('天文データ'),
                   const SizedBox(height: 8),
                   _AstronomyDataCard(constellation: constellation),
+                  const SizedBox(height: 24),
+
+                  // Light-year Time Travel
+                  _SectionTitle('光年の時間旅行'),
+                  const SizedBox(height: 8),
+                  _LightYearCard(constellation: constellation),
                   const SizedBox(height: 24),
 
                   // Observation plan
@@ -662,6 +669,148 @@ class _EmptyObservationCard extends StatelessWidget {
                   label: const Text('AR観測'),
                 ),
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LightYearCard extends StatelessWidget {
+  final Constellation constellation;
+  const _LightYearCard({required this.constellation});
+
+  @override
+  Widget build(BuildContext context) {
+    final starData = getStarDataByConstellationId(constellation.id);
+
+    if (starData == null) {
+      return Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Icon(
+                Icons.info_outline,
+                size: 20,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  '${constellation.nameJa}の光年データはまだ公開されていません',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final now = DateTime.now();
+    final originYear = starData.getOriginYear(now.year);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // 主要な星
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  size: 20,
+                  color: Colors.amber.shade400,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        starData.name,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                      Text(
+                        starData.nameEn,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // 光年距離
+            Row(
+              children: [
+                Icon(
+                  Icons.straighten,
+                  size: 20,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '光の旅の距離',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                      Text(
+                        starData.getLightYearDescription(),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // 時間旅行情報
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.deepPurple.shade50,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.deepPurple.shade200),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '✨ 時間旅行のミステリー',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Colors.deepPurple.shade700,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    '今見ている光は${originYear}年に${starData.name}から発せられたものです。\n'
+                    '${now.year - originYear}年前の光を今、あなたの目で見ています。',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Colors.deepPurple.shade700,
+                          height: 1.6,
+                        ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

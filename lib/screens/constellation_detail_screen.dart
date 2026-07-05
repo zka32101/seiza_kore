@@ -7,6 +7,8 @@ import '../models/constellation.dart';
 import '../models/observation.dart';
 import '../services/constellation_art.dart';
 import '../data/stars_data.dart';
+import '../providers/constellation_nickname_provider.dart';
+import '../models/constellation_nickname.dart';
 
 class ConstellationDetailScreen extends ConsumerWidget {
   final String constellationId;
@@ -84,6 +86,10 @@ class _DetailContent extends StatelessWidget {
                     observationCount: observations.length,
                     maxDifficulty: _maxDifficulty,
                   ),
+                  const SizedBox(height: 24),
+
+                  // Star Naming
+                  _StarNamingSection(constellation: constellation),
                   const SizedBox(height: 24),
 
                   // Mythology
@@ -814,6 +820,165 @@ class _LightYearCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _StarNamingSection extends ConsumerWidget {
+  final Constellation constellation;
+  const _StarNamingSection({required this.constellation});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final nickname = ref.watch(constellationNicknameProvider(constellation.id));
+
+    return Card(
+      color: Colors.amber.shade50,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.star_rate, color: Colors.amber.shade700, size: 20),
+                const SizedBox(width: 8),
+                Text(
+                  '📛 あなたの命名',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber.shade800,
+                      ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            if (nickname != null) ...[
+              Text(
+                '「${nickname.nickname}」',
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.amber.shade900,
+                    ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '理由: ${nickname.reason}',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.amber.shade700,
+                    ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  OutlinedButton.icon(
+                    onPressed: () => _showEditDialog(context, ref, nickname),
+                    icon: const Icon(Icons.edit),
+                    label: const Text('編集'),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      await ref
+                          .read(constellationNicknameMapProvider.notifier)
+                          .removeNickname(constellation.id);
+                    },
+                    icon: const Icon(Icons.delete),
+                    label: const Text('削除'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ] else ...[
+              Text(
+                'この星座にあなただけの名前をつけてみませんか？',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.amber.shade800,
+                    ),
+              ),
+              const SizedBox(height: 12),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => _showEditDialog(context, ref, null),
+                  icon: const Icon(Icons.add),
+                  label: const Text('名前をつける'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.amber.shade700,
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showEditDialog(
+    BuildContext context,
+    WidgetRef ref,
+    ConstellationNickname? existing,
+  ) {
+    final nicknameCtrl = TextEditingController(text: existing?.nickname ?? '');
+    final reasonCtrl = TextEditingController(text: existing?.reason ?? '');
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(existing != null ? '命名を編集' : '新しい命名'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nicknameCtrl,
+                decoration: const InputDecoration(
+                  labelText: '星座の呼び名',
+                  hintText: '例: 輝く者',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: reasonCtrl,
+                maxLines: 2,
+                decoration: const InputDecoration(
+                  labelText: 'つけた理由',
+                  hintText: '例: 初観測の時、星が特に明るかったから',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('キャンセル'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (nicknameCtrl.text.isNotEmpty) {
+                final nickname = ConstellationNickname(
+                  constellationId: constellation.id,
+                  nickname: nicknameCtrl.text,
+                  reason: reasonCtrl.text,
+                  createdAt: existing?.createdAt ?? DateTime.now(),
+                );
+                ref.read(constellationNicknameMapProvider.notifier).setNickname(nickname);
+                Navigator.pop(ctx);
+              }
+            },
+            child: const Text('保存'),
+          ),
+        ],
       ),
     );
   }

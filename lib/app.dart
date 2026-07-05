@@ -12,6 +12,7 @@ import 'screens/ar_observation_screen.dart';
 import 'screens/add_observation_screen.dart';
 import 'screens/stats_screen.dart';
 import 'screens/achievements_screen.dart';
+import 'screens/light_pollution_map_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -114,6 +115,10 @@ final GoRouter _router = GoRouter(
         final id = state.pathParameters['id']!;
         return AddObservationScreen(constellationId: id);
       },
+    ),
+    GoRoute(
+      path: '/light-pollution-map',
+      builder: (context, state) => const LightPollutionMapScreen(),
     ),
   ],
 );

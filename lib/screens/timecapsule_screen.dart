@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import '../providers/timecapsule_provider.dart';
+import '../providers/constellation_time_capsule_provider.dart';
 import '../models/timecapsule_event.dart';
+import '../models/constellation_time_capsule.dart';
 
 class TimecapsuleScreen extends ConsumerWidget {
   const TimecapsuleScreen({super.key});
@@ -13,6 +16,11 @@ class TimecapsuleScreen extends ConsumerWidget {
     final pastEvents = ref.watch(pastEventsProvider);
     final myRecords = ref.watch(timecapsuleRecordListProvider);
     final allEvents = ref.watch(timecapsuleEventsProvider);
+
+    // Constellation Time Capsule data
+    final activeCapsules = ref.watch(activeConstellationCapsuleProvider);
+    final upcomingCapsules = ref.watch(upcomingConstellationCapsuleProvider);
+    final capsuleStats = ref.watch(constellationCapsuleStatsProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -98,6 +106,80 @@ class TimecapsuleScreen extends ConsumerWidget {
               ...myRecords.reversed.map(
                 (r) => _MyRecordCard(record: r, events: allEvents),
               ),
+            ],
+
+            // Constellation Time Capsules
+            const SizedBox(height: 32),
+            _SectionHeader('🌟 星座タイムカプセル', color: Colors.purple),
+            const SizedBox(height: 8),
+            Card(
+              color: Colors.purple.shade50,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              '${capsuleStats.total}',
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: Colors.purple.shade700,
+                                    fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text('保存中', style: Theme.of(context).textTheme.labelSmall),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '${capsuleStats.unlocked}',
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: Colors.green.shade700,
+                                    fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text('解放済み', style: Theme.of(context).textTheme.labelSmall),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '${capsuleStats.upcoming}',
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: Colors.orange.shade700,
+                                    fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text('待機中', style: Theme.of(context).textTheme.labelSmall),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      '観測した星座を未来に預けて、指定した日付に思い出と共に解放します。',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (activeCapsules.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              _SectionHeader('🔓 今すぐ見られる', color: Colors.green),
+              const SizedBox(height: 8),
+              ...activeCapsules.map((c) => _ConstellationCapsuleCard(capsule: c)),
+            ],
+            if (upcomingCapsules.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              _SectionHeader('⏳ 待機中の星座', color: Colors.orange),
+              const SizedBox(height: 8),
+              ...upcomingCapsules.map((c) => _ConstellationCapsuleCard(capsule: c)),
             ],
           ],
         ),
@@ -588,6 +670,83 @@ class _PastEventCard extends StatelessWidget {
             );
           },
           child: const Text('記録を見る'),
+        ),
+      ),
+    );
+  }
+}
+
+class _ConstellationCapsuleCard extends StatelessWidget {
+  final ConstellationTimeCapsule capsule;
+  const _ConstellationCapsuleCard({required this.capsule});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      color: capsule.isUnlocked ? Colors.green.shade50 : Colors.orange.shade50,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            Text(
+              capsule.emoji,
+              style: const TextStyle(fontSize: 36),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    capsule.constellationName,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  Text(
+                    '保存: ${DateFormat('y/M/d').format(capsule.recordedAt)}',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: Colors.grey.shade600,
+                        ),
+                  ),
+                  Text(
+                    '解放: ${capsule.getFormattedReleaseDate()}',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: capsule.isUnlocked ? Colors.green.shade700 : Colors.orange.shade700,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  if (capsule.message.isNotEmpty)
+                    Text(
+                      capsule.message,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            fontStyle: FontStyle.italic,
+                            color: Colors.grey.shade600,
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                Text(
+                  capsule.getReleaseStatus(),
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: capsule.isUnlocked ? Colors.green.shade700 : Colors.orange.shade700,
+                        fontWeight: FontWeight.bold,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                Icon(
+                  capsule.isUnlocked ? Icons.lock_open : Icons.lock_clock,
+                  color: capsule.isUnlocked ? Colors.green : Colors.orange,
+                  size: 18,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

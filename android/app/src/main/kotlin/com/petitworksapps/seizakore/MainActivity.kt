@@ -1,4 +1,4 @@
-package com.example.seiza_kore
+package com.petitworksapps.seizakore
 
 import io.flutter.embedding.android.FlutterActivity
 

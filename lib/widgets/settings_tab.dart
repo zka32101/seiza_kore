@@ -36,6 +36,20 @@ class SettingsTab extends ConsumerWidget {
             child: _StatsCard(unlockedCount: unlockedCount, obsCount: obsCount),
           ),
 
+          // Light Pollution Map
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            child: Card(
+              child: ListTile(
+                leading: const Icon(Icons.public, color: Colors.indigo),
+                title: const Text('光害マップ & 観測難易度'),
+                subtitle: const Text('Bortleスケールと観測統計を確認'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push('/light-pollution-map'),
+              ),
+            ),
+          ),
+
           // Achievements
           _AchievementsCard(
             achievements: achievements,

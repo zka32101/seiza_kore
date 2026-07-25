@@ -15,10 +15,14 @@ class TimecapsuleRecordNotifier
     final prefs = await SharedPreferences.getInstance();
     final json = prefs.getString(_key);
     if (json != null) {
-      final list = jsonDecode(json) as List;
-      state = list
-          .map((e) => TimecapsuleRecord.fromJson(e as Map<String, dynamic>))
-          .toList();
+      try {
+        final list = jsonDecode(json) as List;
+        state = list
+            .map((e) => TimecapsuleRecord.fromJson(e as Map<String, dynamic>))
+            .toList();
+      } catch (e) {
+        state = [];
+      }
     }
   }
 

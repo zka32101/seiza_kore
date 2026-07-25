@@ -409,7 +409,7 @@ class _UpcomingEventCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              'あと$daysElevenDays（${_formatDate(event.openTime)}）に解放されます',
+              'あと$daysLeftLabel（${_formatDate(event.openTime)}）に解放されます',
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Colors.grey.shade600,
                   ),
@@ -420,7 +420,7 @@ class _UpcomingEventCard extends StatelessWidget {
     );
   }
 
-  String get daysElevenDays {
+  String get daysLeftLabel {
     final d = event.daysUntilOpen;
     return '$d日';
   }

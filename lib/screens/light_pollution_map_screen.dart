@@ -9,7 +9,6 @@ class LightPollutionMapScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bortle = Brightness.light;
     final observations = ref.watch(observationListProvider);
     final constellations = ref.watch(constellationListProvider);
 

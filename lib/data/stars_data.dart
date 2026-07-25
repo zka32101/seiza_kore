@@ -35,7 +35,6 @@ final constellationStarMap = {
   'aries': const StarData(name: 'ハマル', nameEn: 'Hamal', lightYears: 66.0, constellationId: 'aries'),
   'taurus': const StarData(name: 'アルデバラン', nameEn: 'Aldebaran', lightYears: 65.1, constellationId: 'taurus'),
   'gemini': const StarData(name: 'ポルックス', nameEn: 'Pollux', lightYears: 34.0, constellationId: 'gemini'),
-  'cancer': const StarData(name: 'レギュラス', nameEn: 'Regulus', lightYears: 77.0, constellationId: 'cancer'),
   'leo': const StarData(name: 'レギュラス', nameEn: 'Regulus', lightYears: 77.0, constellationId: 'leo'),
   'virgo': const StarData(name: 'スピカ', nameEn: 'Spica', lightYears: 250.0, constellationId: 'virgo'),
   'libra': const StarData(name: 'ズベンエルジェナビ', nameEn: 'Zubenelgenubi', lightYears: 77.0, constellationId: 'libra'),
@@ -104,7 +103,6 @@ final constellationStarMap = {
   // 秋の星座
   'pegasus': const StarData(name: 'エニフ', nameEn: 'Enif', lightYears: 2700.0, constellationId: 'pegasus'),
   'cetus': const StarData(name: 'ミラ', nameEn: 'Mira', lightYears: 305.0, constellationId: 'cetus'),
-  'aries': const StarData(name: 'ハマル', nameEn: 'Hamal', lightYears: 66.0, constellationId: 'aries'),
   'fornax': const StarData(name: 'アルファ・フォルナキス', nameEn: 'Alpha Fornacis', lightYears: 46.0, constellationId: 'fornax'),
   'sculptor': const StarData(name: 'アルファ・スクルプトリス', nameEn: 'Alpha Sculptoris', lightYears: 74.0, constellationId: 'sculptor'),
 

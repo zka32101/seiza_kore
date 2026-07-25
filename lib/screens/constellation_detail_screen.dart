@@ -980,6 +980,9 @@ class _StarNamingSection extends ConsumerWidget {
           ),
         ],
       ),
-    );
+    ).then((_) {
+      nicknameCtrl.dispose();
+      reasonCtrl.dispose();
+    });
   }
 }

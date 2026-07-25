@@ -164,8 +164,8 @@ final userTitleProvider = Provider<String>((ref) {
   final achievements = ref.watch(achievementsProvider);
   final unlocked = achievements.where((a) => a.isUnlocked).toList();
 
-  if (unlocked.any((a) => a.id == 'ultra_city_master')) return 'ウルトラシティマスター';
   if (unlocked.any((a) => a.id == 'star_reader')) return '星読み師';
+  if (unlocked.any((a) => a.id == 'ultra_city_master')) return 'ウルトラシティマスター';
   if (unlocked.any((a) => a.id == 'collector_50')) return '大コレクター';
   if (unlocked.any((a) => a.id == 'zodiac_complete')) return '黄道マスター';
   if (unlocked.any((a) => a.id == 'time_traveler')) return '時間旅行者';

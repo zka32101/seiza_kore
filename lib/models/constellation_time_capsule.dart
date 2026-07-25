@@ -11,7 +11,6 @@ class ConstellationTimeCapsule {
   final int bortleScale; // Light pollution level at observation
   final String locationName;
   final String emoji;
-  final bool isUnlocked; // Automatically set based on current date
 
   ConstellationTimeCapsule({
     required this.id,
@@ -23,7 +22,11 @@ class ConstellationTimeCapsule {
     required this.bortleScale,
     required this.locationName,
     required this.emoji,
-  }) : isUnlocked = DateTime.now().isAfter(releaseDate);
+  });
+
+  /// Evaluated against the current time on every access, so unlock state
+  /// stays correct even if the app stays open across the release moment.
+  bool get isUnlocked => DateTime.now().isAfter(releaseDate);
 
   /// Convert to JSON
   Map<String, dynamic> toJson() {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../widgets/starfield_background.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -20,27 +19,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: '夜空を図鑑にしよう',
       subtitle: '88星座コレクション',
       description: 'スマホを夜空に向けて星座を発見しよう。見るたびに図鑑が充実して、自分だけのコレクションが完成する。',
-      seed: 101,
-      overlay: Color(0x22102070), // 青みがかった宇宙
       accentColor: Color(0xFFAACCFF),
+      backgroundImage: 'assets/onboarding/onboarding_bg_2_collection.png',
     ),
     _PageData(
       emoji: '🏙️',
       title: 'シティ・ライト・チャレンジ',
       subtitle: '難易度で何度も楽しめる',
       description: '都市の光の中でも星座を探そう。Bortleスケール1〜9で難易度が変わる。都市観測を達成すると特別な称号がもらえる！',
-      seed: 202,
-      overlay: Color(0x28330020), // 紫がかった都市の夜
       accentColor: Color(0xFFCC99FF),
+      backgroundImage: 'assets/onboarding/onboarding_bg_1_discovery.png',
     ),
     _PageData(
       emoji: '⏰',
       title: '特別な夜は永遠に',
       subtitle: 'タイムカプセル天体',
       description: '流星群・月食などのレアイベント期間中のみ解放される特別な記録ページ。見逃したら来年まで待つしかない！',
-      seed: 303,
-      overlay: Color(0x20002838), // 深いティール
       accentColor: Color(0xFFFFCC88),
+      backgroundImage: 'assets/onboarding/onboarding_bg_3_timetravel.png',
     ),
   ];
 
@@ -155,18 +151,16 @@ class _PageData {
   final String title;
   final String subtitle;
   final String description;
-  final int seed;
-  final Color overlay;
   final Color accentColor;
+  final String backgroundImage;
 
   const _PageData({
     required this.emoji,
     required this.title,
     required this.subtitle,
     required this.description,
-    required this.seed,
-    required this.overlay,
     required this.accentColor,
+    required this.backgroundImage,
   });
 }
 
@@ -176,11 +170,38 @@ class _OnboardingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StarfieldBackground(
-      seed: data.seed,
-      starCount: 380,
-      overlayColor: data.overlay,
-      child: SafeArea(
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(data.backgroundImage, fit: BoxFit.cover),
+        // 下から暗くして文字を読みやすくするスクリム
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.black.withAlpha(60),
+                Colors.black.withAlpha(140),
+                Colors.black.withAlpha(220),
+              ],
+              stops: const [0.0, 0.55, 1.0],
+            ),
+          ),
+        ),
+        _OnboardingPageContent(data: data),
+      ],
+    );
+  }
+}
+
+class _OnboardingPageContent extends StatelessWidget {
+  final _PageData data;
+  const _OnboardingPageContent({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(32, 0, 32, 160),
           child: Column(
@@ -242,7 +263,6 @@ class _OnboardingPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

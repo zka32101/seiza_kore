@@ -6,6 +6,8 @@ import '../providers/settings_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/observation_provider.dart';
 import '../providers/achievement_provider.dart';
+import '../providers/update_notes_provider.dart';
+import '../data/update_notes_data.dart';
 
 class SettingsTab extends ConsumerWidget {
   const SettingsTab({super.key});
@@ -19,6 +21,7 @@ class SettingsTab extends ConsumerWidget {
     final userTitle = ref.watch(userTitleProvider);
     final achievements = ref.watch(achievementsProvider);
     final unlockedAchCount = ref.watch(unlockedAchievementCountProvider);
+    final hasUnseenUpdate = ref.watch(hasUnseenUpdateProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -207,7 +210,7 @@ class SettingsTab extends ConsumerWidget {
                 leading: const Icon(Icons.help_outline),
                 title: const Text('ヘルプ・使い方'),
                 trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+                onTap: () => context.push('/help'),
               ),
               ListTile(
                 leading: const Icon(Icons.description_outlined),
@@ -223,9 +226,9 @@ class SettingsTab extends ConsumerWidget {
               ),
               ListTile(
                 leading: const Icon(Icons.bug_report_outlined),
-                title: const Text('不具合報告'),
+                title: const Text('ご意見・不具合報告'),
                 trailing: const Icon(Icons.chevron_right),
-                onTap: () {},
+                onTap: () => context.push('/feedback'),
               ),
             ],
           ),
@@ -236,11 +239,33 @@ class SettingsTab extends ConsumerWidget {
             children: [
               ListTile(
                 leading: const Icon(Icons.info_outline),
-                title: const Text('アプリバージョン'),
-                trailing: Text(
-                  'v1.0.0',
-                  style: TextStyle(color: Colors.grey.shade600),
-                ),
+                title: const Text('更新履歴'),
+                subtitle: Text('v$currentAppVersion'),
+                trailing: hasUnseenUpdate
+                    ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Text(
+                              'NEW',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const Icon(Icons.chevron_right),
+                        ],
+                      )
+                    : const Icon(Icons.chevron_right),
+                onTap: () => context.push('/update-notes'),
               ),
               ListTile(
                 leading: Icon(Icons.logout, color: Colors.orange.shade700),

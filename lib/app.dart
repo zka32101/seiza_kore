@@ -13,6 +13,9 @@ import 'screens/add_observation_screen.dart';
 import 'screens/stats_screen.dart';
 import 'screens/achievements_screen.dart';
 import 'screens/light_pollution_map_screen.dart';
+import 'screens/help_screen.dart';
+import 'screens/update_notes_screen.dart';
+import 'screens/feedback_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -119,6 +122,18 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/light-pollution-map',
       builder: (context, state) => const LightPollutionMapScreen(),
+    ),
+    GoRoute(
+      path: '/help',
+      builder: (context, state) => const HelpScreen(),
+    ),
+    GoRoute(
+      path: '/update-notes',
+      builder: (context, state) => const UpdateNotesScreen(),
+    ),
+    GoRoute(
+      path: '/feedback',
+      builder: (context, state) => const FeedbackScreen(),
     ),
   ],
 );

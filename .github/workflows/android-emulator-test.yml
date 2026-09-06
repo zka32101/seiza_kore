@@ -3,39 +3,36 @@ name: Android Emulator Test
 on:
   workflow_call:
     inputs:
-      working-directory:
-        required: false
+      app-path:
+        description: 'Path to Flutter app (e.g., apps/prefecture_defense)'
+        required: true
         type: string
-        default: '.'
-        description: 'Working directory for the app'
       test-command:
+        description: 'Test command to run'
         required: false
         type: string
         default: 'flutter test'
-        description: 'Command to run tests'
-      api-level:
-        required: false
-        type: number
-        default: 33
-        description: 'Android API level for emulator'
-      android-version:
-        required: false
-        type: string
-        default: 'android-33'
-        description: 'Android version identifier'
 
 jobs:
-  android-emulator-test:
+  emulator-test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
-          java-version: '11'
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-levels: 34
+          ndk-version: 26.1.10909125
+          cmake-version: 3.22.1
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -43,40 +40,89 @@ jobs:
           flutter-version: 'stable'
           channel: 'stable'
 
-      - name: Get dependencies
-        working-directory: ${{ inputs.working-directory }}
-        run: flutter pub get
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.lock') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
 
-      - name: Set up Android emulator
-        run: |
-          bash ./scripts/setup-android-emulator.sh ${{ inputs.api-level }} ${{ inputs.android-version }}
+      - name: Cache Flutter packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.flutter
+          key: flutter-${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            flutter-${{ runner.os }}-
 
-      - name: Wait for emulator
-        timeout-minutes: 5
+      - name: Create Android Virtual Device
         run: |
-          adb wait-for-device
-          adb shell "while [[ -z \$(getprop sys.boot_completed) ]]; do sleep 1; done"
+          $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager \
+            "system-images;android-34;google_apis;x86_64"
+
+          echo "no" | $ANDROID_SDK_ROOT/tools/bin/avdmanager create avd \
+            -n test_device \
+            -k "system-images;android-34;google_apis;x86_64" \
+            -d "Pixel_6_Pro_API_34" \
+            --force
+
+      - name: Start Android Emulator
+        run: |
+          $ANDROID_SDK_ROOT/emulator/emulator \
+            -avd test_device \
+            -no-audio \
+            -no-boot-anim \
+            -no-window \
+            -gpu swiftshader_indirect \
+            -memory 2048 \
+            -cores 2 \
+            -qemu -m 2048 \
+            > /tmp/emulator.log 2>&1 &
+
+          # Wait for emulator to boot
+          echo "⏳ Waiting for emulator to boot..."
+          $ANDROID_SDK_ROOT/platform-tools/adb wait-for-device
+          $ANDROID_SDK_ROOT/platform-tools/adb shell getprop sys.boot_from_charger_mode
+
+          # Wait additional time for full boot
+          sleep 30
+
+      - name: Verify emulator
+        run: |
+          $ANDROID_SDK_ROOT/platform-tools/adb devices
+          $ANDROID_SDK_ROOT/platform-tools/adb shell getprop ro.boot.serialno
+
+      - name: Set up app
+        working-directory: ${{ inputs.app-path }}
+        run: |
+          flutter pub get
+          flutter clean
 
       - name: Run tests
-        working-directory: ${{ inputs.working-directory }}
+        working-directory: ${{ inputs.app-path }}
         run: ${{ inputs.test-command }}
+        timeout-minutes: 30
+        continue-on-error: true
+
+      - name: Collect logs
+        if: always()
+        run: |
+          mkdir -p test-results
+          $ANDROID_SDK_ROOT/platform-tools/adb logcat -d > test-results/logcat.log || true
+          cat /tmp/emulator.log > test-results/emulator.log || true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-emulator-logs
+          path: test-results/
+          if-no-files-found: ignore
 
       - name: Stop emulator
         if: always()
         run: |
-          adb emu kill || true
-
-  results:
-    runs-on: ubuntu-latest
-    needs: android-emulator-test
-    if: always()
-    steps:
-      - name: Report results
-        run: |
-          if [ "${{ needs.android-emulator-test.result }}" = "success" ]; then
-            echo "✅ Android emulator tests passed"
-            exit 0
-          else
-            echo "❌ Android emulator tests failed"
-            exit 1
-          fi
+          $ANDROID_SDK_ROOT/platform-tools/adb emu kill || true

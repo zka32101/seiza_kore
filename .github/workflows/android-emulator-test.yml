@@ -1,0 +1,82 @@
+name: Android Emulator Test
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        required: false
+        type: string
+        default: '.'
+        description: 'Working directory for the app'
+      test-command:
+        required: false
+        type: string
+        default: 'flutter test'
+        description: 'Command to run tests'
+      api-level:
+        required: false
+        type: number
+        default: 33
+        description: 'Android API level for emulator'
+      android-version:
+        required: false
+        type: string
+        default: 'android-33'
+        description: 'Android version identifier'
+
+jobs:
+  android-emulator-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+          channel: 'stable'
+
+      - name: Get dependencies
+        working-directory: ${{ inputs.working-directory }}
+        run: flutter pub get
+
+      - name: Set up Android emulator
+        run: |
+          bash ./scripts/setup-android-emulator.sh ${{ inputs.api-level }} ${{ inputs.android-version }}
+
+      - name: Wait for emulator
+        timeout-minutes: 5
+        run: |
+          adb wait-for-device
+          adb shell "while [[ -z \$(getprop sys.boot_completed) ]]; do sleep 1; done"
+
+      - name: Run tests
+        working-directory: ${{ inputs.working-directory }}
+        run: ${{ inputs.test-command }}
+
+      - name: Stop emulator
+        if: always()
+        run: |
+          adb emu kill || true
+
+  results:
+    runs-on: ubuntu-latest
+    needs: android-emulator-test
+    if: always()
+    steps:
+      - name: Report results
+        run: |
+          if [ "${{ needs.android-emulator-test.result }}" = "success" ]; then
+            echo "✅ Android emulator tests passed"
+            exit 0
+          else
+            echo "❌ Android emulator tests failed"
+            exit 1
+          fi

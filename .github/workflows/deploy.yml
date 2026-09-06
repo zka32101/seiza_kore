@@ -4,23 +4,52 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.x'
-      
+
+      - name: Setup Gradle wrapper
+        working-directory: android
+        run: |
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            GRADLE_VERSION=$(sed -n 's|.*/gradle-\(.*\)-all\.zip|\1|p' gradle/wrapper/gradle-wrapper.properties)
+            TMP=$(mktemp -d)
+            touch "$TMP/settings.gradle"
+            (cd "$TMP" && gradle wrapper --gradle-version "$GRADLE_VERSION" --distribution-type all -q)
+            cp "$TMP/gradle/wrapper/gradle-wrapper.jar" gradle/wrapper/gradle-wrapper.jar
+            rm -rf "$TMP"
+          fi
+
+      - name: Setup Flutter SDK path
+        working-directory: android
+        run: echo "flutter.sdk=$FLUTTER_HOME" > local.properties
+
       - name: Get dependencies
         run: flutter pub get
-      
+
       - name: Build APK
         run: flutter build apk --release
-      
-      - name: Upload APK
-        run: echo "APK built and ready for deployment"
+
+      - name: Build AAB
+        run: flutter build appbundle --release
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: build/app/outputs/apk/release/app-release.apk
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: aab
+          path: build/app/outputs/bundle/release/app-release.aab

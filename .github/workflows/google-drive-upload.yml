@@ -34,10 +34,25 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y rclone
 
+      - name: Validate Google Drive Secret
+        run: |
+          if [ -z "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}" ]; then
+            echo "❌ ERROR: GOOGLE_DRIVE_SERVICE_ACCOUNT secret is not set"
+            exit 1
+          fi
+          echo "✅ Google Drive secret validated"
+
       - name: Configure rclone
         run: |
           mkdir -p ~/.config/rclone
           echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}" > /tmp/sa.json
+
+          # Validate JSON format
+          if ! python3 -m json.tool /tmp/sa.json > /dev/null 2>&1; then
+            echo "❌ ERROR: Invalid JSON in GOOGLE_DRIVE_SERVICE_ACCOUNT secret"
+            rm -f /tmp/sa.json
+            exit 1
+          fi
 
           rclone config create gdrive drive \
             service_account_file /tmp/sa.json

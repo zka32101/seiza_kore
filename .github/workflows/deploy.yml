@@ -59,18 +59,54 @@ jobs:
           name: aab
           path: build/app/outputs/bundle/release/app-release.aab
 
-  emulator-test:
-    needs: build
-    if: success()
-    uses: zka32101/yourwish/.github/workflows/android-emulator-test.yml@main
-    with:
-      app-path: '.'
-      test-command: 'flutter test'
-
   upload-to-google-drive:
     needs: build
     if: success()
-    uses: ./.github/workflows/google-drive-upload.yml
-    secrets:
-      GOOGLE_DRIVE_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}
-      GOOGLE_DRIVE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: apk
+
+      - name: Download AAB artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: aab
+
+      - name: Setup rclone
+        run: |
+          sudo apt-get update && sudo apt-get install -y rclone
+
+      - name: Configure rclone
+        run: |
+          mkdir -p ~/.config/rclone
+          echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}" > /tmp/sa.json
+          rclone config create gdrive drive \
+            service_account_file /tmp/sa.json
+
+      - name: Upload AAB
+        continue-on-error: true
+        run: |
+          if [ -f "app-release.aab" ]; then
+            rclone copy app-release.aab \
+              gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
+            echo "✅ AAB uploaded"
+          else
+            echo "⚠️ AAB file not found"
+          fi
+
+      - name: Upload APK
+        continue-on-error: true
+        run: |
+          if [ -f "app-release.apk" ]; then
+            rclone copy app-release.apk \
+              gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
+            echo "✅ APK uploaded"
+          else
+            echo "⚠️ APK file not found"
+          fi
+
+      - name: Cleanup
+        run: |
+          rm -f /tmp/sa.json

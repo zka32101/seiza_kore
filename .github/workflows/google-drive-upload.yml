@@ -37,19 +37,23 @@ jobs:
       - name: Upload AAB
         continue-on-error: true
         run: |
-          if [ -f "build/app/outputs/bundle/release/app-release.aab" ]; then
-            rclone copy build/app/outputs/bundle/release/app-release.aab \
+          if [ -f "app-release.aab" ]; then
+            rclone copy app-release.aab \
               gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
             echo "✅ AAB uploaded"
+          else
+            echo "⚠️ AAB file not found"
           fi
 
       - name: Upload APK
         continue-on-error: true
         run: |
-          if [ -f "build/app/outputs/apk/release/app-release.apk" ]; then
-            rclone copy build/app/outputs/apk/release/app-release.apk \
+          if [ -f "app-release.apk" ]; then
+            rclone copy app-release.apk \
               gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
             echo "✅ APK uploaded"
+          else
+            echo "⚠️ APK file not found"
           fi
 
       - name: Cleanup

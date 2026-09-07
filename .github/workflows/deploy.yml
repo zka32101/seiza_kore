@@ -120,7 +120,6 @@ jobs:
           }
 
           echo "✅ APK successfully uploaded"
-
       - name: Cleanup
         run: |
           rm -f /tmp/sa.json

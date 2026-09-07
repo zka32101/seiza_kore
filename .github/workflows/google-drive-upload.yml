@@ -12,6 +12,16 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
+      - name: Download APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: apk
+
+      - name: Download AAB artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: aab
+
       - name: Setup rclone
         run: |
           sudo apt-get update && sudo apt-get install -y rclone

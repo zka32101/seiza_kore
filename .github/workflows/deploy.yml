@@ -80,32 +80,46 @@ jobs:
 
       - name: Configure rclone
         run: |
+          set -e
           mkdir -p ~/.config/rclone
           echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}" > /tmp/sa.json
           rclone config create gdrive drive \
             service_account_file /tmp/sa.json
+          echo "✅ rclone configured"
 
-      - name: Upload AAB
-        continue-on-error: true
+      - name: Upload AAB to Google Drive
         run: |
-          if [ -f "app-release.aab" ]; then
-            rclone copy app-release.aab \
-              gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
-            echo "✅ AAB uploaded"
-          else
-            echo "⚠️ AAB file not found"
+          set -e
+          if [ ! -f "app-release.aab" ]; then
+            echo "❌ ERROR: AAB file not found"
+            exit 1
           fi
 
-      - name: Upload APK
-        continue-on-error: true
+          echo "📤 Uploading AAB to Google Drive..."
+          rclone -v copy app-release.aab \
+            gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/ || {
+            echo "❌ AAB upload failed"
+            exit 1
+          }
+
+          echo "✅ AAB successfully uploaded"
+
+      - name: Upload APK to Google Drive
         run: |
-          if [ -f "app-release.apk" ]; then
-            rclone copy app-release.apk \
-              gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/
-            echo "✅ APK uploaded"
-          else
-            echo "⚠️ APK file not found"
+          set -e
+          if [ ! -f "app-release.apk" ]; then
+            echo "❌ ERROR: APK file not found"
+            exit 1
           fi
+
+          echo "📤 Uploading APK to Google Drive..."
+          rclone -v copy app-release.apk \
+            gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/ || {
+            echo "❌ APK upload failed"
+            exit 1
+          }
+
+          echo "✅ APK successfully uploaded"
 
       - name: Cleanup
         run: |

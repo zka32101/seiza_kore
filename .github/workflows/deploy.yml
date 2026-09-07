@@ -59,6 +59,14 @@ jobs:
           name: aab
           path: build/app/outputs/bundle/release/app-release.aab
 
+  emulator-test:
+    needs: build
+    if: success()
+    uses: zka32101/yourwish/.github/workflows/android-emulator-test.yml@main
+    with:
+      app-path: '.'
+      test-command: 'flutter test'
+
   upload-to-google-drive:
     needs: build
     if: success()

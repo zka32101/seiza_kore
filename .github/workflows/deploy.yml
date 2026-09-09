@@ -78,14 +78,20 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y rclone
 
-      - name: Validate Google Drive Secret
+      - name: Validate Google Drive Secrets
         run: |
+          set -e
           if [ -z "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}" ]; then
             echo "❌ ERROR: GOOGLE_DRIVE_SERVICE_ACCOUNT secret is not set"
             echo "Please configure this secret in repository settings with valid service account JSON"
             exit 1
           fi
-          echo "✅ Google Drive secret validated"
+          if [ -z "${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}" ]; then
+            echo "❌ ERROR: GOOGLE_DRIVE_FOLDER_ID secret is not set"
+            echo "Please configure this secret in repository settings with target Google Drive folder ID"
+            exit 1
+          fi
+          echo "✅ Google Drive secrets validated"
 
       - name: Configure rclone
         run: |
@@ -109,12 +115,14 @@ jobs:
           set -e
           if [ ! -f "app-release.aab" ]; then
             echo "❌ ERROR: AAB file not found"
+            echo "Workspace contents:"
+            ls -lh
             exit 1
           fi
 
           echo "📤 Uploading AAB to Google Drive..."
           rclone -v copy app-release.aab \
-            gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/ || {
+            "gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/" || {
             echo "❌ AAB upload failed"
             exit 1
           }
@@ -126,12 +134,14 @@ jobs:
           set -e
           if [ ! -f "app-release.apk" ]; then
             echo "❌ ERROR: APK file not found"
+            echo "Workspace contents:"
+            ls -lh
             exit 1
           fi
 
           echo "📤 Uploading APK to Google Drive..."
           rclone -v copy app-release.apk \
-            gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/ || {
+            "gdrive:${{ secrets.GOOGLE_DRIVE_FOLDER_ID }}/" || {
             echo "❌ APK upload failed"
             exit 1
           }

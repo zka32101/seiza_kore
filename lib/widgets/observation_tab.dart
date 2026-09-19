@@ -86,6 +86,10 @@ class ObservationTab extends ConsumerWidget {
 
                 // AR observation button (main CTA)
                 _ARButton(),
+                const SizedBox(height: 12),
+
+                // Solar system 3D view button
+                _SolarSystemButton(),
                 const SizedBox(height: 20),
 
                 // Recent observations
@@ -336,6 +340,67 @@ class _ARButton extends StatelessWidget {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SolarSystemButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/solar-system'),
+      child: Container(
+        width: double.infinity,
+        height: 84,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.deepOrange.shade700,
+              Colors.indigo.shade900,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.deepOrange.withAlpha(60),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text('☀️', style: TextStyle(fontSize: 32)),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '太陽系を3Dで探検！',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '月がなぜ満ち欠けするのか動かして学ぼう',
+                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+            ],
+          ),
         ),
       ),
     );

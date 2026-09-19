@@ -16,6 +16,7 @@ import 'screens/light_pollution_map_screen.dart';
 import 'screens/help_screen.dart';
 import 'screens/update_notes_screen.dart';
 import 'screens/feedback_screen.dart';
+import 'screens/solar_system_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -134,6 +135,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/feedback',
       builder: (context, state) => const FeedbackScreen(),
+    ),
+    GoRoute(
+      path: '/solar-system',
+      builder: (context, state) => const SolarSystemScreen(),
     ),
   ],
 );

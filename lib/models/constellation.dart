@@ -11,6 +11,9 @@ class Constellation {
   final String mythologyText;
   final String emoji;
   final int baseDifficulty;
+  final String observationTips;
+  final String scientificData;
+  final String funFacts;
 
   const Constellation({
     required this.id,
@@ -25,6 +28,9 @@ class Constellation {
     required this.mythologyText,
     required this.emoji,
     required this.baseDifficulty,
+    this.observationTips = '',
+    this.scientificData = '',
+    this.funFacts = '',
   });
 
   factory Constellation.fromJson(Map<String, dynamic> json) {
@@ -41,6 +47,9 @@ class Constellation {
       mythologyText: json['mythologyText'] as String,
       emoji: json['emoji'] as String,
       baseDifficulty: json['baseDifficulty'] as int,
+      observationTips: json['observationTips'] as String? ?? '',
+      scientificData: json['scientificData'] as String? ?? '',
+      funFacts: json['funFacts'] as String? ?? '',
     );
   }
 
@@ -57,6 +66,9 @@ class Constellation {
     'mythologyText': mythologyText,
     'emoji': emoji,
     'baseDifficulty': baseDifficulty,
+    'observationTips': observationTips,
+    'scientificData': scientificData,
+    'funFacts': funFacts,
   };
 }
 

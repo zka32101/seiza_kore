@@ -109,6 +109,45 @@ class _DetailContent extends StatelessWidget {
                   _AstronomyDataCard(constellation: constellation),
                   const SizedBox(height: 24),
 
+                  // Observation tips
+                  if (constellation.observationTips.isNotEmpty) ...[
+                    _SectionTitle('観測のコツ'),
+                    const SizedBox(height: 8),
+                    Text(
+                      constellation.observationTips,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            height: 1.8,
+                          ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+
+                  // Scientific data
+                  if (constellation.scientificData.isNotEmpty) ...[
+                    _SectionTitle('科学的データ'),
+                    const SizedBox(height: 8),
+                    Text(
+                      constellation.scientificData,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            height: 1.8,
+                          ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+
+                  // Fun facts
+                  if (constellation.funFacts.isNotEmpty) ...[
+                    _SectionTitle('豆知識・文化的背景'),
+                    const SizedBox(height: 8),
+                    Text(
+                      constellation.funFacts,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            height: 1.8,
+                          ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+
                   // Light-year Time Travel
                   _SectionTitle('光年の時間旅行'),
                   const SizedBox(height: 8),

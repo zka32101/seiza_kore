@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>太陽・地球・月 3Dビュー</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; overflow: hidden;
+    background: #050818;
+    width: 100%; height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    touch-action: none;
+  }
+  #scene-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+  .ui-layer { position: absolute; left: 0; right: 0; z-index: 10; pointer-events: none; }
+  .ui-layer * { pointer-events: auto; }
+
+  /* 上部: 視点切替 */
+  #top-bar {
+    top: 10px; display: flex; justify-content: center; gap: 8px;
+    padding: 0 12px;
+  }
+  .pill-btn {
+    background: rgba(20, 20, 40, 0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 13px;
+    backdrop-filter: blur(6px);
+  }
+  .pill-btn.active {
+    background: rgba(120, 100, 255, 0.85);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  /* 天体選択ボタン */
+  #body-bar {
+    top: 54px; display: flex; justify-content: center; gap: 10px;
+  }
+  .body-btn {
+    background: rgba(20, 20, 40, 0.65);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 20px;
+    backdrop-filter: blur(6px);
+  }
+  .body-btn.active { border-color: #ffcc55; box-shadow: 0 0 10px rgba(255,204,85,0.6); }
+
+  /* 下部: 時間コントロール */
+  #bottom-bar {
+    bottom: 10px; display: flex; flex-direction: column; gap: 6px;
+    padding: 10px 14px 12px;
+    background: linear-gradient(to top, rgba(5,8,24,0.85), rgba(5,8,24,0));
+  }
+  #moon-phase-readout {
+    color: #fff; text-align: center; font-size: 13px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  #moon-phase-readout .phase-name { font-size: 15px; font-weight: bold; color: #ffe9a8; }
+  #time-controls {
+    display: flex; align-items: center; gap: 10px;
+  }
+  #play-pause {
+    width: 40px; height: 40px; border-radius: 20px;
+    background: rgba(120, 100, 255, 0.85);
+    border: none; color: #fff; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #speed-slider { flex: 1; }
+  #speed-label { color: #cfd3ff; font-size: 11px; width: 76px; text-align: right; }
+
+  /* 情報パネル（軽い注記のみ、詳細はFlutter側） */
+  #hint {
+    top: 96px; text-align: center; color: rgba(255,255,255,0.55);
+    font-size: 11px; padding: 0 20px;
+  }
+</style>
+</head>
+<body>
+<div id="scene-container"></div>
+
+<div class="ui-layer" id="top-bar">
+  <button class="pill-btn active" id="btn-view-free" onclick="setViewMode('free')">🛰️ 宇宙から見る</button>
+  <button class="pill-btn" id="btn-view-earth" onclick="setViewMode('earth')">🌃 地球から見上げる</button>
+</div>
+
+<div class="ui-layer" id="body-bar">
+  <button class="body-btn" id="btn-body-sun" onclick="focusBody('sun')">☀️</button>
+  <button class="body-btn" id="btn-body-earth" onclick="focusBody('earth')">🌍</button>
+  <button class="body-btn" id="btn-body-moon" onclick="focusBody('moon')">🌕</button>
+</div>
+
+<div class="ui-layer" id="hint">天体をタップすると詳しい説明が見られます。ドラッグで視点回転、ピンチでズーム</div>
+
+<div class="ui-layer" id="bottom-bar">
+  <div id="moon-phase-readout">
+    月齢 <span id="moon-age">0.0</span>日 ／ <span class="phase-name" id="moon-phase-name">新月</span>
+  </div>
+  <div id="time-controls">
+    <button id="play-pause" onclick="togglePlay()">⏸</button>
+    <input id="speed-slider" type="range" min="0" max="60" value="6" oninput="onSpeedChange(this.value)" />
+    <div id="speed-label">1秒=<span id="speed-value">6</span>日</div>
+  </div>
+</div>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ------------------------------------------------------------------
+  // Flutter <-> JS ブリッジ（JavascriptChannel 'SolarSystemChannel'）
+  // ------------------------------------------------------------------
+  function notifyFlutter(payload) {
+    try {
+      if (window.SolarSystemChannel && window.SolarSystemChannel.postMessage) {
+        window.SolarSystemChannel.postMessage(JSON.stringify(payload));
+      }
+    } catch (e) { /* WebView外プレビュー時は無視 */ }
+  }
+
+  // ------------------------------------------------------------------
+  // シーン基本セットアップ
+  // ------------------------------------------------------------------
+  const container = document.getElementById('scene-container');
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(
+    50, container.clientWidth / container.clientHeight, 0.1, 5000
+  );
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+
+  // 星空背景（簡易パーティクル）
+  (function addStarfield() {
+    const starGeo = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const positions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      const r = 1800 + Math.random() * 800;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = r * Math.cos(phi);
+    }
+    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 1.6, sizeAttenuation: true });
+    scene.add(new THREE.Points(starGeo, starMat));
+  })();
+
+  // ------------------------------------------------------------------
+  // スケール定義（見やすさ優先の誇張スケール。実際の比率ではない）
+  // ------------------------------------------------------------------
+  const SUN_RADIUS = 18;
+  const EARTH_RADIUS = 4;
+  const MOON_RADIUS = 1.1;
+  const EARTH_ORBIT_RADIUS = 90;   // 太陽からの距離
+  const MOON_ORBIT_RADIUS = 12;    // 地球からの距離
+  const EARTH_AXIAL_TILT = 23.4 * Math.PI / 180;
+
+  // ------------------------------------------------------------------
+  // 太陽
+  // ------------------------------------------------------------------
+  const sunTexture = makeSunTexture();
+  const sun = new THREE.Mesh(
+    new THREE.SphereGeometry(SUN_RADIUS, 48, 48),
+    new THREE.MeshBasicMaterial({ map: sunTexture })
+  );
+  sun.userData.bodyId = 'sun';
+  scene.add(sun);
+
+  const sunLight = new THREE.PointLight(0xffffff, 2.2, 0, 0);
+  sunLight.position.set(0, 0, 0);
+  scene.add(sunLight);
+  scene.add(new THREE.AmbientLight(0x222233, 0.6));
+
+  // 太陽の光量感を出すグロー（簡易スプライト）
+  (function addSunGlow() {
+    const spriteMat = new THREE.SpriteMaterial({
+      map: makeGlowTexture(), color: 0xffddaa, transparent: true,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    });
+    const sprite = new THREE.Sprite(spriteMat);
+    sprite.scale.set(SUN_RADIUS * 6, SUN_RADIUS * 6, 1);
+    sun.add(sprite);
+  })();
+
+  // ------------------------------------------------------------------
+  // 地球（公転軌道の親グループ + 自転する地球本体）
+  // ------------------------------------------------------------------
+  const earthOrbitGroup = new THREE.Group(); // 太陽まわりを公転
+  scene.add(earthOrbitGroup);
+
+  const earthPivot = new THREE.Object3D(); // 公転半径ぶん移動
+  earthPivot.position.set(EARTH_ORBIT_RADIUS, 0, 0);
+  earthOrbitGroup.add(earthPivot);
+
+  const earthTilt = new THREE.Group(); // 地軸の傾き
+  earthTilt.rotation.z = EARTH_AXIAL_TILT;
+  earthPivot.add(earthTilt);
+
+  const earth = new THREE.Mesh(
+    new THREE.SphereGeometry(EARTH_RADIUS, 48, 48),
+    new THREE.MeshStandardMaterial({ map: makeEarthTexture(), roughness: 0.85, metalness: 0.0 })
+  );
+  earth.userData.bodyId = 'earth';
+  earthTilt.add(earth);
+
+  // 地球の公転軌道の可視化（薄い線）
+  scene.add(makeOrbitRing(EARTH_ORBIT_RADIUS, 0x4466aa));
+
+  // ------------------------------------------------------------------
+  // 月（地球を中心に公転。自転周期=公転周期で潮汐固定）
+  // ------------------------------------------------------------------
+  const moonOrbitGroup = new THREE.Group(); // 地球まわりを公転（地軸の傾きの影響は受けない: 世界座標基準）
+  earthPivot.add(moonOrbitGroup);
+
+  const moonPivot = new THREE.Object3D();
+  moonPivot.position.set(MOON_ORBIT_RADIUS, 0, 0);
+  moonOrbitGroup.add(moonPivot);
+
+  const moon = new THREE.Mesh(
+    new THREE.SphereGeometry(MOON_RADIUS, 32, 32),
+    new THREE.MeshStandardMaterial({ map: makeMoonTexture(), roughness: 1.0, metalness: 0.0 })
+  );
+  moon.userData.bodyId = 'moon';
+  moonPivot.add(moon);
+
+  earthPivot.add(makeOrbitRing(MOON_ORBIT_RADIUS, 0x888899));
+
+  // ------------------------------------------------------------------
+  // プロシージャルテクスチャ生成
+  // ------------------------------------------------------------------
+  function makeSunTexture() {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const ctx = c.getContext('2d');
+    const grad = ctx.createRadialGradient(128, 128, 20, 128, 128, 128);
+    grad.addColorStop(0, '#fff6d0');
+    grad.addColorStop(0.5, '#ffd25e');
+    grad.addColorStop(1, '#ff9a2e');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, 256, 256);
+    // 表面の模様
+    ctx.globalAlpha = 0.15;
+    for (let i = 0; i < 60; i++) {
+      ctx.fillStyle = Math.random() > 0.5 ? '#ffffff' : '#ff7700';
+      const x = Math.random() * 256, y = Math.random() * 256, r = 4 + Math.random() * 14;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeGlowTexture() {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const ctx = c.getContext('2d');
+    const grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+    grad.addColorStop(0, 'rgba(255,230,180,0.9)');
+    grad.addColorStop(0.4, 'rgba(255,180,90,0.35)');
+    grad.addColorStop(1, 'rgba(255,150,60,0)');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, 256, 256);
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeEarthTexture() {
+    const c = document.createElement('canvas'); c.width = 512; c.height = 256;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#1b4d8f'; ctx.fillRect(0, 0, 512, 256); // 海
+    ctx.fillStyle = '#2f8f4e'; // 陸地（簡易な大陸っぽい形をいくつか描画）
+    const blobs = [
+      [60, 90, 70, 40], [150, 60, 40, 30], [230, 120, 90, 50],
+      [340, 70, 60, 35], [400, 150, 70, 45], [90, 180, 60, 30],
+      [280, 190, 50, 25], [460, 60, 40, 30],
+    ];
+    blobs.forEach(function (b) {
+      ctx.beginPath(); ctx.ellipse(b[0], b[1], b[2], b[3], 0, 0, Math.PI * 2); ctx.fill();
+    });
+    // 雲
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    for (let i = 0; i < 40; i++) {
+      const x = Math.random() * 512, y = Math.random() * 256;
+      ctx.beginPath(); ctx.ellipse(x, y, 18 + Math.random() * 22, 8 + Math.random() * 10, 0, 0, Math.PI * 2); ctx.fill();
+    }
+    // 極地
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillRect(0, 0, 512, 14); ctx.fillRect(0, 242, 512, 14);
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeMoonTexture() {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 128;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#c9c7c2'; ctx.fillRect(0, 0, 256, 128);
+    ctx.fillStyle = 'rgba(140,138,132,0.6)';
+    for (let i = 0; i < 26; i++) {
+      const x = Math.random() * 256, y = Math.random() * 128, r = 3 + Math.random() * 12;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.fillStyle = 'rgba(90,88,84,0.5)';
+    for (let i = 0; i < 10; i++) {
+      const x = Math.random() * 256, y = Math.random() * 128, r = 6 + Math.random() * 16;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeOrbitRing(radius, color) {
+    const points = [];
+    const segments = 128;
+    for (let i = 0; i <= segments; i++) {
+      const a = (i / segments) * Math.PI * 2;
+      points.push(new THREE.Vector3(Math.cos(a) * radius, 0, Math.sin(a) * radius));
+    }
+    const geo = new THREE.BufferGeometry().setFromPoints(points);
+    const mat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.35 });
+    return new THREE.LineLoop(geo, mat);
+  }
+
+  // ------------------------------------------------------------------
+  // カメラ・コントロール
+  // ------------------------------------------------------------------
+  camera.position.set(0, 90, 220);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 8;
+  controls.maxDistance = 900;
+  controls.target.set(0, 0, 0);
+
+  let viewMode = 'free'; // 'free' | 'earth'
+
+  window.setViewMode = function (mode) {
+    viewMode = mode;
+    document.getElementById('btn-view-free').classList.toggle('active', mode === 'free');
+    document.getElementById('btn-view-earth').classList.toggle('active', mode === 'earth');
+    if (mode === 'free') {
+      controls.enabled = true;
+      controls.minDistance = 8;
+      controls.maxDistance = 900;
+    }
+  };
+
+  let focusedBody = null;
+  window.focusBody = function (id) {
+    focusedBody = id;
+    ['sun', 'earth', 'moon'].forEach(function (b) {
+      document.getElementById('btn-body-' + b).classList.toggle('active', b === id);
+    });
+    notifyFlutter({ type: 'select', body: id });
+  };
+
+  // タップ/クリックで天体を選択
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+  function onPointerDown(clientX, clientY) {
+    const rect = renderer.domElement.getBoundingClientRect();
+    pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+    const targets = [sun, earth, moon];
+    const hits = raycaster.intersectObjects(targets, false);
+    if (hits.length > 0) {
+      const id = hits[0].object.userData.bodyId;
+      if (id) window.focusBody(id);
+    }
+  }
+  renderer.domElement.addEventListener('click', function (e) {
+    onPointerDown(e.clientX, e.clientY);
+  });
+  renderer.domElement.addEventListener('touchend', function (e) {
+    if (e.changedTouches && e.changedTouches.length === 1 && !controls.wasDragging) {
+      const t = e.changedTouches[0];
+      onPointerDown(t.clientX, t.clientY);
+    }
+  }, { passive: true });
+
+  // ------------------------------------------------------------------
+  // 時間シミュレーション
+  // ------------------------------------------------------------------
+  const EARTH_ORBIT_DAYS = 365.25;
+  const EARTH_ROTATION_DAYS = 1.0;
+  const MOON_ORBIT_DAYS = 27.3; // 恒星月（自転周期も同じ = 潮汐固定）
+
+  let simDay = 6.0; // 初期値: 三日月〜上弦あたりから開始
+  let playing = true;
+  let daysPerSecond = 6;
+
+  window.togglePlay = function () {
+    playing = !playing;
+    document.getElementById('play-pause').textContent = playing ? '⏸' : '▶';
+  };
+  window.onSpeedChange = function (v) {
+    daysPerSecond = parseFloat(v);
+    document.getElementById('speed-value').textContent = daysPerSecond.toFixed(0);
+  };
+
+  const MOON_PHASE_NAMES = [
+    { max: 1.5, name: '新月' },
+    { max: 6.4, name: '三日月' },
+    { max: 8.5, name: '上弦の月' },
+    { max: 13.0, name: '十三夜月' },
+    { max: 16.0, name: '満月' },
+    { max: 20.5, name: '十六夜月' },
+    { max: 23.0, name: '下弦の月' },
+    { max: 27.5, name: '二十六夜月' },
+    { max: 29.6, name: '新月' },
+  ];
+  function phaseNameForAge(age) {
+    for (let i = 0; i < MOON_PHASE_NAMES.length; i++) {
+      if (age <= MOON_PHASE_NAMES[i].max) return MOON_PHASE_NAMES[i].name;
+    }
+    return '新月';
+  }
+
+  function updateSim(deltaSeconds) {
+    if (playing) {
+      simDay += deltaSeconds * daysPerSecond;
+    }
+
+    const earthOrbitAngle = (simDay / EARTH_ORBIT_DAYS) * Math.PI * 2;
+    earthOrbitGroup.rotation.y = earthOrbitAngle;
+
+    const earthRotationAngle = (simDay / EARTH_ROTATION_DAYS) * Math.PI * 2;
+    earth.rotation.y = earthRotationAngle;
+
+    const moonOrbitAngle = (simDay / MOON_ORBIT_DAYS) * Math.PI * 2;
+    moonOrbitGroup.rotation.y = moonOrbitAngle;
+    // 潮汐固定: 公転と同じ角度だけ自転させ、常に同じ面が地球を向くようにする
+    moon.rotation.y = -moonOrbitAngle + Math.PI;
+
+    // 朔望月ベースの月齢（新月=0日）を、地球から見た太陽・月の位相角で計算
+    const moonWorldPos = new THREE.Vector3();
+    moon.getWorldPosition(moonWorldPos);
+    const earthWorldPos = new THREE.Vector3();
+    earth.getWorldPosition(earthWorldPos);
+    const sunWorldPos = new THREE.Vector3(0, 0, 0);
+
+    const toSun = sunWorldPos.clone().sub(earthWorldPos).normalize();
+    const toMoon = moonWorldPos.clone().sub(earthWorldPos).normalize();
+    let phaseAngle = Math.atan2(
+      toSun.x * toMoon.z - toSun.z * toMoon.x,
+      toSun.x * toMoon.x + toSun.z * toMoon.z
+    ); // -PI..PI, 0 = 新月(太陽と同方向), PI = 満月
+    let normalized = (phaseAngle + Math.PI * 2) % (Math.PI * 2); // 0..2PI
+    const moonAge = (normalized / (Math.PI * 2)) * 29.53;
+
+    document.getElementById('moon-age').textContent = moonAge.toFixed(1);
+    document.getElementById('moon-phase-name').textContent = phaseNameForAge(moonAge);
+
+    // 地球視点モード: 地球表面から月と太陽がある夜空を見上げる構図
+    if (viewMode === 'earth') {
+      const surfaceDir = toMoon.clone().negate(); // 月と反対側=夜側に立ち、月のほうを向く
+      const up = new THREE.Vector3(0, 1, 0);
+      const cameraPos = earthWorldPos.clone()
+        .add(toMoon.clone().multiplyScalar(EARTH_RADIUS * 1.02))
+        .add(new THREE.Vector3(0, EARTH_RADIUS * 0.15, 0));
+      camera.position.lerp(cameraPos, 0.08);
+      const lookTarget = moonWorldPos.clone();
+      controls.target.lerp(lookTarget, 0.08);
+      controls.enabled = true;
+      controls.minDistance = 0.5;
+      controls.maxDistance = 40;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // レンダーループ
+  // ------------------------------------------------------------------
+  let last = performance.now();
+  function animate(now) {
+    requestAnimationFrame(animate);
+    const delta = Math.min((now - last) / 1000, 0.1);
+    last = now;
+    updateSim(delta);
+    controls.update();
+    renderer.render(scene, camera);
+  }
+  requestAnimationFrame(animate);
+
+  function onResize() {
+    const w = container.clientWidth, h = container.clientHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener('resize', onResize);
+
+  notifyFlutter({ type: 'ready' });
+})();
+</script>
+</body>
+</html>

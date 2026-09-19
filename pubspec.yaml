@@ -44,6 +44,9 @@ dependencies:
   firebase_auth: ^6.0.0
   cloud_firestore: ^6.0.0
 
+  # 3D太陽系ビュー
+  webview_flutter: ^4.7.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,6 +74,8 @@ flutter:
     - assets/data/
     - assets/branding/
     - assets/onboarding/
+    - assets/solar_system/
+    - assets/solar_system/lib/
 
 flutter_launcher_icons:
   android: true

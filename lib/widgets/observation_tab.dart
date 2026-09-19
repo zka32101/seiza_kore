@@ -90,6 +90,10 @@ class ObservationTab extends ConsumerWidget {
 
                 // Solar system 3D view button
                 _SolarSystemButton(),
+                const SizedBox(height: 12),
+
+                // Night sky map button
+                _NightSkyButton(),
                 const SizedBox(height: 20),
 
                 // Recent observations
@@ -393,6 +397,67 @@ class _SolarSystemButton extends StatelessWidget {
                     ),
                     Text(
                       '月がなぜ満ち欠けするのか動かして学ぼう',
+                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NightSkyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/night-sky'),
+      child: Container(
+        width: double.infinity,
+        height: 84,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.indigo.shade800,
+              Colors.blue.shade900,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.indigo.withAlpha(60),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text('🌌', style: TextStyle(fontSize: 32)),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'この日の星空を見る',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '誕生日や記念日の夜空、今夜の星空を再現',
                       style: TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],

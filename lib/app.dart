@@ -17,6 +17,7 @@ import 'screens/help_screen.dart';
 import 'screens/update_notes_screen.dart';
 import 'screens/feedback_screen.dart';
 import 'screens/solar_system_screen.dart';
+import 'screens/night_sky_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -139,6 +140,14 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/solar-system',
       builder: (context, state) => const SolarSystemScreen(),
+    ),
+    GoRoute(
+      path: '/night-sky',
+      builder: (context, state) {
+        final dateParam = state.uri.queryParameters['date'];
+        final initial = dateParam != null ? DateTime.tryParse(dateParam) : null;
+        return NightSkyScreen(initialDateTime: initial);
+      },
     ),
   ],
 );

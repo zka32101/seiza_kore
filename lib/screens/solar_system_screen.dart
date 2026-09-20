@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../data/celestial_bodies_data.dart';
+import '../l10n/generated/app_localizations.dart';
 
 /// 太陽・月・地球を3Dで観察できる学習画面。
 /// 上半分はThree.js製の3Dビュー（WebView）、下半分はFlutterネイティブの解説。
@@ -49,11 +50,13 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
   @override
   Widget build(BuildContext context) {
     final body = celestialBodies[_selectedBodyId] ?? celestialBodies['earth']!;
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
 
     return Scaffold(
       backgroundColor: const Color(0xFF050818),
       appBar: AppBar(
-        title: const Text('太陽系3Dビュー'),
+        title: Text(l10n.solarSystemTitle),
         backgroundColor: const Color(0xFF0A0E28),
         foregroundColor: Colors.white,
       ),
@@ -104,7 +107,7 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
                           Text(b.emoji, style: const TextStyle(fontSize: 22)),
                           const SizedBox(height: 4),
                           Text(
-                            b.nameJa,
+                            lang == 'en' ? b.nameEn : b.nameJa,
                             style: TextStyle(
                               color: selected ? Colors.white : Colors.white54,
                               fontWeight: selected
@@ -132,7 +135,7 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
                 padding: const EdgeInsets.all(16),
                 children: [
                   Text(
-                    body.tagline,
+                    body.localizedTagline(lang),
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 14,
@@ -141,12 +144,12 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  _SectionLabel('基礎データ'),
+                  _SectionLabel(l10n.solarSystemFacts),
                   const SizedBox(height: 8),
-                  _FactsCard(facts: body.facts),
+                  _FactsCard(facts: body.localizedFacts(lang)),
                   const SizedBox(height: 20),
 
-                  ...body.sections.map(
+                  ...body.localizedSections(lang).map(
                     (s) => Padding(
                       padding: const EdgeInsets.only(bottom: 18),
                       child: Column(
@@ -167,9 +170,9 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
                     ),
                   ),
 
-                  _SectionLabel('豆知識'),
+                  _SectionLabel(l10n.solarSystemFunFacts),
                   const SizedBox(height: 8),
-                  ...body.funFacts.map(
+                  ...body.localizedFunFacts(lang).map(
                     (f) => Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Row(

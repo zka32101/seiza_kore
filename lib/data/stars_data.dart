@@ -18,7 +18,16 @@ class StarData {
   }
 
   /// Get human-readable description of light travel
-  String getLightYearDescription() {
+  String getLightYearDescription([String languageCode = 'ja']) {
+    if (languageCode == 'en') {
+      if (lightYears < 1) {
+        return "${(lightYears * 12).toInt()}-month journey of light";
+      } else if (lightYears < 1000) {
+        return "${lightYears.toStringAsFixed(1)}-light-year journey of light";
+      } else {
+        return "${(lightYears / 1000).toStringAsFixed(1)}k-light-year journey of light";
+      }
+    }
     if (lightYears < 1) {
       return '${(lightYears * 12).toInt()}ヶ月の光の旅';
     } else if (lightYears < 1000) {

@@ -26,7 +26,7 @@ class ShareService {
       ..writeln()
       ..write(_appHashtags);
 
-    await SharePlus.instance.share(ShareParams(text: text.toString()));
+    await Share.share(text.toString());
   }
 
   static Future<void> shareAchievement({
@@ -40,7 +40,7 @@ class ShareService {
       ..writeln()
       ..write(_appHashtags);
 
-    await SharePlus.instance.share(ShareParams(text: text.toString()));
+    await Share.share(text.toString());
   }
 
   static Future<void> shareQuizResult({
@@ -52,6 +52,6 @@ class ShareService {
       ..writeln()
       ..write(_appHashtags);
 
-    await SharePlus.instance.share(ShareParams(text: text.toString()));
+    await Share.share(text.toString());
   }
 }

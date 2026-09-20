@@ -278,6 +278,7 @@ class _ResultView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -296,7 +297,7 @@ class _ResultView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              result.gradeMessage,
+              result.gradeMessage(lang),
               style: const TextStyle(color: Colors.white70, fontSize: 15),
               textAlign: TextAlign.center,
             ),

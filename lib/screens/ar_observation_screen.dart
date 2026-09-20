@@ -568,6 +568,7 @@ class _TopHUD extends ConsumerWidget {
 
   void _showBortleInfo(BuildContext context, int bortle, BortleInfo info) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -596,13 +597,13 @@ class _TopHUD extends ConsumerWidget {
               style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             Text(
-              info.label,
+              info.localizedLabel(lang),
               style: const TextStyle(
                   color: Colors.white70, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              info.description,
+              info.localizedDescription(lang),
               style: const TextStyle(color: Colors.white60, fontSize: 13),
             ),
             const SizedBox(height: 16),

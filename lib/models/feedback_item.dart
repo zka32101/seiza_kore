@@ -12,6 +12,20 @@ extension FeedbackCategoryLabel on FeedbackCategory {
     }
   }
 
+  String localizedLabel(String languageCode) {
+    if (languageCode == 'en') {
+      switch (this) {
+        case FeedbackCategory.bug:
+          return 'Bug Report';
+        case FeedbackCategory.request:
+          return 'Feature Request';
+        case FeedbackCategory.other:
+          return 'Other';
+      }
+    }
+    return label;
+  }
+
   String get emoji {
     switch (this) {
       case FeedbackCategory.bug:

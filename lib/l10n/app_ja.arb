@@ -8,13 +8,11 @@
   "@appTagline": {
     "description": "アプリのキャッチコピー"
   },
-
   "navObservation": "観測",
   "navCatalog": "図鑑",
   "navRecords": "記録",
   "navSettings": "設定",
   "homeAppBarTitle": "⭐ ほしぞら大百科",
-
   "onboardingPage1Title": "夜空を図鑑にしよう",
   "onboardingPage1Subtitle": "88星座コレクション",
   "onboardingPage1Description": "スマホを夜空に向けて星座を発見しよう。見るたびに図鑑が充実して、自分だけのコレクションが完成する。",
@@ -27,7 +25,6 @@
   "onboardingNext": "次へ",
   "onboardingStart": "はじめる！",
   "onboardingSkip": "スキップ",
-
   "loginGuestButton": "ゲストで始める（無料）",
   "loginEmailButton": "メールで登録",
   "loginGoogleButton": "Googleで登録",
@@ -35,7 +32,6 @@
   "loginGoogleSnack": "Google登録は後で実装",
   "loginTerms": "利用規約",
   "loginPrivacy": "プライバシーポリシー",
-
   "helpScreenTitle": "ヘルプ・使い方",
   "helpIntro": "ほしぞら大百科の使い方をトピック別にまとめました。気になる項目をタップして開いてください。",
   "helpTopic1Title": "星座を観測するには？",
@@ -56,13 +52,11 @@
   "helpTopic8Body": "無料版でも主要な機能は利用できますが、プレミアムにアップグレードすると全88星座とタイムカプセルの完全解放など、より多くのコンテンツを楽しめます。設定タブから登録できます。",
   "helpContactTitle": "解決しない場合は？",
   "helpContactSubtitle": "ご意見・不具合報告からお気軽にご連絡ください",
-
   "settingsSectionDisplay": "表示設定",
   "settingsLanguageTitle": "言語 / Language",
   "settingsLanguageSystem": "端末の設定に従う",
   "settingsLanguageJapanese": "日本語",
   "settingsLanguageEnglish": "English",
-
   "settingsLightPollutionTitle": "光害マップ & 観測難易度",
   "settingsLightPollutionSubtitle": "Bortleスケールと観測統計を確認",
   "settingsSectionObservation": "観測設定",
@@ -108,22 +102,24 @@
   "settingsStatObservationsValue": "{count}件",
   "@settingsStatObservationsValue": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "settingsStatDifficulty": "観測難易度",
   "settingsAchievementsTitle": "実績・称号",
   "settingsPremiumUpgradeTitle": "プレミアムにアップグレード",
   "settingsPremiumUpgradeSubtitle": "全88星座 + タイムカプセル完全解放",
-
   "solarSystemTitle": "太陽系3Dビュー",
   "solarSystemFacts": "基礎データ",
   "solarSystemFunFacts": "豆知識",
-
   "constellationLoadError": "エラー: {error}",
   "@constellationLoadError": {
     "placeholders": {
-      "error": {"type": "String"}
+      "error": {
+        "type": "String"
+      }
     }
   },
   "constellationNotFound": "星座が見つかりません",
@@ -131,7 +127,9 @@
   "statObservationCountValue": "{count}回",
   "@statObservationCountValue": {
     "placeholders": {
-      "count": {"type": "int"}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "statBaseDifficulty": "難易度（基本）",
@@ -158,7 +156,9 @@
   "weatherLabel": "天気: {weather}",
   "@weatherLabel": {
     "placeholders": {
-      "weather": {"type": "String"}
+      "weather": {
+        "type": "String"
+      }
     }
   },
   "seasonYearRound": "通年観測可能 🌟",
@@ -167,13 +167,17 @@
   "seasonNextMonth": "来月（{month}）が見頃です",
   "@seasonNextMonth": {
     "placeholders": {
-      "month": {"type": "String"}
+      "month": {
+        "type": "String"
+      }
     }
   },
   "seasonNextYear": "来年（{month}）が見頃です",
   "@seasonNextYear": {
     "placeholders": {
-      "month": {"type": "String"}
+      "month": {
+        "type": "String"
+      }
     }
   },
   "baseDifficultyLabel": "基本難易度",
@@ -185,13 +189,17 @@
   "notObservedYet": "まだ{name}を観測していません",
   "@notObservedYet": {
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "lightYearNoData": "{name}の光年データはまだ公開されていません",
   "@lightYearNoData": {
     "placeholders": {
-      "name": {"type": "String"}
+      "name": {
+        "type": "String"
+      }
     }
   },
   "lightYearTravelDistance": "光の旅の距離",
@@ -199,9 +207,15 @@
   "lightYearMysteryBody": "今見ている光は{year}年に{star}から発せられたものです。\n{diff}年前の光を今、あなたの目で見ています。",
   "@lightYearMysteryBody": {
     "placeholders": {
-      "year": {"type": "int"},
-      "star": {"type": "String"},
-      "diff": {"type": "int"}
+      "year": {
+        "type": "int"
+      },
+      "star": {
+        "type": "String"
+      },
+      "diff": {
+        "type": "int"
+      }
     }
   },
   "namingTitle": "📛 あなたの命名",
@@ -212,7 +226,9 @@
   "namingReasonLabel": "理由: {reason}",
   "@namingReasonLabel": {
     "placeholders": {
-      "reason": {"type": "String"}
+      "reason": {
+        "type": "String"
+      }
     }
   },
   "namingDialogEditTitle": "命名を編集",
@@ -221,5 +237,230 @@
   "namingFieldNicknameHint": "例: 輝く者",
   "namingFieldReason": "つけた理由",
   "namingFieldReasonHint": "例: 初観測の時、星が特に明るかったから",
-  "commonSave": "保存"
+  "commonSave": "保存",
+  "achievementsTitle": "実績",
+  "achievementsRankingTooltip": "全国ランキング",
+  "achievementsYourTitleLabel": "👤 あなたの称号",
+  "achievementsUnlockedLabel": "実績解除",
+  "achievementsUnlockedSection": "✨ 解放済み ({count})",
+  "achievementsLockedSection": "🔒 未解放 ({count})",
+  "achievementsShareTooltip": "シェア",
+  "updateNotesTitle": "更新履歴",
+  "updateNotesLatestBadge": "最新",
+  "rankingTitle": "🏆 全国観測ランキング",
+  "rankingLoadError": "ランキングを読み込めませんでした",
+  "rankingRetry": "再試行",
+  "rankingEmptyMessage": "まだランキングデータがありません",
+  "rankingPositionLabel": "{rank}位",
+  "rankingUnlockedLabel": "図鑑解放: {count}/88",
+  "rankingTimesLabel": "回観測",
+  "feedbackValidationError": "タイトルと内容を入力してください",
+  "feedbackSubmitSuccess": "送信しました。ご協力ありがとうございます！",
+  "feedbackTitle": "ご意見・不具合報告",
+  "feedbackIntro": "アプリの改善に役立てます。気づいたことを気軽に送ってください。",
+  "feedbackCategoryLabel": "種類",
+  "feedbackTitleLabel": "タイトル",
+  "feedbackDetailLabel": "詳細",
+  "feedbackTitleHint": "例: AR観測画面がクラッシュする",
+  "feedbackDetailHint": "状況や再現手順、要望の背景などを書いてください",
+  "feedbackSubmitButton": "送信する",
+  "feedbackHistoryLabel": "これまでの送信 ({count}件)",
+  "feedbackSentStatus": "送信済み",
+  "quizTitle": "今日の星座クイズ",
+  "quizLoadError": "読み込みエラー: {error}",
+  "quizNotReady": "クイズを準備できませんでした",
+  "quizQuestionProgress": "第{current}問 / {total}問",
+  "quizViewDetail": "この星座の詳しいページを見る",
+  "quizNextQuestion": "次の問題へ",
+  "quizSeeResult": "結果を見る",
+  "quizCorrect": "🎉 正解！",
+  "quizExplanationLabel": "📚 解説",
+  "quizScoreLabel": "{correct} / {total} 問正解",
+  "quizRetry": "もう一度挑戦する",
+  "quizBack": "戻る",
+  "addObsTitle": "観測記録を追加",
+  "addObsSaveRecord": "記録を保存",
+  "addObsFetchingLocation": "（現在地取得中...）",
+  "addObsNoLocationSet": "場所未設定",
+  "addObsSavedSnackbar": "観測記録を保存しました！",
+  "addObsBortleSectionTitle": "シティ・ライト・チャレンジ（光害スケール）",
+  "addObsBortleLabel": "Bortle {level}: {label}",
+  "addObsScaleDark": "1\n暗い",
+  "addObsScaleSuburb": "5\n郊外",
+  "addObsScaleCity": "9\n都市",
+  "addObsCityRareBadge": "都市部でのレア観測！高難易度クリアで称号「シティハンター」に近づく",
+  "addObsLocationSectionTitle": "観測場所",
+  "addObsLocationHint": "例: 東京都新宿区、長野県諏訪市",
+  "addObsWeatherSectionTitle": "天気",
+  "addObsNotesSectionTitle": "メモ",
+  "addObsNotesHint": "今夜の観測の感想や気づいたことを書こう...",
+  "statsTitle": "詳細統計",
+  "statsLoadError": "エラー: {error}",
+  "statsAchievementsUnlocked": "実績 {earned} / {total} 解除",
+  "statsCollectionTitle": "図鑑コレクション",
+  "statsAcquired": "取得",
+  "statsNotAcquired": "未取得",
+  "statsFavorite": "お気に入り",
+  "statsEnvironmentAnalysisTitle": "観測環境の分析",
+  "statsDarkSkyLabel": "🌌 暗い空（Bortle 1-3）",
+  "statsSuburbLabel": "🌆 郊外（Bortle 4-6）",
+  "statsCityLabel": "🏙️ 都市（Bortle 7-9）",
+  "statsCategoryTitle": "カテゴリ別取得数",
+  "statsZodiacLabel": "黄道12星座",
+  "statsNorthernLabel": "北天の星座",
+  "statsSouthernLabel": "南天の星座",
+  "statsCountTimes": "{count}回",
+  "nightSkyMapNorth": "北",
+  "nightSkyMapEast": "東",
+  "nightSkyMapSouth": "南",
+  "nightSkyMapWest": "西",
+  "recordsTimeCapsuleTitle": "タイムカプセル天体",
+  "recordsTimeCapsuleSubtitle": "特別な天文イベントの記録を見る",
+  "recordsFilterAll": "全て",
+  "recordsFilterConstellation": "星座",
+  "recordsFilterCelestial": "天体",
+  "recordsDeletedSnackbar": "観測記録を削除しました",
+  "recordsBortleDistributionTitle": "観測環境の分布",
+  "recordsBortleDark": "🌌 暗い空（1-3）",
+  "recordsBortleSuburb": "🌆 郊外（4-6）",
+  "recordsBortleCity": "🏙️ 都市（7-9）",
+  "recordsCountTimes": "{count}回",
+  "recordsShareTooltip": "シェア",
+  "recordsEmptyTitle": "まだ観測記録がありません",
+  "recordsEmptySubtitle": "AR観測ボタンで夜空を観測してみよう",
+  "unlockClose": "閉じる",
+  "unlockNewDiscovery": "✨  新しい星座を発見！  ✨",
+  "unlockViewInGuide": "図鑑で見る",
+  "nightSkyTitle": "この日の星空",
+  "nightSkyLoadError": "読み込みエラー: {error}",
+  "nightSkyLocationLoading": "📍 取得中...",
+  "nightSkyUseCurrentLocation": "📍 現在地を使う",
+  "nightSkyCurrentLocationLabel": "現在地",
+  "nightSkyCityTokyo": "東京",
+  "nightSkyCityOsaka": "大阪",
+  "nightSkyCityNagoya": "名古屋",
+  "nightSkyCityFukuoka": "福岡",
+  "nightSkyCitySapporo": "札幌",
+  "nightSkyCitySendai": "仙台",
+  "nightSkyCityNaha": "那覇",
+  "nightSkyMoonAgeLabel": "月齢{age}日",
+  "nightSkyVisibleCountValue": "{count}個",
+  "nightSkyVisibleConstellationsLabel": "見えている星座",
+  "nightSkyDaytime": "昼間",
+  "nightSkyNighttime": "夜間",
+  "nightSkyNotSuitableForObservation": "観測には不向き",
+  "nightSkyObservationChance": "観測チャンス",
+  "nightSkyApproximationNote": "※ 星座の位置は簡易計算による近似です。実際の見え方とは多少異なる場合があります。",
+  "lightPollutionTitle": "🌍 光害マップ & 観測難易度",
+  "lightPollutionLoadError": "エラー: {error}",
+  "lightPollutionConditionsTitle": "📊 観測条件の選択肢",
+  "lightPollutionConditionsBody": "あなたの周辺の光害レベル（Bortleスケール）に応じて、観測可能な星座と難易度が変わります。暗い空への移動で、より難しい（そして美しい）星座を見つけることができます。",
+  "lightPollutionBortleScaleSectionTitle": "🌙 Bortleスケール基準",
+  "lightPollutionStatsSectionTitle": "📈 あなたの観測統計",
+  "lightPollutionDifficultySectionTitle": "⭐ 難易度別・観測可能な星座",
+  "lightPollutionTipsSectionTitle": "💡 観測のコツ",
+  "lightPollutionTip1Title": "明るい場所での観測",
+  "lightPollutionTip1Description": "都市部（Bortle 7-9）では、基本難易度2以下の星座を探しましょう。シリウスやベテルギウスなど明るい星が狙い目です。",
+  "lightPollutionTip2Title": "郊外への移動",
+  "lightPollutionTip2Description": "郊外（Bortle 4-6）に移動すれば、難易度3-4の星座も観測可能に。週末の天体観測ツアーを計画してみましょう。",
+  "lightPollutionTip3Title": "ダークスカイ探索",
+  "lightPollutionTip3Description": "山間部（Bortle 1-3）では、難易度5の最高難度星座も見えます。流星群の季節は特に最高の観測地を探しましょう。",
+  "lightPollutionStarCount": "⭐ {count}個",
+  "lightPollutionDifficultyLabel": "難易度: {stars}",
+  "lightPollutionCountPercentage": "{count}個 ({percentage}%)",
+  "lightPollutionCurrentLocationTitle": "現在地の光害レベル",
+  "lightPollutionBortleLabel": "Bortle {bortle}: {label}",
+  "lightPollutionDifficultyEstimateLabel": "観測難易度の目安: {label}",
+  "lightPollutionLoadingLabel": "取得中...",
+  "lightPollutionDetectButton": "現在地から診断する",
+  "lightPollutionObservationCountLabel": "観測回数",
+  "lightPollutionAverageBortleLabel": "平均Bortle",
+  "lightPollutionUrbanObservationLabel": "都市観測",
+  "lightPollutionDarkSkyObservationLabel": "暗空観測",
+  "observationTabActiveEventTitle": "今すぐ観測チャンス！",
+  "observationTabRecentObservations": "最近の観測",
+  "observationTabGreetingLateNight": "深夜の星空観測に最適",
+  "observationTabGreetingMorning": "今夜の観測計画を立てよう",
+  "observationTabGreetingAfternoon": "日没後に星座を探しに行こう",
+  "observationTabGreetingEvening": "もうすぐ星が輝き始めます",
+  "observationTabGreetingNight": "今夜は絶好の観測日和！",
+  "observationTabCatalogLabel": "図鑑",
+  "observationTabRecommendedLabel": "今月の推奨",
+  "observationTabMoonAgeDays": "{days}日",
+  "observationTabObservationGood": "観測◎",
+  "observationTabMoonlightCaution": "月明かり注意",
+  "observationTabArButtonTitle": "AR観測を始める",
+  "observationTabArButtonSubtitle": "スマホを夜空に向けよう",
+  "observationTabSolarSystemTitle": "太陽系を3Dで探検！",
+  "observationTabSolarSystemSubtitle": "月がなぜ満ち欠けするのか動かして学ぼう",
+  "observationTabNightSkyTitle": "この日の星空を見る",
+  "observationTabNightSkySubtitle": "誕生日や記念日の夜空、今夜の星空を再現",
+  "observationTabEmptyMessage": "まだ観測記録がありません\nAR観測ボタンから始めてみよう！",
+  "observationTabQuizTitle": "今日の星座クイズ",
+  "observationTabQuizSubtitle": "5問チャレンジで星座博士を目指そう",
+  "catalogSearchHint": "星座を検索...",
+  "catalogFilterTooltip": "フィルタ",
+  "catalogAdvancedFilterTitle": "詳細フィルタ",
+  "catalogDifficultyLabel": "難易度（★）",
+  "catalogVisibilityLabel": "可視性",
+  "catalogAll": "全て",
+  "catalogVisibilityCurrent": "今月の見頃",
+  "catalogUnlockedStatusLabel": "解放状況",
+  "catalogUnlockedYes": "解放済み",
+  "catalogUnlockedNo": "未解放",
+  "catalogResetFilter": "フィルタをリセット",
+  "catalogSortName": "登録順",
+  "catalogSortEasy": "易しい順",
+  "catalogSortHard": "難しい順",
+  "catalogSortTooltip": "ソート",
+  "catalogFavorites": "お気に入り",
+  "catalogUnlockedCount": "取得数: {unlocked}/{total}",
+  "catalogNoResults": "見つかりませんでした",
+  "catalogErrorMessage": "エラー: {error}",
+  "timecapsuleTitle": "⏰ タイムカプセル天体",
+  "timecapsuleHeaderExplanation": "特定の天文イベント期間中のみ解放される特別なページです。見逃したら来年までお預け！",
+  "timecapsuleSectionActiveNow": "🔓 今すぐ観測できる！",
+  "timecapsuleSectionUpcoming": "📅 もうすぐ解放",
+  "timecapsuleSectionPast": "📁 過去のイベント",
+  "timecapsuleNoEventData": "イベントデータがありません",
+  "timecapsuleSectionMyRecords": "📖 自分の記録",
+  "timecapsuleSectionConstellationCapsule": "🌟 星座タイムカプセル",
+  "timecapsuleStatSaved": "保存中",
+  "timecapsuleStatUnlocked": "解放済み",
+  "timecapsuleStatWaiting": "待機中",
+  "timecapsuleCapsuleDescription": "観測した星座を未来に預けて、指定した日付に思い出と共に解放します。",
+  "timecapsuleSectionCapsuleActiveNow": "🔓 今すぐ見られる",
+  "timecapsuleSectionCapsuleWaiting": "⏳ 待機中の星座",
+  "timecapsuleBadgeActive": "解放中",
+  "timecapsuleHoursLeft": "残り{hours}時間",
+  "timecapsuleRecordButton": "観測を記録する",
+  "timecapsuleDateRange": "{start}〜{end}",
+  "timecapsuleDaysUnit": "日後",
+  "timecapsuleUnlocksIn": "あと{days}日（{date}）に解放されます",
+  "timecapsuleRecordSaved": "{name}の観測を記録しました！",
+  "timecapsuleMeteorCountLabel": "見た流れ星の数",
+  "timecapsuleMeteorCountValue": "{count}個",
+  "timecapsuleNotesLabel": "観測メモ",
+  "timecapsuleNotesHint": "今夜の特別な体験を記録しよう...",
+  "timecapsuleSaveRecord": "記録する",
+  "timecapsuleMeteorCountRecord": "流れ星: {count}個",
+  "timecapsulePastRecordPremium": "過去の記録を表示（プレミアム機能）",
+  "timecapsuleViewRecord": "記録を見る",
+  "timecapsuleSavedLabel": "保存: {date}",
+  "timecapsuleReleaseLabel": "解放: {date}",
+  "arObsNoLocationSimulation": "位置情報なし（シミュレーション）",
+  "arObsCityLightChallengeTitle": "シティ・ライト・チャレンジ",
+  "arObsBortleScaleLabel": "Bortleスケール: {bortle} / 9",
+  "arObsDifficultyLabel": "難易度: {stars}",
+  "arObsCityRareMessage": "都市部での観測はレア！高難易度クリアで称号獲得のチャンス 🏆",
+  "arObsDarkSkyAdvantageMessage": "暗い空での観測はたくさんの星が見えて有利！",
+  "arObsSimulationChangeBortle": "シミュレーション: Bortleスケールを変更",
+  "arObsConstellationDiscovered": "星座を発見！",
+  "arObsCityDifficultyCleared": "🏆 都市難易度クリア！",
+  "arObsScanStart": "スキャン開始",
+  "arObsScanning": "スキャン中...",
+  "arObsRetry": "やり直す",
+  "arObsRecord": "記録する",
+  "arObsRedModeOn": "赤色 ON",
+  "arObsRedModeOff": "赤色 OFF"
 }

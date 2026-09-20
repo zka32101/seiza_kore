@@ -161,6 +161,7 @@ class _LightPollutionMapScreenState
 
   List<Widget> _buildBortleChart(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final service = BortleService.instance;
     return List.generate(9, (index) {
       final bortle = index + 1;
@@ -194,13 +195,13 @@ class _LightPollutionMapScreenState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Bortle $bortle: ${info.label}',
+                              'Bortle $bortle: ${info.localizedLabel(lang)}',
                               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              info.description,
+                              info.localizedDescription(lang),
                               style: Theme.of(context).textTheme.labelSmall,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -334,6 +335,7 @@ class _CurrentLocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final service = BortleService.instance;
     final info = bortle != null ? service.getBortleInfo(bortle!) : null;
 
@@ -360,15 +362,15 @@ class _CurrentLocationCard extends StatelessWidget {
             const SizedBox(height: 12),
             if (info != null) ...[
               Text(
-                l10n.lightPollutionBortleLabel(bortle!, info.label),
+                l10n.lightPollutionBortleLabel(bortle!, info.localizedLabel(lang)),
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 4),
-              Text(info.description, style: Theme.of(context).textTheme.bodySmall),
+              Text(info.localizedDescription(lang), style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 4),
               Text(
                 l10n.lightPollutionDifficultyEstimateLabel(
-                    service.getDifficultyLabel(bortle!)),
+                    service.getDifficultyLabel(bortle!, lang)),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 12),

@@ -159,11 +159,11 @@ class _AddObservationScreenState
                       child: ListTile(
                         leading: Text(c.emoji,
                             style: const TextStyle(fontSize: 32)),
-                        title: Text(c.nameJa,
+                        title: Text(lang == 'en' ? c.nameEn : c.nameJa,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18)),
-                        subtitle: Text(c.nameEn),
+                        subtitle: Text(lang == 'en' ? c.nameJa : c.nameEn),
                       ),
                     )
                   : const SizedBox.shrink(),
@@ -185,7 +185,7 @@ class _AddObservationScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          l10n.addObsBortleLabel(_bortle, bortleInfo.label),
+                          l10n.addObsBortleLabel(_bortle, bortleInfo.localizedLabel(lang)),
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
@@ -198,7 +198,7 @@ class _AddObservationScreenState
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      bortleInfo.description,
+                      bortleInfo.localizedDescription(lang),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Colors.grey.shade600,
                           ),

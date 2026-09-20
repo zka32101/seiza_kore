@@ -63,6 +63,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final items = ref.watch(feedbackListProvider);
 
     return Scaffold(
@@ -90,7 +91,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
             spacing: 8,
             children: FeedbackCategory.values.map((c) {
               return ChoiceChip(
-                label: Text('${c.emoji} ${c.label}'),
+                label: Text('${c.emoji} ${c.localizedLabel(lang)}'),
                 selected: _category == c,
                 onSelected: (_) => setState(() => _category = c),
               );

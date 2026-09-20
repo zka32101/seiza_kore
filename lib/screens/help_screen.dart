@@ -81,7 +81,7 @@ class HelpScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
             child: Text(
-              '星座コレ！の使い方をトピック別にまとめました。気になる項目をタップして開いてください。',
+              'ほしぞら大百科の使い方をトピック別にまとめました。気になる項目をタップして開いてください。',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     color: Colors.grey.shade600,
                   ),

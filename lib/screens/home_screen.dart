@@ -34,7 +34,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('⭐ 星座コレ！'),
+            const Text('⭐ ほしぞら大百科'),
           ],
         ),
         centerTitle: true,

@@ -7,7 +7,7 @@ import '../models/constellation.dart';
 class ShareService {
   const ShareService._();
 
-  static const String _appHashtags = '#星座コレ #星空観測';
+  static const String _appHashtags = '#ほしぞら大百科 #星空観測';
 
   static Future<void> shareObservation({
     required Observation observation,

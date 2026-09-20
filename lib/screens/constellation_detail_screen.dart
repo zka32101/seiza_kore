@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/observation_provider.dart';
 import '../models/constellation.dart';
@@ -9,6 +10,7 @@ import '../services/constellation_art.dart';
 import '../data/stars_data.dart';
 import '../providers/constellation_nickname_provider.dart';
 import '../models/constellation_nickname.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class ConstellationDetailScreen extends ConsumerWidget {
   final String constellationId;
@@ -24,6 +26,7 @@ class ConstellationDetailScreen extends ConsumerWidget {
         .toList();
     final unlockedIds = ref.watch(unlockedIdsProvider);
     final isUnlocked = unlockedIds.contains(constellationId);
+    final l10n = AppLocalizations.of(context)!;
 
     return constellationAsync.when(
       loading: () => const Scaffold(
@@ -31,13 +34,13 @@ class ConstellationDetailScreen extends ConsumerWidget {
       ),
       error: (e, _) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text('エラー: $e')),
+        body: Center(child: Text(l10n.constellationLoadError(e.toString()))),
       ),
       data: (constellation) {
         if (constellation == null) {
           return Scaffold(
             appBar: AppBar(),
-            body: const Center(child: Text('星座が見つかりません')),
+            body: Center(child: Text(l10n.constellationNotFound)),
           );
         }
         return _DetailContent(
@@ -70,6 +73,9 @@ class _DetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -93,10 +99,10 @@ class _DetailContent extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // Mythology
-                  _SectionTitle('神話・伝説'),
+                  _SectionTitle(l10n.sectionMythology),
                   const SizedBox(height: 8),
                   Text(
-                    constellation.mythologyText,
+                    constellation.localizedMythology(lang),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           height: 1.8,
                         ),
@@ -104,17 +110,17 @@ class _DetailContent extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // Astronomy data
-                  _SectionTitle('天文データ'),
+                  _SectionTitle(l10n.sectionAstronomyData),
                   const SizedBox(height: 8),
                   _AstronomyDataCard(constellation: constellation),
                   const SizedBox(height: 24),
 
                   // Observation tips
-                  if (constellation.observationTips.isNotEmpty) ...[
-                    _SectionTitle('観測のコツ'),
+                  if (constellation.localizedObservationTips(lang).isNotEmpty) ...[
+                    _SectionTitle(l10n.sectionObservationTips),
                     const SizedBox(height: 8),
                     Text(
-                      constellation.observationTips,
+                      constellation.localizedObservationTips(lang),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             height: 1.8,
                           ),
@@ -123,11 +129,11 @@ class _DetailContent extends StatelessWidget {
                   ],
 
                   // Scientific data
-                  if (constellation.scientificData.isNotEmpty) ...[
-                    _SectionTitle('科学的データ'),
+                  if (constellation.localizedScientificData(lang).isNotEmpty) ...[
+                    _SectionTitle(l10n.sectionScientificData),
                     const SizedBox(height: 8),
                     Text(
-                      constellation.scientificData,
+                      constellation.localizedScientificData(lang),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             height: 1.8,
                           ),
@@ -136,11 +142,11 @@ class _DetailContent extends StatelessWidget {
                   ],
 
                   // Fun facts
-                  if (constellation.funFacts.isNotEmpty) ...[
-                    _SectionTitle('豆知識・文化的背景'),
+                  if (constellation.localizedFunFacts(lang).isNotEmpty) ...[
+                    _SectionTitle(l10n.sectionFunFacts),
                     const SizedBox(height: 8),
                     Text(
-                      constellation.funFacts,
+                      constellation.localizedFunFacts(lang),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             height: 1.8,
                           ),
@@ -149,29 +155,26 @@ class _DetailContent extends StatelessWidget {
                   ],
 
                   // Light-year Time Travel
-                  _SectionTitle('光年の時間旅行'),
+                  _SectionTitle(l10n.sectionLightYearTravel),
                   const SizedBox(height: 8),
                   _LightYearCard(constellation: constellation),
                   const SizedBox(height: 24),
 
                   // Observation plan
-                  _SectionTitle('観測プラン'),
+                  _SectionTitle(l10n.sectionObservationPlan),
                   const SizedBox(height: 8),
                   _ObservationPlanCard(constellation: constellation),
                   const SizedBox(height: 24),
 
                   // Observation history
-                  if (observations.isNotEmpty) ...[
-                    _SectionTitle('観測記録'),
-                    const SizedBox(height: 8),
+                  _SectionTitle(l10n.sectionObservationHistory),
+                  const SizedBox(height: 8),
+                  if (observations.isNotEmpty)
                     ...observations.map(
                       (o) => _ObservationHistoryTile(observation: o),
-                    ),
-                  ] else ...[
-                    _SectionTitle('観測記録'),
-                    const SizedBox(height: 8),
+                    )
+                  else
                     _EmptyObservationCard(constellation: constellation),
-                  ],
                   const SizedBox(height: 32),
                 ],
               ),
@@ -187,7 +190,7 @@ class _DetailContent extends StatelessWidget {
             onPressed: () =>
                 context.push('/add-observation/${constellation.id}'),
             icon: const Icon(Icons.edit_note),
-            label: const Text('手動記録'),
+            label: Text(l10n.manualRecordButton),
             backgroundColor: Colors.teal,
           ),
           const SizedBox(width: 12),
@@ -195,7 +198,7 @@ class _DetailContent extends StatelessWidget {
             heroTag: 'ar_obs',
             onPressed: () => context.push('/ar'),
             icon: const Icon(Icons.camera_alt),
-            label: const Text('AR観測'),
+            label: Text(l10n.arObservationButton),
           ),
         ],
       ),
@@ -215,6 +218,7 @@ class _HeroAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final lang = Localizations.localeOf(context).languageCode;
 
     return SliverAppBar(
       expandedHeight: 220,
@@ -285,7 +289,7 @@ class _HeroAppBar extends StatelessWidget {
                       ),
                     const SizedBox(height: 8),
                     Text(
-                      constellation.nameJa,
+                      lang == 'en' ? constellation.nameEn : constellation.nameJa,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -293,14 +297,15 @@ class _HeroAppBar extends StatelessWidget {
                         shadows: [Shadow(blurRadius: 8)],
                       ),
                     ),
-                    Text(
-                      constellation.nameEn,
-                      style: TextStyle(
-                        color: Colors.white.withAlpha(180),
-                        fontSize: 14,
-                        shadows: const [Shadow(blurRadius: 4)],
+                    if (lang != 'en')
+                      Text(
+                        constellation.nameEn,
+                        style: TextStyle(
+                          color: Colors.white.withAlpha(180),
+                          fontSize: 14,
+                          shadows: const [Shadow(blurRadius: 4)],
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
@@ -325,6 +330,7 @@ class _StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -332,20 +338,22 @@ class _StatsRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _StatItem(
-              label: '観測回数',
-              value: '$observationCount回',
+              label: l10n.statObservationCount,
+              value: l10n.statObservationCountValue(observationCount),
               icon: Icons.visibility,
             ),
             _StatDivider(),
             _StatItem(
-              label: '難易度（基本）',
+              label: l10n.statBaseDifficulty,
               value: _starsStr(constellation.baseDifficulty, 5),
               icon: Icons.location_on,
             ),
             _StatDivider(),
             _StatItem(
-              label: '最高難易度',
-              value: maxDifficulty > 0 ? _starsStr(maxDifficulty, 3) : '未観測',
+              label: l10n.statMaxDifficulty,
+              value: maxDifficulty > 0
+                  ? _starsStr(maxDifficulty, 3)
+                  : l10n.statNotObserved,
               icon: Icons.emoji_events,
             ),
           ],
@@ -421,21 +429,23 @@ class _AstronomyDataCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _DataRow('赤経', constellation.rightAscension),
-            _DataRow('赤緯', constellation.declination),
+            _DataRow(l10n.dataRowRightAscension, constellation.rightAscension),
+            _DataRow(l10n.dataRowDeclination, constellation.declination),
             _DataRow(
-              '主要な星',
-              constellation.brightStars.join('、'),
+              l10n.dataRowBrightStars,
+              constellation.localizedBrightStars(lang).join(lang == 'en' ? ', ' : '、'),
             ),
-            _DataRow('見頃', constellation.peakMonths),
+            _DataRow(l10n.dataRowPeakSeason, constellation.localizedPeakMonths(lang)),
             _DataRow(
-              'カテゴリ',
-              _categoryName(constellation.category),
+              l10n.dataRowCategory,
+              _categoryName(l10n, constellation.category),
             ),
           ],
         ),
@@ -443,14 +453,14 @@ class _AstronomyDataCard extends StatelessWidget {
     );
   }
 
-  String _categoryName(String cat) {
+  String _categoryName(AppLocalizations l10n, String cat) {
     switch (cat) {
       case ConstellationCategory.zodiac:
-        return '黄道12星座';
+        return l10n.categoryZodiac;
       case ConstellationCategory.northern:
-        return '北天の星座';
+        return l10n.categoryNorthern;
       case ConstellationCategory.southern:
-        return '南天の星座';
+        return l10n.categorySouthern;
       default:
         return cat;
     }
@@ -495,6 +505,7 @@ class _ObservationHistoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final date =
         '${observation.timestamp.year}-${observation.timestamp.month.toString().padLeft(2, '0')}-${observation.timestamp.day.toString().padLeft(2, '0')}';
     final time =
@@ -524,7 +535,7 @@ class _ObservationHistoryTile extends StatelessWidget {
         ),
         isThreeLine: true,
         trailing: Text(
-          '天気: ${observation.weather}',
+          l10n.weatherLabel(observation.weather),
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ),
@@ -542,26 +553,35 @@ class _ObservationPlanCard extends StatelessWidget {
   final Constellation constellation;
   const _ObservationPlanCard({required this.constellation});
 
-  String _getSeasonStatus(String peakMonths) {
+  String _monthName(String lang, int month) {
+    return DateFormat.MMMM(lang).format(DateTime(2000, month));
+  }
+
+  String _getSeasonStatus(AppLocalizations l10n, String lang, String peakMonths) {
     final month = DateTime.now().month;
     // 簡易判定: peakMonthsに現在の月が含まれているか
-    if (peakMonths.contains('通年')) return '通年観測可能 🌟';
-    if (peakMonths.contains('${month}月')) return '今月が見頃です！ ✨';
+    if (peakMonths.contains('通年') || peakMonths.toLowerCase().contains('year-round')) {
+      return l10n.seasonYearRound;
+    }
+    if (peakMonths.contains('${month}月')) return l10n.seasonThisMonth;
 
-    // 次の見頃を推定
-    final nums = RegExp(r'\d+').allMatches(peakMonths).map((m) => int.parse(m.group(0)!)).toList();
-    if (nums.isEmpty) return '季節限定（詳細はデータを確認）';
+    // 次の見頃を推定（日本語表記の「N月」から数字を抽出。英語表記は月推定できないため季節限定表示にフォールバック）
+    final nums = RegExp(r'(\d+)月').allMatches(peakMonths).map((m) => int.parse(m.group(1)!)).toList();
+    if (nums.isEmpty) return l10n.seasonUnknown;
 
     final nextMonth = nums.firstWhere((m) => m > month, orElse: () => nums.first);
+    final monthName = _monthName(lang, nextMonth);
     if (nextMonth > month) {
-      return '来月（${nextMonth}月）が見頃です';
+      return l10n.seasonNextMonth(monthName);
     } else {
-      return '来年（${nextMonth}月）が見頃です';
+      return l10n.seasonNextYear(monthName);
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -579,7 +599,7 @@ class _ObservationPlanCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    _getSeasonStatus(constellation.peakMonths),
+                    _getSeasonStatus(l10n, lang, constellation.peakMonths),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -603,7 +623,7 @@ class _ObservationPlanCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '基本難易度',
+                        l10n.baseDifficultyLabel,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       Row(
@@ -620,10 +640,10 @@ class _ObservationPlanCard extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text(
                             constellation.baseDifficulty == 5
-                                ? '最高難易度'
+                                ? l10n.difficultyMax
                                 : constellation.baseDifficulty == 1
-                                    ? '最易'
-                                    : '中程度',
+                                    ? l10n.difficultyMin
+                                    : l10n.difficultyMedium,
                             style: TextStyle(
                               color: Colors.amber.shade700,
                               fontSize: 12,
@@ -656,8 +676,8 @@ class _ObservationPlanCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       constellation.baseDifficulty >= 4
-                          ? '都市部での観測は難しいため、暗い空での観測をお勧めします'
-                          : '見やすい星座です。どこからでも観測できます！',
+                          ? l10n.hardAdvice
+                          : l10n.easyAdvice,
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             color: Theme.of(context).colorScheme.primary,
                           ),
@@ -679,6 +699,8 @@ class _EmptyObservationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -691,7 +713,7 @@ class _EmptyObservationCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'まだ${constellation.nameJa}を観測していません',
+              l10n.notObservedYet(lang == 'en' ? constellation.nameEn : constellation.nameJa),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey.shade600,
@@ -705,13 +727,13 @@ class _EmptyObservationCard extends StatelessWidget {
                   onPressed: () =>
                       context.push('/add-observation/${constellation.id}'),
                   icon: const Icon(Icons.edit_note),
-                  label: const Text('手動記録'),
+                  label: Text(l10n.manualRecordButton),
                 ),
                 const SizedBox(width: 12),
                 ElevatedButton.icon(
                   onPressed: () => context.push('/ar'),
                   icon: const Icon(Icons.camera_alt),
-                  label: const Text('AR観測'),
+                  label: Text(l10n.arObservationButton),
                 ),
               ],
             ),
@@ -728,6 +750,8 @@ class _LightYearCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final starData = getStarDataByConstellationId(constellation.id);
 
     if (starData == null) {
@@ -744,7 +768,7 @@ class _LightYearCard extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  '${constellation.nameJa}の光年データはまだ公開されていません',
+                  l10n.lightYearNoData(lang == 'en' ? constellation.nameEn : constellation.nameJa),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                       ),
@@ -758,6 +782,7 @@ class _LightYearCard extends StatelessWidget {
 
     final now = DateTime.now();
     final originYear = starData.getOriginYear(now.year);
+    final starName = lang == 'en' ? starData.nameEn : starData.name;
 
     return Card(
       child: Padding(
@@ -811,11 +836,11 @@ class _LightYearCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '光の旅の距離',
+                        l10n.lightYearTravelDistance,
                         style: Theme.of(context).textTheme.labelSmall,
                       ),
                       Text(
-                        starData.getLightYearDescription(),
+                        starData.getLightYearDescription(lang),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -839,7 +864,7 @@ class _LightYearCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '✨ 時間旅行のミステリー',
+                    l10n.lightYearMysteryTitle,
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Colors.deepPurple.shade700,
                           fontWeight: FontWeight.bold,
@@ -847,8 +872,7 @@ class _LightYearCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    '今見ている光は${originYear}年に${starData.name}から発せられたものです。\n'
-                    '${now.year - originYear}年前の光を今、あなたの目で見ています。',
+                    l10n.lightYearMysteryBody(originYear, starName, now.year - originYear),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.deepPurple.shade700,
                           height: 1.6,
@@ -870,6 +894,7 @@ class _StarNamingSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final nickname = ref.watch(constellationNicknameProvider(constellation.id));
 
     return Card(
@@ -884,7 +909,7 @@ class _StarNamingSection extends ConsumerWidget {
                 Icon(Icons.star_rate, color: Colors.amber.shade700, size: 20),
                 const SizedBox(width: 8),
                 Text(
-                  '📛 あなたの命名',
+                  l10n.namingTitle,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.amber.shade800,
@@ -903,7 +928,7 @@ class _StarNamingSection extends ConsumerWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                '理由: ${nickname.reason}',
+                l10n.namingReasonLabel(nickname.reason),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.amber.shade700,
                     ),
@@ -915,9 +940,9 @@ class _StarNamingSection extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton.icon(
-                    onPressed: () => _showEditDialog(context, ref, nickname),
+                    onPressed: () => _showEditDialog(context, ref, l10n, nickname),
                     icon: const Icon(Icons.edit),
-                    label: const Text('編集'),
+                    label: Text(l10n.namingEditButton),
                   ),
                   OutlinedButton.icon(
                     onPressed: () async {
@@ -926,7 +951,7 @@ class _StarNamingSection extends ConsumerWidget {
                           .removeNickname(constellation.id);
                     },
                     icon: const Icon(Icons.delete),
-                    label: const Text('削除'),
+                    label: Text(l10n.namingDeleteButton),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.red,
                     ),
@@ -935,7 +960,7 @@ class _StarNamingSection extends ConsumerWidget {
               ),
             ] else ...[
               Text(
-                'この星座にあなただけの名前をつけてみませんか？',
+                l10n.namingPrompt,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Colors.amber.shade800,
                     ),
@@ -944,9 +969,9 @@ class _StarNamingSection extends ConsumerWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () => _showEditDialog(context, ref, null),
+                  onPressed: () => _showEditDialog(context, ref, l10n, null),
                   icon: const Icon(Icons.add),
-                  label: const Text('名前をつける'),
+                  label: Text(l10n.namingAddButton),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.amber.shade700,
                     foregroundColor: Colors.white,
@@ -963,6 +988,7 @@ class _StarNamingSection extends ConsumerWidget {
   void _showEditDialog(
     BuildContext context,
     WidgetRef ref,
+    AppLocalizations l10n,
     ConstellationNickname? existing,
   ) {
     final nicknameCtrl = TextEditingController(text: existing?.nickname ?? '');
@@ -971,27 +997,27 @@ class _StarNamingSection extends ConsumerWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text(existing != null ? '命名を編集' : '新しい命名'),
+        title: Text(existing != null ? l10n.namingDialogEditTitle : l10n.namingDialogNewTitle),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
                 controller: nicknameCtrl,
-                decoration: const InputDecoration(
-                  labelText: '星座の呼び名',
-                  hintText: '例: 輝く者',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l10n.namingFieldNickname,
+                  hintText: l10n.namingFieldNicknameHint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextField(
                 controller: reasonCtrl,
                 maxLines: 2,
-                decoration: const InputDecoration(
-                  labelText: 'つけた理由',
-                  hintText: '例: 初観測の時、星が特に明るかったから',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: l10n.namingFieldReason,
+                  hintText: l10n.namingFieldReasonHint,
+                  border: const OutlineInputBorder(),
                 ),
               ),
             ],
@@ -1000,7 +1026,7 @@ class _StarNamingSection extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('キャンセル'),
+            child: Text(l10n.commonCancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -1015,7 +1041,7 @@ class _StarNamingSection extends ConsumerWidget {
                 Navigator.pop(ctx);
               }
             },
-            child: const Text('保存'),
+            child: Text(l10n.commonSave),
           ),
         ],
       ),

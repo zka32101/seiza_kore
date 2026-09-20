@@ -17,7 +17,16 @@
     "baseDifficulty": 2,
     "observationTips": "秋の夜、ペガススの四辺形の東側、おうし座とうお座の間の空にあります。目立つ一等星がないので、ハマルとシェラタンという2つの星が作る小さな曲線を目印に探すと見つけやすいですよ。",
     "scientificData": "一番明るい星ハマルはオレンジ色の巨星で、地球からおよそ66光年離れています。おひつじ座はあまり明るい星がなく、全天でも88星座の中では中くらいの広さの星座です。",
-    "funFacts": "昔のヨーロッパでは春分点（太陽が春に通る位置）がこの星座にあったため、天文学や占星術でとても重要な星座とされてきました。今は歳差運動でその位置はうお座に移っています。"
+    "funFacts": "昔のヨーロッパでは春分点（太陽が春に通る位置）がこの星座にあったため、天文学や占星術でとても重要な星座とされてきました。今は歳差運動でその位置はうお座に移っています。",
+    "mythologyTextEn": "In Greek mythology, this constellation represents the golden-fleeced ram that became the object of the great quest undertaken by the hero Jason and his companions, the Argonauts. The ram is said to have carried the siblings Phrixus and Helle, who were fleeing a jealous stepmother, safely across the sea to Colchis on the shores of the Black Sea. After delivering Phrixus, the golden ram was sacrificed to the god Zeus, and its spirit was placed among the stars, where it still shines.",
+    "observationTipsEn": "On autumn nights, look east of the Great Square of Pegasus, in the stretch of sky between Taurus and Pisces. Aries has no standout first-magnitude star, so the easiest way to spot it is to look for the small curved line formed by two stars, Hamal and Sheratan.",
+    "scientificDataEn": "Its brightest star, Hamal, is an orange giant located about 66 light-years from Earth. Aries has no particularly bright stars overall and ranks as a mid-sized constellation among the 88 recognized constellations.",
+    "funFactsEn": "In ancient Europe, the vernal equinox point (where the Sun crosses the celestial equator in spring) once lay within Aries, making it a highly significant constellation in both astronomy and astrology. Due to the precession of the equinoxes, that point has since shifted into Pisces.",
+    "brightStarsEn": [
+      "Hamal",
+      "Sheratan"
+    ],
+    "peakMonthsEn": "December – January"
   },
   {
     "id": "taurus",
@@ -37,7 +46,16 @@
     "baseDifficulty": 1,
     "observationTips": "冬の代表的な星座で、赤く光る一等星アルデバランが目印です。オリオン座の三つ星から右上（北西）に線をのばすと見つかります。すぐそばにはプレアデス星団（すばる）もあり、とても見つけやすい星座です。",
     "scientificData": "アルデバランは地球から約65光年、太陽のおよそ44倍の大きさを持つ赤色巨星です。プレアデス星団は約440光年先にある若い星の集まりで、肉眼でも6つほどの星が見えます。",
-    "funFacts": "日本ではプレアデス星団を「すばる」と呼び、清少納言の枕草子にも登場するほど古くから親しまれてきました。自動車のブランド名の由来にもなっています。"
+    "funFacts": "日本ではプレアデス星団を「すばる」と呼び、清少納言の枕草子にも登場するほど古くから親しまれてきました。自動車のブランド名の由来にもなっています。",
+    "mythologyTextEn": "This constellation depicts the white bull that Zeus, king of the gods, transformed into in order to carry off the beautiful princess Europa. Smitten at first sight, Zeus took the form of a snow-white bull and approached Europa. The moment she climbed onto his back, he carried her across the sea to the island of Crete. Europa later bore Zeus several children, including the legendary King Minos. Taurus is also home to the famous Pleiades star cluster, known in Japan as \"Subaru.\"",
+    "observationTipsEn": "One of the classic winter constellations, marked by the bright red star Aldebaran. Draw a line up and to the right (northwest) from Orion's Belt and you will run right into it. The nearby Pleiades cluster (Subaru) makes this an easy constellation to locate.",
+    "scientificDataEn": "Aldebaran is a red giant star about 65 light-years from Earth, roughly 44 times the Sun's diameter. The Pleiades cluster is a grouping of young stars about 440 light-years away, from which the naked eye can usually pick out about six stars.",
+    "funFactsEn": "In Japan, the Pleiades cluster is called \"Subaru\" and has been admired since ancient times, even appearing in Sei Shonagon's classic Pillow Book. It also lent its name to the car brand Subaru.",
+    "brightStarsEn": [
+      "Aldebaran",
+      "Elnath"
+    ],
+    "peakMonthsEn": "January – February"
   },
   {
     "id": "gemini",
@@ -57,7 +75,16 @@
     "baseDifficulty": 1,
     "observationTips": "冬から春にかけて見える星座で、仲良く並んだ2つの明るい星カストルとポルックスが目印です。オリオン座から北東の方向、冬の大三角の近くを見上げると見つけやすいです。",
     "scientificData": "ポルックスは地球から約34光年、カストルは約51光年の距離にあります。ポルックスの方が明るく見えますが、実はカストルは6つの星が集まった多重連星系です。",
-    "funFacts": "ふたご座の方向からは毎年12月中旬にふたご座流星群が見られ、1年で最も安定して多くの流れ星が見られる流星群として知られています。"
+    "funFacts": "ふたご座の方向からは毎年12月中旬にふたご座流星群が見られ、1年で最も安定して多くの流れ星が見られる流星群として知られています。",
+    "mythologyTextEn": "This constellation tells the story of Castor and Pollux, twin sons of Zeus born to Leda. Though they shared a mother, Castor was mortal, fathered by a human king, while Pollux, son of Zeus, was immortal. The two brothers were extremely close and sailed together as heroes on the voyage of the Argonauts. When Castor was killed in battle, the immortal Pollux refused to live among the gods without his brother, and so he shared his immortality with Castor, allowing the two to remain together forever. They now shine side by side in the night sky as the Twins.",
+    "observationTipsEn": "Visible from winter through spring, Gemini is marked by two bright stars, Castor and Pollux, sitting close together. Look northeast of Orion, near the Winter Triangle, to find them easily.",
+    "scientificDataEn": "Pollux lies about 34 light-years from Earth, while Castor is about 51 light-years away. Although Pollux appears brighter, Castor is actually a remarkable multiple-star system made up of six stars.",
+    "funFactsEn": "Every mid-December, the Geminid meteor shower radiates from this constellation's direction. It is known as one of the most reliable and prolific meteor showers of the year.",
+    "brightStarsEn": [
+      "Castor",
+      "Pollux"
+    ],
+    "peakMonthsEn": "January – March"
   },
   {
     "id": "cancer",
@@ -77,7 +104,16 @@
     "baseDifficulty": 3,
     "observationTips": "しし座とふたご座の間にある、あまり明るい星のない星座です。双眼鏡を使うと中心にぼんやりとした光のかたまり（プレセペ星団）が見え、これを目印にすると見つけやすいです。",
     "scientificData": "中心にあるプレセペ星団は地球から約580光年離れた散開星団で、肉眼でもかすかに見えることから「蜂の巣星団」とも呼ばれ、200個以上の星が集まっています。",
-    "funFacts": "古代ギリシャの人々はプレセペ星団のかすみ具合で天気を占っていたと言われ、はっきり見えると晴れ、見えにくいと嵐が近いと考えられていました。"
+    "funFacts": "古代ギリシャの人々はプレセペ星団のかすみ具合で天気を占っていたと言われ、はっきり見えると晴れ、見えにくいと嵐が近いと考えられていました。",
+    "mythologyTextEn": "While the hero Hercules was battling the many-headed Hydra, the goddess Hera sent a crab to distract him by pinching his foot. Hercules simply crushed the crab underfoot, but Hera, honoring its loyalty, placed it among the stars as a constellation. At the heart of Cancer lies the famous Beehive Cluster (Praesepe), which can be seen as a faint smudge of light with the naked eye on a clear night. Ancient peoples watched this cluster closely as a sign of coming weather.",
+    "observationTipsEn": "Cancer sits between Leo and Gemini and has no notably bright stars. With binoculars you can pick out a faint hazy patch of light at its center, the Praesepe cluster, which makes a handy marker for finding the constellation.",
+    "scientificDataEn": "The Praesepe cluster at its center is an open cluster located about 580 light-years from Earth. Because it appears faintly even to the naked eye, it is nicknamed the \"Beehive Cluster\" and contains more than 200 stars.",
+    "funFactsEn": "The ancient Greeks are said to have used the visibility of the Praesepe cluster to forecast the weather: a clear view meant fair skies ahead, while a hazy or invisible cluster suggested a storm was approaching.",
+    "brightStarsEn": [
+      "Al Tarf",
+      "Acubens"
+    ],
+    "peakMonthsEn": "February – April"
   },
   {
     "id": "leo",
@@ -97,7 +133,16 @@
     "baseDifficulty": 1,
     "observationTips": "春の代表的な星座で、「?」を裏返したような形の「ししの頭」が目印です。一等星レグルスは北斗七星の柄から続く曲線をたどると見つけやすく、春の夜空でひときわ目立ちます。",
     "scientificData": "レグルスは地球から約79光年の距離にある青白い星で、実は4つの星が集まった多重星系です。しし座は88星座の中でも星の並びが動物の姿に見えやすい星座の一つです。",
-    "funFacts": "毎年11月にはしし座流星群が見られ、33年周期で「流星雨」と呼ばれるほど大量の流れ星が降ることがあり、1833年や2001年の大出現は世界中で話題になりました。"
+    "funFacts": "毎年11月にはしし座流星群が見られ、33年周期で「流星雨」と呼ばれるほど大量の流れ星が降ることがあり、1833年や2001年の大出現は世界中で話題になりました。",
+    "mythologyTextEn": "This constellation represents the Nemean Lion, the first of Hercules's twelve labors. The lion possessed a golden hide that no blade or spear could pierce, and it terrorized the valley of Nemea. Realizing no weapon could harm it, Hercules wrestled the beast bare-handed and strangled it, later wearing its skin as armor. Zeus honored this feat by placing the lion among the stars. Leo's brightest star, Regulus, is often called \"the Kingly Star.\"",
+    "observationTipsEn": "A classic spring constellation, marked by the \"Sickle,\" a backwards-question-mark-shaped curve of stars that forms the lion's head and mane. You can find the bright star Regulus by following the curve of the Big Dipper's handle; it stands out prominently in the spring sky.",
+    "scientificDataEn": "Regulus is a blue-white star about 79 light-years from Earth and is actually a system of four stars orbiting together. Leo is one of the few constellations among the 88 whose star pattern genuinely resembles the animal it is named for.",
+    "funFactsEn": "Every November, the Leonid meteor shower radiates from this constellation. Roughly every 33 years it produces a spectacular \"meteor storm\" with an enormous number of shooting stars — the outbursts of 1833 and 2001 both made headlines around the world.",
+    "brightStarsEn": [
+      "Regulus",
+      "Denebola"
+    ],
+    "peakMonthsEn": "March – May"
   },
   {
     "id": "virgo",
@@ -117,7 +162,16 @@
     "baseDifficulty": 2,
     "observationTips": "春から初夏にかけて見える星座で、青白く輝く一等星スピカが目印です。北斗七星の柄のカーブを伸ばした「春の大曲線」をアークトゥルスからさらに延ばすと見つけられます。",
     "scientificData": "スピカは地球から約250光年の距離にあり、太陽のおよそ2万倍も明るい青白い巨星です。おとめ座は88星座の中で2番目に広い星座で、たくさんの銀河が集まる領域としても知られています。",
-    "funFacts": "おとめ座の方向には「おとめ座銀河団」という数千個もの銀河の大集団があり、望遠鏡を使う天文ファンにとって銀河観察の名所として親しまれています。"
+    "funFacts": "おとめ座の方向には「おとめ座銀河団」という数千個もの銀河の大集団があり、望遠鏡を使う天文ファンにとって銀河観察の名所として親しまれています。",
+    "mythologyTextEn": "This constellation is said to represent either Persephone, daughter of the harvest goddess Demeter, or Astraea, the goddess of justice. Astraea lived among humankind during the Golden Age, but as people grew corrupt, she withdrew to the heavens. Virgo's brightest star, Spica, means \"ear of wheat\" and symbolizes the harvest. To find this blue-white star shining in the spring sky, follow the \"Spring Arc\" that extends from the curve of the Big Dipper's handle.",
+    "observationTipsEn": "Visible from spring into early summer, Virgo is marked by the blue-white first-magnitude star Spica. Follow the \"Spring Arc\" — extend the curve of the Big Dipper's handle through the star Arcturus and onward — to reach it.",
+    "scientificDataEn": "Spica lies about 250 light-years from Earth and is a blue-white giant star roughly 20,000 times as luminous as the Sun. Virgo is the second-largest of the 88 constellations and is known for the dense cluster of galaxies found in its direction.",
+    "funFactsEn": "In the direction of Virgo lies the Virgo Cluster, a vast gathering of thousands of galaxies, making it a favorite destination for amateur astronomers exploring the sky with a telescope.",
+    "brightStarsEn": [
+      "Spica",
+      "Porrima"
+    ],
+    "peakMonthsEn": "April – June"
   },
   {
     "id": "libra",
@@ -137,7 +191,16 @@
     "baseDifficulty": 3,
     "observationTips": "さそり座の頭の西側、あまり明るい星のない静かな星座です。アンタレスを目印にそこから西へ視線を移すと、四角い形をした星の並びが見つかります。",
     "scientificData": "一番明るい星ズベンエルゲヌビは地球から約77光年離れた連星です。てんびん座は黄道十二星座の中で唯一、生き物ではなく道具をかたどった星座です。",
-    "funFacts": "もともとはさそり座の「はさみ」の一部として考えられていましたが、古代ローマ時代に独立した星座として扱われるようになりました。星の名前に「はさみ」の意味が今も残っています。"
+    "funFacts": "もともとはさそり座の「はさみ」の一部として考えられていましたが、古代ローマ時代に独立した星座として扱われるようになりました。星の名前に「はさみ」の意味が今も残っています。",
+    "mythologyTextEn": "This constellation represents the scales held by Astraea, the goddess of justice. The ancient Greeks believed these scales were used to weigh the good and evil in a person's soul. Libra was originally depicted as the claws of the neighboring Scorpius, only becoming recognized as an independent constellation in Roman times. The traditional star names, beginning with \"Zuben,\" come from Arabic words meaning \"claw,\" a lingering trace of that earlier identity. Libra lies near the autumnal equinox point, tied to the season when day and night are of equal length.",
+    "observationTipsEn": "A quiet constellation west of the head of Scorpius, with no especially bright stars. Use Antares as a guide and look westward from it to find a roughly square arrangement of stars.",
+    "scientificDataEn": "Its brightest star, Zubenelgenubi, is a binary star system about 77 light-years from Earth. Libra is unique among the twelve zodiac constellations as the only one representing an object rather than a living creature.",
+    "funFactsEn": "Libra was originally considered part of Scorpius's \"claws\" before being treated as its own constellation in ancient Rome. Its star names still carry the old meaning of \"claw\" to this day.",
+    "brightStarsEn": [
+      "Zubenelgenubi",
+      "Zubeneschamali"
+    ],
+    "peakMonthsEn": "May – July"
   },
   {
     "id": "scorpius",
@@ -157,7 +220,16 @@
     "baseDifficulty": 1,
     "observationTips": "夏の南の空低くに見える、S字カーブの形をした大きな星座です。真っ赤に光る一等星アンタレスが目印で、天の川のそばに位置するのでとても見つけやすい星座です。",
     "scientificData": "アンタレスは地球から約550光年の距離にある赤色超巨星で、大きさは太陽の約700倍もあります。さそり座は天の川銀河の中心方向に近く、星団や星雲が数多く見られます。",
-    "funFacts": "アンタレスという名前は「火星（アレス）に対抗するもの」という意味で、赤く輝く様子が火星に似ていることから名付けられました。"
+    "funFacts": "アンタレスという名前は「火星（アレス）に対抗するもの」という意味で、赤く輝く様子が火星に似ていることから名付けられました。",
+    "mythologyTextEn": "This constellation represents the scorpion that killed the great hunter Orion with its sting. After Orion boasted that he could slay every creature on Earth, the enraged earth goddess Gaia sent a giant scorpion after him, and its sting proved fatal. The gods placed Orion among the stars, but he still seems to flee the scorpion even now — as Scorpius rises in the east, Orion sets in the west. The brilliant red star Antares means \"rival of Mars.\"",
+    "observationTipsEn": "A large, S-shaped constellation that hangs low in the southern sky during summer. Its brilliant red star, Antares, is the key marker, and its position near the Milky Way makes it easy to spot.",
+    "scientificDataEn": "Antares is a red supergiant star about 550 light-years from Earth, roughly 700 times the Sun's diameter. Scorpius lies close to the direction of the galactic center, so many star clusters and nebulae can be seen within it.",
+    "funFactsEn": "The name Antares means \"rival of Ares (Mars),\" a name given because its fiery red glow resembles the planet Mars.",
+    "brightStarsEn": [
+      "Antares",
+      "Shaula"
+    ],
+    "peakMonthsEn": "June – August"
   },
   {
     "id": "sagittarius",
@@ -177,7 +249,16 @@
     "baseDifficulty": 1,
     "observationTips": "夏の南の空、さそり座の東側に見える星座です。ティーポット（やかん）のような形に星が並んでいるのが特徴で、これを目印にすると見つけやすいです。",
     "scientificData": "いて座の方向には天の川銀河の中心があり、銀河系で最も星やガスが密集した領域です。夏の夜空の中でも特に星雲や星団が多く見られる方角として知られています。",
-    "funFacts": "南半球ではこの星座をさらに大きく「南のティーポット」として楽しむ文化があり、日本からは南の空低くにしか見えないため、南の地方ほどよく観察できます。"
+    "funFacts": "南半球ではこの星座をさらに大きく「南のティーポット」として楽しむ文化があり、日本からは南の空低くにしか見えないため、南の地方ほどよく観察できます。",
+    "mythologyTextEn": "This constellation depicts a centaur — half man, half horse — drawing a bow. Some say it represents the wise centaur Chiron, but the more widely accepted account identifies it as Crotus, an attendant of the wine god Dionysus. Skilled in both music and hunting, Crotus is said to have invented applause, clapping his hands to keep the rhythm of music. The center of our galaxy lies in the direction of Sagittarius, and the summer night sky here is rich with nebulae and star clusters. It is affectionately known for its \"Teapot\" shape.",
+    "observationTipsEn": "Found low in the southern sky during summer, just east of Scorpius. Its stars form a distinctive teapot-like shape, which makes it easy to recognize.",
+    "scientificDataEn": "The center of the Milky Way galaxy lies in the direction of Sagittarius, making it the densest region of stars and gas in our galaxy. The summer sky here is especially rich in nebulae and star clusters.",
+    "funFactsEn": "In the Southern Hemisphere, this constellation's pattern is often enjoyed as an even larger \"Southern Teapot.\" Since it sits low on the southern horizon as seen from Japan, it is best observed from more southerly regions.",
+    "brightStarsEn": [
+      "Kaus Australis",
+      "Nunki"
+    ],
+    "peakMonthsEn": "July – September"
   },
   {
     "id": "capricornus",
@@ -197,7 +278,16 @@
     "baseDifficulty": 3,
     "observationTips": "秋の宵、みなみのうお座やみずがめ座の近くに見える星座です。三角形が横に広がったような形の星の並びが目印で、あまり明るい星はありませんが形が特徴的です。",
     "scientificData": "一番明るい星デネブ・アルゲディは地球から約39光年の距離にあります。やぎ座は88星座の中で3番目に小さい星座で、暗い夜空でないと見つけにくいとされています。",
-    "funFacts": "やぎ座を含むあたりの星座は水に関する星座が多く集まっていることから「水の領域」と呼ばれ、古代の人々はこのあたりを雨の季節と結びつけて考えていました。"
+    "funFacts": "やぎ座を含むあたりの星座は水に関する星座が多く集まっていることから「水の領域」と呼ばれ、古代の人々はこのあたりを雨の季節と結びつけて考えていました。",
+    "mythologyTextEn": "This constellation shows the strange form the goat-god Pan took while fleeing the monster Typhon — a goat's upper body joined to a fish's tail. When Typhon attacked, the Olympian gods all transformed into animals to escape, but Pan panicked so badly that his upper and lower halves turned into two different creatures. Diving into the Nile to flee, he ended up half-goat, half-fish. Zeus later placed this curious form among the stars in delight. Capricornus is an autumn constellation, but it lies within a region of the sky known as \"the Sea,\" where many water-related constellations are clustered together.",
+    "observationTipsEn": "Visible on autumn evenings near Piscis Austrinus and Aquarius. Look for its stars forming a broad, flattened triangle — a distinctive shape, even though none of its stars are especially bright.",
+    "scientificDataEn": "Its brightest star, Deneb Algedi, lies about 39 light-years from Earth. Capricornus is the third-smallest of the 88 constellations and can be hard to spot without a dark sky.",
+    "funFactsEn": "The stretch of sky around Capricornus contains many water-related constellations and is known as \"the Sea.\" Ancient peoples associated this region with the rainy season.",
+    "brightStarsEn": [
+      "Deneb Algedi",
+      "Dabih"
+    ],
+    "peakMonthsEn": "August – October"
   },
   {
     "id": "aquarius",
@@ -217,7 +307,16 @@
     "baseDifficulty": 3,
     "observationTips": "秋の夜空、ペガスス座の南側に広がる大きな星座です。目立つ一等星はありませんが、Y字形に並んだ星（水瓶の口）を目印にすると見つけやすくなります。",
     "scientificData": "みずがめ座は88星座の中でも面積が10番目に広い星座です。毎年5月上旬にはみずがめ座エータ流星群が見られ、これはハレー彗星が残したちりが地球に降り注いでできる現象です。",
-    "funFacts": "水瓶からこぼれる水の粒は、隣にある「みなみのうお座」の口に注がれるように描かれており、星座同士がストーリーでつながっている珍しい例です。"
+    "funFacts": "水瓶からこぼれる水の粒は、隣にある「みなみのうお座」の口に注がれるように描かれており、星座同士がストーリーでつながっている珍しい例です。",
+    "mythologyTextEn": "This constellation is said to represent either the beautiful Trojan youth Ganymede or a water spirit pouring water onto the earth. Ganymede's beauty so captivated Zeus that he was carried up to heaven to serve as cupbearer, pouring ambrosia, the drink of the gods, at their feasts. The stream of water poured from Aquarius's jar is depicted flowing into the neighboring constellation Piscis Austrinus. In the direction of Aquarius, the Eta Aquariid meteor shower can be seen each year, thought to originate from debris left behind by Halley's Comet.",
+    "observationTipsEn": "A large constellation spanning the autumn sky south of Pegasus. It has no standout first-magnitude star, but you can find it by looking for a Y-shaped arrangement of stars that marks the mouth of the water jar.",
+    "scientificDataEn": "Aquarius is the tenth-largest of the 88 constellations. Every year in early May, the Eta Aquariid meteor shower can be seen, produced when dust left behind by Halley's Comet burns up in Earth's atmosphere.",
+    "funFactsEn": "The stream of water spilling from Aquarius's jar is depicted flowing into the mouth of the neighboring Piscis Austrinus (the Southern Fish) — a rare example of two constellations linked by a shared story.",
+    "brightStarsEn": [
+      "Sadalsuud",
+      "Sadalmelik"
+    ],
+    "peakMonthsEn": "September – November"
   },
   {
     "id": "pisces",
@@ -237,7 +336,16 @@
     "baseDifficulty": 3,
     "observationTips": "秋の夜空、ペガススの四辺形の下（南）に広がる星座です。目立つ星が少ないので、まずペガスス座の四辺形を見つけてから、そのすぐ下を探すのがコツです。",
     "scientificData": "うお座は88星座の中で14番目に広い星座ですが、明るい星がほとんどなく肉眼で形をたどるのは難しい星座です。2匹の魚はV字形のひも（線）でつながって描かれます。",
-    "funFacts": "地球の歳差運動により、かつて春分点があったうお座は今もその名残として天文学上重要な位置づけを持ち続けています。"
+    "funFacts": "地球の歳差運動により、かつて春分点があったうお座は今もその名残として天文学上重要な位置づけを持ち続けています。",
+    "mythologyTextEn": "This constellation depicts two fish — Aphrodite, goddess of love and beauty, and her son Eros — who transformed themselves while fleeing the monster Typhon. Diving into the Nile and turning into fish, the pair tied their bodies together with a ribbon so as not to be separated. This image became the constellation of two fish bound together by a cord. The vernal equinox point once lay within Pisces, marking the traditional start of spring, but due to Earth's precession, that point has since shifted into Aquarius.",
+    "observationTipsEn": "Found in the autumn sky just below (south of) the Great Square of Pegasus. It has few bright stars, so the best approach is to first locate the Square of Pegasus and then search just beneath it.",
+    "scientificDataEn": "Pisces is the fourteenth-largest of the 88 constellations, but with almost no bright stars, its shape is difficult to trace with the naked eye. The two fish are depicted connected by a V-shaped cord.",
+    "funFactsEn": "Because of Earth's precession, Pisces — which once held the vernal equinox point — retains an important place in the history of astronomy even though that point has since moved on.",
+    "brightStarsEn": [
+      "Eta Piscium",
+      "Alrescha"
+    ],
+    "peakMonthsEn": "October – December"
   },
   {
     "id": "orion",
@@ -258,7 +366,17 @@
     "baseDifficulty": 1,
     "observationTips": "冬の夜空で一番目立つ星座です。3つの星がまっすぐ並ぶ「三つ星」が最大の目印で、南の空高くに昇ります。ベテルギウスとリゲルという明るい2つの一等星も見つけやすいポイントです。",
     "scientificData": "ベテルギウスは地球から約550光年、太陽の700倍以上の大きさを持つ赤色超巨星です。リゲルは約860光年先にある青白い超巨星で、太陽の12万倍もの明るさで輝いています。",
-    "funFacts": "オリオン座の三つ星の下にはオリオン大星雲（M42）という星の生まれる場所があり、肉眼でもぼんやりとした光として確認でき、望遠鏡で見ると美しい雲のような姿が広がります。"
+    "funFacts": "オリオン座の三つ星の下にはオリオン大星雲（M42）という星の生まれる場所があり、肉眼でもぼんやりとした光として確認でき、望遠鏡で見ると美しい雲のような姿が広がります。",
+    "mythologyTextEn": "This constellation represents Orion, son of the sea god Poseidon and celebrated as the mightiest hunter of all time. Boasting that he could hunt down every creature on Earth, Orion angered the earth goddess Gaia, who sent a giant scorpion to sting him to death. The goddess Artemis, who loved Orion deeply, placed him among the stars. Even now, Orion seems to flee Scorpius across the sky — as the scorpion rises, he sets. His three-starred belt, together with Rigel and Betelgeuse, forms the striking pattern known as the Winter Triangle.",
+    "observationTipsEn": "The most conspicuous constellation in the winter sky. Its clearest marker is \"Orion's Belt,\" three stars in a perfectly straight row, which climbs high into the southern sky. The two bright first-magnitude stars Betelgeuse and Rigel are also easy to pick out.",
+    "scientificDataEn": "Betelgeuse is a red supergiant about 550 light-years from Earth, more than 700 times the Sun's diameter. Rigel is a blue-white supergiant roughly 860 light-years away, shining with about 120,000 times the Sun's brightness.",
+    "funFactsEn": "Just below Orion's Belt lies the Orion Nebula (M42), a stellar nursery where new stars are born. It appears as a faint glow to the naked eye, but through a telescope it reveals a beautiful, cloud-like structure.",
+    "brightStarsEn": [
+      "Rigel",
+      "Betelgeuse",
+      "Bellatrix"
+    ],
+    "peakMonthsEn": "December – March"
   },
   {
     "id": "ursa_major",
@@ -279,7 +397,17 @@
     "baseDifficulty": 1,
     "observationTips": "北の空でほぼ一年中見える星座で、7つの明るい星が柄杓（ひしゃく）の形に並ぶ「北斗七星」が目印です。北斗七星の先端2つの星を結んで5倍のばすと北極星が見つかります。",
     "scientificData": "北斗七星のひしゃくの柄の付け根にあるミザールは、肉眼でも近くにアルコルという星が見える二重星として有名です。おおぐま座は全天で3番目に広い星座です。",
-    "funFacts": "世界中でこの星の並びは様々な形に見立てられており、ヨーロッパでは「大きな柄杓」、中国では「北斗」、日本の一部地域では「七つ星」と呼ばれ親しまれてきました。"
+    "funFacts": "世界中でこの星の並びは様々な形に見立てられており、ヨーロッパでは「大きな柄杓」、中国では「北斗」、日本の一部地域では「七つ星」と呼ばれ親しまれてきました。",
+    "mythologyTextEn": "This constellation tells the story of Callisto, a nymph loved by Zeus. Zeus's wife Hera, consumed by jealousy, transformed Callisto into a bear. Callisto wandered the forest as a bear for many years until one day she encountered her grown son, Arcas. Not recognizing his mother, Arcas raised his spear against the bear, but Zeus intervened just in time, placing both mother and son among the stars. The Big Dipper corresponds to the tail and body of this constellation and has been used as a navigational tool around the world since ancient times.",
+    "observationTipsEn": "Visible in the northern sky almost year-round. Its marker is the Big Dipper, seven bright stars arranged in the shape of a ladle. Extend a line through the two stars at the end of the dipper's bowl about five times its length to find Polaris.",
+    "scientificDataEn": "Mizar, at the bend in the Big Dipper's handle, is a famous naked-eye double star, with its companion Alcor visible nearby. Ursa Major is the third-largest constellation in the entire sky.",
+    "funFactsEn": "This star pattern has been imagined in many different shapes around the world — known as \"the Plough\" or \"the Big Dipper\" in the West, \"Beidou\" (the Northern Dipper) in China, and \"the Seven Stars\" in parts of Japan.",
+    "brightStarsEn": [
+      "Alioth",
+      "Dubhe",
+      "Merak"
+    ],
+    "peakMonthsEn": "March – June"
   },
   {
     "id": "ursa_minor",
@@ -299,7 +427,16 @@
     "baseDifficulty": 2,
     "observationTips": "北の空に一年中見える星座で、しっぽの先にある北極星（ポラリス）がほぼ真北を示す目印です。おおぐま座の北斗七星から見つける方法が有名です。",
     "scientificData": "北極星（ポラリス）は地球から約430光年の距離にあり、実は3つの星からなる連星系です。地球の自転軸がほぼこの星の方向を向いているため、一晩中ほとんど動かずに見えます。",
-    "funFacts": "昔の船乗りたちは北極星を頼りに航海の方角を確かめており、「海の道しるべ」として世界中で大切にされてきました。"
+    "funFacts": "昔の船乗りたちは北極星を頼りに航海の方角を確かめており、「海の道しるべ」として世界中で大切にされてきました。",
+    "mythologyTextEn": "This constellation is said to represent Arcas, the son of Callisto from the story of Ursa Major, also transformed into a bear. Polaris, at the tip of the Little Bear's tail, sits almost directly above Earth's axis of rotation and so always points toward true north. Sailors of old called it \"the lighthouse of the sea,\" relying on it to keep from losing their way during night voyages. Polaris appears essentially fixed in the sky today, but because of Earth's precession, a different star will take its place as the pole star in about 20,000 years.",
+    "observationTipsEn": "Visible year-round in the northern sky. Polaris, at the tip of its tail, marks almost due north. The best-known way to find it is by using the Big Dipper in Ursa Major as a guide.",
+    "scientificDataEn": "Polaris lies about 430 light-years from Earth and is actually a triple star system. Because Earth's rotational axis points almost directly at it, Polaris appears to barely move throughout the night.",
+    "funFactsEn": "Sailors of old relied on Polaris to determine their direction at sea, cherishing it around the world as \"the guidepost of the ocean.\"",
+    "brightStarsEn": [
+      "Polaris (North Star)",
+      "Kochab"
+    ],
+    "peakMonthsEn": "Year-round (Polaris)"
   },
   {
     "id": "cassiopeia",
@@ -319,7 +456,16 @@
     "baseDifficulty": 1,
     "observationTips": "北の空、北極星をはさんでおおぐま座の反対側に見える星座です。アルファベットのWの形（季節によりMの形）に並ぶ5つの星が目印で、とても見つけやすい星座です。",
     "scientificData": "カシオペヤ座は天の川の中に位置しており、星団や星雲が多く観測される領域です。一番明るい星シェダルは地球から約230光年の距離にあります。",
-    "funFacts": "W字の形は季節や時間によって向きが変わって見え、北極星を中心にぐるりと回転していく様子を一晩かけて観察できるのも楽しみ方の一つです。"
+    "funFacts": "W字の形は季節や時間によって向きが変わって見え、北極星を中心にぐるりと回転していく様子を一晩かけて観察できるのも楽しみ方の一つです。",
+    "mythologyTextEn": "The story of Cassiopeia, Queen of Ethiopia. Vain and boastful, Cassiopeia claimed that her beauty surpassed even that of the Nereids, the sea nymphs. Enraged, the sea god Poseidon sent a monster to ravage Ethiopia. To save the kingdom, Cassiopeia's daughter Andromeda was to be sacrificed to the beast, but she was rescued by the hero Perseus. As punishment, Cassiopeia was bound to her throne and doomed to circle the celestial pole forever. In the night sky she appears as a W (or M, depending on the season), making her a handy guide for locating the North Star.",
+    "observationTipsEn": "Cassiopeia lies in the northern sky, on the opposite side of the North Star from the Big Dipper (Ursa Major). Its five stars form the shape of the letter W (or M, depending on the season), making it one of the easiest constellations to spot.",
+    "scientificDataEn": "Cassiopeia sits within the Milky Way, in a region rich with star clusters and nebulae. Its brightest star, Schedar, lies about 230 light-years from Earth.",
+    "funFactsEn": "The W shape appears to rotate around the North Star as the night and seasons progress, so watching it wheel slowly overhead through a single night is one of the simple pleasures of stargazing.",
+    "brightStarsEn": [
+      "Schedar",
+      "Caph"
+    ],
+    "peakMonthsEn": "October – December"
   },
   {
     "id": "perseus",
@@ -339,7 +485,16 @@
     "baseDifficulty": 2,
     "observationTips": "秋から冬にかけて、カシオペヤ座とおうし座の間に見える星座です。特にアルゴルという星が明るさを変える「変光星」として知られており、観察の目印になります。",
     "scientificData": "アルゴルは2.87日周期で明るさが変わる食変光星で、もう一つの暗い星が手前を横切ることで明るさが変化します。地球からの距離は約90光年です。",
-    "funFacts": "毎年8月にはペルセウス座流星群が見られ、夏の夜空を彩る三大流星群の一つとして、日本でも多くの人が観察を楽しんでいます。"
+    "funFacts": "毎年8月にはペルセウス座流星群が見られ、夏の夜空を彩る三大流星群の一つとして、日本でも多くの人が観察を楽しんでいます。",
+    "mythologyTextEn": "This constellation depicts Perseus, the hero son of Zeus and Danaë. Armed with winged sandals, a cap of invisibility, and a magical sickle to behead Medusa, he confronted the Gorgon Medusa, whose gaze turned onlookers to stone. Using his mirror-like shield to avoid looking at her directly, he struck off her head. On his way home he rescued Andromeda from a sea monster and later married her. Perseus is home to the famous \"Demon Star,\" Algol, an eclipsing binary whose brightness changes over a 2.87-day cycle. The constellation is also known for the Perseid meteor shower, visible each August.",
+    "observationTipsEn": "Visible from autumn through winter, Perseus lies between Cassiopeia and Taurus. It is best known for Algol, a \"variable star\" whose brightness changes, which serves as a helpful marker when observing.",
+    "scientificDataEn": "Algol is an eclipsing binary star whose brightness changes on a 2.87-day cycle as a dimmer companion star passes in front of it. It lies about 90 light-years from Earth.",
+    "funFactsEn": "Every August, the Perseid meteor shower lights up the summer sky. It's one of the three major annual meteor showers and is enjoyed by many stargazers in Japan and around the world.",
+    "brightStarsEn": [
+      "Mirfak",
+      "Algol"
+    ],
+    "peakMonthsEn": "November – January"
   },
   {
     "id": "andromeda",
@@ -359,7 +514,16 @@
     "baseDifficulty": 2,
     "observationTips": "秋の夜空、ペガススの四辺形の隅から北東へ星をたどると見つかる星座です。暗い場所ではアンドロメダ銀河がぼんやりとした光のしみのように肉眼で見えることがあります。",
     "scientificData": "アンドロメダ銀河（M31）は地球から約250万光年離れた、天の川銀河に最も近い大型の銀河です。何千億もの星が集まっており、双眼鏡を使うとその姿をより確認しやすくなります。",
-    "funFacts": "アンドロメダ銀河は少しずつ天の川銀河に近づいており、遠い将来（数十億年後）には2つの銀河が合体すると考えられています。"
+    "funFacts": "アンドロメダ銀河は少しずつ天の川銀河に近づいており、遠い将来（数十億年後）には2つの銀河が合体すると考えられています。",
+    "mythologyTextEn": "This is the story of Andromeda, princess of Ethiopia. Because of her mother Cassiopeia's boasting, she was nearly sacrificed to a sea monster, but the hero Perseus arrived, slew the beast, and saved her. The two later married and lived happily. Andromeda's most famous feature is the Andromeda Galaxy (M31), the nearest large galaxy to our own Milky Way, lying 2.5 million light-years away. On a clear, dark night it can even be glimpsed with the naked eye as a faint smudge of light.",
+    "observationTipsEn": "In the autumn night sky, follow a line of stars northeast from a corner of the Great Square of Pegasus to find Andromeda. In a dark location, the Andromeda Galaxy can sometimes be seen with the naked eye as a faint, hazy patch of light.",
+    "scientificDataEn": "The Andromeda Galaxy (M31) is the nearest large galaxy to the Milky Way, lying about 2.5 million light-years from Earth. It contains hundreds of billions of stars, and binoculars make it much easier to see.",
+    "funFactsEn": "The Andromeda Galaxy is gradually moving closer to the Milky Way, and astronomers predict that in the far future — several billion years from now — the two galaxies will collide and merge.",
+    "brightStarsEn": [
+      "Alpheratz",
+      "Mirach"
+    ],
+    "peakMonthsEn": "October – December"
   },
   {
     "id": "cygnus",
@@ -379,7 +543,16 @@
     "baseDifficulty": 1,
     "observationTips": "夏の夜空、天の川の中を大きな十字の形に広がる星座で「北十字」とも呼ばれます。一等星デネブを目印に、こと座のベガ・わし座のアルタイルと合わせて「夏の大三角」を作ります。",
     "scientificData": "デネブは地球から約2600光年も離れているのに肉眼でとても明るく見える、太陽の20万倍もの明るさを持つ超巨星です。はくちょう座は天の川の中に位置し、星が密集して見えます。",
-    "funFacts": "「北十字」と呼ばれる形は、南半球で有名な「南十字星」と対になる存在として、世界各地の星座文化で語られています。"
+    "funFacts": "「北十字」と呼ばれる形は、南半球で有名な「南十字星」と対になる存在として、世界各地の星座文化で語られています。",
+    "mythologyTextEn": "Cygnus is said to represent Cycnus, the grieving friend of Phaethon (son of the sun god Helios), who was transformed into a swan out of sorrow — or, in another version, Zeus himself in swan form. Also known as the \"Northern Cross,\" Cygnus forms a beautiful cross shape that mirrors the Southern Cross. Its brightest star, Deneb, forms the Summer Triangle together with Vega in Lyra and Altair in Aquila. Lying within the Milky Way, Cygnus is especially striking in the summer night sky. Deneb is a supergiant roughly 200,000 times as luminous as the Sun, located about 2,600 light-years from Earth.",
+    "observationTipsEn": "In the summer night sky, Cygnus spreads across the Milky Way in the shape of a large cross, earning it the nickname \"Northern Cross.\" Use its brightest star, Deneb, together with Vega in Lyra and Altair in Aquila, to trace out the \"Summer Triangle.\"",
+    "scientificDataEn": "Despite lying roughly 2,600 light-years from Earth, Deneb appears strikingly bright to the naked eye because it is a supergiant star about 200,000 times more luminous than the Sun. Cygnus sits within the Milky Way, so its stars appear densely packed.",
+    "funFactsEn": "Known as the \"Northern Cross,\" Cygnus is often described alongside its southern-hemisphere counterpart, the famous Southern Cross, in stargazing traditions around the world.",
+    "brightStarsEn": [
+      "Deneb",
+      "Albireo"
+    ],
+    "peakMonthsEn": "July – November"
   },
   {
     "id": "lyra",
@@ -398,7 +571,15 @@
     "baseDifficulty": 1,
     "observationTips": "夏の夜空、天頂近くに見える小さな星座で、青白く輝く一等星ベガが目印です。夏の大三角のうち最も明るい星なので、まずベガを見つけるとこと座もすぐわかります。",
     "scientificData": "ベガは地球から約25光年という比較的近い距離にある青白い星で、夜空で5番目に明るい星として知られています。こと座自体は小さな星座ですが、ベガのおかげでとても目立ちます。",
-    "funFacts": "日本では七夕伝説の「織り姫星」としてベガが親しまれており、天の川を挟んだ彦星（アルタイル）との年に一度の再会を願う伝統行事があります。"
+    "funFacts": "日本では七夕伝説の「織り姫星」としてベガが親しまれており、天の川を挟んだ彦星（アルタイル）との年に一度の再会を願う伝統行事があります。",
+    "mythologyTextEn": "This constellation represents the lyre of Orpheus, the greatest poet and musician of Greek myth, who received the instrument as a gift from Apollo, god of music. Orpheus's music was said to be so powerful it could move trees, roll boulders, and stop rivers in their course. When his beloved wife Eurydice died, Orpheus descended into the underworld with his lyre and tried to persuade Hades, lord of the dead, to return her to him. Lyra's brightest star, Vega, is affectionately known in Japanese folklore as the \"Weaver Star\" of the Tanabata legend. It is a blue-white star just 25 light-years from the Sun and one of the three stars that form the Summer Triangle.",
+    "observationTipsEn": "This small constellation sits nearly overhead in the summer sky, marked by the bright blue-white star Vega. Since Vega is the brightest of the Summer Triangle's three stars, finding it first makes the rest of Lyra easy to identify.",
+    "scientificDataEn": "Vega is a blue-white star located a relatively close 25 light-years from Earth, and it is the fifth-brightest star in the night sky. Although Lyra itself is a small constellation, Vega makes it very easy to spot.",
+    "funFactsEn": "In Japan, Vega is beloved as the \"Weaver Star\" of the Tanabata legend, and a traditional festival celebrates the couple's once-a-year reunion across the Milky Way with Altair, the \"Cowherd Star.\"",
+    "brightStarsEn": [
+      "Vega"
+    ],
+    "peakMonthsEn": "July – September"
   },
   {
     "id": "aquila",
@@ -417,7 +598,15 @@
     "baseDifficulty": 1,
     "observationTips": "夏の夜空、天の川の中に見える星座です。一等星アルタイルを目印に、はくちょう座のデネブ・こと座のベガと結ぶと「夏の大三角」ができ、見つけやすくなります。",
     "scientificData": "アルタイルは地球から約17光年という比較的近い距離にある星で、非常に速く自転しているため少しつぶれた楕円形をしていることが観測でわかっています。",
-    "funFacts": "日本では七夕伝説の「彦星」としてアルタイルが親しまれ、織り姫星（ベガ）と天の川を挟んで年に一度会えるという物語が広く知られています。"
+    "funFacts": "日本では七夕伝説の「彦星」としてアルタイルが親しまれ、織り姫星（ベガ）と天の川を挟んで年に一度会えるという物語が広く知られています。",
+    "mythologyTextEn": "Aquila represents the sacred eagle that served as Zeus's messenger, carrying his thunderbolts. In another version of the myth, it is the form Zeus took when he carried off the beautiful youth Ganymede to Olympus. Aquila's brightest star, Altair, is celebrated in the Tanabata legend as the \"Cowherd Star,\" shining across the Milky Way from Vega, the \"Weaver Star.\" Observations show that Altair spins so rapidly that it is noticeably flattened in shape. As one corner of the Summer Triangle, it serves as a prominent marker in the summer night sky.",
+    "observationTipsEn": "Aquila lies within the Milky Way in the summer night sky. Use its bright star Altair together with Deneb in Cygnus and Vega in Lyra to trace the \"Summer Triangle,\" which makes the constellation easy to find.",
+    "scientificDataEn": "Altair lies a relatively close 17 light-years from Earth. It spins extremely rapidly, and observations show it has a slightly flattened, oblate shape as a result.",
+    "funFactsEn": "In Japan, Altair is beloved as the \"Cowherd Star\" of the Tanabata legend — the well-known story of a couple who can meet only once a year, across the Milky Way from the \"Weaver Star,\" Vega.",
+    "brightStarsEn": [
+      "Altair"
+    ],
+    "peakMonthsEn": "July – October"
   },
   {
     "id": "auriga",
@@ -437,7 +626,16 @@
     "baseDifficulty": 1,
     "observationTips": "冬の夜空、おうし座とふたご座の間、五角形の形をした星座です。黄色っぽく輝く一等星カペラが目印で、冬の六角形を作る星の一つとしても見つけやすくなっています。",
     "scientificData": "カペラは地球から約42光年の距離にあり、実は太陽とほぼ同じくらいの大きさの2つの星が互いを回り合う連星です。名前は「子やぎ」という意味を持っています。",
-    "funFacts": "ぎょしゃ座は「冬の六角形」と呼ばれる大きな星の並びの一角を担っており、オリオン座やおうし座など冬の星座巡りをするときの目印としても活躍します。"
+    "funFacts": "ぎょしゃ座は「冬の六角形」と呼ばれる大きな星の並びの一角を担っており、オリオン座やおうし座など冬の星座巡りをするときの目印としても活躍します。",
+    "mythologyTextEn": "Auriga is often identified with Erichthonius, a legendary king of Athens born to the god Hephaestus, who was said to have invented the four-horse chariot because he was ashamed of his serpent-like legs. The constellation is also depicted as a charioteer carrying a goat. Its brightest star, Capella, whose name means \"little she-goat,\" is actually a binary made up of two giant stars of nearly equal brightness orbiting each other. Capella is about 11 times the size of the Sun and lies roughly 42 light-years from Earth. It is one of the bright stars forming the Winter Hexagon.",
+    "observationTipsEn": "In the winter night sky, Auriga forms a pentagon shape between Taurus and Gemini. Its yellowish first-magnitude star, Capella, serves as a marker and is also one of the stars in the Winter Hexagon, making it easy to find.",
+    "scientificDataEn": "Capella lies about 42 light-years from Earth and is actually a binary system of two stars, each roughly the same size as the Sun, orbiting one another. Its name means \"little goat.\"",
+    "funFactsEn": "Auriga forms one corner of the large \"Winter Hexagon\" star pattern, making it a useful landmark when touring winter constellations like Orion and Taurus.",
+    "brightStarsEn": [
+      "Capella",
+      "Menkalinan"
+    ],
+    "peakMonthsEn": "December – February"
   },
   {
     "id": "bootes",
@@ -457,7 +655,16 @@
     "baseDifficulty": 1,
     "observationTips": "北斗七星のひしゃくの柄をそのままカーブさせて伸ばすと、オレンジ色に輝く一等星アークトゥルスに届きます。これを「春の大曲線」と呼び、うしかい座を見つける一番の目印です。春の宵、東の空高くに探してみましょう。",
     "scientificData": "アークトゥルスは地球から約37光年の距離にあり、太陽の約25倍の半径を持つ巨星です。北天では太陽を除いて肉眼で最も明るく見える恒星の一つとされています。うしかい座全体の面積はかなり広い星座です。",
-    "funFacts": "アークトゥルスは日本では「麦星」とも呼ばれ、麦の収穫の時期に高く昇ることから名付けられました。1933年のシカゴ万博では、アークトゥルスの光を望遠鏡で集めて博覧会の開幕スイッチに使われたという逸話も残っています。"
+    "funFacts": "アークトゥルスは日本では「麦星」とも呼ばれ、麦の収穫の時期に高く昇ることから名付けられました。1933年のシカゴ万博では、アークトゥルスの光を望遠鏡で集めて博覧会の開幕スイッチに使われたという逸話も残っています。",
+    "mythologyTextEn": "Boötes contains Arcturus, the brightest star in the northern sky. The constellation depicts a herdsman driving the Great Bear (Ursa Major) across the heavens. In one version of the myth, Boötes represents Icarius, the first man taught to cultivate grapes and make wine, who was placed in the sky along with his daughter Erigone. Its brightest star, Arcturus, is an orange giant roughly 25 times the Sun's size. Found by extending the curve of the Big Dipper's handle — the \"Arc to Arcturus\" — it is a signature star of the spring sky.",
+    "observationTipsEn": "Follow the curve of the Big Dipper's handle outward and you'll arrive at Arcturus, the bright orange star that serves as Boötes's best marker — a trick known as the \"Arc to Arcturus.\" Look for it high in the eastern sky on spring evenings.",
+    "scientificDataEn": "Arcturus lies about 37 light-years from Earth and is a giant star roughly 25 times the Sun's radius. It is one of the brightest stars visible to the naked eye in the northern sky, second only to the Sun. Boötes itself covers a fairly large area of sky.",
+    "funFactsEn": "In Japan, Arcturus is sometimes called the \"Wheat Star\" because it climbs high in the sky around the time of the wheat harvest. According to one famous story, light from Arcturus, gathered through a telescope, was used to trigger the opening switch of the 1933 Chicago World's Fair.",
+    "brightStarsEn": [
+      "Arcturus",
+      "Izar"
+    ],
+    "peakMonthsEn": "April – July"
   },
   {
     "id": "cepheus",
@@ -477,7 +684,16 @@
     "baseDifficulty": 3,
     "observationTips": "カシオペヤ座のW字のすぐ隣にある、五角形に近い形が目印です。北極星の周りをぐるりと回っているので、一年中沈まず観測できます。秋の夜、北の空を見上げると見つけやすいです。",
     "scientificData": "変光星の研究で有名なケフェウス座デルタ星は、明るさが規則正しく変化する「ケフェイド変光星」の代表格で、その変化の周期から星までの距離を測る手がかりとして使われています。",
-    "funFacts": "ケフェウス座デルタ星の名前から「ケフェイド変光星」という言葉が生まれ、これを使って天文学者たちは遠い銀河までの距離を測ることができるようになりました。星座の姿は目立ちませんが、天文学史にとても重要な役割を果たしています。"
+    "funFacts": "ケフェウス座デルタ星の名前から「ケフェイド変光星」という言葉が生まれ、これを使って天文学者たちは遠い銀河までの距離を測ることができるようになりました。星座の姿は目立ちませんが、天文学史にとても重要な役割を果たしています。",
+    "mythologyTextEn": "Cepheus represents the king of Ethiopia and father of Andromeda. His wife Cassiopeia's arrogance provoked the sea god Poseidon's wrath, leaving the unfortunate king no choice but to offer his daughter Andromeda as a sacrifice to a sea monster. The royal family was saved only when the hero Perseus rescued her. Cepheus lies near Cassiopeia and circles the North Star year-round without ever setting. The constellation also contains Mu Cephei, a red supergiant nicknamed the \"Garnet Star\" for its deep reddish hue.",
+    "observationTipsEn": "Cepheus sits right beside Cassiopeia's W shape, forming a rough pentagon. Because it circles the North Star, it never sets and can be observed all year round. Look for it in the northern sky on autumn evenings.",
+    "scientificDataEn": "Delta Cephei, famous in the study of variable stars, is the namesake of the \"Cepheid variable\" — a star whose brightness changes in a precise, regular cycle. That cycle is used by astronomers as a key tool for measuring distances to faraway stars and galaxies.",
+    "funFactsEn": "Delta Cephei gave its name to the entire class of \"Cepheid variables,\" which astronomers use to measure distances to remote galaxies. Though the constellation itself isn't especially eye-catching, it has played an outsized role in the history of astronomy.",
+    "brightStarsEn": [
+      "Alderamin",
+      "Alfirk"
+    ],
+    "peakMonthsEn": "September – November"
   },
   {
     "id": "draco",
@@ -497,7 +713,16 @@
     "baseDifficulty": 2,
     "observationTips": "こぐま座をぐるりと取り囲むように、くねくねと長く伸びた星の並びが目印です。北極星の近くにあるので一年中見えますが、頭の部分の四角い星の並びが特に見つけやすいです。",
     "scientificData": "りゅう座は空の中でもとても面積が広い星座の一つで、多くの暗い星が長く連なっています。頭にあたる部分にはエルタニンという明るい星があり、比較的近い距離にある巨星とされています。",
-    "funFacts": "今から約5000年前、地球の地軸の向きが今と違ったため、りゅう座の中の星ツバンがその時代の北極星でした。エジプトのピラミッドの通路が、当時の北極星ツバンの方向に合わせて作られたとも言われています。"
+    "funFacts": "今から約5000年前、地球の地軸の向きが今と違ったため、りゅう座の中の星ツバンがその時代の北極星でした。エジプトのピラミッドの通路が、当時の北極星ツバンの方向に合わせて作られたとも言われています。",
+    "mythologyTextEn": "Draco represents Ladon, the hundred-headed dragon that Hera set to guard the tree of golden apples she received from Gaia, the earth goddess. As his eleventh labor, the hero Heracles had to retrieve the Golden Apples of the Hesperides, and in doing so, he slew Ladon. Draco winds in a long curve across the northern sky, coiling around Ursa Minor. About 5,000 years ago, when Earth's axis pointed in a different direction, Draco's brightest star, Thuban, was the pole star.",
+    "observationTipsEn": "Look for a long, winding chain of stars coiling around Ursa Minor. Because it lies near the North Star, Draco is visible all year, and the square-shaped group of stars forming its head is especially easy to spot.",
+    "scientificDataEn": "Draco covers one of the largest areas of any constellation in the sky, made up of many faint stars stretched across a long, winding path. Its head contains Eltanin, a relatively nearby giant star and its brightest member.",
+    "funFactsEn": "About 5,000 years ago, when Earth's axis pointed in a different direction than it does today, the star Thuban in Draco served as the pole star of that era. Some of the passages inside the Egyptian pyramids are said to have been aligned toward Thuban's position in the sky at the time.",
+    "brightStarsEn": [
+      "Eltanin",
+      "Asterion"
+    ],
+    "peakMonthsEn": "May – August"
   },
   {
     "id": "hercules",
@@ -517,7 +742,16 @@
     "baseDifficulty": 3,
     "observationTips": "こと座の一等星ベガとかんむり座の間あたりに、四角形（キーストーン)と呼ばれる台形の星の並びがあります。これを目印にすると、夏の夜空で広いヘルクレス座を見つけやすくなります。",
     "scientificData": "キーストーンのそばには「ヘルクレス座球状星団(M13)」があり、数十万個もの星が球のように集まっています。双眼鏡でもぼんやりとした光の玉として見え、小さな望遠鏡ならつぶつぶの星が確認できます。",
-    "funFacts": "M13には1974年、地球から人類のメッセージを届けるための電波信号が発射されたことがあります。届くまでに2万5千年以上かかる、気の遠くなるような「宇宙への手紙」として知られています。"
+    "funFacts": "M13には1974年、地球から人類のメッセージを届けるための電波信号が発射されたことがあります。届くまでに2万5千年以上かかる、気の遠くなるような「宇宙への手紙」として知られています。",
+    "mythologyTextEn": "This vast constellation, one of the largest in the northern sky, represents Heracles, the mightiest hero of Greek mythology. Though a son of Zeus, Heracles was driven mad by Hera and, in his madness, killed his own wife and children. To atone for this crime, he undertook his famous Twelve Labors — slaying the Nemean lion, defeating the multi-headed Hydra, retrieving the Golden Apples of the Hesperides, and achieving many more legendary feats — before finally being welcomed among the gods. Hercules is also home to the beautiful Hercules Globular Cluster (M13), a breathtaking sight through a telescope.",
+    "observationTipsEn": "Look for a trapezoid of four stars known as the \"Keystone\" between Vega in Lyra and Corona Borealis. Once you spot the Keystone, the rest of the sprawling summer constellation Hercules becomes much easier to trace.",
+    "scientificDataEn": "Near the Keystone lies the Hercules Globular Cluster (M13), a spherical gathering of hundreds of thousands of stars. Through binoculars it appears as a hazy ball of light, while a small telescope begins to resolve its individual, grainy stars.",
+    "funFactsEn": "In 1974, a radio message carrying greetings from humanity was beamed toward M13 — a cosmic \"letter\" that will take more than 25,000 years to arrive.",
+    "brightStarsEn": [
+      "Kornephoros",
+      "Zajawin"
+    ],
+    "peakMonthsEn": "June – August"
   },
   {
     "id": "pegasus",
@@ -538,7 +772,17 @@
     "baseDifficulty": 2,
     "observationTips": "秋の夜空に大きな四角形「秋の大四辺形」を作る4つの星が目印です。この四角形はほかに目立つ星が少ない秋の空でとても見つけやすく、そこから他の秋の星座を探す起点にもなります。",
     "scientificData": "秋の大四辺形を作る星のうち3つがペガスス座、1つがアンドロメダ座の星です。ペガスス座の方向にある恒星「ペガスス座51番星」は、太陽以外の恒星として初めて太陽系外惑星が見つかった星として知られています。",
-    "funFacts": "1995年にペガスス座51番星の周りで見つかった惑星は「ペガシ」という愛称でも呼ばれ、発見した天文学者たちは後にノーベル物理学賞を受賞しました。天文学の歴史を変えた大発見の舞台となった星座です。"
+    "funFacts": "1995年にペガスス座51番星の周りで見つかった惑星は「ペガシ」という愛称でも呼ばれ、発見した天文学者たちは後にノーベル物理学賞を受賞しました。天文学の歴史を変えた大発見の舞台となった星座です。",
+    "mythologyTextEn": "Pegasus, the winged horse, sprang from the blood of the Gorgon Medusa when the hero Perseus cut off her head. This pure white, winged steed was later ridden by the hero Bellerophon in his battle against the monstrous Chimera. In the autumn sky, the \"Great Square of Pegasus\" — four bright stars forming a large square — represents the horse's body and serves as a guide for finding many other constellations. In the direction of Pegasus lies the star 51 Pegasi, a landmark star around which the first exoplanet orbiting a Sun-like star was discovered in 1995.",
+    "observationTipsEn": "Look for four stars forming a large square known as the \"Great Square of Pegasus\" in the autumn sky. Since few other bright stars stand out in that part of the sky, the square is easy to find and serves as a starting point for locating other autumn constellations.",
+    "scientificDataEn": "Three of the four stars forming the Great Square belong to Pegasus, while the fourth belongs to Andromeda. The star 51 Pegasi, in the direction of this constellation, is famous as the first Sun-like star found to host an exoplanet.",
+    "funFactsEn": "The planet discovered around 51 Pegasi in 1995 is nicknamed \"Dimidium,\" and the astronomers who found it later won the Nobel Prize in Physics — making this constellation the stage for a discovery that changed the course of astronomy.",
+    "brightStarsEn": [
+      "Enif",
+      "Scheat",
+      "Markab"
+    ],
+    "peakMonthsEn": "September – November"
   },
   {
     "id": "ophiuchus",
@@ -558,7 +802,16 @@
     "baseDifficulty": 2,
     "observationTips": "夏の南の空、さそり座とへびつかい座は隣り合っています。さそり座の頭の星々の少し上、大きな五角形に近い星の並びを探すとへびつかい座が見つかります。",
     "scientificData": "へびつかい座は太陽の通り道である黄道の上に位置しており、実際には他の12星座よりも長い期間太陽が通過します。そのため「13番目の星座」と呼ばれることがあります。天の川にかかる大きな星座です。",
-    "funFacts": "へびつかい座は星占いの12星座には入っていませんが、天文学的には太陽が通過する期間が最も長い星座の一つです。占いと実際の星の位置とのずれを説明するときによく話題になる星座です。"
+    "funFacts": "へびつかい座は星占いの12星座には入っていませんが、天文学的には太陽が通過する期間が最も長い星座の一つです。占いと実際の星の位置とのずれを説明するときによく話題になる星座です。",
+    "mythologyTextEn": "Ophiuchus represents Asclepius, the god of medicine, who was taught the healing arts by the wise centaur Chiron (Heracles's own tutor) and became so skilled that he could raise the dead. Because reviving the dead disrupted the natural order of the underworld, Zeus struck him down with a thunderbolt. Ophiuchus lies among the twelve zodiac constellations, and since the Sun actually passes through it, it is sometimes called the \"13th constellation.\" This large constellation straddles the Milky Way and contains many nebulae and star clusters.",
+    "observationTipsEn": "In the southern summer sky, Scorpius and Ophiuchus sit right next to each other. Just above the stars forming Scorpius's head, look for a rough pentagon of stars — that's Ophiuchus.",
+    "scientificDataEn": "Ophiuchus lies along the ecliptic, the Sun's apparent path across the sky, and the Sun actually spends more time passing through it than through any of the traditional 12 zodiac constellations. For this reason it is sometimes called the \"13th constellation.\" It is a large constellation that straddles the Milky Way.",
+    "funFactsEn": "Although Ophiuchus is not among the twelve constellations used in astrology, it is, astronomically speaking, one of the constellations the Sun spends the longest time crossing. It's often brought up when explaining the mismatch between astrological signs and the actual positions of the stars.",
+    "brightStarsEn": [
+      "Rasalhague",
+      "Cebalrai"
+    ],
+    "peakMonthsEn": "July – August"
   },
   {
     "id": "corona_borealis",
@@ -577,7 +830,15 @@
     "baseDifficulty": 2,
     "observationTips": "うしかい座のアークトゥルスとヘルクレス座の間あたりに、半円形に並んだ小さな星々が目印です。冠のような優雅な形をしているので、一度覚えると見分けやすい星座です。",
     "scientificData": "かんむり座の中でもっとも明るい星アルフェッカは、冠の宝石にあたる位置で輝いています。星座自体は小さいですが、はっきりとした半円の形をしているため肉眼でも見つけやすい星座です。",
-    "funFacts": "半円形の並びから、世界の色々な地域で違う見方がされてきました。アメリカ先住民の一部では「熊の巣穴」、アラブの伝承では「壊れた皿」に見立てられるなど、文化によって様々なイメージで語られています。"
+    "funFacts": "半円形の並びから、世界の色々な地域で違う見方がされてきました。アメリカ先住民の一部では「熊の巣穴」、アラブの伝承では「壊れた皿」に見立てられるなど、文化によって様々なイメージで語られています。",
+    "mythologyTextEn": "This constellation represents the golden crown given by Dionysus, god of wine, to Ariadne, princess of Crete, after she was abandoned on an island by the hero Theseus. Ariadne had given Theseus a ball of thread that let him escape the Cretan Labyrinth, but he left her behind on the island of Naxos afterward. As she wept in despair, Dionysus appeared before her, gave her a golden crown, and made her his wife. That crown became the constellation shining in the sky today, marked by its distinctive, graceful semicircle of stars.",
+    "observationTipsEn": "Look for a small semicircle of stars between Arcturus in Boötes and Hercules. Once you learn its elegant, crown-like shape, Corona Borealis is easy to recognize.",
+    "scientificDataEn": "The brightest star in Corona Borealis, Alphecca, shines at the position of the crown's central jewel. Though the constellation itself is small, its clear semicircular shape makes it easy to find with the naked eye.",
+    "funFactsEn": "This semicircular shape has been imagined differently across cultures around the world — some Native American traditions saw it as a \"bear's den,\" while Arabic tradition described it as a \"broken platter.\"",
+    "brightStarsEn": [
+      "Alphecca"
+    ],
+    "peakMonthsEn": "May – July"
   },
   {
     "id": "delphinus",
@@ -597,7 +858,16 @@
     "baseDifficulty": 3,
     "observationTips": "夏の大三角の近く、わし座のアルタイルのすぐ東側に、小さなひし形の星の並びがあります。イルカが水面から飛び跳ねているような形で、見つけると思わず微笑んでしまう可愛らしい星座です。",
     "scientificData": "いるか座は88星座の中でも小さな星座の一つですが、ひし形に並ぶ星々ははっきりとした模様を作っています。主な星々は肉眼でも十分見える明るさを持っています。",
-    "funFacts": "小さなひし形の星の並びは「ジョブの棺」という古い呼び名でも知られ、様々な文化で異なる呼び方をされてきました。小さいながらも古くから人々に親しまれてきた星座です。"
+    "funFacts": "小さなひし形の星の並びは「ジョブの棺」という古い呼び名でも知られ、様々な文化で異なる呼び方をされてきました。小さいながらも古くから人々に親しまれてきた星座です。",
+    "mythologyTextEn": "This constellation honors the dolphin that rescued the poet and musician Arion. On his voyage home from Corinth to Sicily, sailors plotting to steal his treasure threw Arion overboard, but a dolphin, enchanted by his music, carried him safely to shore on its back. The sea god Poseidon placed the dolphin among the stars in gratitude. In another version of the myth, the dolphin became a constellation as a reward for serving as Poseidon's messenger in courting the sea nymph Amphitrite.",
+    "observationTipsEn": "Near the Summer Triangle, just east of Altair in Aquila, look for a small diamond shape of stars. It resembles a dolphin leaping from the waves — a charming little constellation that brings a smile once you spot it.",
+    "scientificDataEn": "Delphinus is one of the smaller of the 88 constellations, but its diamond-shaped pattern of stars is distinct and easy to trace. Its main stars are all bright enough to see clearly with the naked eye.",
+    "funFactsEn": "The small diamond of stars is also known by the old name \"Job's Coffin,\" and different cultures have given it various names over the centuries. Despite its small size, it has been a beloved fixture of the night sky since ancient times.",
+    "brightStarsEn": [
+      "Sualocin",
+      "Rotanev"
+    ],
+    "peakMonthsEn": "August – October"
   },
   {
     "id": "canes_venatici",
@@ -617,7 +887,16 @@
     "baseDifficulty": 3,
     "observationTips": "北斗七星の柄のすぐ南側、うしかい座との間の暗い領域に位置します。明るい星が少ないため、まず北斗七星を見つけてから、その下側を丁寧に探すのがコツです。",
     "scientificData": "りょうけん座には「子持ち銀河(M51)」という渦巻銀河があり、小型の望遠鏡でも隣り合う小さな銀河と手をつないでいるような姿を見ることができます。球状星団M3も見どころの一つです。",
-    "funFacts": "子持ち銀河M51は、渦巻銀河の腕がはっきり写る写真で天文ファンに大人気の天体です。1845年には当時世界最大級の望遠鏡で観測され、渦を巻く銀河の姿が初めてくわしく描かれた記念すべき天体でもあります。"
+    "funFacts": "子持ち銀河M51は、渦巻銀河の腕がはっきり写る写真で天文ファンに大人気の天体です。1845年には当時世界最大級の望遠鏡で観測され、渦を巻く銀河の姿が初めてくわしく描かれた記念すべき天体でもあります。",
+    "mythologyTextEn": "This constellation represents the two hunting dogs led by the herdsman Boötes as he pursues the Great Bear across the sky. It is a relatively modern constellation, introduced in the 17th century by the Polish astronomer Johannes Hevelius. Its brightest star, Cor Caroli, was named in honor of the heart of King Charles II of England. Canes Venatici is home to the beautiful spiral Whirlpool Galaxy (M51), where a telescope reveals two galaxies caught in a gravitational embrace. The globular cluster M3 is also a well-known sight here, visible even to the naked eye as a faint smudge of light.",
+    "observationTipsEn": "Canes Venatici sits just south of the handle of the Big Dipper, in the dim region between the Dipper and Boötes. Since it has few bright stars, the best approach is to locate the Big Dipper first and then carefully scan the sky just below it.",
+    "scientificDataEn": "Canes Venatici contains the spiral galaxy known as the Whirlpool Galaxy (M51). Even a small telescope shows it appearing to hold hands with a smaller companion galaxy alongside it. The globular cluster M3 is another highlight of this constellation.",
+    "funFactsEn": "The Whirlpool Galaxy, M51, is a favorite among astronomy enthusiasts thanks to photographs that clearly capture its spiral arms. In 1845 it was observed with what was then the largest telescope in the world, making it the first galaxy whose spiral structure was ever recorded in detail.",
+    "brightStarsEn": [
+      "Cor Caroli",
+      "Chara"
+    ],
+    "peakMonthsEn": "April – June"
   },
   {
     "id": "canis_minor",
@@ -637,7 +916,16 @@
     "baseDifficulty": 2,
     "observationTips": "オリオン座の三つ星から東へ視線を伸ばすと、明るいプロキオンという星が見つかります。冬の大三角の一角を作る星なので、シリウスやベテルギウスと合わせて探すと分かりやすいです。",
     "scientificData": "プロキオンは全天で8番目に明るい恒星で、地球からわずか約11光年しか離れていない、比較的近い星の一つです。すぐそばには白色矮星という小さな伴星が寄り添っています。",
-    "funFacts": "プロキオンという名前はギリシャ語で「犬の前に」という意味を持ち、おおいぬ座のシリウスより一足早く東の空に昇ることに由来しています。日本では冬の星座を代表する明るい星として親しまれています。"
+    "funFacts": "プロキオンという名前はギリシャ語で「犬の前に」という意味を持ち、おおいぬ座のシリウスより一足早く東の空に昇ることに由来しています。日本では冬の星座を代表する明るい星として親しまれています。",
+    "mythologyTextEn": "This constellation represents one of Orion's two hunting dogs, a small companion to the larger Canis Major. Although it contains only two principal stars, its brightest, Procyon, is the eighth-brightest star in the entire sky. The name Procyon comes from the Greek for \"before the dog,\" since it rises in the eastern sky just ahead of Sirius in Canis Major. Together with Sirius and Betelgeuse in Orion, Procyon forms the famous Winter Triangle.",
+    "observationTipsEn": "Follow a line eastward from Orion's Belt to find the bright star Procyon. Since it forms one corner of the Winter Triangle, it's easiest to spot by looking for it alongside Sirius and Betelgeuse.",
+    "scientificDataEn": "Procyon is the eighth-brightest star in the sky and, at only about 11 light-years from Earth, one of our closer stellar neighbors. It is orbited by a faint white dwarf companion.",
+    "funFactsEn": "The name Procyon means \"before the dog\" in Greek, referring to the way it rises in the east just ahead of Sirius, the brightest star in Canis Major. In Japan it is beloved as one of the signature bright stars of the winter sky.",
+    "brightStarsEn": [
+      "Procyon",
+      "Gomeisa"
+    ],
+    "peakMonthsEn": "January – March"
   },
   {
     "id": "leo_minor",
@@ -657,7 +945,16 @@
     "baseDifficulty": 4,
     "observationTips": "しし座とおおぐま座の間、あまり目立たない暗い星の並びです。まずしし座の背中の部分を見つけてから、その真上あたりを双眼鏡でじっくり探すと見つけやすくなります。",
     "scientificData": "こじし座を作る星々はどれも比較的暗く、肉眼で見える中で最も明るい星でも2等台にとどまります。特に目立つ星団や星雲はなく、星座としての面積も小さめです。",
-    "funFacts": "こじし座は特定の神話を持たない、比較的新しい時代に作られた星座です。大きなしし座の「子ども」のような位置づけで名付けられ、星座早見盤でもつい見落としがちな存在として知られています。"
+    "funFacts": "こじし座は特定の神話を持たない、比較的新しい時代に作られた星座です。大きなしし座の「子ども」のような位置づけで名付けられ、星座早見盤でもつい見落としがちな存在として知られています。",
+    "mythologyTextEn": "A relatively modern constellation introduced in the 17th century by the Polish astronomer Johannes Hevelius, who saw the shape of a small lion in the gap between the much larger Leo and Ursa Major. It carries no notable ancient mythology and is generally regarded simply as Leo's cub. With few bright stars, it can be tricky to spot, but after finding Leo in the spring sky, looking northward reveals this small companion constellation. Tracking it down is a satisfying challenge for amateur astronomers.",
+    "observationTipsEn": "Leo Minor lies between Leo and Ursa Major as an inconspicuous line of faint stars. The trick is to first find the back of Leo and then scan the area just above it carefully with binoculars.",
+    "scientificDataEn": "All the stars that make up Leo Minor are fairly faint, with even the brightest barely reaching 2nd magnitude. It has no especially notable star clusters or nebulae, and its area on the sky is also quite small.",
+    "funFactsEn": "Leo Minor is a comparatively modern constellation with no dedicated mythology of its own. Positioned as though it were the \"cub\" of the great Leo, it is notorious for being easy to overlook even on a star chart.",
+    "brightStarsEn": [
+      "Praecipua",
+      "Beta Leonis Minoris"
+    ],
+    "peakMonthsEn": "March – April"
   },
   {
     "id": "lynx",
@@ -676,7 +973,15 @@
     "baseDifficulty": 5,
     "observationTips": "おおぐま座とぎょしゃ座の間の、星がまばらな暗い領域に広がっています。目立つ星がほとんどないため、周りの明るい星座から場所を絞り込んで、双眼鏡で根気よく探すのがコツです。",
     "scientificData": "やまねこ座を構成する星々はどれも暗く、肉眼でぎりぎり見える明るさのものがほとんどです。星座としての面積はかなり広いにもかかわらず目立つ天体が少ない、観測の難しい星座として知られています。",
-    "funFacts": "「山猫のように鋭い目がないと見つけられない」というのが星座名の由来だと伝えられています。実際に星座を見つけられた人へのちょっとした挑戦状のような、ユーモアのある名付けの星座です。"
+    "funFacts": "「山猫のように鋭い目がないと見つけられない」というのが星座名の由来だと伝えられています。実際に星座を見つけられた人へのちょっとした挑戦状のような、ユーモアのある名付けの星座です。",
+    "mythologyTextEn": "Introduced in the 17th century by Johannes Hevelius, Lynx lives up to its name: legend holds that you need the sharp eyes of a lynx to make it out, since it contains almost no bright stars. It was created to fill the dim, empty stretch of sky between Ursa Major and Auriga. It carries no significant mythology of its own, but patient stargazers scanning the winter and spring sky can trace out its faint line of stars. Among astronomy enthusiasts, it's known as one of the trickier constellations to track down.",
+    "observationTipsEn": "Lynx spreads across a sparse, dim region of sky between Ursa Major and Auriga. With almost no standout stars, the trick is to narrow down the area using the surrounding bright constellations and then search patiently with binoculars.",
+    "scientificDataEn": "Every star that makes up Lynx is faint, most barely at the limit of naked-eye visibility. Despite covering a fairly large area of sky, it contains few notable objects, making it one of the more challenging constellations to observe.",
+    "funFactsEn": "Legend has it the constellation's name comes from the idea that you'd need the keen eyes of a lynx to spot it. It's a playfully named constellation that serves as a bit of a challenge to anyone who manages to find it.",
+    "brightStarsEn": [
+      "Alpha Lyncis"
+    ],
+    "peakMonthsEn": "January – April"
   },
   {
     "id": "monoceros",
@@ -696,7 +1001,16 @@
     "baseDifficulty": 4,
     "observationTips": "冬の大三角（シリウス・プロキオン・ベテルギウス)のちょうど真ん中あたりに広がっています。周りが賑やかな星座ばかりなので、その中心を探すと一角獣の姿を見つけられます。",
     "scientificData": "いっかくじゅう座は天の川の中に位置しており、バラ星雲という淡く広がった星雲を含んでいます。肉眼で見える星は少なめですが、望遠鏡や写真では美しい星雲や星団が数多く見つかります。",
-    "funFacts": "いっかくじゅう座という名前は、中世ヨーロッパで純潔や神聖さの象徴とされた伝説の生き物ユニコーンにちなんでいます。バラ星雲は形が花びらのように見えることからその名がつきました。"
+    "funFacts": "いっかくじゅう座という名前は、中世ヨーロッパで純潔や神聖さの象徴とされた伝説の生き物ユニコーンにちなんでいます。バラ星雲は形が花びらのように見えることからその名がつきました。",
+    "mythologyTextEn": "This constellation represents the unicorn, the legendary white horse with a single horn. It is a modern constellation established in the 17th century with no clear ancient myth attached to it, though medieval European tradition regarded the unicorn as a symbol of purity and holiness. Monoceros sits right in the middle of the Winter Triangle formed by Sirius, Procyon, and Betelgeuse, stretching along the band of the Milky Way. Within it lies the Rosette Nebula (NGC 2237), a beautiful red nebula that is a popular target for astrophotography.",
+    "observationTipsEn": "Monoceros spreads across the very center of the Winter Triangle, formed by Sirius, Procyon, and Betelgeuse. Since it's surrounded by such famous, eye-catching constellations, searching right in the middle of them is the way to find the unicorn's shape.",
+    "scientificDataEn": "Monoceros lies within the band of the Milky Way and contains the Rosette Nebula, a faint, wide expanse of glowing gas. It has few naked-eye stars, but telescopes and long-exposure photography reveal numerous beautiful nebulae and star clusters within it.",
+    "funFactsEn": "The name Monoceros comes from the unicorn, the legendary creature regarded in medieval Europe as a symbol of purity and holiness. The Rosette Nebula gets its name from its resemblance to the petals of a blooming rose.",
+    "brightStarsEn": [
+      "Alpha Monocerotis",
+      "Beta Monocerotis"
+    ],
+    "peakMonthsEn": "January – March"
   },
   {
     "id": "sagitta",
@@ -716,7 +1030,16 @@
     "baseDifficulty": 3,
     "observationTips": "夏の大三角のちょうど中、わし座とはくちょう座の間に、小さな矢の形をした星の並びがあります。星座全体は小さいものの、矢のような形がはっきりしているので見つけやすいです。",
     "scientificData": "や座は88星座の中で3番目に小さな星座ですが、その中には球状星団M71があり、双眼鏡や小型望遠鏡でもぼんやりとした光の集まりとして観測することができます。",
-    "funFacts": "小さな矢の形は世界各地で共通して認識されており、ヘラクレスが放った矢や、太陽神アポロンが使った矢など、複数の神話で「矢」として語られてきた珍しい星座です。"
+    "funFacts": "小さな矢の形は世界各地で共通して認識されており、ヘラクレスが放った矢や、太陽神アポロンが使った矢など、複数の神話で「矢」として語られてきた珍しい星座です。",
+    "mythologyTextEn": "This constellation is said to represent the arrow Hercules used to free Prometheus from his torment, or alternatively the arrow with which Apollo struck down the Cyclopes. Although it is the third-smallest of the 88 constellations, its arrow shape is unmistakably clear. Sagitta lies between Aquila and Vulpecula, shining within the summer Milky Way. It contains the globular cluster M71, which can be picked out with binoculars or a small telescope.",
+    "observationTipsEn": "Right in the middle of the Summer Triangle, between Aquila and Cygnus, lies a small, arrow-shaped row of stars. Although the constellation as a whole is tiny, its distinct arrow shape makes it fairly easy to spot.",
+    "scientificDataEn": "Sagitta is the third-smallest of the 88 constellations, yet it contains the globular cluster M71, which appears as a faint, hazy glow of light through binoculars or a small telescope.",
+    "funFactsEn": "The small arrow shape has been recognized in cultures around the world, appearing in multiple myths as an arrow — whether the one loosed by Hercules or the one wielded by the sun god Apollo — making it a rare constellation with such a widely shared interpretation.",
+    "brightStarsEn": [
+      "Gamma Sagittae",
+      "Delta Sagittae"
+    ],
+    "peakMonthsEn": "August – September"
   },
   {
     "id": "vulpecula",
@@ -735,7 +1058,15 @@
     "baseDifficulty": 4,
     "observationTips": "はくちょう座とわし座の間、天の川の中の見つけにくい位置にあります。まず夏の大三角を見つけてから、その中心付近を双眼鏡でゆっくりたどると星の並びが確認できます。",
     "scientificData": "こぎつね座には「あれい星雲(M27)」という美しい惑星状星雲があり、ダンベル(あれい)のような形が特徴です。惑星状星雲としては初めて発見された天体としても知られています。",
-    "funFacts": "1967年、こぎつね座の方向から規則正しい電波信号が届き、世界初のパルサー発見のきっかけとなりました。発見当初はあまりに規則的だったため、宇宙人からの信号ではないかと話題になったこともあります。"
+    "funFacts": "1967年、こぎつね座の方向から規則正しい電波信号が届き、世界初のパルサー発見のきっかけとなりました。発見当初はあまりに規則的だったため、宇宙人からの信号ではないかと話題になったこともあります。",
+    "mythologyTextEn": "Introduced in the 17th century by Johannes Hevelius, Vulpecula is depicted as a small fox carrying a goose in its jaws. It has no specific mythology attached to it, but it lies within the Milky Way near the center of the Summer Triangle. Vulpecula contains the Dumbbell Nebula (M27), the very first planetary nebula ever discovered. Through a telescope it takes on the shape of a dumbbell, making it a popular introductory target for nebula observation. In 1967, the first pulsar ever discovered (PSR B1919+21) was found in the direction of Vulpecula.",
+    "observationTipsEn": "Vulpecula lies in a hard-to-spot patch of the Milky Way between Cygnus and Aquila. The best approach is to first locate the Summer Triangle and then trace slowly through its center with binoculars to pick out the star pattern.",
+    "scientificDataEn": "Vulpecula contains the beautiful Dumbbell Nebula (M27), a planetary nebula named for its distinctive dumbbell-like shape. It is also notable as the very first planetary nebula ever discovered.",
+    "funFactsEn": "In 1967, a remarkably regular radio signal detected from the direction of Vulpecula led to the discovery of the world's first pulsar. The signal was so perfectly regular that, at first, some wondered whether it might be a message from an alien civilization.",
+    "brightStarsEn": [
+      "Anser"
+    ],
+    "peakMonthsEn": "August – October"
   },
   {
     "id": "triangulum",
@@ -755,7 +1086,16 @@
     "baseDifficulty": 3,
     "observationTips": "アンドロメダ座とおひつじ座の間、秋の夜空に小さな三角形を描く3つの星が目印です。目立つ星は少ないですが、三角形のシンプルな形なので一度見つければ覚えやすい星座です。",
     "scientificData": "さんかく座には「さんかく座銀河(M33)」という渦巻銀河があり、アンドロメダ銀河と同じ仲間の銀河群に属しています。地球からとても遠い距離にありますが、暗く澄んだ夜空では肉眼でもぼんやりと見えることがあります。",
-    "funFacts": "さんかく座は88星座の中で2番目に小さな星座ですが、その中にある銀河M33は肉眼で見える天体の中でもとりわけ遠い部類に入ります。古代には地図に描かれたシチリア島の形にたとえられたこともあります。"
+    "funFacts": "さんかく座は88星座の中で2番目に小さな星座ですが、その中にある銀河M33は肉眼で見える天体の中でもとりわけ遠い部類に入ります。古代には地図に描かれたシチリア島の形にたとえられたこともあります。",
+    "mythologyTextEn": "The second-smallest of the 88 constellations, Triangulum is simply three stars forming a triangle. In ancient Greece it was sometimes said to represent the triangular shape of Sicily, and it has also been associated with the Greek letter delta. Triangulum contains the Triangulum Galaxy (M33), a member of the Local Group of galaxies that also includes the Andromeda Galaxy. It lies about 3 million light-years from Earth and can even be glimpsed with the naked eye under dark skies.",
+    "observationTipsEn": "Between Andromeda and Aries, three stars trace out a small triangle in the autumn sky, marking this constellation's location. It has few bright stars, but its simple triangular shape makes it easy to remember once you've found it.",
+    "scientificDataEn": "Triangulum contains the Triangulum Galaxy (M33), a spiral galaxy belonging to the same galaxy group as the Andromeda Galaxy. Although it lies at a great distance from Earth, it can sometimes be glimpsed as a faint smudge with the naked eye under dark, clear skies.",
+    "funFactsEn": "Triangulum is the second-smallest of the 88 constellations, yet the galaxy M33 within it is among the more distant objects visible to the naked eye. In antiquity it was sometimes likened on maps to the triangular shape of Sicily.",
+    "brightStarsEn": [
+      "Beta Trianguli",
+      "Alpha Trianguli"
+    ],
+    "peakMonthsEn": "November – December"
   },
   {
     "id": "scutum",
@@ -774,7 +1114,15 @@
     "baseDifficulty": 4,
     "observationTips": "いて座とわし座の間、天の川が濃く見える部分に位置する小さな星座です。天の川の明るく見える部分を目印にすると、その中に埋もれるように輝く星の集まりを見つけられます。",
     "scientificData": "たて座には「野鴨星団」とも呼ばれる散開星団M11があり、数百個の星がまとまって輝く美しい姿を見せています。双眼鏡や小型望遠鏡でも楽しむことができる人気の観測対象です。",
-    "funFacts": "たて座は17世紀、当時の国王の戦勝を記念して名付けられた比較的新しい星座で、神話を持たない数少ない星座の一つです。星座の名前に歴史上の出来事がそのまま残っている珍しい例といえます。"
+    "funFacts": "たて座は17世紀、当時の国王の戦勝を記念して名付けられた比較的新しい星座で、神話を持たない数少ない星座の一つです。星座の名前に歴史上の出来事がそのまま残っている珍しい例といえます。",
+    "mythologyTextEn": "This constellation was introduced in the 17th century by the Polish astronomer Johannes Hevelius to commemorate the victory of King John III Sobieski of Poland. Named \"Sobieski's Shield\" in tribute to the king's triumph over the Ottoman Empire at the Siege of Vienna in 1683, it lies within the Milky Way and contains the bright open cluster M11. Also known as the Wild Duck Cluster, M11 looks beautiful even through a small telescope.",
+    "observationTipsEn": "Scutum is a small constellation located between Sagittarius and Aquila, in a particularly dense stretch of the Milky Way. Using the bright band of the Milky Way as a guide, look for a cluster of stars glowing as though embedded within it.",
+    "scientificDataEn": "Scutum contains the open cluster M11, also known as the Wild Duck Cluster, a striking gathering of several hundred stars shining together. It's a popular observing target that can be enjoyed with binoculars or a small telescope.",
+    "funFactsEn": "Scutum is a relatively modern constellation named in the 17th century to commemorate a king's military victory, making it one of the few constellations with no accompanying mythology. It's an unusual case of a constellation whose name preserves an actual historical event.",
+    "brightStarsEn": [
+      "Alpha Scuti"
+    ],
+    "peakMonthsEn": "July – August"
   },
   {
     "id": "serpens",
@@ -793,7 +1141,15 @@
     "baseDifficulty": 3,
     "observationTips": "へびつかい座を挟んで頭の部分（西側)と尾の部分（東側)に分かれているのが特徴です。夏の南の空、へびつかい座の五角形を目印にすると、その両側に伸びる蛇の姿を探しやすくなります。",
     "scientificData": "へび座の尾の部分には「わし星雲(M16)」があり、その中の「創造の柱」と呼ばれるガスの柱はハッブル宇宙望遠鏡が撮影した写真で世界的に有名になりました。星が生まれつつある領域として研究されています。",
-    "funFacts": "へび座は88星座の中で唯一、頭と尾の2つの部分に分かれて描かれる星座です。医術の神が持つ蛇は今でも救急車や薬局のマークに描かれる杖のモチーフとして、世界中で使われ続けています。"
+    "funFacts": "へび座は88星座の中で唯一、頭と尾の2つの部分に分かれて描かれる星座です。医術の神が持つ蛇は今でも救急車や薬局のマークに描かれる杖のモチーフとして、世界中で使われ続けています。",
+    "mythologyTextEn": "This constellation represents the serpent held by Asclepius, the god of medicine. It is the only one of the 88 constellations split into two separate parts, divided by Ophiuchus into Serpens Caput (the serpent's head) and Serpens Cauda (the serpent's tail). Since ancient times the serpent has been a symbol of the healing arts, and even today the image of a snake coiled around a staff — the Rod of Asclepius — remains a familiar emblem of medicine. Serpens Cauda contains the Eagle Nebula (M16), famous for the \"Pillars of Creation\" captured in the iconic Hubble Space Telescope image.",
+    "observationTipsEn": "Serpens is unusual in being split into a head (to the west) and a tail (to the east) on either side of Ophiuchus. In the southern summer sky, use the distinctive pentagon shape of Ophiuchus as a guide, and look for the serpent's form extending out on both sides of it.",
+    "scientificDataEn": "The tail portion of Serpens contains the Eagle Nebula (M16), home to the towering columns of gas known as the \"Pillars of Creation,\" made world-famous by a photograph from the Hubble Space Telescope. The region is studied closely as an active site of star formation.",
+    "funFactsEn": "Serpens is the only one of the 88 constellations depicted as two separate pieces, a head and a tail. The serpent held by the god of medicine lives on today in the staff-and-snake emblem still used worldwide on ambulances and pharmacy signs.",
+    "brightStarsEn": [
+      "Unukalhai"
+    ],
+    "peakMonthsEn": "June – July"
   },
   {
     "id": "coma_berenices",
@@ -813,7 +1169,16 @@
     "baseDifficulty": 3,
     "observationTips": "しし座としし座のしっぽの星デネボラの近く、うしかい座との間に、細かい星がうっすらと集まっている領域です。暗い場所で見ると、肉眼でも星のかたまりがぼんやりと感じ取れます。",
     "scientificData": "かみのけ座の方向には非常に多くの銀河が集中する「かみのけ座銀河団」があり、天文学者が宇宙の大きな構造を調べるための重要な場所となっています。肉眼では散開星団として淡く見える部分もあります。",
-    "funFacts": "かみのけ座は、エジプトの王妃ベレニケが夫の無事を祈って自分の美しい髪を女神に捧げたという故事にちなんで名付けられた、実在の人物の名を持つ珍しい星座です。神話ではなく史実がもとになっています。"
+    "funFacts": "かみのけ座は、エジプトの王妃ベレニケが夫の無事を祈って自分の美しい髪を女神に捧げたという故事にちなんで名付けられた、実在の人物の名を持つ珍しい星座です。神話ではなく史実がもとになっています。",
+    "mythologyTextEn": "This constellation is based on the legend of the beautiful golden hair of Queen Berenice II of Egypt. While her husband, Ptolemy III, was away on a military campaign in Syria, Berenice prayed for his safe return and cut off her long, prized golden hair as an offering to the goddess Aphrodite. When the king returned safely and discovered that the hair he had dedicated at the temple had vanished, he flew into a rage — until the astronomer Conon explained that the goddess had carried it up into the heavens, where it now shines as a constellation. The constellation is marked by a faint, delicate scattering of stars in the spring sky.",
+    "observationTipsEn": "Coma Berenices lies near Denebola, the star marking Leo's tail, in the region between Leo and Boötes, where a fine scattering of faint stars can be seen. Under a dark sky, even the naked eye can make out a faint, hazy clustering of stars here.",
+    "scientificDataEn": "In the direction of Coma Berenices lies the Coma Cluster, an extremely dense concentration of galaxies that serves as an important site for astronomers studying the large-scale structure of the universe. To the naked eye, part of the constellation also appears as a faint open cluster of stars.",
+    "funFactsEn": "Coma Berenices is named for the story of the Egyptian queen Berenice, who offered her beautiful hair to a goddess as a prayer for her husband's safe return — making it one of the rare constellations named after a real historical person rather than a mythological figure. Its origin is rooted in history rather than myth.",
+    "brightStarsEn": [
+      "Diadem",
+      "Beta Comae Berenices"
+    ],
+    "peakMonthsEn": "April – May"
   },
   {
     "id": "equuleus",
@@ -832,7 +1197,15 @@
     "baseDifficulty": 5,
     "observationTips": "ペガスス座のすぐ西隣、秋の夜空に位置する小さな星座です。目立つ星がほとんどないため、まず秋の大四辺形を見つけてから、その近くを注意深く探すのがコツです。",
     "scientificData": "こうま座は88星座の中でギリシャの星座で唯一かつ全体で2番目に小さい星座で、明るい星をほとんど持ちません。主な星は4等星程度で、肉眼で確認するにはかなり澄んだ夜空が必要です。",
-    "funFacts": "小さくて目立たないこうま座は、古代から存在が知られていたにもかかわらず、多くの人にとって見つけたことのない「隠れた星座」です。見つけられたら天文通と言えるかもしれません。"
+    "funFacts": "小さくて目立たないこうま座は、古代から存在が知られていたにもかかわらず、多くの人にとって見つけたことのない「隠れた星座」です。見つけられたら天文通と言えるかもしれません。",
+    "mythologyTextEn": "Equuleus is one of the smallest of the 88 constellations, second only to Crux in size. It depicts only the head of a small horse and lies near Pegasus. According to one legend, it represents the foal that Hermes gave to Castor and Pollux. With no bright stars, it can be hard to spot, but a careful look between Aquila and Pegasus in the autumn sky reveals its small quadrilateral shape. It is a constellation with a long history, recorded as far back as the time of the ancient Greek astronomer Hipparchus.",
+    "observationTipsEn": "Equuleus lies just to the west of Pegasus in the autumn sky. With almost no bright stars of its own, the trick is to first find the Great Square of Pegasus and then search the nearby sky carefully.",
+    "scientificDataEn": "Among the 88 constellations, Equuleus is the smallest of Greek origin and the second-smallest overall, containing hardly any bright stars. Its main stars are only around 4th magnitude, so a fairly clear, dark sky is needed to see it with the naked eye.",
+    "funFactsEn": "Small and unobtrusive, Equuleus has been recognized since antiquity, yet it remains a constellation that many people have never actually spotted for themselves. Finding it is something of a badge of honor among stargazers.",
+    "brightStarsEn": [
+      "Kitalpha"
+    ],
+    "peakMonthsEn": "August – October"
   },
   {
     "id": "canis_major",
@@ -851,7 +1224,15 @@
     "baseDifficulty": 1,
     "observationTips": "オリオン座の三つ星を左下へ伸ばした先に、全天で一番明るい星シリウスが輝いています。冬の夜空でひときわ強い光を放つので、見つけるのはとても簡単です。",
     "scientificData": "シリウスは地球から約8.6光年という比較的近い距離にあり、全天で最も明るく見える恒星です。すぐそばには白色矮星の伴星シリウスBが寄り添うように回っています。",
-    "funFacts": "シリウスは日本では「青星」や「天狼星」とも呼ばれ、古代エジプトではこの星が夜明け前に昇る時期をナイル川の氾濫の予兆として暦作りに利用していました。世界中で特別な星として親しまれています。"
+    "funFacts": "シリウスは日本では「青星」や「天狼星」とも呼ばれ、古代エジプトではこの星が夜明け前に昇る時期をナイル川の氾濫の予兆として暦作りに利用していました。世界中で特別な星として親しまれています。",
+    "mythologyTextEn": "This constellation represents the loyal dog of the hunter Orion, moving across the sky alongside him as though chasing after Lepus, the hare. Its brightest star, Sirius, is the most brilliant star in the entire sky and is sometimes called the \"Dog Star.\" In ancient Egypt, the heliacal rising of Sirius — its first appearance in the eastern sky at dawn — coincided with the annual flooding of the Nile, making it an important marker of the agricultural calendar. The name Sirius comes from the Greek word for \"scorching,\" a reference to the hottest days of summer.",
+    "observationTipsEn": "Follow a line down and to the left from Orion's Belt to find Sirius, the brightest star in the entire sky. It shines so intensely in the winter sky that it's remarkably easy to spot.",
+    "scientificDataEn": "At about 8.6 light-years from Earth, Sirius is one of our nearer stellar neighbors and the brightest star in the sky as seen from Earth. It is orbited by a faint white dwarf companion, Sirius B.",
+    "funFactsEn": "In Japan, Sirius has also been known as the \"Blue Star\" or the \"Dog Star.\" In ancient Egypt, the timing of its pre-dawn rising was used to predict the flooding of the Nile and to construct the calendar, making it a star cherished as something special across many cultures.",
+    "brightStarsEn": [
+      "Sirius"
+    ],
+    "peakMonthsEn": "January – March"
   },
   {
     "id": "crux",
@@ -871,7 +1252,16 @@
     "baseDifficulty": 5,
     "observationTips": "南半球の空でよく見える十字形の星座で、日本では沖縄など南の地域や、南半球への旅行時に観測のチャンスがあります。4つの明るい星が十字架のような形を作っているのが目印です。",
     "scientificData": "みなみじゅうじ座は88星座の中で最も面積が小さい星座ですが、複数の明るい星を含んでいます。近くには「宝石箱星団」と呼ばれる色とりどりの星が集まった美しい散開星団もあります。",
-    "funFacts": "みなみじゅうじ座はオーストラリアやニュージーランドなど南半球の国旗にも描かれる、南半球を象徴する星座です。日本からは南の地域でのみ低く見えるため、南国旅行の楽しみの一つとして人気があります。"
+    "funFacts": "みなみじゅうじ座はオーストラリアやニュージーランドなど南半球の国旗にも描かれる、南半球を象徴する星座です。日本からは南の地域でのみ低く見えるため、南国旅行の楽しみの一つとして人気があります。",
+    "mythologyTextEn": "The most iconic constellation of the southern sky, Crux is also the smallest of all 88 constellations. It was once visible from the Northern Hemisphere as well, but due to the precession of Earth's axis, it can now barely be seen north of about 25 degrees south latitude. It appears on the flags of Australia, New Zealand, Brazil, and other nations, and is used in the Southern Hemisphere as a navigational marker in place of the North Star, since extending the long axis of the cross points toward the south celestial pole. In Aboriginal Australian tradition, it is known as the head of the emu.",
+    "observationTipsEn": "Crux is a cross-shaped constellation well seen in southern skies; from Japan it can be spotted from southern regions such as Okinawa, or when traveling to the Southern Hemisphere. Look for its four bright stars forming an unmistakable cross shape.",
+    "scientificDataEn": "Crux has the smallest area of any of the 88 constellations, yet it contains several bright stars. Nearby lies the Jewel Box Cluster, a beautiful open cluster packed with stars of many different colors.",
+    "funFactsEn": "Crux appears on the flags of several Southern Hemisphere nations, including Australia and New Zealand, making it a true symbol of that half of the sky. Since it can only be glimpsed low on the horizon from Japan's southernmost regions, spotting it is a popular highlight of trips to tropical destinations.",
+    "brightStarsEn": [
+      "Acrux",
+      "Gacrux"
+    ],
+    "peakMonthsEn": "April – May"
   },
   {
     "id": "centaurus",
@@ -891,7 +1281,16 @@
     "baseDifficulty": 4,
     "observationTips": "南天低くに広がる大きな星座で、日本では沖縄など南の地域でないとよく見えません。目印は1等星アルファ星とベータ星で、すぐ近くのみなみじゅうじ座と一緒に探すと見つけやすいです。5月〜6月の宵、南の空低くを見てみましょう。",
     "scientificData": "アルファ星（リギル・ケンタウルス）は太陽系から約4.3光年ととても近く、太陽のすぐ隣のお隣さんの恒星として知られています。星座の面積は全88星座中10番目の広さで、多くの球状星団や銀河も含まれています。",
-    "funFacts": "ケンタウルス座のアルファ星には「プロキシマ・ケンタウリ」という太陽系にいちばん近い恒星も含まれており、将来の宇宙探査の目標として注目されています。西洋では賢者ケンタウロス「ケイロン」を表すとも言われます。"
+    "funFacts": "ケンタウルス座のアルファ星には「プロキシマ・ケンタウリ」という太陽系にいちばん近い恒星も含まれており、将来の宇宙探査の目標として注目されています。西洋では賢者ケンタウロス「ケイロン」を表すとも言われます。",
+    "mythologyTextEn": "This large southern constellation is most often said to represent Chiron, the wise centaur, half man and half horse. Chiron was the tutor of many great heroes and a master of medicine, music, archery, and prophecy, said to have raised figures such as Achilles and Asclepius. Its brightest star, Alpha Centauri, is the closest star system to our own solar system, at about 4.37 light-years away; although it appears as a single point of light to the naked eye, it is actually a triple star system. One of its members, Proxima Centauri, is the single closest star to the Sun, at roughly 4.24 light-years.",
+    "observationTipsEn": "Centaurus is a large constellation that lies low in the southern sky, visible well only from Japan's southern regions such as Okinawa. Look for its two bright markers, Alpha and Beta Centauri, which are easiest to find alongside the nearby Southern Cross. Try looking low in the southern sky in the evening during May and June.",
+    "scientificDataEn": "Alpha Centauri (Rigil Kentaurus) lies only about 4.3 light-years from our solar system, making it the Sun's nearest stellar neighbor. Centaurus is the tenth-largest of all 88 constellations by area and contains numerous globular clusters and galaxies.",
+    "funFactsEn": "The Alpha Centauri system includes Proxima Centauri, the star nearest to our own Sun, which has drawn great interest as a potential future target for interstellar exploration. In Western tradition, the constellation is also said to represent the wise centaur Chiron.",
+    "brightStarsEn": [
+      "Alpha Centauri",
+      "Hadar"
+    ],
+    "peakMonthsEn": "April – June"
   },
   {
     "id": "eridanus",
@@ -911,7 +1310,16 @@
     "baseDifficulty": 3,
     "observationTips": "オリオン座のすぐ西から始まり、南の空へ長く曲がりくねって伸びる星座です。オリオン座のリゲルの近くから星をたどっていくと、川のような形が見えてきます。冬の夜、南の低い空まで見晴らしの良い場所がおすすめです。",
     "scientificData": "エリダヌス座は星座の中でも6番目に面積が広く、端から端まで見わたすのは大変です。南のはしにある1等星アケルナルは地球から約139光年の距離にあり、日本の多くの地域からは地平線の下に隠れて見えません。",
-    "funFacts": "「エリダヌス」は古代ギリシャ神話に出てくる川の名前で、太陽神の子パエトンが馬車で天を暴走した末に落ちた川とされています。日本語では古くから「波江座」とも表記されました。"
+    "funFacts": "「エリダヌス」は古代ギリシャ神話に出てくる川の名前で、太陽神の子パエトンが馬車で天を暴走した末に落ちた川とされています。日本語では古くから「波江座」とも表記されました。",
+    "mythologyTextEn": "This constellation represents the river into which Phaethon, son of the sun god Helios, fell after being struck by Zeus's thunderbolt when he lost control of the sun's chariot. Phaethon had borrowed his father's chariot to ride across the sky, but he could not control the horses and began scorching the earth below, forcing Zeus to strike him down to stop the destruction. Eridanus stretches a long way from north to south, running from near Taurus all the way to the southern edge of the visible sky, making it the sixth-largest constellation in the heavens. Its southernmost first-magnitude star, Achernar, is the tenth-brightest star in the entire sky and serves as a guide star in the southern hemisphere much as Polaris does in the north.",
+    "observationTipsEn": "Eridanus begins just west of Orion and winds its way in a long, meandering path toward the southern sky. If you trace the stars starting near Rigel in Orion, the shape of a winding river gradually comes into view. It is best seen on a clear winter night from a location with an unobstructed view low toward the south.",
+    "scientificDataEn": "Eridanus is the sixth-largest constellation by area, so tracing it from end to end is quite a task. Its southernmost first-magnitude star, Achernar, lies about 139 light-years from Earth, but it sits below the horizon and cannot be seen from most northern latitudes, including Japan.",
+    "funFactsEn": "Eridanus takes its name from a river in ancient Greek mythology, the very river into which Phaethon, son of the sun god, plunged after losing control of the sun's chariot during his reckless flight across the heavens. In Japan it has traditionally also been written with characters meaning 'Wave River' (波江座).",
+    "brightStarsEn": [
+      "Achernar",
+      "Cursa"
+    ],
+    "peakMonthsEn": "November – January"
   },
   {
     "id": "cetus",
@@ -931,7 +1339,16 @@
     "baseDifficulty": 3,
     "observationTips": "秋の夜空、みずがめ座やうお座の南に広がる大きな星座です。目立つ星は少なめですが、変光星ミラ（オミクロン星）を目印に探すとよいでしょう。秋の澄んだ夜、南の空を広く見わたしてみましょう。",
     "scientificData": "くじら座は全88星座の中で4番目に広い星座です。ミラは明るさが数百日周期で大きく変わる「脈動変光星」の代表で、最も明るいときと暗いときで明るさが1000倍以上も変化するとされています。",
-    "funFacts": "くじら座は英語で「Cetus（海の怪物）」を意味し、ギリシャ神話ではアンドロメダ姫を食べようとした怪物として登場します。ミラは「不思議な星」という意味の名前で、発見当時の天文学者を驚かせました。"
+    "funFacts": "くじら座は英語で「Cetus（海の怪物）」を意味し、ギリシャ神話ではアンドロメダ姫を食べようとした怪物として登場します。ミラは「不思議な星」という意味の名前で、発見当時の天文学者を驚かせました。",
+    "mythologyTextEn": "Cetus represents the sea monster sent by the sea god Poseidon after hearing Cassiopeia boast of her beauty. To appease the beast that was ravaging the coast of Ethiopia, Princess Andromeda was offered up as a sacrifice, but the hero Perseus arrived in time and turned the monster to stone with the head of Medusa. Cetus is the fourth-largest constellation in the sky and spreads across a wide stretch of the autumn night sky. Its star Mira (Omicron Ceti) is a variable star whose brightness changes dramatically over a 332-day cycle, making it the namesake and prototype of the 'Mira-type' variable stars.",
+    "observationTipsEn": "Cetus is a large constellation lying south of Aquarius and Pisces in the autumn sky. It has few especially bright stars, but the variable star Mira (Omicron Ceti) makes a useful landmark for locating it. On a clear autumn night, scan broadly across the southern sky to trace its outline.",
+    "scientificDataEn": "Cetus is the fourth-largest of all 88 constellations. Mira is the prototype of the 'pulsating variable stars,' a class of stars whose brightness changes dramatically over a period of several hundred days; between its brightest and dimmest, its luminosity is said to vary by more than a thousandfold.",
+    "funFactsEn": "The name Cetus means 'sea monster' in Greek, where the creature appears as the beast that tried to devour Princess Andromeda. Mira's name means 'the wonderful' or 'the amazing,' reflecting how astonished early astronomers were when they discovered its dramatic changes in brightness.",
+    "brightStarsEn": [
+      "Deneb Kaitos",
+      "Menkar"
+    ],
+    "peakMonthsEn": "November – December"
   },
   {
     "id": "lepus",
@@ -951,7 +1368,16 @@
     "baseDifficulty": 3,
     "observationTips": "オリオン座のすぐ南にある小さな星座です。オリオン座の3つ星から真下に視線を下げると、うさぎ座の体を作る星の並びが見つかります。冬の澄んだ夜空、オリオン座を目印に探してみましょう。",
     "scientificData": "うさぎ座で最も明るいアルファ星（アルネブ）は地球から約2000光年以上離れた巨大な恒星とされ、太陽よりもはるかに大きく明るく輝いています。星座内には球状星団M79もあります。",
-    "funFacts": "ギリシャ神話ではオリオンに追いかけられるうさぎ、または猟犬オリオンの足元で狩られるうさぎとして描かれています。中国の伝統的な星座では、この付近の星は「厠(トイレ)」を表す星官とされていました。"
+    "funFacts": "ギリシャ神話ではオリオンに追いかけられるうさぎ、または猟犬オリオンの足元で狩られるうさぎとして描かれています。中国の伝統的な星座では、この付近の星は「厠(トイレ)」を表す星官とされていました。",
+    "mythologyTextEn": "Lepus represents a hare being chased by the hunter Orion. Positioned at Orion's feet, it depicts the unlucky creature also pursued by his hunting dogs, Canis Major and Canis Minor. In ancient Egypt the hare was revered as a sacred animal, and this constellation is thought to have been recognized there as well. Lepus contains a striking deep-red carbon star known as 'Hind's Crimson Star,' whose vivid crimson glow is especially striking when viewed through a telescope.",
+    "observationTipsEn": "Lepus is a small constellation lying just south of Orion. Looking straight down from Orion's Belt, you can find the line of stars that traces the hare's body. Look for it on a clear winter night using Orion as your guide.",
+    "scientificDataEn": "Lepus's brightest star, Alpha Leporis (Arneb), is believed to be a massive star lying more than 2,000 light-years from Earth, far larger and more luminous than the Sun. The constellation also contains the globular cluster M79.",
+    "funFactsEn": "In Greek mythology, the hare is depicted as fleeing from Orion, or being hunted at the feet of the hunter's dogs. In traditional Chinese astronomy, the stars in this region were grouped into an asterism representing a privy, or outhouse.",
+    "brightStarsEn": [
+      "Arneb",
+      "Nihal"
+    ],
+    "peakMonthsEn": "December – February"
   },
   {
     "id": "hydra",
@@ -970,7 +1396,15 @@
     "baseDifficulty": 2,
     "observationTips": "全天でいちばん面積が広い星座で、春の夜空を東西に長く横たわります。頭の部分はしし座の南、しっぽははちぶんぎ座近くまで伸びるので、一度に全部を見るのは大変です。春の宵、南の空を広く見わたしましょう。",
     "scientificData": "うみへび座は全88星座中もっとも面積が広く、端から端まで見るのに数時間かかることもあります。アルファ星「アルファルド」は「孤独な者」という意味の名前を持ち、地球から約180光年の距離にある赤色巨星です。",
-    "funFacts": "ギリシャ神話に登場する9つの頭を持つ大蛇ヒュドラーに由来し、ヘラクレスの12の功業のひとつとして退治される怪物です。星座としては頭からしっぽまでとても長く描かれ、天球上でも横断するのに時間がかかります。"
+    "funFacts": "ギリシャ神話に登場する9つの頭を持つ大蛇ヒュドラーに由来し、ヘラクレスの12の功業のひとつとして退治される怪物です。星座としては頭からしっぽまでとても長く描かれ、天球上でも横断するのに時間がかかります。",
+    "mythologyTextEn": "Hydra represents the many-headed Lernaean Hydra, the monstrous serpent Heracles battled as the second of his Twelve Labors. Each time one of its heads was severed, two more would grow back in its place, but with the help of his nephew Iolaus, Heracles cauterized each stump with a torch the instant a head was cut off, finally defeating the beast by burying its one immortal head beneath a great boulder. Hydra is the largest constellation in the entire sky, stretching a vast distance from Cancer to Libra. Its lone first-magnitude star, Alphard, takes its name from the Arabic for 'the solitary one.'",
+    "observationTipsEn": "Hydra is the largest constellation in the sky by area, stretching a long way across the spring sky from east to west. Its head lies south of Leo, while its tail extends nearly to Octans, so taking in the whole shape at once is quite a challenge. On a spring evening, scan broadly across the southern sky to trace its length.",
+    "scientificDataEn": "Hydra is the largest of all 88 constellations by area, and tracing it from end to end can take several hours to rise. Its brightest star, Alphard, whose name means 'the solitary one,' is a red giant lying about 180 light-years from Earth.",
+    "funFactsEn": "Hydra takes its name from the nine-headed serpent of Greek mythology that Heracles defeated as one of his Twelve Labors. As a constellation it is drawn stretching an enormous distance from head to tail, so it takes a long time to cross the night sky as it rises and sets.",
+    "brightStarsEn": [
+      "Alphard"
+    ],
+    "peakMonthsEn": "March – May"
   },
   {
     "id": "corvus",
@@ -990,7 +1424,16 @@
     "baseDifficulty": 3,
     "observationTips": "うみへび座の背中の上に乗るような形をした小さな四角い星座です。春の夜、おとめ座のスピカの西側を探すと、4つの星が台形を作っているのが見つかります。都会でも比較的見つけやすい形です。",
     "scientificData": "からす座を形作る4つの星はどれも3等星前後の明るさで、地球からの距離はおよそ60〜150光年とされています。台形にきれいに並ぶ星の配置は、星座の中でも見つけやすい形のひとつです。",
-    "funFacts": "ギリシャ神話では、アポロンの使いだったカラスが水を汲みに行くのをさぼった罰として、星座にされたと伝えられています。中国の星座では「軫宿(しんしゅく)」という馬車を表す星の集まりの一部とされていました。"
+    "funFacts": "ギリシャ神話では、アポロンの使いだったカラスが水を汲みに行くのをさぼった罰として、星座にされたと伝えられています。中国の星座では「軫宿(しんしゅく)」という馬車を表す星の集まりの一部とされていました。",
+    "mythologyTextEn": "Corvus represents the crow that served as a messenger for the sun god Apollo. Apollo sent the crow to fetch water for him, but the bird lingered while waiting for a fig tree's fruit to ripen and returned late. To excuse the delay, it brought back a water snake, claiming the serpent had blocked its path. Apollo saw through the lie, and in his anger, cast the crow up into the sky. Its four stars form a distinctive trapezoid, perched on the back of the neighboring constellation Hydra, shining in the spring's southern sky.",
+    "observationTipsEn": "Corvus is a small, square-shaped constellation that appears to perch on Hydra's back. On a spring night, look west of Spica in Virgo to find its four stars forming a neat trapezoid. Its distinctive shape makes it relatively easy to spot even from cities.",
+    "scientificDataEn": "The four stars that make up Corvus are all roughly third magnitude, lying between about 60 and 150 light-years from Earth. Their neat trapezoidal arrangement makes Corvus one of the more easily recognized constellations.",
+    "funFactsEn": "In Greek mythology, the crow was cast into the sky as punishment for shirking its duty of fetching water for Apollo. In traditional Chinese astronomy, these stars formed part of an asterism called Zhen, representing a chariot.",
+    "brightStarsEn": [
+      "Gienah",
+      "Algorab"
+    ],
+    "peakMonthsEn": "April – May"
   },
   {
     "id": "crater",
@@ -1009,7 +1452,15 @@
     "baseDifficulty": 4,
     "observationTips": "からす座のすぐ西どなりにある、コップの形をした小さな星座です。うみへび座の背中に乗るように位置しているので、まずうみへび座を見つけてから探すとわかりやすいです。春の夜、目を凝らして探してみましょう。",
     "scientificData": "コップ座の星はどれも暗く、いちばん明るい星でも4等星程度とされています。都会の明るい空ではほとんど見えないため、星の少ない田舎の空や双眼鏡を使った観察がおすすめです。",
-    "funFacts": "ギリシャ神話では、太陽神アポロンの杯として登場し、隣のからす座の物語とセットで語られます。水を運ぶ役目を怠ったカラスと、その罰の物語に登場する杯として星座になりました。"
+    "funFacts": "ギリシャ神話では、太陽神アポロンの杯として登場し、隣のからす座の物語とセットで語られます。水を運ぶ役目を怠ったカラスと、その罰の物語に登場する杯として星座になりました。",
+    "mythologyTextEn": "Crater represents the cup belonging to the sun god Apollo. It sits atop the water snake, Hydra, the very serpent the crow of Corvus used as its excuse for returning late. In ancient depictions it was portrayed as Apollo's sacred cup, sometimes described as the vessel the gods used at their feasts. Together with Hydra and Corvus, it forms a trio of constellations sometimes grouped together as a 'water group.' Crater has few bright stars and can be hard to spot, but its cup-like outline can be traced in the spring's southern sky.",
+    "observationTipsEn": "Crater is a small, cup-shaped constellation lying just west of Corvus. Since it sits on the back of Hydra, it helps to locate Hydra first before searching for it. Look carefully for it on a spring night.",
+    "scientificDataEn": "All the stars of Crater are faint, with even its brightest star only around fourth magnitude. It is difficult to see from light-polluted cities, so observing from a dark rural sky or using binoculars is recommended.",
+    "funFactsEn": "In Greek mythology, Crater appears as the cup of the sun god Apollo, its story told alongside that of its neighbor Corvus. It became a constellation as part of the tale of the crow that shirked its duty of fetching water and was punished for it.",
+    "brightStarsEn": [
+      "Alkes"
+    ],
+    "peakMonthsEn": "March – May"
   },
   {
     "id": "vela",
@@ -1029,7 +1480,16 @@
     "baseDifficulty": 4,
     "observationTips": "南天の低い空に見える星座で、日本では南の地域でないと見えにくい星座です。もともと「アルゴ座」という大きな船の星座の一部で、帆の部分にあたります。りゅうこつ座やとも座と並べて探すとわかりやすいです。",
     "scientificData": "ほ座には非常に明るいウォルフ・ライエ星「ガンマ・ベロルム」が含まれ、太陽の数十倍もの質量を持つ大質量星とされています。星座内には超新星残骸「ほ座超新星残骸」もあります。",
-    "funFacts": "かつて存在した巨大な星座「アルゴ座（アルゴ船座）」が18世紀に「りゅうこつ座」「ほ座」「とも座」「らしんばん座」の4つに分割されてできた星座のひとつです。ギリシャ神話の英雄イアソンが乗った船アルゴ号に由来します。"
+    "funFacts": "かつて存在した巨大な星座「アルゴ座（アルゴ船座）」が18世紀に「りゅうこつ座」「ほ座」「とも座」「らしんばん座」の4つに分割されてできた星座のひとつです。ギリシャ神話の英雄イアソンが乗った船アルゴ号に由来します。",
+    "mythologyTextEn": "Vela represents the sail of the Argo, the legendary ship that carried Jason and the Argonauts on their quest. It was originally part of one enormous constellation called Argo Navis, combining what are now Carina, Vela, and Puppis, until the 18th-century French astronomer Nicolas-Louis de Lacaille divided it into separate constellations. Vela is a large constellation best seen from the southern hemisphere and lies within the Milky Way. It contains a pulsar, a rapidly spinning neutron star that emits regular pulses of radio waves, studied as the remnant of a past supernova explosion.",
+    "observationTipsEn": "Vela lies low in the southern sky and is hard to see from Japan except from its southernmost regions. It was originally part of the great ship constellation Argo Navis, representing the sail. It is easiest to find alongside its neighbors Carina and Puppis.",
+    "scientificDataEn": "Vela contains the extremely bright Wolf-Rayet star Gamma Velorum (also known as Regor), a massive star with dozens of times the Sun's mass. The constellation also contains the Vela Supernova Remnant, the debris of an ancient stellar explosion.",
+    "funFactsEn": "Vela is one of the constellations created when the once-enormous Argo Navis was divided in the 18th century, alongside Carina and Puppis. Its origin lies in the ship Argo, sailed by the Greek hero Jason in mythology.",
+    "brightStarsEn": [
+      "Regor",
+      "Alsephina"
+    ],
+    "peakMonthsEn": "February – April"
   },
   {
     "id": "puppis",
@@ -1049,7 +1509,16 @@
     "baseDifficulty": 3,
     "observationTips": "オリオン座の南東、冬の天の川の中にある星座です。もともとアルゴ船座の「船尾」部分にあたります。おおいぬ座のシリウスから南東へ視線を移すと、明るい星の集まりが見えてきます。",
     "scientificData": "とも座は冬の天の川の中に位置するため、散開星団がとても多い星座として知られています。M46やM47などの散開星団は双眼鏡でも観察しやすく、多くの星がまとまって輝く様子を楽しめます。",
-    "funFacts": "とも座もアルゴ座が分割されてできた星座で、名前の「Puppis」はラテン語で「船尾」を意味します。ギリシャ神話の英雄たちが乗ったアルゴ船の一部として、今も星空に船の名残をとどめています。"
+    "funFacts": "とも座もアルゴ座が分割されてできた星座で、名前の「Puppis」はラテン語で「船尾」を意味します。ギリシャ神話の英雄たちが乗ったアルゴ船の一部として、今も星空に船の名残をとどめています。",
+    "mythologyTextEn": "Puppis represents the stern of the legendary ship Argo, sailed by the hero Jason and his companions in their quest for the Golden Fleece. It is one of the constellations formed when the once-enormous Argo Navis was divided, forming, together with Carina and Vela, the remnants of the great ship constellation. It contains many bright stars and shines along the Milky Way through the winter and spring night sky. Its brightest star, Naos, is an extremely hot star with a surface temperature of about 42,000 K, and it radiates enormous amounts of ultraviolet light.",
+    "observationTipsEn": "Puppis lies southeast of Orion, within the winter Milky Way. It originally represented the 'stern' of the great ship Argo Navis. Follow a line southeast from Sirius in Canis Major to find its cluster of bright stars.",
+    "scientificDataEn": "Because Puppis lies within the winter Milky Way, it is known for containing many open star clusters. Clusters such as M46 and M47 are easy to observe even with binoculars, offering a fine view of many stars gathered together.",
+    "funFactsEn": "Puppis is another constellation created from the division of Argo Navis. Its name comes from the Latin word for 'stern,' the rear part of a ship. As part of the legendary Argo sailed by the heroes of Greek mythology, it still carries the memory of that ship across the night sky.",
+    "brightStarsEn": [
+      "Naos",
+      "Asmidiske"
+    ],
+    "peakMonthsEn": "January – March"
   },
   {
     "id": "carina",
@@ -1069,7 +1538,16 @@
     "baseDifficulty": 4,
     "observationTips": "全天で2番目に明るい恒星カノープスを含む南天の星座で、日本では南の地域や高い場所からわずかに見えることがあります。りゅうこつ座はアルゴ船座の「船底」にあたり、南の空低くを探すとカノープスの輝きが目印になります。",
     "scientificData": "アルファ星カノープスは太陽系から約310光年の距離にあり、全天でシリウスに次いで2番目に明るい恒星とされています。星座内にはイータ・カリーナ星雲という巨大な星形成領域もあり、将来超新星爆発を起こす可能性がある星として注目されています。",
-    "funFacts": "中国では見えにくく縁起の良い星とされ「南極老人星」と呼ばれ、この星を見ると長生きできるという言い伝えがありました。日本でも一部地域で「布良星（めらぼし）」と呼ばれ、見えると幸運が訪れるとされていました。"
+    "funFacts": "中国では見えにくく縁起の良い星とされ「南極老人星」と呼ばれ、この星を見ると長生きできるという言い伝えがありました。日本でも一部地域で「布良星（めらぼし）」と呼ばれ、見えると幸運が訪れるとされていました。",
+    "mythologyTextEn": "Carina represents the keel of the ship Argo. Its brightest star, Canopus, is the second-brightest star in the entire sky after Sirius, and in the southern hemisphere it plays a role much like Polaris does in the north. In ancient Egypt, Canopus was known as the 'King of the Southern Stars.' Carina is also home to Eta Carinae, a hypergiant star more than 100 times the mass of the Sun that appears to be on the verge of a supernova explosion. In the 19th century it briefly outshone Sirius, making it one of the most unstable and unpredictable stars known.",
+    "observationTipsEn": "Carina contains Canopus, the second-brightest star in the entire sky, and can occasionally be glimpsed faintly from Japan's southern regions or from elevated locations. Representing the 'keel' of the ship Argo Navis, it lies low in the southern sky, with Canopus's brilliance serving as a helpful landmark.",
+    "scientificDataEn": "Carina's brightest star, Canopus, lies about 310 light-years from the solar system and is the second-brightest star in the entire sky after Sirius. The constellation also contains the Carina Nebula, a vast star-forming region that includes Eta Carinae, a star of great interest as a candidate for a future supernova explosion.",
+    "funFactsEn": "In China, Canopus was considered a rare and auspicious star known as the 'Old Man of the South Pole,' and seeing it was said to bring long life. In parts of Japan, it was also known as 'Merabashi,' and its appearance was believed to bring good fortune.",
+    "brightStarsEn": [
+      "Canopus",
+      "Miaplacidus"
+    ],
+    "peakMonthsEn": "January – April"
   },
   {
     "id": "columba",
@@ -1089,7 +1567,16 @@
     "baseDifficulty": 4,
     "observationTips": "おおいぬ座の南、うさぎ座のさらに南にある小さな星座です。冬の夜、南の空低くまで見晴らしの良い場所で探すのがおすすめです。地平線近くまで見える開けた場所を選びましょう。",
     "scientificData": "はと座の星はどれもそれほど明るくなく、最も明るいアルファ星でも4等星に満たない程度とされています。16世紀末にオランダの天文学者によって新しく作られた星座のひとつです。",
-    "funFacts": "旧約聖書のノアの方舟の物語で、洪水がおさまったことを知らせるために放たれたハトを表しているとされています。西洋の新しい星座の中では、聖書の物語をもとにした珍しい例のひとつです。"
+    "funFacts": "旧約聖書のノアの方舟の物語で、洪水がおさまったことを知らせるために放たれたハトを表しているとされています。西洋の新しい星座の中では、聖書の物語をもとにした珍しい例のひとつです。",
+    "mythologyTextEn": "Columba represents the dove released from Noah's Ark to search for dry land, or alternatively, the dove that flew ahead of the Argonauts' ship through the clashing rocks known as the Symplegades. According to legend, before attempting to pass through this dangerous strait, the Argonauts released a dove to test whether the rocks would crush it, judging the danger by how the bird fared. Columba was established as a constellation relatively recently, in the 17th century, and lies south of Canis Major. It has no especially bright stars, but its small, distinct cluster of stars can be traced in the southern sky.",
+    "observationTipsEn": "Columba is a small constellation lying south of Canis Major, further south than Lepus. It is best searched for on a winter night from a location with a clear, unobstructed view down toward the southern horizon.",
+    "scientificDataEn": "None of the stars in Columba are especially bright; even its brightest star, Alpha Columbae, falls just short of fourth magnitude. It is one of several constellations newly charted by Dutch astronomers in the late 16th century.",
+    "funFactsEn": "Columba is said to represent the dove released in the story of Noah's Ark, sent out to determine whether the floodwaters had receded. Among the newer Western constellations, it is a rare example based directly on a biblical story.",
+    "brightStarsEn": [
+      "Phact",
+      "Wazn"
+    ],
+    "peakMonthsEn": "December – February"
   },
   {
     "id": "piscis_austrinus",
@@ -1108,7 +1595,15 @@
     "baseDifficulty": 3,
     "observationTips": "秋の夜空、みずがめ座の南にある星座で、1等星フォーマルハウトが目印です。秋の南の空にぽつんと明るく輝く星なので「秋の一つ星」とも呼ばれ、見つけやすい星です。",
     "scientificData": "フォーマルハウトは地球から約25光年という比較的近い距離にある1等星で、周囲に塵の円盤があることが観測され、惑星が作られている途中の可能性がある星として研究されています。",
-    "funFacts": "フォーマルハウトはアラビア語で「魚の口」を意味し、みなみのうお座が水を飲み込む姿を表しています。周囲に目立つ星が少ないため「秋の一つ星」として古くから日本でも親しまれてきました。"
+    "funFacts": "フォーマルハウトはアラビア語で「魚の口」を意味し、みなみのうお座が水を飲み込む姿を表しています。周囲に目立つ星が少ないため「秋の一つ星」として古くから日本でも親しまれてきました。",
+    "mythologyTextEn": "Piscis Austrinus represents a great fish drinking the water poured out by Aquarius, and it is a venerable constellation recorded as far back as ancient Babylonian times. The fish is also said to represent an avatar of Derceto, the fertility goddess worshipped in the Syro-Phoenician region. Its first-magnitude star, Fomalhaut, known as the 'Solitary Star of Autumn,' is the 18th-brightest star in the entire sky and shines alone in the autumn southern sky. A disk of dust thought to be in the process of forming planets has been discovered around Fomalhaut, and the system was also one of the first around which an exoplanet was directly imaged.",
+    "observationTipsEn": "Piscis Austrinus lies south of Aquarius in the autumn sky, marked by its first-magnitude star Fomalhaut. Because it shines brightly and alone in an otherwise dim patch of the autumn southern sky, it is sometimes called the 'Solitary Star of Autumn' and is easy to spot.",
+    "scientificDataEn": "Fomalhaut lies a relatively close 25 light-years from Earth. A disk of dust has been observed around the star, and it is studied as a system in which planets may still be forming.",
+    "funFactsEn": "Fomalhaut comes from the Arabic for 'mouth of the fish,' representing the mouth of the southern fish as it drinks the flowing water. With few other bright stars nearby, it has long been cherished, including in Japan, as the 'Solitary Star of Autumn.'",
+    "brightStarsEn": [
+      "Fomalhaut"
+    ],
+    "peakMonthsEn": "September – November"
   },
   {
     "id": "pavo",
@@ -1127,7 +1622,15 @@
     "baseDifficulty": 4,
     "observationTips": "南天の星座で、日本ではほとんど見ることができません。1等星ピーコック（アルファ星）を目印に、南半球の観測地や南の低い空が開けた場所で探すことができます。",
     "scientificData": "アルファ星ピーコックは地球から約180光年の距離にある青白い恒星で、複数の星が集まった多重星である可能性が指摘されています。くじゃく座には球状星団NGC6752もあり、南天の観測対象として知られています。",
-    "funFacts": "16世紀にオランダの航海者たちが、東南アジアで見た美しいクジャクをもとに作った星座とされています。西洋の伝統的な星座にはない、大航海時代ならではの異国情緒を感じさせる星座です。"
+    "funFacts": "16世紀にオランダの航海者たちが、東南アジアで見た美しいクジャクをもとに作った星座とされています。西洋の伝統的な星座にはない、大航海時代ならではの異国情緒を感じさせる星座です。",
+    "mythologyTextEn": "Pavo represents the peacock, sacred bird of the goddess Hera. According to legend, after the death of the hundred-eyed giant Argus, who had once served as witness to one of Zeus's infidelities, Hera transferred his many eyes onto the tail feathers of the peacock. Pavo is one of the new southern constellations charted in the 16th century by the Dutch navigators Pieter Dirkszoon Keyser and Frederick de Houtman. Its first-magnitude star, named Peacock, is one of the most distinctive stars of the southern sky and is well placed for observation from Australia.",
+    "observationTipsEn": "Pavo is a southern constellation almost never visible from Japan. Using its first-magnitude star, Peacock (Alpha Pavonis), as a guide, it can be observed from southern-hemisphere locations or from places with a clear, unobstructed view of the low southern sky.",
+    "scientificDataEn": "Pavo's brightest star, Peacock, lies about 180 light-years from Earth and is a blue-white star suspected of being part of a multiple-star system. The constellation also contains the globular cluster NGC 6752, a well-known target for observers in the southern hemisphere.",
+    "funFactsEn": "Pavo is said to have been charted by 16th-century Dutch navigators after the beautiful peacocks they encountered in Southeast Asia. Unlike the traditional Western constellations, it carries an exotic flavor distinctive of the Age of Exploration.",
+    "brightStarsEn": [
+      "Peacock"
+    ],
+    "peakMonthsEn": "July – September"
   },
   {
     "id": "grus",
@@ -1147,7 +1650,16 @@
     "baseDifficulty": 4,
     "observationTips": "秋の南の空、みなみのうお座のさらに南にある星座です。フォーマルハウトを目印にして、そこから南へ視線を下げていくと、ツルの首から体にかけての星の並びが見えてきます。",
     "scientificData": "アルファ星アルナイル（つる座で最も明るい星）は地球から約100光年の距離にあり、青白く輝く恒星とされています。16世紀にオランダの航海者によって設定された比較的新しい星座です。",
-    "funFacts": "つる座はもともとみなみのうお座の一部と考えられていましたが、16世紀に独立した星座として分けられました。日本を含む多くの文化で、ツルは長寿や吉兆の象徴とされ、星座名にもその印象が重ねられています。"
+    "funFacts": "つる座はもともとみなみのうお座の一部と考えられていましたが、16世紀に独立した星座として分けられました。日本を含む多くの文化で、ツルは長寿や吉兆の象徴とされ、星座名にもその印象が重ねられています。",
+    "mythologyTextEn": "Grus represents the crane, a bird charted into the southern sky by Dutch navigators in the 16th century. Cranes are regarded as symbols of longevity and good fortune across many cultures, an idea echoed in the Japanese saying that 'the crane lives a thousand years, the tortoise ten thousand.' Its brightest star, Alnair, takes its name from the Arabic for 'the bright one.' Grus is a relatively bright southern constellation, and together with Fomalhaut in Piscis Austrinus, it serves as a marker for the autumn southern sky.",
+    "observationTipsEn": "Grus lies in the autumn southern sky, further south than Piscis Austrinus. Using Fomalhaut as a starting point, look further south to trace the line of stars forming the crane's neck and body.",
+    "scientificDataEn": "Alnair, the brightest star in Grus, lies about 100 light-years from Earth and shines with a blue-white color. Grus is a relatively new constellation, charted by Dutch navigators in the 16th century.",
+    "funFactsEn": "Grus was originally considered part of Piscis Austrinus but was separated into its own constellation in the 16th century. In many cultures, including Japan, the crane is a symbol of longevity and good fortune, an association carried over into the constellation's name.",
+    "brightStarsEn": [
+      "Alnair",
+      "Tiaki"
+    ],
+    "peakMonthsEn": "September – November"
   },
   {
     "id": "phoenix",
@@ -1167,7 +1679,16 @@
     "baseDifficulty": 4,
     "observationTips": "秋から冬にかけて、南の空低くに見える星座です。エリダヌス座やつる座の近くに位置しており、日本では西日本など南の地域からわずかに見えることがあります。南の空が開けた場所で探してみましょう。",
     "scientificData": "アルファ星アンカーは地球から約85光年の距離にあるオレンジ色の巨星とされています。16世紀にオランダの航海者たちが設定した南天の12星座のひとつです。",
-    "funFacts": "「フェニックス」は死んでも灰の中からよみがえるという伝説の不死鳥にちなんで名づけられました。星座の中では珍しく、実在の鳥ではなく神話上の伝説の生き物をモチーフにしています。"
+    "funFacts": "「フェニックス」は死んでも灰の中からよみがえるという伝説の不死鳥にちなんで名づけられました。星座の中では珍しく、実在の鳥ではなく神話上の伝説の生き物をモチーフにしています。",
+    "mythologyTextEn": "Phoenix represents the mythical bird that rises reborn from the flames. According to ancient Egyptian and Greek legend, the phoenix immolated itself in fire every 500 years, only to be reborn anew from its own ashes. It is one of the southern constellations charted by Dutch navigators in the 16th century, lying just south of Eridanus. Its brightest star, Ankaa, takes its name from the Arabic for 'the phoenix' and is a giant star ranked around the 100th brightest in the entire sky.",
+    "observationTipsEn": "Phoenix appears low in the southern sky during autumn and winter. Lying near Eridanus and Grus, it can occasionally be glimpsed faintly from Japan's westernmost and southernmost regions. Look for it where you have a clear, unobstructed view of the southern sky.",
+    "scientificDataEn": "Ankaa, the constellation's brightest star, lies about 85 light-years from Earth and is an orange giant. Phoenix is one of twelve southern constellations charted by Dutch navigators in the 16th century.",
+    "funFactsEn": "The name Phoenix comes from the legendary immortal bird said to rise from its own ashes after death. Unlike most constellations, which are based on real animals, it is a rare example modeled on a purely mythical creature.",
+    "brightStarsEn": [
+      "Ankaa",
+      "Beta Phoenicis"
+    ],
+    "peakMonthsEn": "October – December"
   },
   {
     "id": "tucana",
@@ -1186,7 +1707,15 @@
     "baseDifficulty": 4,
     "observationTips": "南天の星座で、日本からはほとんど見ることができません。近くには「小マゼラン雲」という天体があり、南半球の観測地では肉眼でもぼんやりとした雲のように見ることができます。",
     "scientificData": "けんびきょう座やみずへび座の近くにあるちいさな星座で、目立つ星は少ないとされています。すぐそばにある小マゼラン雲は、天の川銀河の伴銀河のひとつで、数億個の星が集まった小さな銀河です。",
-    "funFacts": "16世紀にオランダの航海者たちが設定した南天の星座で、くちばしの大きな鳥トウカン（オオハシ）にちなんで名づけられました。小マゼラン雲は大航海時代の探検家マゼランの名にちなんで呼ばれるようになりました。"
+    "funFacts": "16世紀にオランダの航海者たちが設定した南天の星座で、くちばしの大きな鳥トウカン（オオハシ）にちなんで名づけられました。小マゼラン雲は大航海時代の探検家マゼランの名にちなんで呼ばれるようになりました。",
+    "mythologyTextEn": "Tucana represents the toucan, a large-billed bird native to the tropical rainforests of South America. It is one of the southern constellations charted by 16th-century Dutch navigators, established to commemorate their expeditions to South America. Tucana contains the Small Magellanic Cloud (SMC), a satellite galaxy of the Milky Way. Visible to the naked eye as a faint, cloud-like patch, it is a prominent sight in the southern hemisphere. The constellation is also home to 47 Tucanae (NGC 104), considered one of the most beautiful globular clusters in the entire sky.",
+    "observationTipsEn": "Tucana is a southern constellation almost never visible from Japan. Nearby lies the Small Magellanic Cloud, which observers in the southern hemisphere can see with the naked eye as a faint, cloud-like patch.",
+    "scientificDataEn": "Tucana is a small constellation near Microscopium and Hydrus, with few especially bright stars of its own. Close by lies the Small Magellanic Cloud, a satellite galaxy of the Milky Way made up of hundreds of millions of stars.",
+    "funFactsEn": "Tucana was charted by 16th-century Dutch navigators and named for the large-billed toucan. The Small Magellanic Cloud takes its name from the Age of Exploration navigator Ferdinand Magellan.",
+    "brightStarsEn": [
+      "Alpha Tucanae"
+    ],
+    "peakMonthsEn": "October – December"
   },
   {
     "id": "dorado",
@@ -1206,7 +1735,16 @@
     "baseDifficulty": 4,
     "observationTips": "南天の小さな星座で、日本からはほとんど見えません。星座内には「大マゼラン雲」という天体があり、南半球では肉眼でも雲のようにぼんやりと見ることができます。",
     "scientificData": "かじき座にある大マゼラン雲は天の川銀河のすぐそばにある伴銀河で、地球から約16万光年の距離にあるとされています。その中には「タランチュラ星雲」という巨大な星形成領域があり、多くの新しい星が生まれています。",
-    "funFacts": "「かじき」とはシイラという熱帯の海に住む魚のことで、16世紀にオランダの航海者が熱帯の海で見た魚にちなんで名づけました。大マゼラン雲は探検家マゼランの航海記録にちなんで名前が付けられました。"
+    "funFacts": "「かじき」とはシイラという熱帯の海に住む魚のことで、16世紀にオランダの航海者が熱帯の海で見た魚にちなんで名づけました。大マゼラン雲は探検家マゼランの航海記録にちなんで名前が付けられました。",
+    "mythologyTextEn": "Dorado represents a dolphinfish (mahi-mahi) of the southern seas, a constellation devised by Dutch navigators in the 16th century. Its greatest highlight is the Large Magellanic Cloud (LMC), a satellite galaxy of the Milky Way that appears to the naked eye as a large, cloud-like patch of light. Lying about 160,000 light-years away, it was the site of supernova SN 1987A in 1987, an explosion that thrilled astronomers around the world. Near Dorado's Beta star lies the Tarantula Nebula (NGC 2070), a giant emission nebula in the southern sky.",
+    "observationTipsEn": "Dorado is a small southern constellation that is almost never visible from Japan. It contains the Large Magellanic Cloud, which can be seen with the naked eye from the Southern Hemisphere as a faint, cloud-like glow.",
+    "scientificDataEn": "The Large Magellanic Cloud in Dorado is a companion galaxy located very close to the Milky Way, at a distance of roughly 160,000 light-years from Earth. Within it lies the Tarantula Nebula, a massive star-forming region where many new stars are being born.",
+    "funFactsEn": "\"Dorado\" refers to the dolphinfish (mahi-mahi), a fish found in tropical seas, and the constellation was named by 16th-century Dutch navigators after fish they observed in tropical waters. The Large Magellanic Cloud takes its name from the explorer Ferdinand Magellan, whose voyage records first documented it.",
+    "brightStarsEn": [
+      "Alpha Doradus",
+      "Beta Doradus"
+    ],
+    "peakMonthsEn": "December – February"
   },
   {
     "id": "ara",
@@ -1226,7 +1764,16 @@
     "baseDifficulty": 4,
     "observationTips": "さそり座の南、南天の天の川の中にある小さな星座です。さそり座のしっぽを目印にして、そこから南に視線を下げていくと見つかります。日本では南の地域でわずかに見えることがあります。",
     "scientificData": "さいだん座は天の川の中にあるため、散開星団や球状星団など見ごたえのある天体が多い星座とされています。特に球状星団NGC6397は地球から比較的近い球状星団のひとつとして知られています。",
-    "funFacts": "古代ギリシャ神話では、神々が争いを収めるために誓いを立てた「祭壇」を表すとされています。ゼウスがティタン族との戦いに勝利したことを記念して作られた祭壇という言い伝えもあります。"
+    "funFacts": "古代ギリシャ神話では、神々が争いを収めるために誓いを立てた「祭壇」を表すとされています。ゼウスがティタン族との戦いに勝利したことを記念して作られた祭壇という言い伝えもあります。",
+    "mythologyTextEn": "Ara represents the altar upon which Zeus and the other Olympian gods swore their oath before the Titanomachy, their war against the Titans. The gods gathered at this altar and vowed that, should they defeat the Titans, they would forever make offerings there together. After their triumphant victory, the altar was placed among the stars as an eternal memorial. Ara lies south of Sagittarius, occupying a portion of the summer Milky Way.",
+    "observationTipsEn": "A small constellation lying south of Scorpius, within the summer Milky Way. Use the tail of Scorpius as a guide and look further south to find it. From Japan, it can occasionally be glimpsed low in the sky from southern regions.",
+    "scientificDataEn": "Because Ara lies within the Milky Way, it is rich in striking objects such as open and globular clusters. The globular cluster NGC 6397 in particular is known as one of the closest globular clusters to Earth.",
+    "funFactsEn": "In ancient Greek mythology, Ara is said to represent the altar upon which the gods swore an oath to settle their conflict. According to legend, it was built to commemorate Zeus's victory over the Titans.",
+    "brightStarsEn": [
+      "Beta Arae",
+      "Alpha Arae"
+    ],
+    "peakMonthsEn": "July – August"
   },
   {
     "id": "lupus",
@@ -1246,7 +1793,16 @@
     "baseDifficulty": 4,
     "observationTips": "ケンタウルス座のすぐそばにある南天の星座です。さそり座の西どなりに位置しており、南天の天の川の中に輝いています。日本では南の地域から低い空に見つけることができます。",
     "scientificData": "おおかみ座の中では1006年に「SN1006」という史上最も明るいとされる超新星爆発が記録されており、当時は昼間でも見えるほど輝いたと伝えられています。星座内には天の川に沿って多くの恒星が集まっています。",
-    "funFacts": "古代ギリシャ・ローマでは特定の動物ではなく「野獣」として描かれ、ケンタウロスが槍で捕らえた獲物とされていました。「おおかみ」という名前はアラビア語を経て後の時代に定着したものです。"
+    "funFacts": "古代ギリシャ・ローマでは特定の動物ではなく「野獣」として描かれ、ケンタウロスが槍で捕らえた獲物とされていました。「おおかみ」という名前はアラビア語を経て後の時代に定着したものです。",
+    "mythologyTextEn": "Lupus depicts a wild beast held aloft on the spear of Centaurus. In ancient Greece and Rome it was simply portrayed as \"the beast,\" without being assigned a specific species. The name \"Lupus\" (wolf) became established later, after passing through Arabic translations. The constellation lies close to Centaurus, shining within the southern Milky Way. In 1006, a supernova known as SN 1006 — the brightest stellar explosion ever recorded — was observed near this constellation, reportedly bright enough to be seen even in daylight.",
+    "observationTipsEn": "A southern constellation lying right next to Centaurus, just west of Scorpius, shining within the southern Milky Way. From Japan, it can be spotted low in the sky from southern regions.",
+    "scientificDataEn": "SN 1006, believed to be the brightest supernova ever recorded, was observed within Lupus in the year 1006 and is said to have shone brightly enough to be seen even during the day. Many stars are clustered within the constellation along the Milky Way.",
+    "funFactsEn": "In ancient Greece and Rome, Lupus was depicted not as a specific animal but simply as \"the beast,\" prey caught on the spear of Centaurus. The name \"wolf\" became attached to it only later, after passing through Arabic tradition.",
+    "brightStarsEn": [
+      "Alpha Lupi",
+      "Beta Lupi"
+    ],
+    "peakMonthsEn": "May – July"
   },
   {
     "id": "corona_australis",
@@ -1265,7 +1821,15 @@
     "baseDifficulty": 4,
     "observationTips": "いて座の足元にある半円形の小さな星座です。夏の夜、いて座を見つけたら、その南側を探すと弧を描くような星の並びが見つかります。南の空が開けた場所で観察しましょう。",
     "scientificData": "みなみのかんむり座のそばには「みなみのかんむり座分子雲」という星形成領域があり、新しい星が生まれる場所として天文学者に注目されています。星座を作る星はどれも4等星前後の明るさとされています。",
-    "funFacts": "北天のかんむり座に対応する南天の星座として名づけられ、古代ギリシャでは「ケンタウロスの冠」とも呼ばれていました。小さいながらも整った半円形の並びは、古くから人々に王冠として親しまれてきました。"
+    "funFacts": "北天のかんむり座に対応する南天の星座として名づけられ、古代ギリシャでは「ケンタウロスの冠」とも呼ばれていました。小さいながらも整った半円形の並びは、古くから人々に王冠として親しまれてきました。",
+    "mythologyTextEn": "Corona Australis is the southern counterpart to Corona Borealis, representing a crown in the southern sky. Located at the feet of Sagittarius, it is distinguished by its small, semicircular arc of stars. In ancient Greece it was also known as \"the Centaur's Crown.\" Near Corona Australis lies the Corona Australis molecular cloud, a star-forming region that draws close attention from astronomers as a site where new stars are born. Because it lies south of Sagittarius, it can be found in the summer night sky.",
+    "observationTipsEn": "A small, semicircular constellation at the feet of Sagittarius. On a summer night, once you've located Sagittarius, look to its south for an arc-shaped line of stars. Observe from a location with a clear view toward the southern horizon.",
+    "scientificDataEn": "Near Corona Australis lies the Corona Australis molecular cloud, a star-forming region that draws attention from astronomers as a birthplace of new stars. The stars that make up the constellation are all around 4th magnitude in brightness.",
+    "funFactsEn": "Named as the southern counterpart to the northern Corona Borealis, Corona Australis was also known in ancient Greece as \"the Centaur's Crown.\" Though small, its neat semicircular arrangement has long been cherished by people as a crown in the sky.",
+    "brightStarsEn": [
+      "Alpha Coronae Australis"
+    ],
+    "peakMonthsEn": "July – August"
   },
   {
     "id": "triangulum_australe",
@@ -1285,7 +1849,16 @@
     "baseDifficulty": 4,
     "observationTips": "南天で見つけやすい星座のひとつで、3つの星がはっきりとした三角形を描いています。みなみじゅうじ座やケンタウルス座の近くにあり、南半球の観測地では航海の目印としても使われてきました。",
     "scientificData": "最も明るい星アトリアは地球から約420光年の距離にあるオレンジ色の巨星とされています。16世紀にオランダの航海者が設定した星座で、はっきりとした三角形の形が特徴です。",
-    "funFacts": "北天のさんかく座に対応する南天の三角形として名づけられました。みなみじゅうじ座やケンタウルス座とともに、南半球の船乗りたちが方角を知るための目印として長く利用されてきました。"
+    "funFacts": "北天のさんかく座に対応する南天の三角形として名づけられました。みなみじゅうじ座やケンタウルス座とともに、南半球の船乗りたちが方角を知るための目印として長く利用されてきました。",
+    "mythologyTextEn": "Triangulum Australe was charted by 16th-century Dutch explorers who sailed the southern seas. It was named as the southern counterpart to the northern Triangulum. Its three stars form a clear, well-defined triangle, making it one of the easier southern constellations to identify. Its brightest star, Atria, means \"the alpha star of Triangulum Australe,\" and together with the Southern Cross and Centaurus, it served as a key reference point for navigation in the Southern Hemisphere.",
+    "observationTipsEn": "One of the easier southern constellations to spot, formed by three stars in a clearly defined triangle. It lies near the Southern Cross and Centaurus, and has long been used by navigators in the Southern Hemisphere as a landmark.",
+    "scientificDataEn": "Atria, the constellation's brightest star, is an orange giant located about 420 light-years from Earth. The constellation was charted by Dutch navigators in the 16th century and is notable for its clearly defined triangular shape.",
+    "funFactsEn": "Named as the southern counterpart to the northern Triangulum. Along with the Southern Cross and Centaurus, it has long served Southern Hemisphere sailors as a landmark for determining direction.",
+    "brightStarsEn": [
+      "Atria",
+      "Beta Trianguli Australis"
+    ],
+    "peakMonthsEn": "June – July"
   },
   {
     "id": "musca",
@@ -1305,7 +1878,16 @@
     "baseDifficulty": 5,
     "observationTips": "みなみじゅうじ座のすぐ南にある小さな星座です。みなみじゅうじ座を見つけたら、そこから南に視線を移すと、ハエの形をした小さな星の並びが確認できます。南半球では比較的見つけやすい星座です。",
     "scientificData": "はえ座には球状星団NGC4833があり、アマチュア天文家の観測対象となっています。星座を作る星は暗めのものが多く、最も明るいアルファ星でも3等星程度とされています。",
-    "funFacts": "16世紀にオランダの航海者が設定した南天の星座で、小さなハエを描いています。当時作られた新しい星座の中では珍しく、昆虫をモチーフにした数少ない星座のひとつです。"
+    "funFacts": "16世紀にオランダの航海者が設定した南天の星座で、小さなハエを描いています。当時作られた新しい星座の中では珍しく、昆虫をモチーフにした数少ない星座のひとつです。",
+    "mythologyTextEn": "Devised by Dutch navigators in the 16th century, Musca depicts a small fly in the southern sky. It lies just south of the Southern Cross and is relatively easy to spot from the Southern Hemisphere — once you find the Southern Cross, looking further south reveals the fly's shape. The constellation contains the globular cluster NGC 4833, a favorite target for amateur astronomers.",
+    "observationTipsEn": "A small constellation just south of the Southern Cross. Once you locate the Southern Cross, shift your gaze further south to spot the small, fly-shaped pattern of stars. It's relatively easy to find from the Southern Hemisphere.",
+    "scientificDataEn": "Musca contains the globular cluster NGC 4833, a popular target for amateur astronomers. Most of the constellation's stars are fairly dim, with even its brightest, Alpha Muscae, only about magnitude 3.",
+    "funFactsEn": "Devised by Dutch navigators in the 16th century, Musca depicts a small fly. Among the constellations created at that time, it is unusual — one of the very few based on an insect.",
+    "brightStarsEn": [
+      "Alpha Muscae",
+      "Beta Muscae"
+    ],
+    "peakMonthsEn": "April – May"
   },
   {
     "id": "circinus",
@@ -1324,7 +1906,15 @@
     "baseDifficulty": 5,
     "observationTips": "とても暗く小さな星座で、南半球でないとよく見えません。目印はケンタウルス座の1等星アルファ星とみなみじゅうじ座のすぐそばです。この2つの目立つ星座を見つけてから、その近くを探すのがコツです。",
     "scientificData": "コンパス座アルファ星は地球から約54光年とわりと近くにある恒星で、肉眼でぎりぎり見える明るさです。星座全体の面積は88星座中で3番目に小さく、とても狭い範囲にまとまっています。",
-    "funFacts": "1751年から1752年にラカイユが南アフリカのケープタウンで観測して作った星座の一つです。製図で円を描くときに使う「コンパス」の形にちなんでいて、理科の実験道具がそのまま星座になった珍しい例です。"
+    "funFacts": "1751年から1752年にラカイユが南アフリカのケープタウンで観測して作った星座の一つです。製図で円を描くときに使う「コンパス」の形にちなんでいて、理科の実験道具がそのまま星座になった珍しい例です。",
+    "mythologyTextEn": "Circinus was introduced in the 18th century by the French astronomer Nicolas-Louis de Lacaille to represent a pair of draftsman's compasses. Between 1751 and 1752, Lacaille conducted astronomical observations from Cape Town and charted 14 new constellations in the southern sky. Many of these were themed around scientific and technical instruments, and Circinus is one of them. It is a small constellation located very close to Centaurus and the Southern Cross.",
+    "observationTipsEn": "A very faint, small constellation that is difficult to see except from the Southern Hemisphere. Look for it near Alpha Centauri, the 1st-magnitude star of Centaurus, and the Southern Cross — locating these two prominent constellations first is the key to finding Circinus nearby.",
+    "scientificDataEn": "Alpha Circini lies about 54 light-years from Earth, making it a relatively nearby star, and is just barely visible to the naked eye. The constellation as a whole is the third-smallest of the 88 constellations, occupying a very compact area of sky.",
+    "funFactsEn": "One of the constellations Lacaille created while observing from Cape Town, South Africa, between 1751 and 1752. Named after the compass used to draw circles in technical drawing, it is a rare example of a scientific instrument becoming a constellation.",
+    "brightStarsEn": [
+      "Alpha Circini"
+    ],
+    "peakMonthsEn": "May – June"
   },
   {
     "id": "norma",
@@ -1344,7 +1934,16 @@
     "baseDifficulty": 5,
     "observationTips": "とても見つけにくい小さな星座です。さそり座の尾とさいだん座の間あたりを探すのがコツで、目立つ星がないため、まず天の川の濃い部分を目印にするとたどり着きやすくなります。",
     "scientificData": "じょうぎ座の方向には「じょうぎ座銀河団」と呼ばれる、たくさんの銀河が集まった巨大な集団があるとされています。星座自体は天の川の中にあり、星が多いにぎやかな方向です。",
-    "funFacts": "もとは「せびろこ定規座」とも呼ばれ、フランスの天文学者ラカイユが製図用の直角定規をイメージして作りました。18世紀に道具や機械をテーマにした星座がいくつも誕生した時代の作品です。"
+    "funFacts": "もとは「せびろこ定規座」とも呼ばれ、フランスの天文学者ラカイユが製図用の直角定規をイメージして作りました。18世紀に道具や機械をテーマにした星座がいくつも誕生した時代の作品です。",
+    "mythologyTextEn": "Norma is a southern constellation introduced in the 18th century by Lacaille to represent a draftsman's set square, or right-angle ruler. It lies between Ara and Scorpius, occupying a portion of the Milky Way. The constellation is home to the Norma Cluster, a massive gathering of galaxies that serves as an important object of study for understanding the large-scale structure of the universe.",
+    "observationTipsEn": "A very hard-to-find, small constellation. Look for it between the tail of Scorpius and Ara — since it has no standout stars, it helps to first locate the dense part of the Milky Way as a landmark before searching further.",
+    "scientificDataEn": "In the direction of Norma lies the Norma Cluster, a massive collection of galaxies. The constellation itself sits within the Milky Way, in a rich, star-filled direction of the sky.",
+    "funFactsEn": "Once also known as \"the Level and Square,\" Norma was created by the French astronomer Lacaille to depict a draftsman's set square. It is one of several constellations from the 18th century, an era when many constellations themed around tools and instruments were introduced.",
+    "brightStarsEn": [
+      "Gamma-2 Normae",
+      "Epsilon Normae"
+    ],
+    "peakMonthsEn": "June – July"
   },
   {
     "id": "telescopium",
@@ -1363,7 +1962,15 @@
     "baseDifficulty": 5,
     "observationTips": "非常に暗い星座で肉眼ではほとんど目立ちません。いて座の南、さそり座の尾の下あたりを目安に探すと見つけやすいです。周りの明るい星座から位置を推測するのがコツです。",
     "scientificData": "てんびん座望遠鏡座アルファ星は太陽の何倍も明るい巨星とされていますが、地球からの見かけの明るさは暗めです。全天でも特に見つけにくい星座の一つに数えられています。",
-    "funFacts": "望遠鏡座という名前のとおり、ラカイユが天体観測の道具である望遠鏡を記念して作った星座です。18世紀は望遠鏡による天文学が大きく発展した時代で、その象徴として星座に選ばれました。"
+    "funFacts": "望遠鏡座という名前のとおり、ラカイユが天体観測の道具である望遠鏡を記念して作った星座です。18世紀は望遠鏡による天文学が大きく発展した時代で、その象徴として星座に選ばれました。",
+    "mythologyTextEn": "Telescopium is a southern constellation introduced in the 18th century by Lacaille to represent a telescope, created in tribute to the instrument invented and refined by figures such as Galileo Galilei and Isaac Newton. It lies between Corona Australis and Ara. It has no particularly bright stars, but searching for it in the summer southern sky offers a chance to reflect on the era when 18th-century astronomers systematically mapped and organized the southern skies.",
+    "observationTipsEn": "A very faint constellation, barely noticeable to the naked eye. It's easiest to find by looking south of Sagittarius, roughly beneath the tail of Scorpius, and estimating its position relative to the surrounding bright constellations.",
+    "scientificDataEn": "Alpha Telescopii is a giant star many times more luminous than the Sun, though it appears faint as seen from Earth. Telescopium is considered one of the hardest constellations in the entire sky to locate.",
+    "funFactsEn": "True to its name, Telescopium was created by Lacaille to commemorate the telescope, the instrument central to astronomical observation. The 18th century was an era when telescope-based astronomy advanced dramatically, and the constellation stands as a symbol of that progress.",
+    "brightStarsEn": [
+      "Alpha Telescopii"
+    ],
+    "peakMonthsEn": "July – September"
   },
   {
     "id": "microscopium",
@@ -1383,7 +1990,16 @@
     "baseDifficulty": 5,
     "observationTips": "とても暗くて小さいため、日本からはほぼ見えません。やぎ座とみなみのうお座の間くらいの位置にあると覚えておき、双眼鏡があるときに挑戦してみるとよいでしょう。",
     "scientificData": "顕微鏡座で最も明るい星でも5等星程度で、肉眼で見るのがやっとの明るさです。星座の面積も小さく、目立つ天体もほとんど知られていない静かな星座です。",
-    "funFacts": "顕微鏡座は望遠鏡座と同じくラカイユが作った星座で、理科の実験で使う顕微鏡がモチーフです。大きなものを見る望遠鏡と、小さなものを見る顕微鏡が対になって夜空に並んでいます。"
+    "funFacts": "顕微鏡座は望遠鏡座と同じくラカイユが作った星座で、理科の実験で使う顕微鏡がモチーフです。大きなものを見る望遠鏡と、小さなものを見る顕微鏡が対になって夜空に並んでいます。",
+    "mythologyTextEn": "Microscopium is a southern constellation introduced in the 18th century by Lacaille to represent a microscope. It is one of a series of constellations Lacaille created around scientific and technical themes, paying tribute to the microscope as a cutting-edge scientific instrument of the era. It is a small, faint constellation lying south of Piscis Austrinus and Capricornus. It has almost no bright stars, consisting only of a subtle gathering of stars barely visible to the naked eye.",
+    "observationTipsEn": "So faint and small that it is essentially invisible from Japan. Remember that it lies roughly between Capricornus and Piscis Austrinus, and try searching for it with binoculars if you have the opportunity.",
+    "scientificDataEn": "Even the brightest star in Microscopium is only about magnitude 5, making it just barely visible to the naked eye. The constellation's area is small, and it contains few notable objects, making it a quiet, unassuming region of sky.",
+    "funFactsEn": "Like Telescopium, Microscopium was created by Lacaille, taking its motif from the microscope used in scientific experiments. The telescope, for viewing large and distant things, and the microscope, for viewing small things up close, sit paired together in the night sky.",
+    "brightStarsEn": [
+      "Gamma Microscopii",
+      "Epsilon Microscopii"
+    ],
+    "peakMonthsEn": "August – September"
   },
   {
     "id": "sculptor",
@@ -1403,7 +2019,16 @@
     "baseDifficulty": 4,
     "observationTips": "くじら座の南、みなみのうお座の近くにある目立たない星座です。明るい星が少ないので、周りの大きな星座の形をまず覚えてから、その隙間を探すのがコツです。",
     "scientificData": "ちょうこくしつ座の方向には多くの遠方銀河が観測されており、「ちょうこくしつ座銀河群」と呼ばれる銀河の集まりがあるとされています。天の川から離れた方向のため、遠くの銀河が観測しやすい場所です。",
-    "funFacts": "彫刻家のアトリエをイメージしてラカイユが名付けた星座です。もとは「彫刻家の道具」という長い名前でしたが、のちに短く「彫刻室座」として定着しました。芸術の道具が星座になった珍しい例です。"
+    "funFacts": "彫刻家のアトリエをイメージしてラカイユが名付けた星座です。もとは「彫刻家の道具」という長い名前でしたが、のちに短く「彫刻室座」として定着しました。芸術の道具が星座になった珍しい例です。",
+    "mythologyTextEn": "Sculptor was introduced in the 18th century by Lacaille to represent a sculptor's workshop. Though made up of faint stars and difficult to locate, it is home to the well-known Sculptor Group of galaxies. Within it lies the Sculptor Galaxy (NGC 253), a beautiful spiral galaxy often called the \"Silver Coin Galaxy,\" observable even with large binoculars. Lying south of Cetus and Fomalhaut, it can be observed in the autumn sky just before it sets.",
+    "observationTipsEn": "An inconspicuous constellation south of Cetus, near Piscis Austrinus. Since it has few bright stars, it helps to first learn the shapes of the larger surrounding constellations and then search the gaps between them.",
+    "scientificDataEn": "Many distant galaxies have been observed in the direction of Sculptor, forming what is known as the Sculptor Group. Since this direction lies far from the plane of the Milky Way, it offers a clear line of sight for observing distant galaxies.",
+    "funFactsEn": "Lacaille named this constellation after picturing a sculptor's studio. It was originally given the longer name \"the Sculptor's Tools,\" later shortened to simply \"Sculptor.\" It is one of the rare constellations based on an artist's craft.",
+    "brightStarsEn": [
+      "Alpha Sculptoris",
+      "Beta Sculptoris"
+    ],
+    "peakMonthsEn": "October – November"
   },
   {
     "id": "fornax",
@@ -1423,7 +2048,16 @@
     "baseDifficulty": 5,
     "observationTips": "くじら座とエリダヌス座の間にある暗い星座です。目立つ星がほとんどないため、まず近くの大きな星座を見つけてから、その境目あたりを探すとよいでしょう。",
     "scientificData": "ろ座の方向には「ろ座銀河団」と呼ばれる銀河の集まりが知られており、たくさんの銀河が密集しているとされています。星座自体は暗いですが、宇宙の研究ではよく登場する方向です。",
-    "funFacts": "化学の実験で使う「炉(ろ)」を表す星座で、ラカイユが道具シリーズの星座として設定しました。もともとは「化学炉座」という名前で、当時の科学実験への関心の高さがうかがえます。"
+    "funFacts": "化学の実験で使う「炉(ろ)」を表す星座で、ラカイユが道具シリーズの星座として設定しました。もともとは「化学炉座」という名前で、当時の科学実験への関心の高さがうかがえます。",
+    "mythologyTextEn": "Fornax is a southern constellation introduced in the 18th century by Lacaille to represent a chemist's furnace, or crucible furnace, used in chemical experiments. It lies within the curve of Eridanus. It has no bright stars, but it is home to the Fornax Cluster, an abundant collection of galaxies famous as a subject for studying galaxy formation. In this direction, astronomers have also conducted the Fornax Deep Field survey, a deep-sky observation similar in spirit to the Hubble Ultra Deep Field.",
+    "observationTipsEn": "A faint constellation lying between Cetus and Eridanus. Since it has almost no bright stars, it's best to first find the larger neighboring constellations and then search near their boundary.",
+    "scientificDataEn": "In the direction of Fornax lies the well-known Fornax Cluster, a dense gathering of galaxies. Though the constellation itself is faint, this direction of the sky comes up frequently in cosmological research.",
+    "funFactsEn": "Representing the furnace used in chemical experiments, Fornax was one of the instrument-themed constellations created by Lacaille. Originally named \"the Chemical Furnace,\" it reflects the strong interest in scientific experimentation during that era.",
+    "brightStarsEn": [
+      "Alpha Fornacis",
+      "Beta Fornacis"
+    ],
+    "peakMonthsEn": "November – December"
   },
   {
     "id": "horologium",
@@ -1442,7 +2076,15 @@
     "baseDifficulty": 5,
     "observationTips": "エリダヌス座のそばにある細長くて暗い星座です。目立つ星がないので、まずエリダヌス座の流れを目印にして、その近くを丁寧に探すのがコツです。",
     "scientificData": "とけい座には13等級程度の暗い矮小銀河「とけい座矮小銀河」があるとされ、天の川銀河の伴銀河の一つとして研究されています。明るい恒星は少ない星座です。",
-    "funFacts": "ラカイユが当時最新だった振り子時計を記念して作った星座です。正確な時間を計る道具は天体観測にも欠かせないもので、天文学と時計の深い関係を表した星座といえます。"
+    "funFacts": "ラカイユが当時最新だった振り子時計を記念して作った星座です。正確な時間を計る道具は天体観測にも欠かせないもので、天文学と時計の深い関係を表した星座といえます。",
+    "mythologyTextEn": "Horologium is a southern constellation introduced in the 18th century by Lacaille to represent a pendulum clock. While observing from Cape Town, Lacaille relied on a precise pendulum clock to keep track of time, and he created this constellation in tribute to that essential instrument. It is a long, slender constellation lying south of Eridanus, with no particularly bright stars. Horologium is also home to an unusual object, the young star TW Horologii, which draws attention in the study of planet formation.",
+    "observationTipsEn": "A long, faint constellation near Eridanus. Since it has no bright stars, the best approach is to first trace the flow of Eridanus as a landmark and then carefully search nearby.",
+    "scientificDataEn": "Horologium contains the faint Horologium Dwarf Galaxy, of roughly 13th magnitude, which is studied as one of the Milky Way's companion galaxies. The constellation has few bright stars.",
+    "funFactsEn": "Lacaille created this constellation to commemorate the pendulum clock, the most advanced timekeeping instrument of his day. Since accurate timekeeping is indispensable to astronomical observation, this constellation reflects the deep connection between astronomy and clockmaking.",
+    "brightStarsEn": [
+      "Alpha Horologii"
+    ],
+    "peakMonthsEn": "November – January"
   },
   {
     "id": "reticulum",
@@ -1462,7 +2104,16 @@
     "baseDifficulty": 5,
     "observationTips": "とても小さく暗い星座で、日本からはほとんど見られません。もし見える地域にいるなら、はくちょう座のように十字の網目のような形を目印に探してみましょう。",
     "scientificData": "レチクル座ゼータ星は地球から約39光年と比較的近い恒星で、二重星として知られています。星座全体は小さく、明るい天体も少ないですが、太陽に近い星が集まっています。",
-    "funFacts": "望遠鏡の接眼レンズにつける「十字線(網目)」をモチーフにした星座です。天体の位置を正確に測るための道具が星座になっており、観測技術への思い入れが感じられる星座です。"
+    "funFacts": "望遠鏡の接眼レンズにつける「十字線(網目)」をモチーフにした星座です。天体の位置を正確に測るための道具が星座になっており、観測技術への思い入れが感じられる星座です。",
+    "mythologyTextEn": "Reticulum is a southern constellation introduced in the 18th century by Lacaille to represent the reticle, the crosshair used in astronomical observation. It depicts the crosshair scale fitted to a telescope's eyepiece, reflecting the importance of precise astronomical measurement. It is a small, diamond-shaped constellation lying between Dorado and Horologium. In science fiction, the double star Zeta Reticuli is famously said to be the home star system of the alien \"Greys,\" giving it a notable place in popular culture as well.",
+    "observationTipsEn": "A very small, faint constellation that is almost never visible from Japan. If you happen to be somewhere it can be seen, look for a cross-hatched, net-like pattern of stars, similar in idea to Cygnus's cross shape, to help identify it.",
+    "scientificDataEn": "Zeta Reticuli is a relatively nearby star, about 39 light-years from Earth, known to be a double star. The constellation as a whole is small and contains few bright objects, but it does include several stars relatively close to the Sun.",
+    "funFactsEn": "Reticulum is modeled on the crosshair (or reticle) fitted to a telescope's eyepiece. Representing a tool used to precisely measure the positions of celestial objects, it reflects a deep appreciation for observational technique.",
+    "brightStarsEn": [
+      "Alpha Reticuli",
+      "Beta Reticuli"
+    ],
+    "peakMonthsEn": "December – January"
   },
   {
     "id": "pictor",
@@ -1482,7 +2133,16 @@
     "baseDifficulty": 5,
     "observationTips": "りゅうこつ座の近くにある暗い星座です。目立つ星が少ないため、まず明るいりゅうこつ座やカノープスを目印にして、その付近を探すとよいでしょう。",
     "scientificData": "がか座ベータ星は地球から約63光年の距離にあり、周りにちりの円盤(原始惑星系円盤)があることが観測で確認されている、惑星の誕生を研究するうえで重要な星とされています。",
-    "funFacts": "画家が絵を描くための「画架(イーゼル)」をイメージしてラカイユが名付けた星座です。芸術と科学、両方の道具を星座にする発想はこの時代ならではの特徴といえます。"
+    "funFacts": "画家が絵を描くための「画架(イーゼル)」をイメージしてラカイユが名付けた星座です。芸術と科学、両方の道具を星座にする発想はこの時代ならではの特徴といえます。",
+    "mythologyTextEn": "Pictor is a southern constellation introduced in the 18th century by Lacaille to represent a painter's easel. It is a faint constellation located roughly between Canopus, the brightest star of Carina, and Sirius. Pictor's Beta star, Beta Pictoris, is a young, Sun-like star surrounded by a huge disk of gas and dust, making it an astronomically important object where planet formation can be directly observed — a rare case among stars.",
+    "observationTipsEn": "A faint constellation near Carina. Since it has few bright stars, it helps to first find the bright constellation Carina, or the star Canopus, and then search the surrounding area.",
+    "scientificDataEn": "Beta Pictoris lies about 63 light-years from Earth, and observations have confirmed it is surrounded by a disk of dust — a protoplanetary disk — making it an important star for studying the birth of planets.",
+    "funFactsEn": "Named by Lacaille after picturing a painter's easel, Pictor reflects the era's habit of turning both artistic and scientific tools into constellations.",
+    "brightStarsEn": [
+      "Alpha Pictoris",
+      "Beta Pictoris"
+    ],
+    "peakMonthsEn": "December – February"
   },
   {
     "id": "hydrus",
@@ -1502,7 +2162,16 @@
     "baseDifficulty": 5,
     "observationTips": "みなみじゅうじ座から離れた南極付近にある暗い星座です。エリダヌス座の南端やはちぶんぎ座の近くを目印に、細長く伸びる星の並びを探してみましょう。",
     "scientificData": "みずへび座アルファ星は地球から約72光年の距離にあるとされる恒星です。名前は「小さいへび」という意味ですが、うみへび座とは別の星座で、南天の細長い星座の一つです。",
-    "funFacts": "うみへび座(ヒドラ)に対して、こちらは「小さいへび」という意味の名前がついています。大航海時代にヨーロッパの人々が南半球で新しく見つけた星々をもとに作られた星座の一つです。"
+    "funFacts": "うみへび座(ヒドラ)に対して、こちらは「小さいへび」という意味の名前がついています。大航海時代にヨーロッパの人々が南半球で新しく見つけた星々をもとに作られた星座の一つです。",
+    "mythologyTextEn": "Hydrus represents a small water snake of the southern sky, established in the 16th century by Dutch navigators. It was named \"Hydrus\" (the lesser water snake) to distinguish it from the much larger northern constellation Hydra. Located near the Magellanic Clouds, it served as one of the guide constellations for navigation in southern waters. It carries no specific mythology; it is thought to have been modeled on a sea snake that sailors observed during their southern voyages.",
+    "observationTipsEn": "Hydrus is a faint constellation near the south celestial pole, well away from the Southern Cross. Use the southern tip of Eridanus or the nearby constellation Octans as reference points to trace its long, slender line of stars.",
+    "scientificDataEn": "Alpha Hydri is a star located roughly 72 light-years from Earth. Despite its name meaning \"the lesser snake,\" it is an entirely separate constellation from Hydra, forming one of the long, narrow star patterns of the southern sky.",
+    "funFactsEn": "In contrast to Hydra, the great water snake, Hydrus's name means \"the lesser snake.\" It is one of the constellations created by Europeans during the Age of Exploration, based on stars newly observed in the southern hemisphere.",
+    "brightStarsEn": [
+      "Beta Hydri",
+      "Alpha Hydri"
+    ],
+    "peakMonthsEn": "November – January"
   },
   {
     "id": "indus",
@@ -1522,7 +2191,16 @@
     "baseDifficulty": 5,
     "observationTips": "みなみのうお座やつる座の近くにある暗い星座です。目立つ形がないので、周辺の目立つ星座から位置をたどって、根気よく探すのがコツです。",
     "scientificData": "インディアン座イプシロン星は地球から約12光年ととても近い恒星の一つとされ、太陽に似たタイプの星として知られています。全体的に暗い星が多い星座です。",
-    "funFacts": "大航海時代にヨーロッパ人が出会った先住民(インディアン)をモチーフに名付けられた星座で、16世紀にオランダの航海者たちが作った星座の一つとされています。"
+    "funFacts": "大航海時代にヨーロッパ人が出会った先住民(インディアン)をモチーフに名付けられた星座で、16世紀にオランダの航海者たちが作った星座の一つとされています。",
+    "mythologyTextEn": "Indus is a southern constellation established in the 16th century by Dutch navigators, depicting the figure of an Indigenous American or an Indian. It is said to have been created to commemorate the peoples of unfamiliar cultures that Europeans encountered during the Age of Exploration. With few bright stars, it can be hard to spot, but it lies south of Piscis Austrinus and Grus. Epsilon Indi, one of its stars, is known as a relatively nearby star to the Sun, at a distance of about 11.8 light-years.",
+    "observationTipsEn": "Indus is a faint constellation near Piscis Austrinus and Grus. It has no striking shape, so the trick is to patiently trace its position from the more prominent surrounding constellations.",
+    "scientificDataEn": "Epsilon Indi lies only about 12 light-years from Earth, making it one of the closest stars to us, and it is known as a star similar in type to the Sun. Most of the other stars in the constellation are faint.",
+    "funFactsEn": "Indus is named after the Indigenous peoples (\"Indians\") that Europeans encountered during the Age of Exploration, and it is considered one of the constellations created by Dutch navigators in the 16th century.",
+    "brightStarsEn": [
+      "Alpha Indi",
+      "Beta Indi"
+    ],
+    "peakMonthsEn": "September – October"
   },
   {
     "id": "apus",
@@ -1542,7 +2220,16 @@
     "baseDifficulty": 5,
     "observationTips": "南極付近にある小さく暗い星座で、日本からはほぼ見えません。みなみじゅうじ座やはちぶんぎ座を目印に、その近くの小さなまとまりを探してみましょう。",
     "scientificData": "ふうちょう座で最も明るい星でも4等星程度で、あまり目立ちません。名前の由来になった極楽鳥のように華やかな見た目ではなく、実際は地味な星の集まりです。",
-    "funFacts": "ニューギニアなどにすむ美しい「極楽鳥」にちなんで名付けられた星座です。大航海時代にヨーロッパへ持ち帰られた極楽鳥の羽が話題になり、それが星座の名前になったといわれています。"
+    "funFacts": "ニューギニアなどにすむ美しい「極楽鳥」にちなんで名付けられた星座です。大航海時代にヨーロッパへ持ち帰られた極楽鳥の羽が話題になり、それが星座の名前になったといわれています。",
+    "mythologyTextEn": "Apus represents the bird-of-paradise, a bird with beautiful plumage native to the South Pacific and New Guinea. It was established in the 16th century by Dutch explorers during their voyages through the southern skies. Its Japanese name, \"Fuucho,\" comes from a term meaning \"wind bird\" (a bird that flies like the wind), reflecting the bird's renowned beautiful feathers. Lying near the south celestial pole between Crux and Octans, this constellation is almost never visible from Japan.",
+    "observationTipsEn": "Apus is a small, faint constellation near the south celestial pole, almost never visible from Japan. Use Crux or Octans as reference points and look for the small cluster of stars nearby.",
+    "scientificDataEn": "Even the brightest star in Apus is only about magnitude 4, so it doesn't stand out much. Unlike the vivid bird-of-paradise for which it is named, it is, in reality, a rather plain gathering of stars.",
+    "funFactsEn": "Apus is named after the beautiful bird-of-paradise found in places like New Guinea. It is said that feathers of the bird brought back to Europe during the Age of Exploration caused a sensation, which is how the bird's name ended up attached to this constellation.",
+    "brightStarsEn": [
+      "Alpha Apodis",
+      "Beta Apodis"
+    ],
+    "peakMonthsEn": "June – July"
   },
   {
     "id": "octans",
@@ -1561,7 +2248,15 @@
     "baseDifficulty": 5,
     "observationTips": "天の南極を含む星座で、南半球でしか見えません。北極星のように「南極星」の目印になりますが、この星座には明るい星がなく、南極点の位置を示す役割の星座です。",
     "scientificData": "はちぶんぎ座には天の南極が含まれていますが、北極星のような明るい目印の星はありません。最も明るい星でも4等星程度で、位置を測るための道具「八分儀」にちなんだ名前です。",
-    "funFacts": "航海で使われた測定器具「八分儀(はちぶんぎ)」にちなんでラカイユが名付けました。天の南極という特別な場所にありながら、目立つ星がないという少し不思議な星座です。"
+    "funFacts": "航海で使われた測定器具「八分儀(はちぶんぎ)」にちなんでラカイユが名付けました。天の南極という特別な場所にありながら、目立つ星がないという少し不思議な星座です。",
+    "mythologyTextEn": "Octans is a southern constellation established in the 18th century by Lacaille to commemorate the octant, a navigational measuring instrument. It contains the \"South Star\" (Sigma Octantis), the southern counterpart to the North Star (Polaris). However, the South Star is very faint (magnitude 5) and nowhere near as conspicuous as Polaris, so the Southern Cross is mainly used for orientation in the southern hemisphere instead. As the constellation closest to the south celestial pole, Octans can be observed year-round from the southern hemisphere.",
+    "observationTipsEn": "Octans contains the south celestial pole and can only be seen from the southern hemisphere. Like Polaris in the north, it hosts a \"South Star\" marker, but the constellation itself has no bright stars — its role is simply to mark the location of the south celestial pole.",
+    "scientificDataEn": "Octans contains the south celestial pole, but it lacks a bright marker star comparable to Polaris. Even its brightest star is only about magnitude 4. The constellation is named after the octant, an instrument used for measuring position.",
+    "funFactsEn": "Lacaille named this constellation after the octant, a measuring instrument used in navigation. It's a curious constellation in that, despite occupying the special location of the south celestial pole, it has no truly conspicuous stars.",
+    "brightStarsEn": [
+      "Nu Octantis"
+    ],
+    "peakMonthsEn": "Year-round (circumpolar; marks the South Celestial Pole)"
   },
   {
     "id": "mensa",
@@ -1580,7 +2275,15 @@
     "baseDifficulty": 5,
     "observationTips": "南極に近いとても暗い星座で、日本からは見えません。近くにある大マゼラン雲という淡い天体を目印に探すと、その隣にあることがわかります。",
     "scientificData": "テーブルさん座には目立って明るい星はほとんどありませんが、近くに大マゼラン雲の一部がかかって見えることがあるとされています。南半球の観測地でしか確認できない星座です。",
-    "funFacts": "南アフリカの「テーブルマウンテン」という平らな山にちなんでラカイユが名付けた、88星座の中で唯一、実在する地名がもとになった星座です。彼が観測を行った場所そのものが由来になっています。"
+    "funFacts": "南アフリカの「テーブルマウンテン」という平らな山にちなんでラカイユが名付けた、88星座の中で唯一、実在する地名がもとになった星座です。彼が観測を行った場所そのものが由来になっています。",
+    "mythologyTextEn": "Mensa is a constellation established in the 18th century by Lacaille to commemorate Table Mountain, near Cape Town in South Africa, where he carried out his astronomical observations. It is one of the faintest of all 88 constellations, with almost no stars brighter than magnitude 4. However, part of the Large Magellanic Cloud (which mostly lies within Dorado) overlaps this constellation, so in that sense it does contain a famous object. Mensa lies near the south celestial pole.",
+    "observationTipsEn": "Mensa is a very faint constellation near the south celestial pole and cannot be seen from Japan. Use the nearby Large Magellanic Cloud, a faint hazy patch, as a landmark — Mensa lies right beside it.",
+    "scientificDataEn": "Mensa has almost no notably bright stars, but part of the Large Magellanic Cloud appears to overlap it. It can only be observed from locations in the southern hemisphere.",
+    "funFactsEn": "Named by Lacaille after South Africa's flat-topped Table Mountain, Mensa is the only one of the 88 constellations named after a real geographic place — the very site where he conducted his observations.",
+    "brightStarsEn": [
+      "Alpha Mensae"
+    ],
+    "peakMonthsEn": "January – February"
   },
   {
     "id": "volans",
@@ -1600,7 +2303,16 @@
     "baseDifficulty": 5,
     "observationTips": "りゅうこつ座やほ座の近くにある暗い星座です。南天の目立つ星座であるみなみじゅうじ座から少し離れた場所を目印に、根気よく探してみましょう。",
     "scientificData": "とびうお座で最も明るい星でも4等星程度です。名前の由来である「トビウオ」のように水面を飛び跳ねる姿はイメージですが、実際の星の並びは細長い形をしているとされています。",
-    "funFacts": "海面から飛び出して滑空するトビウオという実在の魚にちなんで名付けられた星座です。大航海時代の航海者たちが実際に見た海の生き物を星座にした、珍しい由来を持っています。"
+    "funFacts": "海面から飛び出して滑空するトビウオという実在の魚にちなんで名付けられた星座です。大航海時代の航海者たちが実際に見た海の生き物を星座にした、珍しい由来を持っています。",
+    "mythologyTextEn": "Volans is a southern constellation established in the 16th century by Dutch navigators, representing the flying fish of the southern oceans. Flying fish, which live in tropical and subtropical waters, have long amazed sailors by spreading their pectoral fins, leaping from the water, and gliding through the air. This small constellation lies south of Carina and is almost never visible from Japan. Its position near the Large Magellanic Cloud makes it a useful reference point when observing that region of the southern sky.",
+    "observationTipsEn": "Volans is a faint constellation near Carina and Vela. Search a short distance from the prominent Southern Cross, using it as a general reference point, and look patiently for its stars.",
+    "scientificDataEn": "Even the brightest star in Volans is only about magnitude 4. While its name evokes the image of a flying fish leaping across the water's surface, the actual arrangement of its stars forms a long, narrow shape.",
+    "funFactsEn": "Volans is named after the flying fish, a real fish that leaps from the sea and glides through the air. It has the unusual distinction of being a constellation based on a marine creature that sailors of the Age of Exploration actually witnessed.",
+    "brightStarsEn": [
+      "Beta Volantis",
+      "Gamma Volantis"
+    ],
+    "peakMonthsEn": "February – March"
   },
   {
     "id": "antlia",
@@ -1619,7 +2331,15 @@
     "baseDifficulty": 5,
     "observationTips": "うみへび座とほ座の間にある暗い星座です。目立つ星がないため、まず大きなうみへび座の胴体を目印にして、その南側を探すのがコツです。",
     "scientificData": "ポンプ座には「ポンプ座銀河団」と呼ばれる比較的近くにある銀河の集まりがあるとされ、宇宙の構造を調べる観測対象として知られています。明るい恒星は少ない星座です。",
-    "funFacts": "当時発明されたばかりの空気ポンプ(真空ポンプ)を記念してラカイユが名付けた星座です。科学実験の道具が星座になったシリーズの一つで、当時の科学熱の高さを物語っています。"
+    "funFacts": "当時発明されたばかりの空気ポンプ(真空ポンプ)を記念してラカイユが名付けた星座です。科学実験の道具が星座になったシリーズの一つで、当時の科学熱の高さを物語っています。",
+    "mythologyTextEn": "Antlia is a southern constellation established in the 18th century by Lacaille to represent an air pump. It commemorates Boyle's vacuum pump and other scientific inventions of the era, reflecting a tribute to the advancement of science. This faint constellation, lying between Hydra and Vela, has no especially conspicuous stars. It is home to the Antlia Cluster, a grouping of galaxies that draws attention in studies of large-scale cosmic structure.",
+    "observationTipsEn": "Antlia is a faint constellation lying between Hydra and Vela. Since it has no standout stars, the trick is to first locate the body of the large constellation Hydra and then search just to its south.",
+    "scientificDataEn": "Antlia is home to the Antlia Cluster, a relatively nearby grouping of galaxies known as an observational target for studying the large-scale structure of the universe. The constellation itself has few bright stars.",
+    "funFactsEn": "Lacaille named this constellation to commemorate the air pump (vacuum pump), a device newly invented in his time. It's one of a series of constellations named after scientific instruments, reflecting the great enthusiasm for science of that era.",
+    "brightStarsEn": [
+      "Alpha Antliae"
+    ],
+    "peakMonthsEn": "March – April"
   },
   {
     "id": "chamaeleon",
@@ -1639,7 +2359,16 @@
     "baseDifficulty": 5,
     "observationTips": "南極付近にある小さく暗い星座で、日本からは見えません。みなみじゅうじ座やりゅうこつ座を目印に、その南側の小さなまとまりを探してみましょう。",
     "scientificData": "カメレオン座の方向には若い星が生まれつつあるガスの雲「カメレオン座分子雲」があるとされ、星の誕生を研究する天文学者にとって注目される領域です。",
-    "funFacts": "色を変える生き物カメレオンにちなんで名付けられた星座で、16世紀の航海者たちが南半球で見つけた動植物を星座にしたグループの一つに含まれます。"
+    "funFacts": "色を変える生き物カメレオンにちなんで名付けられた星座で、16世紀の航海者たちが南半球で見つけた動植物を星座にしたグループの一つに含まれます。",
+    "mythologyTextEn": "Chamaeleon represents the reptile of the same name found in Africa and Madagascar. It is a southern constellation established in the 16th century by Dutch navigators. Chameleons are known for changing their skin color to match their surroundings, making them a fitting symbol of \"change\" and \"adaptation.\" Located between Hydrus and the south celestial pole, this constellation is never visible from Japan. It contains the Chamaeleon Molecular Cloud, a star-forming region that is an important site for the study of young stars.",
+    "observationTipsEn": "Chamaeleon is a small, faint constellation near the south celestial pole and cannot be seen from Japan. Use Crux or Carina as reference points and look for the small cluster of stars to their south.",
+    "scientificDataEn": "In the direction of Chamaeleon lies the Chamaeleon Molecular Cloud, a gas cloud where young stars are being born. It is a region of great interest to astronomers studying star formation.",
+    "funFactsEn": "Chamaeleon is named after the color-changing creature and belongs to the group of constellations that 16th-century navigators created based on the plants and animals they discovered in the southern hemisphere.",
+    "brightStarsEn": [
+      "Alpha Chamaeleontis",
+      "Gamma Chamaeleontis"
+    ],
+    "peakMonthsEn": "March – April"
   },
   {
     "id": "pyxis",
@@ -1659,7 +2388,16 @@
     "baseDifficulty": 5,
     "observationTips": "とも座の近くにある暗く小さな星座です。もともと近くのほ座やとも座の一部だった星の並びなので、それらの明るい星座を目印にして探すのがコツです。",
     "scientificData": "らしんばん座は「アルゴ座」という巨大な星座がいくつかに分割された際に、ラカイユが新たに区切って作った部分の一つとされています。明るい星は少なめです。",
-    "funFacts": "航海に欠かせない「羅針盤(方位磁針)」にちなんで名付けられました。もとは船を表す巨大なアルゴ座の一部でしたが、独立した星座として道具の名前がつけられました。"
+    "funFacts": "航海に欠かせない「羅針盤(方位磁針)」にちなんで名付けられました。もとは船を表す巨大なアルゴ座の一部でしたが、独立した星座として道具の名前がつけられました。",
+    "mythologyTextEn": "Pyxis is a southern constellation established in the 18th century by Lacaille to represent a mariner's compass. It is thought to have once been part of the ancient constellation Argo Navis and was set up as a symbol of navigation. This small constellation lies south of Puppis. It contains TW Pyxidis, a recurrent nova known for its periodic outbursts in brightness.",
+    "observationTipsEn": "Pyxis is a small, faint constellation near Puppis. Since its stars were once considered part of the neighboring Vela and Puppis, the trick is to use those brighter constellations as reference points.",
+    "scientificDataEn": "Pyxis is considered one of the sections that Lacaille newly delineated when the enormous constellation Argo Navis was divided into several parts. It has relatively few bright stars.",
+    "funFactsEn": "Pyxis is named after the mariner's compass, an essential tool for navigation. Originally part of the vast ship-constellation Argo Navis, it was later separated out and given the name of this navigational instrument.",
+    "brightStarsEn": [
+      "Alpha Pyxidis",
+      "Beta Pyxidis"
+    ],
+    "peakMonthsEn": "February – March"
   },
   {
     "id": "sextans",
@@ -1678,7 +2416,15 @@
     "baseDifficulty": 5,
     "observationTips": "しし座のすぐ南にある暗い星座です。目立つ星がほとんどないので、明るいしし座のレグルスを目印にして、その真下あたりを探すとよいでしょう。",
     "scientificData": "ろくぶんぎ座で最も明るい星でも5等星程度と暗く、肉眼で見つけるのはやや難しいとされています。星座内には遠くの銀河もいくつか観測されています。",
-    "funFacts": "天体の高度を測る道具「六分儀」にちなんで、ポーランドの天文学者ヘヴェリウスが17世紀に名付けた星座です。自分の観測器具が火事で燃えてしまったことを惜しんで作ったといわれています。"
+    "funFacts": "天体の高度を測る道具「六分儀」にちなんで、ポーランドの天文学者ヘヴェリウスが17世紀に名付けた星座です。自分の観測器具が火事で燃えてしまったことを惜しんで作ったといわれています。",
+    "mythologyTextEn": "Sextans is a constellation established in the 17th century by Hevelius to represent the sextant, an instrument used for navigation and astronomical measurement. Hevelius himself used a sextant in his observations and commemorated this important tool by placing it among the stars. This faint constellation lies between Leo and Hydra and has no especially bright stars. It contains the Sextans Cluster, a group of galaxies of interest in the study of galaxy formation.",
+    "observationTipsEn": "Sextans is a faint constellation lying just south of Leo. Since it has almost no standout stars, it helps to use Leo's bright star Regulus as a guide and look for Sextans directly below it.",
+    "scientificDataEn": "Even the brightest star in Sextans is only about magnitude 5, making it somewhat difficult to spot with the naked eye. Several distant galaxies have also been observed within the constellation.",
+    "funFactsEn": "Sextans was named in the 17th century by the Polish astronomer Hevelius after the sextant, an instrument for measuring the altitude of celestial objects. It is said he created it to commemorate his own observing instruments, which had been lost in a fire.",
+    "brightStarsEn": [
+      "Alpha Sextantis"
+    ],
+    "peakMonthsEn": "March – April"
   },
   {
     "id": "caelum",
@@ -1697,7 +2443,15 @@
     "baseDifficulty": 5,
     "observationTips": "エリダヌス座とはと座の間にある、全天でもとくに小さく暗い星座です。周辺の目立つ星座の位置関係から見当をつけて探す必要があります。",
     "scientificData": "ちょうこくぐ座は88星座の中でも特に小さい部類に入り、明るい星もほとんどありません。彫刻に使う道具「のみ」や「たがね」がモチーフになっています。",
-    "funFacts": "彫刻家が使う「のみ」や「たがね」といった彫刻道具にちなんでラカイユが名付けました。ちょうこくしつ座(彫刻室)と対になるように作られた、道具つながりの星座です。"
+    "funFacts": "彫刻家が使う「のみ」や「たがね」といった彫刻道具にちなんでラカイユが名付けました。ちょうこくしつ座(彫刻室)と対になるように作られた、道具つながりの星座です。",
+    "mythologyTextEn": "Caelum is a southern constellation established in the 18th century by Lacaille to represent an engraving tool (a burin, a steel chisel used by sculptors). It is one of the group of science- and technology-themed constellations that Lacaille created. This very faint, small constellation lies between Eridanus and Columba. It is known as one of the hardest of all 88 constellations to locate, a challenge even for experienced observers.",
+    "observationTipsEn": "Caelum is one of the smallest and faintest constellations in the entire sky, located between Eridanus and Columba. You'll need to estimate its position based on the layout of the more prominent surrounding constellations.",
+    "scientificDataEn": "Caelum ranks among the smallest of the 88 constellations and has almost no bright stars. It is modeled after sculptors' tools such as the chisel and the burin.",
+    "funFactsEn": "Lacaille named this constellation after sculptors' tools such as the chisel and burin. It was designed as a companion to the neighboring Sculptor (the sculptor's studio), linked by their shared artistic theme.",
+    "brightStarsEn": [
+      "Alpha Caeli"
+    ],
+    "peakMonthsEn": "December – January"
   },
   {
     "id": "camelopardalis",
@@ -1717,7 +2471,16 @@
     "baseDifficulty": 4,
     "observationTips": "北極星の近く、カシオペヤ座とこぐま座の間に広がる星座です。面積は広いのですが明るい星がないため、周りの目立つ星座から場所を推測して探すのがコツです。",
     "scientificData": "きりん座は面積が広い星座の一つですが、最も明るい星でも4等星程度です。天の北極に近い場所にあるため、日本では一年中見える「周極星座」の一つとされています。",
-    "funFacts": "アフリカにすむキリンにちなんで17世紀にオランダの天文学者プランシウスが名付けたとされる星座です。首の長いキリンのように、星座の形も縦に細長く伸びています。"
+    "funFacts": "アフリカにすむキリンにちなんで17世紀にオランダの天文学者プランシウスが名付けたとされる星座です。首の長いキリンのように、星座の形も縦に細長く伸びています。",
+    "mythologyTextEn": "Camelopardalis occupies a vast area of the northern sky and was established in the 17th century by the Dutch astronomer Petrus Plancius. It represents the giraffe, though its old name, \"Camelopardalis,\" literally means \"camel-leopard.\" Giraffes were an unfamiliar animal to Europeans at the time, and medieval illustrated books depicted them as \"an animal with a camel's body and a leopard's spots.\" Because it lies close to Polaris, it can be observed year-round, but with no bright stars, it is a difficult constellation to spot.",
+    "observationTipsEn": "Camelopardalis spreads out near Polaris, between Cassiopeia and Ursa Minor. Although it covers a large area, it has no bright stars, so the trick is to estimate its location from the more conspicuous surrounding constellations.",
+    "scientificDataEn": "Camelopardalis is one of the larger constellations in area, yet even its brightest star is only about magnitude 4. Because it lies close to the north celestial pole, it is one of the circumpolar constellations visible year-round from Japan.",
+    "funFactsEn": "Camelopardalis is said to have been named by the 17th-century Dutch astronomer Plancius after the giraffe of Africa. Much like the giraffe's long neck, the constellation's shape also stretches out long and narrow.",
+    "brightStarsEn": [
+      "Beta Camelopardalis",
+      "Alpha Camelopardalis"
+    ],
+    "peakMonthsEn": "December – April"
   },
   {
     "id": "lacerta",
@@ -1737,6 +2500,15 @@
     "baseDifficulty": 5,
     "observationTips": "はくちょう座とアンドロメダ座の間にある小さくジグザグした星座です。目立つ星は少ないですが、はくちょう座の翼の先を目印にすると近くに見つけやすいです。",
     "scientificData": "とかげ座で最も明るい星でも4等星程度です。ジグザグに並ぶ星の形が特徴で、その形からアルファベットの「W」に似た小さな星座ともいわれています。",
-    "funFacts": "地面をすばやく走る生き物トカゲにちなんで、ポーランドの天文学者ヘヴェリウスが17世紀に名付けた星座です。小さくて細長い星の並びが、トカゲの姿をよく表しているとされています。"
+    "funFacts": "地面をすばやく走る生き物トカゲにちなんで、ポーランドの天文学者ヘヴェリウスが17世紀に名付けた星座です。小さくて細長い星の並びが、トカゲの姿をよく表しているとされています。",
+    "mythologyTextEn": "Lacerta is a small constellation representing a lizard, established in the 17th century by the Polish astronomer Hevelius. It lies between Cepheus and Pegasus, stretching in a long, narrow line through the Milky Way. It carries no specific mythology — Hevelius created it simply to fill a gap in the night sky, and it was named for its resemblance to a small lizard. It has no bright stars, but can be spotted in the autumn sky as your gaze moves from Cassiopeia toward Pegasus. The constellation contains BL Lacertae, an object (a blazar) that plays an important role in the study of active galactic nuclei.",
+    "observationTipsEn": "Lacerta is a small, zigzagging constellation between Cygnus and Andromeda. It has few notable stars, but using the tip of Cygnus's wing as a landmark makes it easier to find nearby.",
+    "scientificDataEn": "Even the brightest star in Lacerta is only about magnitude 4. Its distinctive feature is its zigzag line of stars, which has led to it being described as a small constellation resembling the letter \"W.\"",
+    "funFactsEn": "Lacerta was named in the 17th century by the Polish astronomer Hevelius after the lizard, a creature known for darting quickly across the ground. Its small, elongated line of stars is said to capture the lizard's form quite well.",
+    "brightStarsEn": [
+      "Alpha Lacertae",
+      "Beta Lacertae"
+    ],
+    "peakMonthsEn": "September – November"
   }
 ]

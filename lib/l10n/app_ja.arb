@@ -114,5 +114,112 @@
   "settingsStatDifficulty": "観測難易度",
   "settingsAchievementsTitle": "実績・称号",
   "settingsPremiumUpgradeTitle": "プレミアムにアップグレード",
-  "settingsPremiumUpgradeSubtitle": "全88星座 + タイムカプセル完全解放"
+  "settingsPremiumUpgradeSubtitle": "全88星座 + タイムカプセル完全解放",
+
+  "solarSystemTitle": "太陽系3Dビュー",
+  "solarSystemFacts": "基礎データ",
+  "solarSystemFunFacts": "豆知識",
+
+  "constellationLoadError": "エラー: {error}",
+  "@constellationLoadError": {
+    "placeholders": {
+      "error": {"type": "String"}
+    }
+  },
+  "constellationNotFound": "星座が見つかりません",
+  "statObservationCount": "観測回数",
+  "statObservationCountValue": "{count}回",
+  "@statObservationCountValue": {
+    "placeholders": {
+      "count": {"type": "int"}
+    }
+  },
+  "statBaseDifficulty": "難易度（基本）",
+  "statMaxDifficulty": "最高難易度",
+  "statNotObserved": "未観測",
+  "sectionMythology": "神話・伝説",
+  "sectionAstronomyData": "天文データ",
+  "sectionObservationTips": "観測のコツ",
+  "sectionScientificData": "科学的データ",
+  "sectionFunFacts": "豆知識・文化的背景",
+  "sectionLightYearTravel": "光年の時間旅行",
+  "sectionObservationPlan": "観測プラン",
+  "sectionObservationHistory": "観測記録",
+  "dataRowRightAscension": "赤経",
+  "dataRowDeclination": "赤緯",
+  "dataRowBrightStars": "主要な星",
+  "dataRowPeakSeason": "見頃",
+  "dataRowCategory": "カテゴリ",
+  "categoryZodiac": "黄道12星座",
+  "categoryNorthern": "北天の星座",
+  "categorySouthern": "南天の星座",
+  "manualRecordButton": "手動記録",
+  "arObservationButton": "AR観測",
+  "weatherLabel": "天気: {weather}",
+  "@weatherLabel": {
+    "placeholders": {
+      "weather": {"type": "String"}
+    }
+  },
+  "seasonYearRound": "通年観測可能 🌟",
+  "seasonThisMonth": "今月が見頃です！ ✨",
+  "seasonUnknown": "季節限定（詳細はデータを確認）",
+  "seasonNextMonth": "来月（{month}）が見頃です",
+  "@seasonNextMonth": {
+    "placeholders": {
+      "month": {"type": "String"}
+    }
+  },
+  "seasonNextYear": "来年（{month}）が見頃です",
+  "@seasonNextYear": {
+    "placeholders": {
+      "month": {"type": "String"}
+    }
+  },
+  "baseDifficultyLabel": "基本難易度",
+  "difficultyMax": "最高難易度",
+  "difficultyMin": "最易",
+  "difficultyMedium": "中程度",
+  "hardAdvice": "都市部での観測は難しいため、暗い空での観測をお勧めします",
+  "easyAdvice": "見やすい星座です。どこからでも観測できます！",
+  "notObservedYet": "まだ{name}を観測していません",
+  "@notObservedYet": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "lightYearNoData": "{name}の光年データはまだ公開されていません",
+  "@lightYearNoData": {
+    "placeholders": {
+      "name": {"type": "String"}
+    }
+  },
+  "lightYearTravelDistance": "光の旅の距離",
+  "lightYearMysteryTitle": "✨ 時間旅行のミステリー",
+  "lightYearMysteryBody": "今見ている光は{year}年に{star}から発せられたものです。\n{diff}年前の光を今、あなたの目で見ています。",
+  "@lightYearMysteryBody": {
+    "placeholders": {
+      "year": {"type": "int"},
+      "star": {"type": "String"},
+      "diff": {"type": "int"}
+    }
+  },
+  "namingTitle": "📛 あなたの命名",
+  "namingPrompt": "この星座にあなただけの名前をつけてみませんか？",
+  "namingAddButton": "名前をつける",
+  "namingEditButton": "編集",
+  "namingDeleteButton": "削除",
+  "namingReasonLabel": "理由: {reason}",
+  "@namingReasonLabel": {
+    "placeholders": {
+      "reason": {"type": "String"}
+    }
+  },
+  "namingDialogEditTitle": "命名を編集",
+  "namingDialogNewTitle": "新しい命名",
+  "namingFieldNickname": "星座の呼び名",
+  "namingFieldNicknameHint": "例: 輝く者",
+  "namingFieldReason": "つけた理由",
+  "namingFieldReasonHint": "例: 初観測の時、星が特に明るかったから",
+  "commonSave": "保存"
 }

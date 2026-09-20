@@ -239,6 +239,56 @@
   earthPivot.add(makeOrbitRing(MOON_ORBIT_RADIUS, 0x888899));
 
   // ------------------------------------------------------------------
+  // その他の惑星（水星・金星・火星・木星・土星・天王星・海王星）
+  // 見やすさのため、軌道半径・大きさ・公転速度は誇張したスケール。
+  // 公転周期(orbitDays)は実際の日数比をおおむね反映している。
+  // ------------------------------------------------------------------
+  const PLANET_DEFS = [
+    { id: 'mercury', radius: 1.6, orbitRadius: 34, orbitDays: 88, rotationDays: 58.6, baseColor: 0x9c9284, bandColor: null, hasRing: false },
+    { id: 'venus', radius: 2.8, orbitRadius: 50, orbitDays: 225, rotationDays: -243, baseColor: 0xe0c16c, bandColor: null, hasRing: false },
+    { id: 'mars', radius: 2.2, orbitRadius: 120, orbitDays: 687, rotationDays: 1.03, baseColor: 0xc1440e, bandColor: null, hasRing: false },
+    { id: 'jupiter', radius: 9.5, orbitRadius: 165, orbitDays: 4333, rotationDays: 0.41, baseColor: 0xd8ca9d, bandColor: 0xb8956a, hasRing: false },
+    { id: 'saturn', radius: 8, orbitRadius: 205, orbitDays: 10759, rotationDays: 0.45, baseColor: 0xead6a8, bandColor: 0xcbb488, hasRing: true },
+    { id: 'uranus', radius: 5.2, orbitRadius: 240, orbitDays: 30687, rotationDays: -0.72, baseColor: 0xaee0e8, bandColor: null, hasRing: false },
+    { id: 'neptune', radius: 5.0, orbitRadius: 270, orbitDays: 60190, rotationDays: 0.67, baseColor: 0x3f6dcf, bandColor: null, hasRing: false },
+  ];
+
+  const planets = []; // { def, orbitGroup, mesh }
+
+  PLANET_DEFS.forEach(function (def) {
+    const orbitGroup = new THREE.Group();
+    scene.add(orbitGroup);
+
+    const pivot = new THREE.Object3D();
+    pivot.position.set(def.orbitRadius, 0, 0);
+    orbitGroup.add(pivot);
+
+    const texture = def.bandColor
+      ? makeBandedPlanetTexture(def.baseColor, def.bandColor)
+      : makeSolidPlanetTexture(def.baseColor);
+    const mesh = new THREE.Mesh(
+      new THREE.SphereGeometry(def.radius, 40, 40),
+      new THREE.MeshStandardMaterial({ map: texture, roughness: 0.9, metalness: 0.0 })
+    );
+    mesh.userData.bodyId = def.id;
+    pivot.add(mesh);
+
+    if (def.hasRing) {
+      const ringGeo = new THREE.RingGeometry(def.radius * 1.4, def.radius * 2.3, 64);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xcbb488, side: THREE.DoubleSide, transparent: true, opacity: 0.75,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2.4;
+      pivot.add(ring);
+    }
+
+    scene.add(makeOrbitRing(def.orbitRadius, 0x555566));
+
+    planets.push({ def: def, orbitGroup: orbitGroup, mesh: mesh });
+  });
+
+  // ------------------------------------------------------------------
   // プロシージャルテクスチャ生成
   // ------------------------------------------------------------------
   function makeSunTexture() {
@@ -312,6 +362,33 @@
     return new THREE.CanvasTexture(c);
   }
 
+  function makeSolidPlanetTexture(baseColorHex) {
+    const c = document.createElement('canvas'); c.width = 128; c.height = 64;
+    const ctx = c.getContext('2d');
+    const base = '#' + baseColorHex.toString(16).padStart(6, '0');
+    ctx.fillStyle = base; ctx.fillRect(0, 0, 128, 64);
+    ctx.globalAlpha = 0.12;
+    for (let i = 0; i < 30; i++) {
+      ctx.fillStyle = Math.random() > 0.5 ? '#000000' : '#ffffff';
+      const x = Math.random() * 128, y = Math.random() * 64, r = 2 + Math.random() * 6;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeBandedPlanetTexture(baseColorHex, bandColorHex) {
+    const c = document.createElement('canvas'); c.width = 128; c.height = 64;
+    const ctx = c.getContext('2d');
+    const base = '#' + baseColorHex.toString(16).padStart(6, '0');
+    const band = '#' + bandColorHex.toString(16).padStart(6, '0');
+    ctx.fillStyle = base; ctx.fillRect(0, 0, 128, 64);
+    ctx.fillStyle = band;
+    for (let y = 0; y < 64; y += 8) {
+      if ((y / 8) % 2 === 0) ctx.fillRect(0, y, 128, 5);
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
   function makeOrbitRing(radius, color) {
     const points = [];
     const segments = 128;
@@ -365,7 +442,7 @@
     pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
     pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
     raycaster.setFromCamera(pointer, camera);
-    const targets = [sun, earth, moon];
+    const targets = [sun, earth, moon].concat(planets.map(function (p) { return p.mesh; }));
     const hits = raycaster.intersectObjects(targets, false);
     if (hits.length > 0) {
       const id = hits[0].object.userData.bodyId;
@@ -435,6 +512,12 @@
     moonOrbitGroup.rotation.y = moonOrbitAngle;
     // 潮汐固定: 公転と同じ角度だけ自転させ、常に同じ面が地球を向くようにする
     moon.rotation.y = -moonOrbitAngle + Math.PI;
+
+    // その他の惑星の公転・自転
+    planets.forEach(function (p) {
+      p.orbitGroup.rotation.y = (simDay / p.def.orbitDays) * Math.PI * 2;
+      p.mesh.rotation.y = (simDay / p.def.rotationDays) * Math.PI * 2;
+    });
 
     // 朔望月ベースの月齢（新月=0日）を、地球から見た太陽・月の位相角で計算
     const moonWorldPos = new THREE.Vector3();

@@ -33,19 +33,10 @@ class _AddObservationScreenState
   bool _isSaving = false;
   bool _locationInitialized = false;
 
-  final List<String> _weatherOptions = [
-    '晴れ', '薄曇り', '曇り', '快晴',
-  ];
-
-  static const Map<String, String> _weatherLabelsEn = {
-    '晴れ': 'Sunny',
-    '薄曇り': 'Slightly Cloudy',
-    '曇り': 'Cloudy',
-    '快晴': 'Clear',
-  };
+  final List<String> _weatherOptions = weatherOptions;
 
   String _weatherLabel(String value, String languageCode) =>
-      languageCode == 'en' ? (_weatherLabelsEn[value] ?? value) : value;
+      languageCode == 'en' ? (weatherLabelsEn[value] ?? value) : value;
 
   @override
   void initState() {

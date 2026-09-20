@@ -506,6 +506,7 @@ class _ObservationHistoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final date =
         '${observation.timestamp.year}-${observation.timestamp.month.toString().padLeft(2, '0')}-${observation.timestamp.day.toString().padLeft(2, '0')}';
     final time =
@@ -535,7 +536,7 @@ class _ObservationHistoryTile extends StatelessWidget {
         ),
         isThreeLine: true,
         trailing: Text(
-          l10n.weatherLabel(observation.weather),
+          l10n.weatherLabel(observation.localizedWeather(lang)),
           style: Theme.of(context).textTheme.labelSmall,
         ),
       ),

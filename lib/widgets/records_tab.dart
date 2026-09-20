@@ -258,6 +258,7 @@ class _ObservationCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final date =
         '${observation.timestamp.year}-${observation.timestamp.month.toString().padLeft(2, '0')}-${observation.timestamp.day.toString().padLeft(2, '0')}';
     final time =
@@ -338,7 +339,7 @@ class _ObservationCard extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  l10n.weatherLabel(observation.weather),
+                  l10n.weatherLabel(observation.localizedWeather(lang)),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],

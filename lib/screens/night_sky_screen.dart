@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../providers/constellation_provider.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
@@ -25,6 +26,28 @@ const _cities = [
   _City('仙台', 38.2682, 140.8694),
   _City('那覇', 26.2124, 127.6809),
 ];
+
+/// [_cities] の各要素に対応する、ロケール別の表示名を返す。
+String _localizedCityName(AppLocalizations l10n, int index) {
+  switch (index) {
+    case 0:
+      return l10n.nightSkyCityTokyo;
+    case 1:
+      return l10n.nightSkyCityOsaka;
+    case 2:
+      return l10n.nightSkyCityNagoya;
+    case 3:
+      return l10n.nightSkyCityFukuoka;
+    case 4:
+      return l10n.nightSkyCitySapporo;
+    case 5:
+      return l10n.nightSkyCitySendai;
+    case 6:
+      return l10n.nightSkyCityNaha;
+    default:
+      return _cities[index].name;
+  }
+}
 
 /// 都市リストの後ろに続く特別選択肢: 「現在地」
 const _useCurrentLocationIndex = -1;
@@ -70,7 +93,11 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
     switch (result) {
       case LocationSuccess(:final latitude, :final longitude):
         setState(() {
-          _currentLocationCity = _City('現在地', latitude, longitude);
+          _currentLocationCity = _City(
+            AppLocalizations.of(context)!.nightSkyCurrentLocationLabel,
+            latitude,
+            longitude,
+          );
           _usingCurrentLocation = true;
           _loadingLocation = false;
         });
@@ -100,6 +127,7 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final constellationsAsync = ref.watch(constellationListProvider);
     final city = _usingCurrentLocation && _currentLocationCity != null
         ? _currentLocationCity!
@@ -130,7 +158,7 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFF050818),
       appBar: AppBar(
-        title: const Text('この日の星空'),
+        title: Text(l10n.nightSkyTitle),
         backgroundColor: const Color(0xFF0A0E28),
         foregroundColor: Colors.white,
       ),
@@ -138,7 +166,8 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
         loading: () =>
             const Center(child: CircularProgressIndicator(color: Colors.white70)),
         error: (e, _) => Center(
-          child: Text('読み込みエラー: $e', style: const TextStyle(color: Colors.white70)),
+          child: Text(l10n.nightSkyLoadError(e.toString()),
+              style: const TextStyle(color: Colors.white70)),
         ),
         data: (all) {
           final moonPos = SkyPositionService.moonPosition(
@@ -175,6 +204,7 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
                   onTimeTap: _pickTime,
                   onCityChanged: _selectCity,
                   onUseCurrentLocation: _useCurrentLocation,
+                  l10n: l10n,
                 ),
                 const SizedBox(height: 16),
                 NightSkyMap(
@@ -203,10 +233,10 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
                   ),
                 ],
                 const SizedBox(height: 16),
-                const Text(
-                  '※ 星座の位置は簡易計算による近似です。実際の見え方とは多少異なる場合があります。',
+                Text(
+                  l10n.nightSkyApproximationNote,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white38, fontSize: 11),
+                  style: const TextStyle(color: Colors.white38, fontSize: 11),
                 ),
                 const SizedBox(height: 24),
               ],

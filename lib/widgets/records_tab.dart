@@ -12,6 +12,7 @@ class RecordsTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final filter = ref.watch(observationFilterProvider);
     final observations = ref.watch(filteredObservationsProvider);
 
@@ -29,24 +30,24 @@ class RecordsTab extends ConsumerWidget {
               ),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Row(
+            child: Row(
               children: [
-                Text('⏰', style: TextStyle(fontSize: 24)),
-                SizedBox(width: 12),
+                const Text('⏰', style: TextStyle(fontSize: 24)),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'タイムカプセル天体',
-                        style: TextStyle(
+                        l10n.recordsTimeCapsuleTitle,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        '特別な天文イベントの記録を見る',
-                        style: TextStyle(
+                        l10n.recordsTimeCapsuleSubtitle,
+                        style: const TextStyle(
                           color: Colors.white70,
                           fontSize: 12,
                         ),
@@ -54,7 +55,7 @@ class RecordsTab extends ConsumerWidget {
                     ],
                   ),
                 ),
-                Icon(Icons.chevron_right, color: Colors.white),
+                const Icon(Icons.chevron_right, color: Colors.white),
               ],
             ),
           ),
@@ -71,9 +72,9 @@ class RecordsTab extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           child: Row(
             children: [
-              _FilterChip(label: '全て', value: 'all', current: filter),
-              _FilterChip(label: '星座', value: 'constellation', current: filter),
-              _FilterChip(label: '天体', value: 'celestial', current: filter),
+              _FilterChip(label: l10n.recordsFilterAll, value: 'all', current: filter),
+              _FilterChip(label: l10n.recordsFilterConstellation, value: 'constellation', current: filter),
+              _FilterChip(label: l10n.recordsFilterCelestial, value: 'celestial', current: filter),
             ],
           ),
         ),
@@ -109,9 +110,9 @@ class RecordsTab extends ConsumerWidget {
                             .read(observationListProvider.notifier)
                             .deleteObservation(obs.id);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('観測記録を削除しました'),
-                            duration: Duration(seconds: 2),
+                          SnackBar(
+                            content: Text(l10n.recordsDeletedSnackbar),
+                            duration: const Duration(seconds: 2),
                           ),
                         );
                       },
@@ -133,6 +134,7 @@ class _BortleStatsBar extends StatelessWidget {
   Widget build(BuildContext context) {
     if (observations.isEmpty) return const SizedBox.shrink();
 
+    final l10n = AppLocalizations.of(context)!;
     final dark = observations.where((o) => o.bortleScale <= 3).length;
     final suburb = observations.where((o) => o.bortleScale >= 4 && o.bortleScale <= 6).length;
     final city = observations.where((o) => o.bortleScale >= 7).length;

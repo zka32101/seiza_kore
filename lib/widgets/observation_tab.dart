@@ -331,26 +331,26 @@ class _ARButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.camera_alt, color: Colors.white, size: 40),
-            SizedBox(width: 16),
+            const Icon(Icons.camera_alt, color: Colors.white, size: 40),
+            const SizedBox(width: 16),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'AR観測を始める',
-                  style: TextStyle(
+                  l10n.observationTabArButtonTitle,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'スマホを夜空に向けよう',
-                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                  l10n.observationTabArButtonSubtitle,
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
                 ),
               ],
             ),
@@ -364,6 +364,7 @@ class _ARButton extends StatelessWidget {
 class _SolarSystemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/solar-system'),
       child: Container(
@@ -387,33 +388,33 @@ class _SolarSystemButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('☀️', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('☀️', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '太陽系を3Dで探検！',
-                      style: TextStyle(
+                      l10n.observationTabSolarSystemTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '月がなぜ満ち欠けするのか動かして学ぼう',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabSolarSystemSubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),
@@ -425,6 +426,7 @@ class _SolarSystemButton extends StatelessWidget {
 class _NightSkyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/night-sky'),
       child: Container(
@@ -448,33 +450,33 @@ class _NightSkyButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('🌌', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('🌌', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'この日の星空を見る',
-                      style: TextStyle(
+                      l10n.observationTabNightSkyTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '誕生日や記念日の夜空、今夜の星空を再現',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabNightSkySubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),

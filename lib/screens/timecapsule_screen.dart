@@ -63,7 +63,7 @@ class TimecapsuleScreen extends ConsumerWidget {
 
             // Active events
             if (activeEvents.isNotEmpty) ...[
-              _SectionHeader('🔓 今すぐ観測できる！', color: Colors.green),
+              _SectionHeader(l10n.timecapsuleSectionActiveNow, color: Colors.green),
               const SizedBox(height: 8),
               ...activeEvents.map(
                 (e) => _ActiveEventCard(event: e),
@@ -73,7 +73,7 @@ class TimecapsuleScreen extends ConsumerWidget {
 
             // Upcoming events
             if (upcomingEvents.isNotEmpty) ...[
-              _SectionHeader('📅 もうすぐ解放', color: Colors.orange),
+              _SectionHeader(l10n.timecapsuleSectionUpcoming, color: Colors.orange),
               const SizedBox(height: 8),
               ...upcomingEvents.map(
                 (e) => _UpcomingEventCard(event: e),
@@ -83,7 +83,7 @@ class TimecapsuleScreen extends ConsumerWidget {
 
             // Past events
             if (pastEvents.isNotEmpty) ...[
-              _SectionHeader('📁 過去のイベント', color: Colors.grey),
+              _SectionHeader(l10n.timecapsuleSectionPast, color: Colors.grey),
               const SizedBox(height: 8),
               ...pastEvents.map(
                 (e) => _PastEventCard(event: e),
@@ -93,17 +93,17 @@ class TimecapsuleScreen extends ConsumerWidget {
             if (activeEvents.isEmpty &&
                 upcomingEvents.isEmpty &&
                 pastEvents.isEmpty)
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.all(48),
-                  child: Text('イベントデータがありません'),
+                  padding: const EdgeInsets.all(48),
+                  child: Text(l10n.timecapsuleNoEventData),
                 ),
               ),
 
             // My records
             if (myRecords.isNotEmpty) ...[
               const SizedBox(height: 24),
-              _SectionHeader('📖 自分の記録', color: Colors.blue),
+              _SectionHeader(l10n.timecapsuleSectionMyRecords, color: Colors.blue),
               const SizedBox(height: 8),
               ...myRecords.reversed.map(
                 (r) => _MyRecordCard(record: r, events: allEvents),
@@ -112,7 +112,7 @@ class TimecapsuleScreen extends ConsumerWidget {
 
             // Constellation Time Capsules
             const SizedBox(height: 32),
-            _SectionHeader('🌟 星座タイムカプセル', color: Colors.purple),
+            _SectionHeader(l10n.timecapsuleSectionConstellationCapsule, color: Colors.purple),
             const SizedBox(height: 8),
             Card(
               color: Colors.purple.shade50,
@@ -133,7 +133,7 @@ class TimecapsuleScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text('保存中', style: Theme.of(context).textTheme.labelSmall),
+                            Text(l10n.timecapsuleStatSaved, style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                         Column(
@@ -145,7 +145,7 @@ class TimecapsuleScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text('解放済み', style: Theme.of(context).textTheme.labelSmall),
+                            Text(l10n.timecapsuleStatUnlocked, style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                         Column(
@@ -157,14 +157,14 @@ class TimecapsuleScreen extends ConsumerWidget {
                                     fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text('待機中', style: Theme.of(context).textTheme.labelSmall),
+                            Text(l10n.timecapsuleStatWaiting, style: Theme.of(context).textTheme.labelSmall),
                           ],
                         ),
                       ],
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      '観測した星座を未来に預けて、指定した日付に思い出と共に解放します。',
+                      l10n.timecapsuleCapsuleDescription,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],

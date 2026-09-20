@@ -128,6 +128,7 @@ class _QuestionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -145,7 +146,7 @@ class _QuestionView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '第$questionNumber問 / $totalQuestions問',
+            l10n.quizQuestionProgress(questionNumber, totalQuestions),
             style: const TextStyle(color: Colors.white54, fontSize: 12),
           ),
           const SizedBox(height: 24),
@@ -226,7 +227,9 @@ class _QuestionView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    selectedChoice == question.correctIndex ? '🎉 正解！' : '📚 解説',
+                    selectedChoice == question.correctIndex
+                        ? l10n.quizCorrect
+                        : l10n.quizExplanationLabel,
                     style: const TextStyle(
                       color: Color(0xFFFFCC55),
                       fontWeight: FontWeight.bold,
@@ -241,7 +244,7 @@ class _QuestionView extends StatelessWidget {
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: onOpenDetail,
-                      child: const Text('この星座の詳しいページを見る'),
+                      child: Text(l10n.quizViewDetail),
                     ),
                   ],
                 ],
@@ -253,7 +256,9 @@ class _QuestionView extends StatelessWidget {
               child: FilledButton(
                 onPressed: onNext,
                 child: Text(
-                  questionNumber < totalQuestions ? '次の問題へ' : '結果を見る',
+                  questionNumber < totalQuestions
+                      ? l10n.quizNextQuestion
+                      : l10n.quizSeeResult,
                 ),
               ),
             ),
@@ -272,6 +277,7 @@ class _ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -281,7 +287,7 @@ class _ResultView extends StatelessWidget {
             Text(result.gradeEmoji, style: const TextStyle(fontSize: 72)),
             const SizedBox(height: 16),
             Text(
-              '${result.correctCount} / ${result.totalQuestions} 問正解',
+              l10n.quizScoreLabel(result.correctCount, result.totalQuestions),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -299,7 +305,7 @@ class _ResultView extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: onRetry,
-                child: const Text('もう一度挑戦する'),
+                child: Text(l10n.quizRetry),
               ),
             ),
             const SizedBox(height: 12),
@@ -307,7 +313,7 @@ class _ResultView extends StatelessWidget {
               width: double.infinity,
               child: FilledButton(
                 onPressed: () => context.pop(),
-                child: const Text('戻る'),
+                child: Text(l10n.quizBack),
               ),
             ),
           ],

@@ -7,6 +7,7 @@ import '../providers/settings_provider.dart';
 import '../models/constellation.dart';
 import '../services/bortle_service.dart';
 import '../services/constellation_art.dart';
+import '../l10n/generated/app_localizations.dart';
 
 // シミュレーション用のスキャン状態
 enum ScanState { idle, scanning, detected, confirmed }
@@ -488,6 +489,7 @@ class _TopHUD extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
@@ -518,7 +520,7 @@ class _TopHUD extends ConsumerWidget {
                   const Icon(Icons.location_on, color: Colors.white70, size: 14),
                   const SizedBox(width: 4),
                   Text(
-                    '位置情報なし（シミュレーション）',
+                    l10n.arObsNoLocationSimulation,
                     style: const TextStyle(color: Colors.white70, fontSize: 11),
                   ),
                 ],

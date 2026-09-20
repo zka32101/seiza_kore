@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/constellation_provider.dart';
 import '../models/quiz_question.dart';
 import '../services/quiz_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 /// 星座デイリークイズ画面。星座図鑑のデータから毎日5問の4択クイズを出題する。
 class QuizScreen extends ConsumerStatefulWidget {
@@ -38,12 +39,14 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final constellationsAsync = ref.watch(constellationListProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D1230),
       appBar: AppBar(
-        title: const Text('今日の星座クイズ'),
+        title: Text(l10n.quizTitle),
         backgroundColor: const Color(0xFF0A0E28),
         foregroundColor: Colors.white,
       ),
@@ -51,17 +54,19 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         loading: () =>
             const Center(child: CircularProgressIndicator(color: Colors.white70)),
         error: (e, _) => Center(
-          child: Text('読み込みエラー: $e', style: const TextStyle(color: Colors.white70)),
+          child: Text(l10n.quizLoadError(e.toString()),
+              style: const TextStyle(color: Colors.white70)),
         ),
         data: (all) {
           final questions = QuizService.generateDailyQuiz(
             constellations: all,
             date: DateTime.now(),
+            languageCode: lang,
           );
 
           if (questions.isEmpty) {
-            return const Center(
-              child: Text('クイズを準備できませんでした', style: TextStyle(color: Colors.white70)),
+            return Center(
+              child: Text(l10n.quizNotReady, style: const TextStyle(color: Colors.white70)),
             );
           }
 
@@ -123,6 +128,7 @@ class _QuestionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -140,7 +146,7 @@ class _QuestionView extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '第$questionNumber問 / $totalQuestions問',
+            l10n.quizQuestionProgress(questionNumber, totalQuestions),
             style: const TextStyle(color: Colors.white54, fontSize: 12),
           ),
           const SizedBox(height: 24),
@@ -221,7 +227,9 @@ class _QuestionView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    selectedChoice == question.correctIndex ? '🎉 正解！' : '📚 解説',
+                    selectedChoice == question.correctIndex
+                        ? l10n.quizCorrect
+                        : l10n.quizExplanationLabel,
                     style: const TextStyle(
                       color: Color(0xFFFFCC55),
                       fontWeight: FontWeight.bold,
@@ -236,7 +244,7 @@ class _QuestionView extends StatelessWidget {
                     const SizedBox(height: 8),
                     TextButton(
                       onPressed: onOpenDetail,
-                      child: const Text('この星座の詳しいページを見る'),
+                      child: Text(l10n.quizViewDetail),
                     ),
                   ],
                 ],
@@ -248,7 +256,9 @@ class _QuestionView extends StatelessWidget {
               child: FilledButton(
                 onPressed: onNext,
                 child: Text(
-                  questionNumber < totalQuestions ? '次の問題へ' : '結果を見る',
+                  questionNumber < totalQuestions
+                      ? l10n.quizNextQuestion
+                      : l10n.quizSeeResult,
                 ),
               ),
             ),
@@ -267,6 +277,8 @@ class _ResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -276,7 +288,7 @@ class _ResultView extends StatelessWidget {
             Text(result.gradeEmoji, style: const TextStyle(fontSize: 72)),
             const SizedBox(height: 16),
             Text(
-              '${result.correctCount} / ${result.totalQuestions} 問正解',
+              l10n.quizScoreLabel(result.correctCount, result.totalQuestions),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
@@ -285,7 +297,7 @@ class _ResultView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              result.gradeMessage,
+              result.gradeMessage(lang),
               style: const TextStyle(color: Colors.white70, fontSize: 15),
               textAlign: TextAlign.center,
             ),
@@ -294,7 +306,7 @@ class _ResultView extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: onRetry,
-                child: const Text('もう一度挑戦する'),
+                child: Text(l10n.quizRetry),
               ),
             ),
             const SizedBox(height: 12),
@@ -302,7 +314,7 @@ class _ResultView extends StatelessWidget {
               width: double.infinity,
               child: FilledButton(
                 onPressed: () => context.pop(),
-                child: const Text('戻る'),
+                child: Text(l10n.quizBack),
               ),
             ),
           ],

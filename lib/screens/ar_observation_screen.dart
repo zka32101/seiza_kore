@@ -7,6 +7,7 @@ import '../providers/settings_provider.dart';
 import '../models/constellation.dart';
 import '../services/bortle_service.dart';
 import '../services/constellation_art.dart';
+import '../l10n/generated/app_localizations.dart';
 
 // シミュレーション用のスキャン状態
 enum ScanState { idle, scanning, detected, confirmed }
@@ -488,6 +489,7 @@ class _TopHUD extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
@@ -518,7 +520,7 @@ class _TopHUD extends ConsumerWidget {
                   const Icon(Icons.location_on, color: Colors.white70, size: 14),
                   const SizedBox(width: 4),
                   Text(
-                    '位置情報なし（シミュレーション）',
+                    l10n.arObsNoLocationSimulation,
                     style: const TextStyle(color: Colors.white70, fontSize: 11),
                   ),
                 ],
@@ -565,6 +567,8 @@ class _TopHUD extends ConsumerWidget {
   }
 
   void _showBortleInfo(BuildContext context, int bortle, BortleInfo info) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -581,7 +585,7 @@ class _TopHUD extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'シティ・ライト・チャレンジ',
+              l10n.arObsCityLightChallengeTitle,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: Colors.amber,
                     fontWeight: FontWeight.bold,
@@ -589,29 +593,30 @@ class _TopHUD extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Bortleスケール: $bortle / 9',
+              l10n.arObsBortleScaleLabel(bortle),
               style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             Text(
-              info.label,
+              info.localizedLabel(lang),
               style: const TextStyle(
                   color: Colors.white70, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             Text(
-              info.description,
+              info.localizedDescription(lang),
               style: const TextStyle(color: Colors.white60, fontSize: 13),
             ),
             const SizedBox(height: 16),
             Text(
-              '難易度: ${'★' * info.difficultyStars}${'☆' * (3 - info.difficultyStars)}',
+              l10n.arObsDifficultyLabel(
+                  '★' * info.difficultyStars + '☆' * (3 - info.difficultyStars)),
               style: const TextStyle(color: Colors.amber, fontSize: 18),
             ),
             const SizedBox(height: 8),
             Text(
               bortle >= 7
-                  ? '都市部での観測はレア！高難易度クリアで称号獲得のチャンス 🏆'
-                  : '暗い空での観測はたくさんの星が見えて有利！',
+                  ? l10n.arObsCityRareMessage
+                  : l10n.arObsDarkSkyAdvantageMessage,
               style: TextStyle(
                 color: bortle >= 7 ? Colors.amber : Colors.greenAccent,
                 fontSize: 12,
@@ -620,7 +625,7 @@ class _TopHUD extends ConsumerWidget {
             // Bortle slider (simulation)
             const SizedBox(height: 16),
             Text(
-              'シミュレーション: Bortleスケールを変更',
+              l10n.arObsSimulationChangeBortle,
               style: const TextStyle(color: Colors.white54, fontSize: 11),
             ),
             Consumer(builder: (ctx, ref, _) {
@@ -654,6 +659,12 @@ class _DetectedPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (constellation == null) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context)!;
+    final langCode = Localizations.localeOf(context).languageCode;
+    final primaryName =
+        langCode == 'en' ? constellation!.nameEn : constellation!.nameJa;
+    final secondaryName =
+        langCode == 'en' ? constellation!.nameJa : constellation!.nameEn;
     final bortleInfo = BortleService.instance.getBortleInfo(bortle);
     final diffStr =
         '★' * bortleInfo.difficultyStars + '☆' * (3 - bortleInfo.difficultyStars);
@@ -680,16 +691,16 @@ class _DetectedPanel extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        '星座を発見！',
-                        style: TextStyle(
+                      Text(
+                        l10n.arObsConstellationDiscovered,
+                        style: const TextStyle(
                           color: Colors.amber,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        constellation!.nameJa,
+                        primaryName,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 22,
@@ -697,7 +708,7 @@ class _DetectedPanel extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        constellation!.nameEn,
+                        secondaryName,
                         style: const TextStyle(
                             color: Colors.white60, fontSize: 13),
                       ),
@@ -733,9 +744,9 @@ class _DetectedPanel extends StatelessWidget {
                       color: Colors.amber.shade800,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Text(
-                      '🏆 都市難易度クリア！',
-                      style: TextStyle(
+                    child: Text(
+                      l10n.arObsCityDifficultyCleared,
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 11,
                           fontWeight: FontWeight.bold),
@@ -765,6 +776,7 @@ class _BottomControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 24),
       decoration: BoxDecoration(
@@ -780,7 +792,7 @@ class _BottomControls extends StatelessWidget {
           if (scanState == ScanState.idle) ...[
             _CircleButton(
               icon: Icons.my_location,
-              label: 'スキャン開始',
+              label: l10n.arObsScanStart,
               onTap: onScan,
               color: Colors.white,
               size: 70,
@@ -788,7 +800,7 @@ class _BottomControls extends StatelessWidget {
           ] else if (scanState == ScanState.scanning) ...[
             _CircleButton(
               icon: Icons.radar,
-              label: 'スキャン中...',
+              label: l10n.arObsScanning,
               onTap: () {},
               color: Colors.amber,
               size: 70,
@@ -796,7 +808,7 @@ class _BottomControls extends StatelessWidget {
           ] else if (scanState == ScanState.confirmed) ...[
             _CircleButton(
               icon: Icons.refresh,
-              label: 'やり直す',
+              label: l10n.arObsRetry,
               onTap: onReset,
               color: Colors.white70,
               size: 56,
@@ -804,7 +816,7 @@ class _BottomControls extends StatelessWidget {
             const SizedBox(width: 32),
             _CircleButton(
               icon: Icons.camera_alt,
-              label: '記録する',
+              label: l10n.arObsRecord,
               onTap: onRecord,
               color: Colors.amber,
               size: 70,
@@ -863,6 +875,7 @@ class _NightModeToggle extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isNight = ref.watch(nightModeProvider);
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => ref
           .read(settingsProvider.notifier)
@@ -887,7 +900,7 @@ class _NightModeToggle extends ConsumerWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              isNight ? '赤色 ON' : '赤色 OFF',
+              isNight ? l10n.arObsRedModeOn : l10n.arObsRedModeOff,
               style: TextStyle(
                 color: isNight ? Colors.red.shade300 : Colors.white60,
                 fontSize: 11,

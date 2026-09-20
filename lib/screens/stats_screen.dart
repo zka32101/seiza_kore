@@ -6,28 +6,32 @@ import '../providers/observation_provider.dart';
 import '../providers/achievement_provider.dart';
 import '../models/observation.dart';
 import '../services/bortle_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class StatsScreen extends ConsumerWidget {
   const StatsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
     final favoriteCount = ref.watch(favoriteIdsProvider).length;
     final observations = ref.watch(observationListProvider);
     final constellationsAsync = ref.watch(constellationListProvider);
     final earnedCount = ref.watch(unlockedAchievementCountProvider);
-    final userTitle = ref.watch(userTitleProvider);
+    final userTitleId = ref.watch(userTitleProvider);
+    final userTitle = userTitleLabel(userTitleId, lang);
     final totalAchievements = ref.watch(achievementsProvider).length;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('詳細統計'),
+        title: Text(l10n.statsTitle),
         centerTitle: true,
       ),
       body: constellationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('エラー: $e')),
+        error: (e, _) => Center(child: Text(l10n.statsLoadError(e.toString()))),
         data: (constellations) {
           final progress = unlockedCount / 88;
           final dark = observations.where((o) => o.bortleScale <= 3).length;
@@ -68,7 +72,7 @@ class StatsScreen extends ConsumerWidget {
                                       ),
                                 ),
                                 Text(
-                                  '実績 $earnedCount / $totalAchievements 解除',
+                                  l10n.statsAchievementsUnlocked(earnedCount, totalAchievements),
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],
@@ -96,7 +100,7 @@ class StatsScreen extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '図鑑コレクション',
+                              l10n.statsCollectionTitle,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium
@@ -125,10 +129,10 @@ class StatsScreen extends ConsumerWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            _StatCol('取得', '$unlockedCount', Colors.blue),
-                            _StatCol('未取得', '${88 - unlockedCount}',
+                            _StatCol(l10n.statsAcquired, '$unlockedCount', Colors.blue),
+                            _StatCol(l10n.statsNotAcquired, '${88 - unlockedCount}',
                                 Colors.grey.shade400),
-                            _StatCol('お気に入り', '$favoriteCount',
+                            _StatCol(l10n.statsFavorite, '$favoriteCount',
                                 Colors.pink.shade400),
                           ],
                         ),
@@ -146,7 +150,7 @@ class StatsScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '観測環境の分析',
+                          l10n.statsEnvironmentAnalysisTitle,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -154,21 +158,21 @@ class StatsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 16),
                         _BortleBar(
-                          label: '🌌 暗い空（Bortle 1-3）',
+                          label: l10n.statsDarkSkyLabel,
                           count: dark,
                           total: observations.length,
                           color: Colors.green.shade600,
                         ),
                         const SizedBox(height: 8),
                         _BortleBar(
-                          label: '🌆 郊外（Bortle 4-6）',
+                          label: l10n.statsSuburbLabel,
                           count: suburb,
                           total: observations.length,
                           color: Colors.orange.shade500,
                         ),
                         const SizedBox(height: 8),
                         _BortleBar(
-                          label: '🏙️ 都市（Bortle 7-9）',
+                          label: l10n.statsCityLabel,
                           count: city,
                           total: observations.length,
                           color: Colors.red.shade600,
@@ -187,7 +191,7 @@ class StatsScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'カテゴリ別取得数',
+                          l10n.statsCategoryTitle,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -195,7 +199,7 @@ class StatsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 12),
                         _CategoryStat(
-                          label: '黄道12星座',
+                          label: l10n.statsZodiacLabel,
                           count: constellations
                               .where((c) =>
                                   c.category == 'zodiac' &&
@@ -208,7 +212,7 @@ class StatsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         _CategoryStat(
-                          label: '北天の星座',
+                          label: l10n.statsNorthernLabel,
                           count: constellations
                               .where((c) =>
                                   c.category == 'northern' &&
@@ -221,7 +225,7 @@ class StatsScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 8),
                         _CategoryStat(
-                          label: '南天の星座',
+                          label: l10n.statsSouthernLabel,
                           count: constellations
                               .where((c) =>
                                   c.category == 'southern' &&
@@ -288,6 +292,7 @@ class _BortleBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final ratio = total == 0 ? 0.0 : count / total;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -297,7 +302,7 @@ class _BortleBar extends StatelessWidget {
           children: [
             Text(label, style: Theme.of(context).textTheme.labelMedium),
             Text(
-              '$count回',
+              l10n.statsCountTimes(count),
               style: TextStyle(fontWeight: FontWeight.bold, color: color),
             ),
           ],

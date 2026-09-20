@@ -41,8 +41,15 @@ class QuizResult {
     return '🔭';
   }
 
-  String get gradeMessage {
+  String gradeMessage([String languageCode = 'ja']) {
     final pct = accuracy;
+    if (languageCode == 'en') {
+      if (pct >= 1.0) return 'Perfect score! You\'re a star expert!';
+      if (pct >= 0.8) return 'Amazing! You really know your stars!';
+      if (pct >= 0.6) return 'Nice! Almost a star master!';
+      if (pct >= 0.4) return 'Good try! Explore the catalog to learn more.';
+      return 'Let\'s learn more constellations together!';
+    }
     if (pct >= 1.0) return '満点！星博士だね！';
     if (pct >= 0.8) return 'すごい！星にくわしいね！';
     if (pct >= 0.6) return 'いいね！もう少しで星マスター！';

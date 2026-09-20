@@ -8,12 +8,14 @@ import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
 import 'starfield_background.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class ObservationTab extends ConsumerWidget {
   const ObservationTab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final observations = ref.watch(observationListProvider);
     final activeEvents = ref.watch(activeEventsProvider);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
@@ -47,9 +49,9 @@ class ObservationTab extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            '今すぐ観測チャンス！',
-                            style: TextStyle(
+                          Text(
+                            l10n.observationTabActiveEventTitle,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -102,7 +104,7 @@ class ObservationTab extends ConsumerWidget {
 
                 // Recent observations
                 Text(
-                  '最近の観測',
+                  l10n.observationTabRecentObservations,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -133,6 +135,8 @@ class _TodayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final now = DateTime.now();
     final hour = now.hour;
     final bool isNight = hour >= 20 || hour < 6;
@@ -140,19 +144,19 @@ class _TodayCard extends StatelessWidget {
     String greeting;
     String greetingIcon;
     if (hour < 5) {
-      greeting = '深夜の星空観測に最適';
+      greeting = l10n.observationTabGreetingLateNight;
       greetingIcon = '🌌';
     } else if (hour < 12) {
-      greeting = '今夜の観測計画を立てよう';
+      greeting = l10n.observationTabGreetingMorning;
       greetingIcon = '🌅';
     } else if (hour < 17) {
-      greeting = '日没後に星座を探しに行こう';
+      greeting = l10n.observationTabGreetingAfternoon;
       greetingIcon = '☀️';
     } else if (hour < 20) {
-      greeting = 'もうすぐ星が輝き始めます';
+      greeting = l10n.observationTabGreetingEvening;
       greetingIcon = '🌆';
     } else {
-      greeting = '今夜は絶好の観測日和！';
+      greeting = l10n.observationTabGreetingNight;
       greetingIcon = '✨';
     }
 
@@ -162,7 +166,7 @@ class _TodayCard extends StatelessWidget {
     final moonGood = MoonService.isGoodForObservation(moonAge);
 
     final recommendedName = recommendedAsync.when(
-      data: (c) => c?.nameJa ?? '—',
+      data: (c) => c == null ? '—' : (lang == 'en' ? c.nameEn : c.nameJa),
       loading: () => '...',
       error: (_, __) => '—',
     );
@@ -212,19 +216,21 @@ class _TodayCard extends StatelessWidget {
                     _NightStat(
                       icon: '📚',
                       value: '$unlockedCount/88',
-                      label: '図鑑',
+                      label: l10n.observationTabCatalogLabel,
                     ),
                     _NightDivider(),
                     _NightStat(
                       icon: recommendedEmoji,
                       value: recommendedName,
-                      label: '今月の推奨',
+                      label: l10n.observationTabRecommendedLabel,
                     ),
                     _NightDivider(),
                     _NightStat(
                       icon: moonEmoji,
-                      value: '${moonAge.toInt()}日',
-                      label: moonGood ? '観測◎' : '月明かり注意',
+                      value: l10n.observationTabMoonAgeDays(moonAge.toInt()),
+                      label: moonGood
+                          ? l10n.observationTabObservationGood
+                          : l10n.observationTabMoonlightCaution,
                       labelColor: moonGood
                           ? const Color(0xFF88DDAA)
                           : const Color(0xFFFFCC77),
@@ -301,6 +307,7 @@ class _NightDivider extends StatelessWidget {
 class _ARButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/ar'),
       child: Container(
@@ -324,26 +331,26 @@ class _ARButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.camera_alt, color: Colors.white, size: 40),
-            SizedBox(width: 16),
+            const Icon(Icons.camera_alt, color: Colors.white, size: 40),
+            const SizedBox(width: 16),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'AR観測を始める',
-                  style: TextStyle(
+                  l10n.observationTabArButtonTitle,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'スマホを夜空に向けよう',
-                  style: TextStyle(color: Colors.white70, fontSize: 13),
+                  l10n.observationTabArButtonSubtitle,
+                  style: const TextStyle(color: Colors.white70, fontSize: 13),
                 ),
               ],
             ),
@@ -357,6 +364,7 @@ class _ARButton extends StatelessWidget {
 class _SolarSystemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/solar-system'),
       child: Container(
@@ -380,33 +388,33 @@ class _SolarSystemButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('☀️', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('☀️', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '太陽系を3Dで探検！',
-                      style: TextStyle(
+                      l10n.observationTabSolarSystemTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '月がなぜ満ち欠けするのか動かして学ぼう',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabSolarSystemSubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),
@@ -418,6 +426,7 @@ class _SolarSystemButton extends StatelessWidget {
 class _NightSkyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/night-sky'),
       child: Container(
@@ -441,33 +450,33 @@ class _NightSkyButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('🌌', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('🌌', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'この日の星空を見る',
-                      style: TextStyle(
+                      l10n.observationTabNightSkyTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '誕生日や記念日の夜空、今夜の星空を再現',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabNightSkySubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),
@@ -482,10 +491,13 @@ class _RecentObservationTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final lang = Localizations.localeOf(context).languageCode;
     final constellationAsync =
         ref.watch(constellationByIdProvider(observation.constellationId));
     final constName = constellationAsync.when(
-      data: (c) => c?.nameJa ?? observation.constellationId,
+      data: (c) => c == null
+          ? observation.constellationId
+          : (lang == 'en' ? c.nameEn : c.nameJa),
       loading: () => '...',
       error: (_, __) => observation.constellationId,
     );
@@ -529,6 +541,7 @@ class _RecentObservationTile extends ConsumerWidget {
 class _EmptyObservations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -540,8 +553,8 @@ class _EmptyObservations extends StatelessWidget {
               color: Colors.grey.shade300,
             ),
             const SizedBox(height: 12),
-            const Text(
-              'まだ観測記録がありません\nAR観測ボタンから始めてみよう！',
+            Text(
+              l10n.observationTabEmptyMessage,
               textAlign: TextAlign.center,
             ),
           ],
@@ -554,6 +567,7 @@ class _EmptyObservations extends StatelessWidget {
 class _QuizButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/quiz'),
       child: Container(
@@ -577,33 +591,33 @@ class _QuizButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('❓', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('❓', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '今日の星座クイズ',
-                      style: TextStyle(
+                      l10n.observationTabQuizTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '5問チャレンジで星座博士を目指そう',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabQuizSubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../services/bortle_service.dart';
 import '../services/location_service.dart';
 import '../providers/observation_provider.dart';
@@ -44,16 +45,18 @@ class _LightPollutionMapScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final observations = ref.watch(observationListProvider);
     final constellations = ref.watch(constellationListProvider);
 
     return constellations.when(
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (e, _) => Scaffold(body: Center(child: Text('エラー: $e'))),
+      error: (e, _) =>
+          Scaffold(body: Center(child: Text(l10n.lightPollutionLoadError(e.toString())))),
       data: (const_list) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('🌍 光害マップ & 観測難易度'),
+            title: Text(l10n.lightPollutionTitle),
             centerTitle: true,
           ),
           body: SingleChildScrollView(
@@ -79,7 +82,7 @@ class _LightPollutionMapScreenState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '📊 観測条件の選択肢',
+                          l10n.lightPollutionConditionsTitle,
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.blue.shade800,
@@ -87,8 +90,7 @@ class _LightPollutionMapScreenState
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'あなたの周辺の光害レベル（Bortleスケール）に応じて、観測可能な星座と難易度が変わります。'
-                          '暗い空への移動で、より難しい（そして美しい）星座を見つけることができます。',
+                          l10n.lightPollutionConditionsBody,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                 height: 1.6,
                               ),
@@ -100,28 +102,28 @@ class _LightPollutionMapScreenState
                 const SizedBox(height: 24),
 
                 // Bortle Scale Chart
-                _SectionTitle('🌙 Bortleスケール基準'),
+                _SectionTitle(l10n.lightPollutionBortleScaleSectionTitle),
                 const SizedBox(height: 12),
                 ..._buildBortleChart(context),
 
                 const SizedBox(height: 32),
 
                 // Observation statistics
-                _SectionTitle('📈 あなたの観測統計'),
+                _SectionTitle(l10n.lightPollutionStatsSectionTitle),
                 const SizedBox(height: 12),
                 _ObservationStatsCard(observations: observations),
 
                 const SizedBox(height: 32),
 
                 // Difficulty distribution
-                _SectionTitle('⭐ 難易度別・観測可能な星座'),
+                _SectionTitle(l10n.lightPollutionDifficultySectionTitle),
                 const SizedBox(height: 12),
                 ..._buildDifficultyDistribution(context, const_list.toList()),
 
                 const SizedBox(height: 32),
 
                 // Tips
-                _SectionTitle('💡 観測のコツ'),
+                _SectionTitle(l10n.lightPollutionTipsSectionTitle),
                 const SizedBox(height: 12),
                 Card(
                   child: Padding(
@@ -130,20 +132,20 @@ class _LightPollutionMapScreenState
                       children: [
                         _TipItem(
                           icon: Icons.location_on,
-                          title: '明るい場所での観測',
-                          description: '都市部（Bortle 7-9）では、基本難易度2以下の星座を探しましょう。シリウスやベテルギウスなど明るい星が狙い目です。',
+                          title: l10n.lightPollutionTip1Title,
+                          description: l10n.lightPollutionTip1Description,
                         ),
                         const SizedBox(height: 12),
                         _TipItem(
                           icon: Icons.directions_car,
-                          title: '郊外への移動',
-                          description: '郊外（Bortle 4-6）に移動すれば、難易度3-4の星座も観測可能に。週末の天体観測ツアーを計画してみましょう。',
+                          title: l10n.lightPollutionTip2Title,
+                          description: l10n.lightPollutionTip2Description,
                         ),
                         const SizedBox(height: 12),
                         _TipItem(
                           icon: Icons.dark_mode,
-                          title: 'ダークスカイ探索',
-                          description: '山間部（Bortle 1-3）では、難易度5の最高難度星座も見えます。流星群の季節は特に最高の観測地を探しましょう。',
+                          title: l10n.lightPollutionTip3Title,
+                          description: l10n.lightPollutionTip3Description,
                         ),
                       ],
                     ),
@@ -158,6 +160,8 @@ class _LightPollutionMapScreenState
   }
 
   List<Widget> _buildBortleChart(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final service = BortleService.instance;
     return List.generate(9, (index) {
       final bortle = index + 1;
@@ -191,13 +195,13 @@ class _LightPollutionMapScreenState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Bortle $bortle: ${info.label}',
+                              'Bortle $bortle: ${info.localizedLabel(lang)}',
                               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                                     fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
-                              info.description,
+                              info.localizedDescription(lang),
                               style: Theme.of(context).textTheme.labelSmall,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -206,7 +210,7 @@ class _LightPollutionMapScreenState
                         ),
                       ),
                       Text(
-                        '⭐ $starCount個',
+                        l10n.lightPollutionStarCount(starCount),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -226,6 +230,7 @@ class _LightPollutionMapScreenState
     BuildContext context,
     List<dynamic> constellationList,
   ) {
+    final l10n = AppLocalizations.of(context)!;
     final byDifficulty = <int, int>{};
     for (final c in constellationList) {
       final diff = c.baseDifficulty as int;
@@ -248,14 +253,15 @@ class _LightPollutionMapScreenState
                 Row(
                   children: [
                     Text(
-                      '難易度: ${'★' * difficulty}${'☆' * (5 - difficulty)}',
+                      l10n.lightPollutionDifficultyLabel(
+                          '${'★' * difficulty}${'☆' * (5 - difficulty)}'),
                       style: Theme.of(context).textTheme.titleSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                     ),
                     const Spacer(),
                     Text(
-                      '$count個 ($percentage%)',
+                      l10n.lightPollutionCountPercentage(count, percentage),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -328,6 +334,8 @@ class _CurrentLocationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final service = BortleService.instance;
     final info = bortle != null ? service.getBortleInfo(bortle!) : null;
 
@@ -343,7 +351,7 @@ class _CurrentLocationCard extends StatelessWidget {
                 Icon(Icons.my_location, color: Colors.indigo.shade700),
                 const SizedBox(width: 8),
                 Text(
-                  '現在地の光害レベル',
+                  l10n.lightPollutionCurrentLocationTitle,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.indigo.shade800,
@@ -354,14 +362,15 @@ class _CurrentLocationCard extends StatelessWidget {
             const SizedBox(height: 12),
             if (info != null) ...[
               Text(
-                'Bortle ${bortle}: ${info.label}',
+                l10n.lightPollutionBortleLabel(bortle!, info.localizedLabel(lang)),
                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 4),
-              Text(info.description, style: Theme.of(context).textTheme.bodySmall),
+              Text(info.localizedDescription(lang), style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 4),
               Text(
-                '観測難易度の目安: ${service.getDifficultyLabel(bortle!)}',
+                l10n.lightPollutionDifficultyEstimateLabel(
+                    service.getDifficultyLabel(bortle!, lang)),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: 12),
@@ -383,7 +392,9 @@ class _CurrentLocationCard extends StatelessWidget {
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
                     : const Icon(Icons.gps_fixed, size: 18),
-                label: Text(loading ? '取得中...' : '現在地から診断する'),
+                label: Text(loading
+                    ? l10n.lightPollutionLoadingLabel
+                    : l10n.lightPollutionDetectButton),
               ),
             ),
           ],
@@ -399,6 +410,7 @@ class _ObservationStatsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     int totalObs = observations.length;
     int brightObs = observations.where((o) => o.bortleScale >= 7).length;
     int darkObs = observations.where((o) => o.bortleScale <= 3).length;
@@ -420,7 +432,8 @@ class _ObservationStatsCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                Text('観測回数', style: Theme.of(context).textTheme.labelSmall),
+                Text(l10n.lightPollutionObservationCountLabel,
+                    style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
             Column(
@@ -431,7 +444,8 @@ class _ObservationStatsCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                Text('平均Bortle', style: Theme.of(context).textTheme.labelSmall),
+                Text(l10n.lightPollutionAverageBortleLabel,
+                    style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
             Column(
@@ -443,7 +457,8 @@ class _ObservationStatsCard extends StatelessWidget {
                         color: Colors.orange,
                       ),
                 ),
-                Text('都市観測', style: Theme.of(context).textTheme.labelSmall),
+                Text(l10n.lightPollutionUrbanObservationLabel,
+                    style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
             Column(
@@ -455,7 +470,8 @@ class _ObservationStatsCard extends StatelessWidget {
                         color: Colors.indigo,
                       ),
                 ),
-                Text('暗空観測', style: Theme.of(context).textTheme.labelSmall),
+                Text(l10n.lightPollutionDarkSkyObservationLabel,
+                    style: Theme.of(context).textTheme.labelSmall),
               ],
             ),
           ],

@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/constellation.dart';
+import '../l10n/generated/app_localizations.dart';
 import 'starfield_background.dart';
 
 /// 星座解放時の全画面セレブレーション。
@@ -10,10 +11,11 @@ Future<void> showUnlockCelebration(
   required Constellation constellation,
   VoidCallback? onViewDetail,
 }) {
+  final l10n = AppLocalizations.of(context)!;
   return showGeneralDialog(
     context: context,
     barrierDismissible: true,
-    barrierLabel: '閉じる',
+    barrierLabel: l10n.unlockClose,
     barrierColor: Colors.transparent,
     transitionDuration: const Duration(milliseconds: 400),
     pageBuilder: (_, __, ___) => _CelebrationPage(
@@ -100,6 +102,8 @@ class _CelebrationPageState extends State<_CelebrationPage>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final languageCode = Localizations.localeOf(context).languageCode;
     return Material(
       color: Colors.transparent,
       child: StarfieldBackground(
@@ -153,9 +157,9 @@ class _CelebrationPageState extends State<_CelebrationPage>
                         border: Border.all(
                             color: Colors.amber.withAlpha(120), width: 1),
                       ),
-                      child: const Text(
-                        '✨  新しい星座を発見！  ✨',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.unlockNewDiscovery,
+                        style: const TextStyle(
                           color: Colors.amber,
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
@@ -211,7 +215,7 @@ class _CelebrationPageState extends State<_CelebrationPage>
                     child: Column(
                       children: [
                         Text(
-                          widget.constellation.nameJa,
+                          widget.constellation.localizedShortName(languageCode),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 32,
@@ -224,7 +228,9 @@ class _CelebrationPageState extends State<_CelebrationPage>
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          widget.constellation.nameEn,
+                          languageCode == 'en'
+                              ? widget.constellation.nameJa
+                              : widget.constellation.nameEn,
                           style: TextStyle(
                             color: Colors.white.withAlpha(140),
                             fontSize: 15,
@@ -273,14 +279,14 @@ class _CelebrationPageState extends State<_CelebrationPage>
                               elevation: 8,
                               shadowColor: Colors.amber.withAlpha(100),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.auto_stories, size: 18),
-                                SizedBox(width: 8),
+                                const Icon(Icons.auto_stories, size: 18),
+                                const SizedBox(width: 8),
                                 Text(
-                                  '図鑑で見る',
-                                  style: TextStyle(
+                                  l10n.unlockViewInGuide,
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -293,7 +299,7 @@ class _CelebrationPageState extends State<_CelebrationPage>
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
                           child: Text(
-                            '閉じる',
+                            l10n.unlockClose,
                             style: TextStyle(
                               color: Colors.white.withAlpha(140),
                               fontSize: 14,

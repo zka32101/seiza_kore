@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../services/ranking_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 /// 全国の観測者と観測数を競うグローバルランキング画面。
 /// 画面表示時に、端末のローカル記録をFirestoreへ同期してから
@@ -47,9 +48,10 @@ class _RankingScreenState extends ConsumerState<RankingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🏆 全国観測ランキング'),
+        title: Text(l10n.rankingTitle),
         centerTitle: true,
       ),
       body: FutureBuilder<_RankingData>(
@@ -67,7 +69,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen> {
                   children: [
                     const Icon(Icons.cloud_off, size: 48, color: Colors.grey),
                     const SizedBox(height: 12),
-                    const Text('ランキングを読み込めませんでした'),
+                    Text(l10n.rankingLoadError),
                     const SizedBox(height: 4),
                     Text(
                       '${snapshot.error}',
@@ -75,7 +77,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
-                    FilledButton(onPressed: _refresh, child: const Text('再試行')),
+                    FilledButton(onPressed: _refresh, child: Text(l10n.rankingRetry)),
                   ],
                 ),
               ),
@@ -84,7 +86,7 @@ class _RankingScreenState extends ConsumerState<RankingScreen> {
 
           final data = snapshot.data!;
           if (data.entries.isEmpty) {
-            return const Center(child: Text('まだランキングデータがありません'));
+            return Center(child: Text(l10n.rankingEmptyMessage));
           }
 
           return RefreshIndicator(
@@ -118,15 +120,16 @@ class _RankingTile extends StatelessWidget {
 
   const _RankingTile({required this.rank, required this.entry, required this.isMe});
 
-  String get _medal => switch (rank) {
+  String _medal(AppLocalizations l10n) => switch (rank) {
         1 => '🥇',
         2 => '🥈',
         3 => '🥉',
-        _ => '$rank位',
+        _ => l10n.rankingPositionLabel(rank),
       };
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
@@ -142,7 +145,7 @@ class _RankingTile extends StatelessWidget {
         leading: SizedBox(
           width: 44,
           child: Text(
-            _medal,
+            _medal(l10n),
             style: TextStyle(fontSize: rank <= 3 ? 22 : 15, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
@@ -151,7 +154,7 @@ class _RankingTile extends StatelessWidget {
           entry.displayName,
           style: TextStyle(fontWeight: isMe ? FontWeight.bold : FontWeight.normal),
         ),
-        subtitle: Text('図鑑解放: ${entry.unlockedConstellations}/88'),
+        subtitle: Text(l10n.rankingUnlockedLabel(entry.unlockedConstellations)),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -160,7 +163,7 @@ class _RankingTile extends StatelessWidget {
               '${entry.totalObservations}',
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Text('回観測', style: Theme.of(context).textTheme.labelSmall),
+            Text(l10n.rankingTimesLabel, style: Theme.of(context).textTheme.labelSmall),
           ],
         ),
       ),

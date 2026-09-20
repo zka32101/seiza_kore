@@ -3,14 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/achievement_provider.dart';
 import '../services/share_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class AchievementsScreen extends ConsumerWidget {
   const AchievementsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final allAchievements = ref.watch(achievementsProvider);
-    final userTitle = ref.watch(userTitleProvider);
+    final userTitleId = ref.watch(userTitleProvider);
+    final userTitle = userTitleLabel(userTitleId, lang);
     final unlockedCount = ref.watch(unlockedAchievementCountProvider);
     final total = allAchievements.length;
 
@@ -19,12 +23,12 @@ class AchievementsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('実績'),
+        title: Text(l10n.achievementsTitle),
         centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.leaderboard_outlined),
-            tooltip: '全国ランキング',
+            tooltip: l10n.achievementsRankingTooltip,
             onPressed: () => context.push('/ranking'),
           ),
         ],
@@ -42,7 +46,7 @@ class AchievementsScreen extends ConsumerWidget {
                   child: Column(
                     children: [
                       Text(
-                        '👤 あなたの称号',
+                        l10n.achievementsYourTitleLabel,
                         style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -75,7 +79,7 @@ class AchievementsScreen extends ConsumerWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            '実績解除',
+                            l10n.achievementsUnlockedLabel,
                             style: Theme.of(context).textTheme.labelSmall,
                           ),
                         ],
@@ -105,7 +109,7 @@ class AchievementsScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
                 child: Text(
-                  '✨ 解放済み (${unlocked.length})',
+                  l10n.achievementsUnlockedSection(unlocked.length),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary,
@@ -130,7 +134,7 @@ class AchievementsScreen extends ConsumerWidget {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
                 child: Text(
-                  '🔒 未解放 (${locked.length})',
+                  l10n.achievementsLockedSection(locked.length),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -167,6 +171,8 @@ class _AchievementTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final progress = achievement.progress / achievement.goal;
 
     return Padding(
@@ -194,7 +200,7 @@ class _AchievementTile extends StatelessWidget {
             ),
           ),
           title: Text(
-            achievement.title,
+            achievement.localizedTitle(lang),
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: isUnlocked
@@ -207,7 +213,7 @@ class _AchievementTile extends StatelessWidget {
             children: [
               const SizedBox(height: 2),
               Text(
-                achievement.description,
+                achievement.localizedDescription(lang),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
@@ -243,10 +249,10 @@ class _AchievementTile extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.share_outlined, size: 20),
-                      tooltip: 'シェア',
+                      tooltip: l10n.achievementsShareTooltip,
                       onPressed: () => ShareService.shareAchievement(
-                        title: achievement.title,
-                        description: achievement.description,
+                        title: achievement.localizedTitle(lang),
+                        description: achievement.localizedDescription(lang),
                         emoji: achievement.emoji,
                       ),
                     ),

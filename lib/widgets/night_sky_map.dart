@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/constellation.dart';
 import '../services/sky_position_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 /// 星図上に配置された1つの星座（描画・タップ判定用）
 class PlottedConstellation {
@@ -25,6 +26,11 @@ class NightSkyMap extends StatelessWidget {
   final bool isDaytime;
   final void Function(Constellation)? onConstellationTap;
 
+  /// 表示言語コード（'ja' または 'en'）。
+  /// 省略時は日本語をデフォルトとし、既存の呼び出し元（BuildContextを
+  /// 渡さない/更新しない呼び出し元）との後方互換性を保つ。
+  final String languageCode;
+
   const NightSkyMap({
     super.key,
     required this.constellations,
@@ -33,10 +39,18 @@ class NightSkyMap extends StatelessWidget {
     this.moonEmoji = '🌕',
     this.isDaytime = false,
     this.onConstellationTap,
+    this.languageCode = 'ja',
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final directionLabels = <String, double>{
+      l10n.nightSkyMapNorth: 0.0,
+      l10n.nightSkyMapEast: 90.0,
+      l10n.nightSkyMapSouth: 180.0,
+      l10n.nightSkyMapWest: 270.0,
+    };
     return AspectRatio(
       aspectRatio: 1,
       child: LayoutBuilder(
@@ -52,6 +66,8 @@ class NightSkyMap extends StatelessWidget {
                 sunPosition: sunPosition,
                 moonEmoji: moonEmoji,
                 isDaytime: isDaytime,
+                languageCode: languageCode,
+                directionLabels: directionLabels,
               ),
             ),
           );
@@ -96,6 +112,8 @@ class _NightSkyPainter extends CustomPainter {
   final HorizontalPosition? sunPosition;
   final String moonEmoji;
   final bool isDaytime;
+  final String languageCode;
+  final Map<String, double> directionLabels;
 
   _NightSkyPainter({
     required this.constellations,
@@ -103,6 +121,8 @@ class _NightSkyPainter extends CustomPainter {
     required this.sunPosition,
     required this.moonEmoji,
     required this.isDaytime,
+    required this.languageCode,
+    required this.directionLabels,
   });
 
   @override
@@ -155,8 +175,7 @@ class _NightSkyPainter extends CustomPainter {
   }
 
   void _drawDirectionLabels(Canvas canvas, Offset center, double maxR) {
-    const labels = {'北': 0.0, '東': 90.0, '南': 180.0, '西': 270.0};
-    labels.forEach((label, az) {
+    directionLabels.forEach((label, az) {
       final azRad = az * math.pi / 180.0;
       final r = maxR + 14;
       final dx = r * math.sin(azRad);
@@ -192,7 +211,7 @@ class _NightSkyPainter extends CustomPainter {
     );
     _drawText(
       canvas,
-      pc.constellation.nameShort,
+      pc.constellation.localizedShortName(languageCode),
       pos + const Offset(0, 10),
       fontSize: 9,
       color: Colors.white60.withAlpha(alpha),
@@ -236,6 +255,7 @@ class _NightSkyPainter extends CustomPainter {
     return oldDelegate.constellations != constellations ||
         oldDelegate.moonPosition != moonPosition ||
         oldDelegate.sunPosition != sunPosition ||
-        oldDelegate.isDaytime != isDaytime;
+        oldDelegate.isDaytime != isDaytime ||
+        oldDelegate.languageCode != languageCode;
   }
 }

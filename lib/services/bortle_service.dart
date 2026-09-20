@@ -69,73 +69,91 @@ class BortleService {
       1 => const BortleInfo(
           scale: 1,
           label: '最暗黒の空',
+          labelEn: 'Darkest Sky',
           description: '天の川が影を作るほど暗い。プロ天文家の観測地レベル。',
+          descriptionEn: 'Dark enough for the Milky Way to cast shadows. The level professional astronomers seek out.',
           color: 0xFF000033,
           difficultyStars: 1,
         ),
       2 => const BortleInfo(
           scale: 2,
           label: '極めて暗い空',
+          labelEn: 'Truly Dark Sky',
           description: '天の川が肉眼ではっきり見える。山岳地帯・離島。',
+          descriptionEn: 'The Milky Way is clearly visible to the naked eye. Mountain areas and remote islands.',
           color: 0xFF000055,
           difficultyStars: 1,
         ),
       3 => const BortleInfo(
           scale: 3,
           label: '農村の空',
+          labelEn: 'Rural Sky',
           description: '天の川がよく見える。光害の影響が軽微な農村地帯。',
+          descriptionEn: 'The Milky Way is easy to see. Rural areas with only minor light pollution.',
           color: 0xFF001166,
           difficultyStars: 1,
         ),
       4 => const BortleInfo(
           scale: 4,
           label: '農村/郊外の境界',
+          labelEn: 'Rural/Suburban Transition',
           description: '地平線付近に光害の影響が見られる。郊外の空。',
+          descriptionEn: 'Light pollution is visible near the horizon. A suburban sky.',
           color: 0xFF002288,
           difficultyStars: 2,
         ),
       5 => const BortleInfo(
           scale: 5,
           label: '郊外の空',
+          labelEn: 'Suburban Sky',
           description: '天の川はかすかに見える。住宅地の外縁部。',
+          descriptionEn: 'The Milky Way is faintly visible. Just outside a residential area.',
           color: 0xFF334499,
           difficultyStars: 2,
         ),
       6 => const BortleInfo(
           scale: 6,
           label: '明るい郊外',
+          labelEn: 'Bright Suburban Sky',
           description: '天の川はほとんど見えない。2等星が限界。',
+          descriptionEn: 'The Milky Way is barely visible. Second-magnitude stars are about the limit.',
           color: 0xFF5566AA,
           difficultyStars: 2,
         ),
       7 => const BortleInfo(
           scale: 7,
           label: '郊外/都市の境界',
+          labelEn: 'Suburban/Urban Transition',
           description: '光害が強い。明るい星雲・星団のみ見える。',
+          descriptionEn: 'Light pollution is strong. Only bright nebulae and star clusters are visible.',
           color: 0xFF8888BB,
           difficultyStars: 3,
         ),
       8 => const BortleInfo(
           scale: 8,
           label: '都市の空',
+          labelEn: 'City Sky',
           description: '光害で空がオレンジ色。主要な星座のみ識別可能。',
+          descriptionEn: 'The sky glows orange with light pollution. Only major constellations are identifiable.',
           color: 0xFFBB8844,
           difficultyStars: 3,
         ),
       _ => const BortleInfo(
           scale: 9,
           label: '都市の中心',
+          labelEn: 'Inner-City Sky',
           description: '光害が極めて強い。最も明るい星のみ見える。★★★のレア難易度！',
+          descriptionEn: 'Light pollution is extreme. Only the brightest stars are visible. ★★★ rare difficulty!',
           color: 0xFFCC6633,
           difficultyStars: 3,
         ),
     };
   }
 
-  String getDifficultyLabel(int bortleScale) {
+  String getDifficultyLabel(int bortleScale, [String languageCode = 'ja']) {
     final info = getBortleInfo(bortleScale);
     final stars = '★' * info.difficultyStars + '☆' * (3 - info.difficultyStars);
-    return '$stars (${info.label})';
+    return '$stars (${info.localizedLabel(languageCode)})';
   }
 
   // シティ・ライト・チャレンジ: 都市部でのスコアボーナス
@@ -149,17 +167,26 @@ class BortleService {
 class BortleInfo {
   final int scale;
   final String label;
+  final String labelEn;
   final String description;
+  final String descriptionEn;
   final int color;
   final int difficultyStars;
 
   const BortleInfo({
     required this.scale,
     required this.label,
+    required this.labelEn,
     required this.description,
+    required this.descriptionEn,
     required this.color,
     required this.difficultyStars,
   });
+
+  String localizedLabel(String languageCode) => languageCode == 'en' ? labelEn : label;
+
+  String localizedDescription(String languageCode) =>
+      languageCode == 'en' ? descriptionEn : description;
 }
 
 class _BortleRegion {

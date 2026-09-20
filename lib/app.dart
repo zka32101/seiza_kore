@@ -29,7 +29,7 @@ class SeizaKoreApp extends ConsumerWidget {
     final nightMode = ref.watch(nightModeProvider);
 
     final app = MaterialApp.router(
-      title: '星座コレ！',
+      title: 'ほしぞら大百科',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,

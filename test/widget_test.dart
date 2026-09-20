@@ -8,6 +8,6 @@ void main() {
       const ProviderScope(child: SeizaKoreApp()),
     );
     await tester.pumpAndSettle(const Duration(seconds: 1));
-    expect(find.text('星座コレ！'), findsWidgets);
+    expect(find.text('⭐ ほしぞら大百科'), findsWidgets);
   });
 }

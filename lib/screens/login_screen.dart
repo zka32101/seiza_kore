@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           const SizedBox(height: 22),
 
-                          // 「星座コレ！」シマーグラデーション
+                          // 「ほしぞら大百科」シマーグラデーション
                           AnimatedBuilder(
                             animation: _ctrl,
                             builder: (_, __) {
@@ -102,12 +102,12 @@ class _LoginScreenState extends State<LoginScreen>
                                       0, 0, bounds.width, bounds.height),
                                 ),
                                 child: const Text(
-                                  '星座コレ！',
+                                  'ほしぞら大百科',
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 38,
+                                    fontSize: 30,
                                     fontWeight: FontWeight.bold,
-                                    letterSpacing: 6,
+                                    letterSpacing: 3,
                                   ),
                                 ),
                               );

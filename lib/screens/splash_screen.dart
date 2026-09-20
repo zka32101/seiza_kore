@@ -105,12 +105,12 @@ class _SplashScreenState extends State<SplashScreen>
                     FadeTransition(
                       opacity: _fade,
                       child: const Text(
-                        '星座コレ！',
+                        'ほしぞら大百科',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 38,
+                          fontSize: 30,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: 5,
+                          letterSpacing: 3,
                         ),
                       ),
                     ),

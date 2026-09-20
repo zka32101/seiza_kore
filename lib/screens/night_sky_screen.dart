@@ -6,6 +6,7 @@ import '../providers/constellation_provider.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
 import '../services/sky_position_service.dart';
+import '../services/location_service.dart';
 import '../widgets/night_sky_map.dart';
 
 class _City {
@@ -25,6 +26,9 @@ const _cities = [
   _City('那覇', 26.2124, 127.6809),
 ];
 
+/// 都市リストの後ろに続く特別選択肢: 「現在地」
+const _useCurrentLocationIndex = -1;
+
 /// 「この日の星空」画面: 日付・時刻・場所を選ぶと、その夜空に見える星座と
 /// 月の位置・満ち欠けを円形の星図で再現する。
 class NightSkyScreen extends ConsumerStatefulWidget {
@@ -43,12 +47,47 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
   int _cityIndex = 0;
   Constellation? _tappedConstellation;
 
+  bool _usingCurrentLocation = false;
+  bool _loadingLocation = false;
+  String? _locationError;
+  _City? _currentLocationCity;
+
   @override
   void initState() {
     super.initState();
     final base = widget.initialDateTime ?? DateTime.now();
     _selectedDate = DateTime(base.year, base.month, base.day);
     _selectedTime = TimeOfDay(hour: base.hour, minute: base.minute);
+  }
+
+  Future<void> _useCurrentLocation() async {
+    setState(() {
+      _loadingLocation = true;
+      _locationError = null;
+    });
+    final result = await LocationService.getCurrentLocation();
+    if (!mounted) return;
+    switch (result) {
+      case LocationSuccess(:final latitude, :final longitude):
+        setState(() {
+          _currentLocationCity = _City('現在地', latitude, longitude);
+          _usingCurrentLocation = true;
+          _loadingLocation = false;
+        });
+      case LocationFailure(:final message):
+        setState(() {
+          _locationError = message;
+          _usingCurrentLocation = false;
+          _loadingLocation = false;
+        });
+    }
+  }
+
+  void _selectCity(int index) {
+    setState(() {
+      _cityIndex = index;
+      _usingCurrentLocation = false;
+    });
   }
 
   DateTime get _localDateTime => DateTime(
@@ -62,7 +101,9 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
   @override
   Widget build(BuildContext context) {
     final constellationsAsync = ref.watch(constellationListProvider);
-    final city = _cities[_cityIndex];
+    final city = _usingCurrentLocation && _currentLocationCity != null
+        ? _currentLocationCity!
+        : _cities[_cityIndex];
     final localDt = _localDateTime;
     // JSTを想定した簡易UTC変換（日本の主要都市はすべてUTC+9）。
     // 端末側のタイムゾーンに依存させないよう、明示的にUTC DateTimeを作る。
@@ -127,9 +168,13 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
                   date: _selectedDate,
                   time: _selectedTime,
                   cityIndex: _cityIndex,
+                  usingCurrentLocation: _usingCurrentLocation,
+                  loadingLocation: _loadingLocation,
+                  locationError: _locationError,
                   onDateTap: _pickDate,
                   onTimeTap: _pickTime,
-                  onCityChanged: (i) => setState(() => _cityIndex = i),
+                  onCityChanged: _selectCity,
+                  onUseCurrentLocation: _useCurrentLocation,
                 ),
                 const SizedBox(height: 16),
                 NightSkyMap(
@@ -195,17 +240,25 @@ class _ControlPanel extends StatelessWidget {
   final DateTime date;
   final TimeOfDay time;
   final int cityIndex;
+  final bool usingCurrentLocation;
+  final bool loadingLocation;
+  final String? locationError;
   final VoidCallback onDateTap;
   final VoidCallback onTimeTap;
   final ValueChanged<int> onCityChanged;
+  final VoidCallback onUseCurrentLocation;
 
   const _ControlPanel({
     required this.date,
     required this.time,
     required this.cityIndex,
+    required this.usingCurrentLocation,
+    required this.loadingLocation,
+    required this.locationError,
     required this.onDateTap,
     required this.onTimeTap,
     required this.onCityChanged,
+    required this.onUseCurrentLocation,
   });
 
   @override
@@ -247,22 +300,40 @@ class _ControlPanel extends StatelessWidget {
               const SizedBox(width: 6),
               Expanded(
                 child: DropdownButton<int>(
-                  value: cityIndex,
+                  value: usingCurrentLocation ? _useCurrentLocationIndex : cityIndex,
                   isExpanded: true,
                   dropdownColor: const Color(0xFF141B3D),
                   underline: const SizedBox.shrink(),
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                   items: [
+                    DropdownMenuItem(
+                      value: _useCurrentLocationIndex,
+                      child: Text(loadingLocation ? '📍 取得中...' : '📍 現在地を使う'),
+                    ),
                     for (var i = 0; i < _cities.length; i++)
                       DropdownMenuItem(value: i, child: Text(_cities[i].name)),
                   ],
-                  onChanged: (v) {
-                    if (v != null) onCityChanged(v);
-                  },
+                  onChanged: loadingLocation
+                      ? null
+                      : (v) {
+                          if (v == null) return;
+                          if (v == _useCurrentLocationIndex) {
+                            onUseCurrentLocation();
+                          } else {
+                            onCityChanged(v);
+                          }
+                        },
                 ),
               ),
             ],
           ),
+          if (locationError != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              locationError!,
+              style: TextStyle(color: Colors.red.shade200, fontSize: 11),
+            ),
+          ],
         ],
       ),
     );

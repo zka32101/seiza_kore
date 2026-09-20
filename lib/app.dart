@@ -18,6 +18,7 @@ import 'screens/update_notes_screen.dart';
 import 'screens/feedback_screen.dart';
 import 'screens/solar_system_screen.dart';
 import 'screens/night_sky_screen.dart';
+import 'screens/ranking_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -148,6 +149,10 @@ final GoRouter _router = GoRouter(
         final initial = dateParam != null ? DateTime.tryParse(dateParam) : null;
         return NightSkyScreen(initialDateTime: initial);
       },
+    ),
+    GoRoute(
+      path: '/ranking',
+      builder: (context, state) => const RankingScreen(),
     ),
   ],
 );

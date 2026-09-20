@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import '../providers/achievement_provider.dart';
 
 class AchievementsScreen extends ConsumerWidget {
@@ -19,6 +20,13 @@ class AchievementsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('実績'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.leaderboard_outlined),
+            tooltip: '全国ランキング',
+            onPressed: () => context.push('/ranking'),
+          ),
+        ],
       ),
       body: CustomScrollView(
         slivers: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -13,32 +14,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _controller = PageController();
   int _currentPage = 0;
 
-  static const _pages = [
-    _PageData(
-      emoji: '🌟',
-      title: '夜空を図鑑にしよう',
-      subtitle: '88星座コレクション',
-      description: 'スマホを夜空に向けて星座を発見しよう。見るたびに図鑑が充実して、自分だけのコレクションが完成する。',
-      accentColor: Color(0xFFAACCFF),
-      backgroundImage: 'assets/onboarding/onboarding_bg_2_collection.png',
-    ),
-    _PageData(
-      emoji: '🏙️',
-      title: 'シティ・ライト・チャレンジ',
-      subtitle: '難易度で何度も楽しめる',
-      description: '都市の光の中でも星座を探そう。Bortleスケール1〜9で難易度が変わる。都市観測を達成すると特別な称号がもらえる！',
-      accentColor: Color(0xFFCC99FF),
-      backgroundImage: 'assets/onboarding/onboarding_bg_1_discovery.png',
-    ),
-    _PageData(
-      emoji: '⏰',
-      title: '特別な夜は永遠に',
-      subtitle: 'タイムカプセル天体',
-      description: '流星群・月食などのレアイベント期間中のみ解放される特別な記録ページ。見逃したら来年まで待つしかない！',
-      accentColor: Color(0xFFFFCC88),
-      backgroundImage: 'assets/onboarding/onboarding_bg_3_timetravel.png',
-    ),
-  ];
+  List<_PageData> _pages(AppLocalizations l10n) => [
+        _PageData(
+          emoji: '🌟',
+          title: l10n.onboardingPage1Title,
+          subtitle: l10n.onboardingPage1Subtitle,
+          description: l10n.onboardingPage1Description,
+          accentColor: const Color(0xFFAACCFF),
+          backgroundImage: 'assets/onboarding/onboarding_bg_2_collection.png',
+        ),
+        _PageData(
+          emoji: '🏙️',
+          title: l10n.onboardingPage2Title,
+          subtitle: l10n.onboardingPage2Subtitle,
+          description: l10n.onboardingPage2Description,
+          accentColor: const Color(0xFFCC99FF),
+          backgroundImage: 'assets/onboarding/onboarding_bg_1_discovery.png',
+        ),
+        _PageData(
+          emoji: '⏰',
+          title: l10n.onboardingPage3Title,
+          subtitle: l10n.onboardingPage3Subtitle,
+          description: l10n.onboardingPage3Description,
+          accentColor: const Color(0xFFFFCC88),
+          backgroundImage: 'assets/onboarding/onboarding_bg_3_timetravel.png',
+        ),
+      ];
 
   @override
   void dispose() {
@@ -53,8 +54,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     context.go('/login');
   }
 
+  static const _pageCount = 3;
+
   void _next() {
-    if (_currentPage < _pages.length - 1) {
+    if (_currentPage < _pageCount - 1) {
       _controller.nextPage(
         duration: const Duration(milliseconds: 350),
         curve: Curves.easeInOut,
@@ -66,14 +69,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final pages = _pages(l10n);
     return Scaffold(
       body: Stack(
         children: [
           PageView.builder(
             controller: _controller,
             onPageChanged: (i) => setState(() => _currentPage = i),
-            itemCount: _pages.length,
-            itemBuilder: (_, i) => _OnboardingPage(data: _pages[i]),
+            itemCount: pages.length,
+            itemBuilder: (_, i) => _OnboardingPage(data: pages[i]),
           ),
           Positioned(
             bottom: 0,
@@ -88,7 +93,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     // Page indicators
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(_pages.length, (i) {
+                      children: List.generate(pages.length, (i) {
                         return AnimatedContainer(
                           duration: const Duration(milliseconds: 250),
                           margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -117,7 +122,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                         child: Text(
-                          _currentPage == _pages.length - 1 ? 'はじめる！' : '次へ',
+                          _currentPage == pages.length - 1
+                              ? l10n.onboardingStart
+                              : l10n.onboardingNext,
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -125,12 +132,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                       ),
                     ),
-                    if (_currentPage < _pages.length - 1)
+                    if (_currentPage < pages.length - 1)
                       TextButton(
                         onPressed: _finish,
-                        child: const Text(
-                          'スキップ',
-                          style: TextStyle(color: Colors.white54, fontSize: 13),
+                        child: Text(
+                          l10n.onboardingSkip,
+                          style: const TextStyle(color: Colors.white54, fontSize: 13),
                         ),
                       )
                     else

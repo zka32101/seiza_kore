@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../widgets/starfield_background.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -62,6 +63,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: StarfieldBackground(
         animate: true,
@@ -104,9 +106,10 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 32),
                     FadeTransition(
                       opacity: _fade,
-                      child: const Text(
-                        'ほしぞら大百科',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.appTitle,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
@@ -117,9 +120,9 @@ class _SplashScreenState extends State<SplashScreen>
                     const SizedBox(height: 10),
                     FadeTransition(
                       opacity: _subtitleFade,
-                      child: const Text(
-                        '夜空を向けてコレクション',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.appTagline,
+                        style: const TextStyle(
                           color: Colors.white54,
                           fontSize: 13,
                           letterSpacing: 2,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'l10n/generated/app_localizations.dart';
+import 'providers/locale_provider.dart';
 import 'providers/settings_provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/onboarding_screen.dart';
@@ -27,9 +30,18 @@ class SeizaKoreApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final nightMode = ref.watch(nightModeProvider);
+    final locale = ref.watch(localeProvider);
 
     final app = MaterialApp.router(
-      title: 'ほしぞら大百科',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+      locale: locale,
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.deepPurple,

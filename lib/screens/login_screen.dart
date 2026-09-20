@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../widgets/starfield_background.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: StarfieldBackground(
         animate: true,
@@ -81,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen>
                           ),
                           const SizedBox(height: 22),
 
-                          // 「ほしぞら大百科」シマーグラデーション
+                          // アプリ名 シマーグラデーション
                           AnimatedBuilder(
                             animation: _ctrl,
                             builder: (_, __) {
@@ -101,9 +103,10 @@ class _LoginScreenState extends State<LoginScreen>
                                   Rect.fromLTWH(
                                       0, 0, bounds.width, bounds.height),
                                 ),
-                                child: const Text(
-                                  'ほしぞら大百科',
-                                  style: TextStyle(
+                                child: Text(
+                                  l10n.appTitle,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 30,
                                     fontWeight: FontWeight.bold,
@@ -127,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen>
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                '夜空を向けてコレクション',
+                                l10n.appTagline,
                                 style: TextStyle(
                                   color: Colors.white.withAlpha(150),
                                   fontSize: 13,
@@ -155,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen>
                         children: [
                           _AuthButton(
                             icon: Icons.person_outline,
-                            label: 'ゲストで始める（無料）',
+                            label: l10n.loginGuestButton,
                             onTap: () => context.go('/home'),
                             textColor: Colors.white,
                             fillColor: Colors.white.withAlpha(18),
@@ -164,10 +167,10 @@ class _LoginScreenState extends State<LoginScreen>
                           const SizedBox(height: 12),
                           _AuthButton(
                             icon: Icons.email_outlined,
-                            label: 'メールで登録',
+                            label: l10n.loginEmailButton,
                             onTap: () =>
                                 ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('メール登録は後で実装')),
+                              SnackBar(content: Text(l10n.loginEmailSnack)),
                             ),
                             textColor: Colors.white,
                             fillColor: Colors.deepPurple.withAlpha(60),
@@ -176,10 +179,10 @@ class _LoginScreenState extends State<LoginScreen>
                           const SizedBox(height: 12),
                           _AuthButton(
                             icon: Icons.g_mobiledata,
-                            label: 'Googleで登録',
+                            label: l10n.loginGoogleButton,
                             onTap: () =>
                                 ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Google登録は後で実装')),
+                              SnackBar(content: Text(l10n.loginGoogleSnack)),
                             ),
                             textColor: Colors.white,
                             fillColor: Colors.blue.shade900.withAlpha(60),
@@ -194,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen>
                               TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  '利用規約',
+                                  l10n.loginTerms,
                                   style: TextStyle(
                                     color: Colors.white.withAlpha(100),
                                     fontSize: 12,
@@ -209,7 +212,7 @@ class _LoginScreenState extends State<LoginScreen>
                               TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  'プライバシーポリシー',
+                                  l10n.loginPrivacy,
                                   style: TextStyle(
                                     color: Colors.white.withAlpha(100),
                                     fontSize: 12,

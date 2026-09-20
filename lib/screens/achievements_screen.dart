@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/achievement_provider.dart';
+import '../services/share_service.dart';
 
 class AchievementsScreen extends ConsumerWidget {
   const AchievementsScreen({super.key});
@@ -229,9 +230,23 @@ class _AchievementTile extends StatelessWidget {
             ],
           ),
           trailing: isUnlocked
-              ? Icon(
-                  Icons.check_circle,
-                  color: Theme.of(context).colorScheme.primary,
+              ? Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.share_outlined, size: 20),
+                      tooltip: 'シェア',
+                      onPressed: () => ShareService.shareAchievement(
+                        title: achievement.title,
+                        description: achievement.description,
+                        emoji: achievement.emoji,
+                      ),
+                    ),
+                    Icon(
+                      Icons.check_circle,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ],
                 )
               : null,
         ),

@@ -56,4 +56,18 @@ class Observation {
     'notes': notes,
     'photoUrls': photoUrls,
   };
+
+  /// [languageCode]が'en'の場合、保存されている天気の値（日本語）を英語表示名に変換する。
+  /// 対応表にない値（自由記述等）はそのまま返す。
+  String localizedWeather(String languageCode) =>
+      languageCode == 'en' ? (weatherLabelsEn[weather] ?? weather) : weather;
 }
+
+const List<String> weatherOptions = ['晴れ', '薄曇り', '曇り', '快晴'];
+
+const Map<String, String> weatherLabelsEn = {
+  '晴れ': 'Sunny',
+  '薄曇り': 'Slightly Cloudy',
+  '曇り': 'Cloudy',
+  '快晴': 'Clear',
+};

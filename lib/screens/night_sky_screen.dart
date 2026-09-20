@@ -212,6 +212,7 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
                   sunPosition: sunPos,
                   moonEmoji: moonEmoji,
                   isDaytime: isDaytime,
+                  languageCode: Localizations.localeOf(context).languageCode,
                   onConstellationTap: (c) =>
                       setState(() => _tappedConstellation = c),
                 ),

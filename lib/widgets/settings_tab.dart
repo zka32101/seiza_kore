@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../l10n/generated/app_localizations.dart';
+import '../providers/locale_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/observation_provider.dart';
@@ -14,6 +16,7 @@ class SettingsTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
@@ -22,6 +25,7 @@ class SettingsTab extends ConsumerWidget {
     final achievements = ref.watch(achievementsProvider);
     final unlockedAchCount = ref.watch(unlockedAchievementCountProvider);
     final hasUnseenUpdate = ref.watch(hasUnseenUpdateProvider);
+    final locale = ref.watch(localeProvider);
 
     return SingleChildScrollView(
       child: Column(
@@ -45,8 +49,8 @@ class SettingsTab extends ConsumerWidget {
             child: Card(
               child: ListTile(
                 leading: const Icon(Icons.public, color: Colors.indigo),
-                title: const Text('光害マップ & 観測難易度'),
-                subtitle: const Text('Bortleスケールと観測統計を確認'),
+                title: Text(l10n.settingsLightPollutionTitle),
+                subtitle: Text(l10n.settingsLightPollutionSubtitle),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push('/light-pollution-map'),
               ),
@@ -57,19 +61,43 @@ class SettingsTab extends ConsumerWidget {
           _AchievementsCard(
             achievements: achievements,
             unlockedCount: unlockedAchCount,
+            title: l10n.settingsAchievementsTitle,
           ),
 
           // Premium
           if (!settings.isPremium)
-            _PremiumBanner(),
+            _PremiumBanner(
+              title: l10n.settingsPremiumUpgradeTitle,
+              subtitle: l10n.settingsPremiumUpgradeSubtitle,
+            ),
+
+          // Display settings (language)
+          _SettingSection(
+            title: l10n.settingsSectionDisplay,
+            children: [
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: Text(l10n.settingsLanguageTitle),
+                subtitle: Text(
+                  locale == null
+                      ? l10n.settingsLanguageSystem
+                      : (locale.languageCode == 'ja'
+                          ? l10n.settingsLanguageJapanese
+                          : l10n.settingsLanguageEnglish),
+                ),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => _showLanguagePicker(context, ref, l10n, locale),
+              ),
+            ],
+          ),
 
           // Observation settings
           _SettingSection(
-            title: '観測設定',
+            title: l10n.settingsSectionObservation,
             children: [
               SwitchListTile(
-                title: const Text('夜間赤色モード'),
-                subtitle: const Text('目の暗順応を保護するフィルター'),
+                title: Text(l10n.settingsNightModeTitle),
+                subtitle: Text(l10n.settingsNightModeSubtitle),
                 secondary: Icon(
                   Icons.remove_red_eye,
                   color: settings.nightModeEnabled
@@ -84,18 +112,18 @@ class SettingsTab extends ConsumerWidget {
 
           // Privacy settings
           _SettingSection(
-            title: 'プライバシー',
+            title: l10n.settingsSectionPrivacy,
             children: [
               SwitchListTile(
-                title: const Text('位置情報共有'),
-                subtitle: const Text('都道府県レベルのみ（個人特定不可）'),
+                title: Text(l10n.settingsLocationSharingTitle),
+                subtitle: Text(l10n.settingsLocationSharingSubtitle),
                 secondary: const Icon(Icons.location_on),
                 value: settings.locationSharingEnabled,
                 onChanged: (v) => notifier.setLocationSharing(v),
               ),
               SwitchListTile(
-                title: const Text('夜空Connect参加'),
-                subtitle: const Text('今この星座を見ているユーザー数を表示'),
+                title: Text(l10n.settingsNightSkyConnectTitle),
+                subtitle: Text(l10n.settingsNightSkyConnectSubtitle),
                 secondary: const Icon(Icons.people),
                 value: settings.nightSkyConnectEnabled,
                 onChanged: settings.locationSharingEnabled
@@ -107,7 +135,7 @@ class SettingsTab extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   child: Text(
-                    '※ 夜空Connectには位置情報共有のONが必要です',
+                    l10n.settingsNightSkyConnectWarning,
                     style: TextStyle(
                       color: Colors.orange.shade700,
                       fontSize: 12,
@@ -119,18 +147,18 @@ class SettingsTab extends ConsumerWidget {
 
           // Notifications
           _SettingSection(
-            title: '通知',
+            title: l10n.settingsSectionNotifications,
             children: [
               SwitchListTile(
-                title: const Text('タイムカプセルイベント'),
-                subtitle: const Text('流星群などのイベント開始時に通知'),
+                title: Text(l10n.settingsTimecapsuleNotifTitle),
+                subtitle: Text(l10n.settingsTimecapsuleNotifSubtitle),
                 secondary: const Icon(Icons.notifications),
                 value: settings.timecapsuleNotificationsEnabled,
                 onChanged: (v) => notifier.setTimecapsuleNotifications(v),
               ),
               SwitchListTile(
-                title: const Text('新星座解放通知'),
-                subtitle: const Text('新しい星座を発見したときに通知'),
+                title: Text(l10n.settingsUnlockedNotifTitle),
+                subtitle: Text(l10n.settingsUnlockedNotifSubtitle),
                 secondary: const Icon(Icons.stars),
                 value: settings.unlockedNotificationsEnabled,
                 onChanged: (v) => notifier.setUnlockedNotifications(v),
@@ -140,39 +168,37 @@ class SettingsTab extends ConsumerWidget {
 
           // Data management
           _SettingSection(
-            title: 'データ管理',
+            title: l10n.settingsSectionDataManagement,
             children: [
               ListTile(
                 leading: const Icon(Icons.file_download_outlined),
-                title: const Text('観測データをエクスポート'),
-                subtitle: const Text('JSON形式でダウンロード（バックアップ用）'),
+                title: Text(l10n.settingsExportTitle),
+                subtitle: Text(l10n.settingsExportSubtitle),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('バックアップ機能は後で実装')),
+                    SnackBar(content: Text(l10n.settingsExportSnack)),
                   );
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.delete_outline, color: Colors.red),
-                title: const Text(
-                  'すべてのデータを削除',
-                  style: TextStyle(color: Colors.red),
+                title: Text(
+                  l10n.settingsDeleteAllTitle,
+                  style: const TextStyle(color: Colors.red),
                 ),
-                subtitle: const Text('図鑑・観測記録すべてが削除されます'),
+                subtitle: Text(l10n.settingsDeleteAllSubtitle),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: const Text('すべてのデータを削除？'),
-                      content: const Text(
-                        'この操作は取り消せません。\n図鑑、観測記録、お気に入り、すべてのデータが削除されます。',
-                      ),
+                      title: Text(l10n.settingsDeleteAllDialogTitle),
+                      content: Text(l10n.settingsDeleteAllDialogContent),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text('キャンセル'),
+                          child: Text(l10n.commonCancel),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -182,16 +208,16 @@ class SettingsTab extends ConsumerWidget {
                             await prefs.clear();
                             if (context.mounted) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('すべてのデータが削除されました'),
+                                SnackBar(
+                                  content: Text(l10n.settingsDeleteAllDone),
                                   backgroundColor: Colors.red,
                                 ),
                               );
                             }
                           },
-                          child: const Text(
-                            '削除',
-                            style: TextStyle(color: Colors.red),
+                          child: Text(
+                            l10n.commonDelete,
+                            style: const TextStyle(color: Colors.red),
                           ),
                         ),
                       ],
@@ -204,29 +230,29 @@ class SettingsTab extends ConsumerWidget {
 
           // Support
           _SettingSection(
-            title: 'サポート',
+            title: l10n.settingsSectionSupport,
             children: [
               ListTile(
                 leading: const Icon(Icons.help_outline),
-                title: const Text('ヘルプ・使い方'),
+                title: Text(l10n.settingsHelpTitle),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push('/help'),
               ),
               ListTile(
                 leading: const Icon(Icons.description_outlined),
-                title: const Text('利用規約'),
+                title: Text(l10n.loginTerms),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {},
               ),
               ListTile(
                 leading: const Icon(Icons.privacy_tip_outlined),
-                title: const Text('プライバシーポリシー'),
+                title: Text(l10n.loginPrivacy),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () {},
               ),
               ListTile(
                 leading: const Icon(Icons.bug_report_outlined),
-                title: const Text('ご意見・不具合報告'),
+                title: Text(l10n.settingsFeedbackTitle),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push('/feedback'),
               ),
@@ -235,11 +261,11 @@ class SettingsTab extends ConsumerWidget {
 
           // Account actions
           _SettingSection(
-            title: 'その他',
+            title: l10n.settingsSectionOther,
             children: [
               ListTile(
                 leading: const Icon(Icons.info_outline),
-                title: const Text('更新履歴'),
+                title: Text(l10n.settingsUpdateNotesTitle),
                 subtitle: Text('v$currentAppVersion'),
                 trailing: hasUnseenUpdate
                     ? Row(
@@ -252,9 +278,9 @@ class SettingsTab extends ConsumerWidget {
                               color: Colors.amber,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Text(
-                              'NEW',
-                              style: TextStyle(
+                            child: Text(
+                              l10n.settingsUpdateNotesNew,
+                              style: const TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
@@ -270,19 +296,19 @@ class SettingsTab extends ConsumerWidget {
               ListTile(
                 leading: Icon(Icons.logout, color: Colors.orange.shade700),
                 title: Text(
-                  'ログアウト',
+                  l10n.settingsLogoutTitle,
                   style: TextStyle(color: Colors.orange.shade700),
                 ),
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (_) => AlertDialog(
-                      title: const Text('ログアウト'),
-                      content: const Text('ゲストモードのデータは失われます。よろしいですか？'),
+                      title: Text(l10n.settingsLogoutTitle),
+                      content: Text(l10n.settingsLogoutDialogContent),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: const Text('キャンセル'),
+                          child: Text(l10n.commonCancel),
                         ),
                         TextButton(
                           onPressed: () {
@@ -290,7 +316,7 @@ class SettingsTab extends ConsumerWidget {
                             context.go('/login');
                           },
                           child: Text(
-                            'ログアウト',
+                            l10n.settingsLogoutTitle,
                             style: TextStyle(color: Colors.orange.shade700),
                           ),
                         ),
@@ -303,6 +329,51 @@ class SettingsTab extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
         ],
+      ),
+    );
+  }
+
+  void _showLanguagePicker(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations l10n,
+    Locale? current,
+  ) {
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            RadioListTile<Locale?>(
+              title: Text(l10n.settingsLanguageSystem),
+              value: null,
+              groupValue: current,
+              onChanged: (v) {
+                ref.read(localeProvider.notifier).setLocale(v);
+                Navigator.pop(context);
+              },
+            ),
+            RadioListTile<Locale?>(
+              title: Text(l10n.settingsLanguageJapanese),
+              value: const Locale('ja'),
+              groupValue: current,
+              onChanged: (v) {
+                ref.read(localeProvider.notifier).setLocale(v);
+                Navigator.pop(context);
+              },
+            ),
+            RadioListTile<Locale?>(
+              title: Text(l10n.settingsLanguageEnglish),
+              value: const Locale('en'),
+              groupValue: current,
+              onChanged: (v) {
+                ref.read(localeProvider.notifier).setLocale(v);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -320,6 +391,7 @@ class _ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.all(16),
       child: Padding(
@@ -340,7 +412,7 @@ class _ProfileCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isGuest ? 'ゲストユーザー' : '登録ユーザー',
+                    isGuest ? l10n.settingsGuestUser : l10n.settingsRegisteredUser,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -366,7 +438,7 @@ class _ProfileCard extends StatelessWidget {
                   ),
                   if (isGuest)
                     Text(
-                      'アカウント登録でデータを保存',
+                      l10n.settingsGuestHint,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Colors.grey,
                           ),
@@ -376,9 +448,9 @@ class _ProfileCard extends StatelessWidget {
                       children: [
                         Icon(Icons.star, color: Colors.amber.shade600, size: 14),
                         const SizedBox(width: 4),
-                        const Text(
-                          'プレミアム会員',
-                          style: TextStyle(
+                        Text(
+                          l10n.settingsPremiumMember,
+                          style: const TextStyle(
                             color: Colors.amber,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
@@ -392,7 +464,7 @@ class _ProfileCard extends StatelessWidget {
             if (isGuest)
               ElevatedButton(
                 onPressed: () {},
-                child: const Text('登録'),
+                child: Text(l10n.settingsRegisterButton),
               ),
           ],
         ),
@@ -408,6 +480,7 @@ class _StatsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Stack(
@@ -418,21 +491,21 @@ class _StatsCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
             _StatItem(
-              label: '星座コレクション',
+              label: l10n.settingsStatCollection,
               value: '$unlockedCount/88',
               icon: Icons.menu_book,
               color: Theme.of(context).colorScheme.primary,
             ),
             Container(width: 1, height: 48, color: Colors.grey.shade300),
             _StatItem(
-              label: '観測記録',
-              value: '$obsCount件',
+              label: l10n.settingsStatObservations,
+              value: l10n.settingsStatObservationsValue(obsCount),
               icon: Icons.history,
               color: Colors.teal,
             ),
             Container(width: 1, height: 48, color: Colors.grey.shade300),
             _StatItem(
-              label: '観測難易度',
+              label: l10n.settingsStatDifficulty,
               value: '★★★',
               icon: Icons.emoji_events,
               color: Colors.amber.shade700,
@@ -497,10 +570,12 @@ class _StatItem extends StatelessWidget {
 class _AchievementsCard extends StatelessWidget {
   final List<Achievement> achievements;
   final int unlockedCount;
+  final String title;
 
   const _AchievementsCard({
     required this.achievements,
     required this.unlockedCount,
+    required this.title,
   });
 
   @override
@@ -515,7 +590,7 @@ class _AchievementsCard extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  '実績・称号',
+                  title,
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                         fontWeight: FontWeight.bold,
@@ -612,6 +687,10 @@ class _AchievementTile extends StatelessWidget {
 }
 
 class _PremiumBanner extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  const _PremiumBanner({required this.title, required this.subtitle});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -632,17 +711,17 @@ class _PremiumBanner extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'プレミアムにアップグレード',
-                    style: TextStyle(
+                  Text(
+                    title,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
                   ),
-                  const Text(
-                    '全88星座 + タイムカプセル完全解放',
-                    style: TextStyle(color: Colors.white70, fontSize: 12),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(color: Colors.white70, fontSize: 12),
                   ),
                 ],
               ),

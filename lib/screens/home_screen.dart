@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../l10n/generated/app_localizations.dart';
 import '../providers/timecapsule_provider.dart';
 import '../widgets/observation_tab.dart';
 import '../widgets/catalog_tab.dart';
@@ -28,13 +29,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final activeEvents = ref.watch(activeEventsProvider);
     final hasActive = activeEvents.isNotEmpty;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('⭐ 星座コレ！'),
+            Text(l10n.homeAppBarTitle),
           ],
         ),
         centerTitle: true,
@@ -73,25 +75,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         onDestinationSelected: (index) {
           setState(() => _selectedIndex = index);
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.radar_outlined),
-            selectedIcon: Icon(Icons.radar),
-            label: '観測',
+            icon: const Icon(Icons.radar_outlined),
+            selectedIcon: const Icon(Icons.radar),
+            label: l10n.navObservation,
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: '図鑑',
+            icon: const Icon(Icons.menu_book_outlined),
+            selectedIcon: const Icon(Icons.menu_book),
+            label: l10n.navCatalog,
           ),
           NavigationDestination(
-            icon: Icon(Icons.history),
-            label: '記録',
+            icon: const Icon(Icons.history),
+            label: l10n.navRecords,
           ),
           NavigationDestination(
-            icon: Icon(Icons.person_outline),
-            selectedIcon: Icon(Icons.person),
-            label: '設定',
+            icon: const Icon(Icons.person_outline),
+            selectedIcon: const Icon(Icons.person),
+            label: l10n.navSettings,
           ),
         ],
       ),

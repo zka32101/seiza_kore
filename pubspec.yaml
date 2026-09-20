@@ -47,6 +47,9 @@ dependencies:
   # 3D太陽系ビュー
   webview_flutter: ^4.7.0
 
+  # 位置情報（現在地の星空・光害表示）
+  geolocator: ^13.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -74,16 +74,20 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
             ),
           ),
 
-          // 天体切り替えタブ
+          // 天体切り替えタブ（横スクロール）
           Container(
             color: const Color(0xFF0A0E28),
-            child: Row(
-              children: celestialBodies.values.map((b) {
-                final selected = b.id == _selectedBodyId;
-                return Expanded(
-                  child: InkWell(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: solarSystemDisplayOrder.map((id) {
+                  final b = celestialBodies[id];
+                  if (b == null) return const SizedBox.shrink();
+                  final selected = b.id == _selectedBodyId;
+                  return InkWell(
                     onTap: () => setState(() => _selectedBodyId = b.id),
                     child: Container(
+                      width: 76,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       decoration: BoxDecoration(
                         border: Border(
@@ -106,15 +110,16 @@ class _SolarSystemScreenState extends State<SolarSystemScreen> {
                               fontWeight: selected
                                   ? FontWeight.bold
                                   : FontWeight.normal,
-                              fontSize: 13,
+                              fontSize: 12,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           ),
 

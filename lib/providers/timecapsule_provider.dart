@@ -91,6 +91,42 @@ final _events2026 = [
     description: '皆既月食が起こる特別な夜。月が地球の影に完全に入り込み、赤銅色の「ブラッドムーン」が現れる幻想的な天文現象。ゆっくりと色が変わっていく様子を観察しよう。',
     emoji: '🌕',
   ),
+  TimecapsuleEvent(
+    id: 'eta_aquariid_2026',
+    name: 'みずがめ座η流星群',
+    type: TimecapsuleEventType.meteor,
+    openTime: DateTime(2026, 5, 5, 3, 0),
+    closeTime: DateTime(2026, 5, 6, 4, 30),
+    description: 'ハレー彗星のちりを起源とする流星群。ピークは明け方に近づくほど好条件になり、1時間に数十個の流星が期待できる。南の空低くから流れることが多いので、見晴らしの良い場所がおすすめ。',
+    emoji: '☄️',
+  ),
+  TimecapsuleEvent(
+    id: 'orionid_2026',
+    name: 'オリオン座流星群',
+    type: TimecapsuleEventType.meteor,
+    openTime: DateTime(2026, 10, 21, 22, 0),
+    closeTime: DateTime(2026, 10, 22, 5, 0),
+    description: 'こちらもハレー彗星が起源。オリオン座の頭の近くを放射点として、1時間に10〜20個ほどの流星が見られる。冬の入り口、澄んだ夜空での観測に向いている。',
+    emoji: '🏹',
+  ),
+  TimecapsuleEvent(
+    id: 'leonid_2026',
+    name: 'しし座流星群',
+    type: TimecapsuleEventType.meteor,
+    openTime: DateTime(2026, 11, 17, 23, 0),
+    closeTime: DateTime(2026, 11, 18, 5, 30),
+    description: 'かつて「流星雨」として1時間に数千個も出現した記録を持つ流星群。テンペル・タットル彗星を起源とし、普段は控えめだが速く明るい流星が多い。真夜中過ぎが観測のねらい目。',
+    emoji: '🦁',
+  ),
+  TimecapsuleEvent(
+    id: 'jupiter_opposition_2026',
+    name: '木星が見頃（衝）',
+    type: TimecapsuleEventType.conjunction,
+    openTime: DateTime(2026, 1, 10, 18, 0),
+    closeTime: DateTime(2026, 2, 10, 23, 59),
+    description: '木星が地球から見て太陽の反対側にくる「衝」の時期。一晩中観測でき、地球との距離も近くなるため一年で最も明るく大きく見える。双眼鏡でもガリレオ衛星（4つの月）が見えることがある。',
+    emoji: '🪐',
+  ),
 ];
 
 final activeEventsProvider = Provider<List<TimecapsuleEvent>>((ref) {

@@ -1,14 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../services/bortle_service.dart';
+import '../services/location_service.dart';
 import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
 
-class LightPollutionMapScreen extends ConsumerWidget {
+class LightPollutionMapScreen extends ConsumerStatefulWidget {
   const LightPollutionMapScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LightPollutionMapScreen> createState() =>
+      _LightPollutionMapScreenState();
+}
+
+class _LightPollutionMapScreenState
+    extends ConsumerState<LightPollutionMapScreen> {
+  bool _loadingLocation = false;
+  int? _currentBortle;
+  String? _locationError;
+
+  Future<void> _detectCurrentLocation() async {
+    setState(() {
+      _loadingLocation = true;
+      _locationError = null;
+    });
+    final result = await LocationService.getCurrentLocation();
+    if (!mounted) return;
+    switch (result) {
+      case LocationSuccess(:final latitude, :final longitude):
+        final bortle =
+            BortleService.instance.getBortleScale(latitude, longitude);
+        setState(() {
+          _currentBortle = bortle;
+          _loadingLocation = false;
+        });
+      case LocationFailure(:final message):
+        setState(() {
+          _locationError = message;
+          _loadingLocation = false;
+        });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final observations = ref.watch(observationListProvider);
     final constellations = ref.watch(constellationListProvider);
 
@@ -26,6 +61,15 @@ class LightPollutionMapScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Current location Bortle detection
+                _CurrentLocationCard(
+                  loading: _loadingLocation,
+                  bortle: _currentBortle,
+                  error: _locationError,
+                  onDetect: _detectCurrentLocation,
+                ),
+                const SizedBox(height: 24),
+
                 // Header explanation
                 Card(
                   color: Colors.blue.shade50,
@@ -266,6 +310,86 @@ class LightPollutionMapScreen extends ConsumerWidget {
       9: 1,
     };
     return counts[bortle] ?? 0;
+  }
+}
+
+class _CurrentLocationCard extends StatelessWidget {
+  final bool loading;
+  final int? bortle;
+  final String? error;
+  final VoidCallback onDetect;
+
+  const _CurrentLocationCard({
+    required this.loading,
+    required this.bortle,
+    required this.error,
+    required this.onDetect,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final service = BortleService.instance;
+    final info = bortle != null ? service.getBortleInfo(bortle!) : null;
+
+    return Card(
+      color: Colors.indigo.shade50,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.my_location, color: Colors.indigo.shade700),
+                const SizedBox(width: 8),
+                Text(
+                  '現在地の光害レベル',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.indigo.shade800,
+                      ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            if (info != null) ...[
+              Text(
+                'Bortle ${bortle}: ${info.label}',
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              const SizedBox(height: 4),
+              Text(info.description, style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: 4),
+              Text(
+                '観測難易度の目安: ${service.getDifficultyLabel(bortle!)}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 12),
+            ] else if (error != null) ...[
+              Text(
+                error!,
+                style: TextStyle(color: Colors.red.shade700, fontSize: 13),
+              ),
+              const SizedBox(height: 12),
+            ],
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: loading ? null : onDetect,
+                icon: loading
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.gps_fixed, size: 18),
+                label: Text(loading ? '取得中...' : '現在地から診断する'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

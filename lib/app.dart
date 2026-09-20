@@ -19,6 +19,7 @@ import 'screens/feedback_screen.dart';
 import 'screens/solar_system_screen.dart';
 import 'screens/night_sky_screen.dart';
 import 'screens/ranking_screen.dart';
+import 'screens/quiz_screen.dart';
 
 class SeizaKoreApp extends ConsumerWidget {
   const SeizaKoreApp({super.key});
@@ -153,6 +154,10 @@ final GoRouter _router = GoRouter(
     GoRoute(
       path: '/ranking',
       builder: (context, state) => const RankingScreen(),
+    ),
+    GoRoute(
+      path: '/quiz',
+      builder: (context, state) => const QuizScreen(),
     ),
   ],
 );

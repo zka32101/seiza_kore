@@ -94,6 +94,10 @@ class ObservationTab extends ConsumerWidget {
 
                 // Night sky map button
                 _NightSkyButton(),
+                const SizedBox(height: 12),
+
+                // Daily quiz button
+                _QuizButton(),
                 const SizedBox(height: 20),
 
                 // Recent observations
@@ -541,6 +545,67 @@ class _EmptyObservations extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _QuizButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/quiz'),
+      child: Container(
+        width: double.infinity,
+        height: 84,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.pink.shade700,
+              Colors.deepPurple.shade800,
+            ],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.pink.withAlpha(60),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Text('❓', style: TextStyle(fontSize: 32)),
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '今日の星座クイズ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '5問チャレンジで星座博士を目指そう',
+                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+            ],
+          ),
         ),
       ),
     );

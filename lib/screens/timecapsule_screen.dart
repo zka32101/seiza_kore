@@ -5,12 +5,14 @@ import '../providers/timecapsule_provider.dart';
 import '../providers/constellation_time_capsule_provider.dart';
 import '../models/timecapsule_event.dart';
 import '../models/constellation_time_capsule.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class TimecapsuleScreen extends ConsumerWidget {
   const TimecapsuleScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final activeEvents = ref.watch(activeEventsProvider);
     final upcomingEvents = ref.watch(upcomingEventsProvider);
     final pastEvents = ref.watch(pastEventsProvider);
@@ -24,7 +26,7 @@ class TimecapsuleScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('⏰ タイムカプセル天体'),
+        title: Text(l10n.timecapsuleTitle),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -46,7 +48,7 @@ class TimecapsuleScreen extends ConsumerWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        '特定の天文イベント期間中のみ解放される特別なページです。見逃したら来年までお預け！',
+                        l10n.timecapsuleHeaderExplanation,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                               color:
                                   Theme.of(context).colorScheme.onPrimaryContainer,

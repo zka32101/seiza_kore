@@ -17,11 +17,12 @@ class SettingsTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
     final obsCount = ref.watch(observationListProvider).length;
-    final userTitle = ref.watch(userTitleProvider);
+    final userTitle = userTitleLabel(ref.watch(userTitleProvider), lang);
     final achievements = ref.watch(achievementsProvider);
     final unlockedAchCount = ref.watch(unlockedAchievementCountProvider);
     final hasUnseenUpdate = ref.watch(hasUnseenUpdateProvider);
@@ -625,6 +626,7 @@ class _AchievementTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final lang = Localizations.localeOf(context).languageCode;
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: a.isUnlocked
@@ -636,7 +638,7 @@ class _AchievementTile extends StatelessWidget {
         ),
       ),
       title: Text(
-        a.title,
+        a.localizedTitle(lang),
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: a.isUnlocked ? null : Colors.grey.shade500,
@@ -646,7 +648,7 @@ class _AchievementTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            a.description,
+            a.localizedDescription(lang),
             style: TextStyle(
               fontSize: 12,
               color: a.isUnlocked ? null : Colors.grey.shade400,

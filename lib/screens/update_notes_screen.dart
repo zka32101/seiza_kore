@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../data/update_notes_data.dart';
 import '../providers/update_notes_provider.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class UpdateNotesScreen extends ConsumerStatefulWidget {
   const UpdateNotesScreen({super.key});
@@ -23,9 +24,11 @@ class _UpdateNotesScreenState extends ConsumerState<UpdateNotesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('更新履歴'),
+        title: Text(l10n.updateNotesTitle),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => context.pop(),
@@ -62,9 +65,9 @@ class _UpdateNotesScreenState extends ConsumerState<UpdateNotesScreen> {
                             color: Colors.amber,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Text(
-                            '最新',
-                            style: TextStyle(
+                          child: Text(
+                            l10n.updateNotesLatestBadge,
+                            style: const TextStyle(
                               fontSize: 11,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
@@ -74,13 +77,13 @@ class _UpdateNotesScreenState extends ConsumerState<UpdateNotesScreen> {
                       ],
                       const Spacer(),
                       Text(
-                        note.date,
+                        note.localizedDate(lang),
                         style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
                       ),
                     ],
                   ),
                   const SizedBox(height: 12),
-                  ...note.highlights.map(
+                  ...note.localizedHighlights(lang).map(
                     (h) => Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: Text(h, style: const TextStyle(height: 1.4)),

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../models/feedback_item.dart';
 import '../providers/feedback_provider.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class FeedbackScreen extends ConsumerStatefulWidget {
   const FeedbackScreen({super.key});
@@ -26,11 +27,12 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
   }
 
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context)!;
     final title = _titleController.text.trim();
     final detail = _detailController.text.trim();
     if (title.isEmpty || detail.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('タイトルと内容を入力してください')),
+        SnackBar(content: Text(l10n.feedbackValidationError)),
       );
       return;
     }
@@ -51,8 +53,8 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('送信しました。ご協力ありがとうございます！'),
+      SnackBar(
+        content: Text(l10n.feedbackSubmitSuccess),
         backgroundColor: Colors.green,
       ),
     );
@@ -60,11 +62,12 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final items = ref.watch(feedbackListProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ご意見・不具合報告'),
+        title: Text(l10n.feedbackTitle),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => context.pop(),
@@ -74,14 +77,14 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            'アプリの改善に役立てます。気づいたことを気軽に送ってください。',
+            l10n.feedbackIntro,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.grey.shade600,
                 ),
           ),
           const SizedBox(height: 16),
 
-          _SectionLabel('種類'),
+          _SectionLabel(l10n.feedbackCategoryLabel),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
@@ -95,25 +98,25 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
           ),
           const SizedBox(height: 20),
 
-          _SectionLabel('タイトル'),
+          _SectionLabel(l10n.feedbackTitleLabel),
           const SizedBox(height: 8),
           TextField(
             controller: _titleController,
-            decoration: const InputDecoration(
-              hintText: '例: AR観測画面がクラッシュする',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: l10n.feedbackTitleHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 20),
 
-          _SectionLabel('詳細'),
+          _SectionLabel(l10n.feedbackDetailLabel),
           const SizedBox(height: 8),
           TextField(
             controller: _detailController,
             maxLines: 5,
-            decoration: const InputDecoration(
-              hintText: '状況や再現手順、要望の背景などを書いてください',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: l10n.feedbackDetailHint,
+              border: const OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 24),
@@ -133,9 +136,9 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
                       ),
                     )
                   : const Icon(Icons.send),
-              label: const Text(
-                '送信する',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              label: Text(
+                l10n.feedbackSubmitButton,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary,
@@ -146,7 +149,7 @@ class _FeedbackScreenState extends ConsumerState<FeedbackScreen> {
 
           if (items.isNotEmpty) ...[
             const SizedBox(height: 32),
-            _SectionLabel('これまでの送信 (${items.length}件)'),
+            _SectionLabel(l10n.feedbackHistoryLabel(items.length)),
             const SizedBox(height: 8),
             ...items.map((item) => _FeedbackTile(item: item)),
           ],
@@ -163,6 +166,7 @@ class _FeedbackTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: ListTile(
@@ -183,7 +187,7 @@ class _FeedbackTile extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              '送信済み',
+              l10n.feedbackSentStatus,
               style: TextStyle(fontSize: 10, color: Colors.green.shade600),
             ),
           ],

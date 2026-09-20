@@ -8,12 +8,14 @@ import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
 import 'starfield_background.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class ObservationTab extends ConsumerWidget {
   const ObservationTab({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final observations = ref.watch(observationListProvider);
     final activeEvents = ref.watch(activeEventsProvider);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
@@ -47,9 +49,9 @@ class ObservationTab extends ConsumerWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            '今すぐ観測チャンス！',
-                            style: TextStyle(
+                          Text(
+                            l10n.observationTabActiveEventTitle,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -102,7 +104,7 @@ class ObservationTab extends ConsumerWidget {
 
                 // Recent observations
                 Text(
-                  '最近の観測',
+                  l10n.observationTabRecentObservations,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -133,6 +135,8 @@ class _TodayCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final now = DateTime.now();
     final hour = now.hour;
     final bool isNight = hour >= 20 || hour < 6;
@@ -140,19 +144,19 @@ class _TodayCard extends StatelessWidget {
     String greeting;
     String greetingIcon;
     if (hour < 5) {
-      greeting = '深夜の星空観測に最適';
+      greeting = l10n.observationTabGreetingLateNight;
       greetingIcon = '🌌';
     } else if (hour < 12) {
-      greeting = '今夜の観測計画を立てよう';
+      greeting = l10n.observationTabGreetingMorning;
       greetingIcon = '🌅';
     } else if (hour < 17) {
-      greeting = '日没後に星座を探しに行こう';
+      greeting = l10n.observationTabGreetingAfternoon;
       greetingIcon = '☀️';
     } else if (hour < 20) {
-      greeting = 'もうすぐ星が輝き始めます';
+      greeting = l10n.observationTabGreetingEvening;
       greetingIcon = '🌆';
     } else {
-      greeting = '今夜は絶好の観測日和！';
+      greeting = l10n.observationTabGreetingNight;
       greetingIcon = '✨';
     }
 
@@ -162,7 +166,7 @@ class _TodayCard extends StatelessWidget {
     final moonGood = MoonService.isGoodForObservation(moonAge);
 
     final recommendedName = recommendedAsync.when(
-      data: (c) => c?.nameJa ?? '—',
+      data: (c) => c == null ? '—' : (lang == 'en' ? c.nameEn : c.nameJa),
       loading: () => '...',
       error: (_, __) => '—',
     );
@@ -212,19 +216,21 @@ class _TodayCard extends StatelessWidget {
                     _NightStat(
                       icon: '📚',
                       value: '$unlockedCount/88',
-                      label: '図鑑',
+                      label: l10n.observationTabCatalogLabel,
                     ),
                     _NightDivider(),
                     _NightStat(
                       icon: recommendedEmoji,
                       value: recommendedName,
-                      label: '今月の推奨',
+                      label: l10n.observationTabRecommendedLabel,
                     ),
                     _NightDivider(),
                     _NightStat(
                       icon: moonEmoji,
-                      value: '${moonAge.toInt()}日',
-                      label: moonGood ? '観測◎' : '月明かり注意',
+                      value: l10n.observationTabMoonAgeDays(moonAge.toInt()),
+                      label: moonGood
+                          ? l10n.observationTabObservationGood
+                          : l10n.observationTabMoonlightCaution,
                       labelColor: moonGood
                           ? const Color(0xFF88DDAA)
                           : const Color(0xFFFFCC77),
@@ -301,6 +307,7 @@ class _NightDivider extends StatelessWidget {
 class _ARButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/ar'),
       child: Container(

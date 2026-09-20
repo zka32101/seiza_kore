@@ -5,6 +5,7 @@ import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../models/observation.dart';
 import '../services/share_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class RecordsTab extends ConsumerWidget {
   const RecordsTab({super.key});

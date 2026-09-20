@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/constellation_provider.dart';
 import '../models/quiz_question.dart';
 import '../services/quiz_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 /// 星座デイリークイズ画面。星座図鑑のデータから毎日5問の4択クイズを出題する。
 class QuizScreen extends ConsumerStatefulWidget {
@@ -38,12 +39,14 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final constellationsAsync = ref.watch(constellationListProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFF0D1230),
       appBar: AppBar(
-        title: const Text('今日の星座クイズ'),
+        title: Text(l10n.quizTitle),
         backgroundColor: const Color(0xFF0A0E28),
         foregroundColor: Colors.white,
       ),
@@ -51,17 +54,19 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
         loading: () =>
             const Center(child: CircularProgressIndicator(color: Colors.white70)),
         error: (e, _) => Center(
-          child: Text('読み込みエラー: $e', style: const TextStyle(color: Colors.white70)),
+          child: Text(l10n.quizLoadError(e.toString()),
+              style: const TextStyle(color: Colors.white70)),
         ),
         data: (all) {
           final questions = QuizService.generateDailyQuiz(
             constellations: all,
             date: DateTime.now(),
+            languageCode: lang,
           );
 
           if (questions.isEmpty) {
-            return const Center(
-              child: Text('クイズを準備できませんでした', style: TextStyle(color: Colors.white70)),
+            return Center(
+              child: Text(l10n.quizNotReady, style: const TextStyle(color: Colors.white70)),
             );
           }
 

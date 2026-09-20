@@ -173,13 +173,13 @@ class TimecapsuleScreen extends ConsumerWidget {
             ),
             if (activeCapsules.isNotEmpty) ...[
               const SizedBox(height: 16),
-              _SectionHeader('🔓 今すぐ見られる', color: Colors.green),
+              _SectionHeader(l10n.timecapsuleSectionCapsuleActiveNow, color: Colors.green),
               const SizedBox(height: 8),
               ...activeCapsules.map((c) => _ConstellationCapsuleCard(capsule: c)),
             ],
             if (upcomingCapsules.isNotEmpty) ...[
               const SizedBox(height: 16),
-              _SectionHeader('⏳ 待機中の星座', color: Colors.orange),
+              _SectionHeader(l10n.timecapsuleSectionCapsuleWaiting, color: Colors.orange),
               const SizedBox(height: 8),
               ...upcomingCapsules.map((c) => _ConstellationCapsuleCard(capsule: c)),
             ],
@@ -220,6 +220,7 @@ class _ActiveEventCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final hoursLeft = event.closeTime.difference(DateTime.now()).inHours;
 
     return Card(
@@ -252,9 +253,9 @@ class _ActiveEventCard extends ConsumerWidget {
                               color: Colors.green,
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Text(
-                              '解放中',
-                              style: TextStyle(
+                            child: Text(
+                              l10n.timecapsuleBadgeActive,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 11,
                                 fontWeight: FontWeight.bold,
@@ -263,7 +264,7 @@ class _ActiveEventCard extends ConsumerWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            '残り$hoursLeft時間',
+                            l10n.timecapsuleHoursLeft(hoursLeft),
                             style: TextStyle(
                               color: Colors.orange.shade700,
                               fontWeight: FontWeight.bold,
@@ -296,7 +297,7 @@ class _ActiveEventCard extends ConsumerWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => _showRecordDialog(context, ref),
                     icon: const Icon(Icons.edit_note),
-                    label: const Text('観測を記録する'),
+                    label: Text(l10n.timecapsuleRecordButton),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
                       foregroundColor: Colors.white,
@@ -318,9 +319,13 @@ class _UpcomingEventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final daysLeft = event.daysUntilOpen;
-    final dateStr =
-        '${event.openTime.month}月${event.openTime.day}日〜${event.closeTime.month}月${event.closeTime.day}日';
+    final dateStr = l10n.timecapsuleDateRange(
+      DateFormat.MMMd(lang).format(event.openTime),
+      DateFormat.MMMd(lang).format(event.closeTime),
+    );
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
@@ -387,7 +392,7 @@ class _UpcomingEventCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '日後',
+                        l10n.timecapsuleDaysUnit,
                         style: TextStyle(
                           color: Colors.orange.shade700,
                           fontSize: 10,
@@ -411,7 +416,10 @@ class _UpcomingEventCard extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              'あと$daysLeftLabel（${_formatDate(event.openTime)}）に解放されます',
+              l10n.timecapsuleUnlocksIn(
+                daysLeft,
+                DateFormat.MMMd(lang).format(event.openTime),
+              ),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: Colors.grey.shade600,
                   ),
@@ -422,19 +430,11 @@ class _UpcomingEventCard extends StatelessWidget {
     );
   }
 
-  String get daysLeftLabel {
-    final d = event.daysUntilOpen;
-    return '$d日';
-  }
-
   double _progressToOpen(TimecapsuleEvent event) {
     const totalDays = 365;
     final daysLeft = event.daysUntilOpen;
     return ((totalDays - daysLeft) / totalDays).clamp(0.0, 1.0);
   }
-
-  String _formatDate(DateTime dt) =>
-      '${dt.month}/${dt.day}';
 }
 
 class _RecordDialog extends ConsumerStatefulWidget {
@@ -468,10 +468,11 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
     );
     await ref.read(timecapsuleRecordListProvider.notifier).addRecord(record);
     if (!mounted) return;
+    final l10n = AppLocalizations.of(context)!;
     Navigator.of(context).pop();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('${widget.event.name}の観測を記録しました！'),
+        content: Text(l10n.timecapsuleRecordSaved(widget.event.name)),
         backgroundColor: Colors.green,
       ),
     );
@@ -479,6 +480,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final isMeteor = widget.event.type == TimecapsuleEventType.meteor;
     return AlertDialog(
       title: Row(
@@ -499,9 +501,9 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (isMeteor) ...[
-              const Text(
-                '見た流れ星の数',
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                l10n.timecapsuleMeteorCountLabel,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 4),
               Row(
@@ -512,7 +514,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
                       min: 0,
                       max: 100,
                       divisions: 20,
-                      label: '$_meteorCount個',
+                      label: l10n.timecapsuleMeteorCountValue(_meteorCount),
                       activeColor: Colors.green,
                       onChanged: (v) =>
                           setState(() => _meteorCount = v.round()),
@@ -521,7 +523,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
                   SizedBox(
                     width: 44,
                     child: Text(
-                      '$_meteorCount個',
+                      l10n.timecapsuleMeteorCountValue(_meteorCount),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.right,
                     ),
@@ -530,17 +532,17 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
               ),
               const SizedBox(height: 12),
             ],
-            const Text(
-              '観測メモ',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              l10n.timecapsuleNotesLabel,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             TextField(
               controller: _notesController,
               maxLines: 3,
-              decoration: const InputDecoration(
-                hintText: '今夜の特別な体験を記録しよう...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: l10n.timecapsuleNotesHint,
+                border: const OutlineInputBorder(),
               ),
             ),
           ],
@@ -549,7 +551,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('キャンセル'),
+          child: Text(l10n.commonCancel),
         ),
         ElevatedButton(
           onPressed: _isSaving ? null : _save,
@@ -563,7 +565,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
                   height: 16,
                   child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
                 )
-              : const Text('記録する'),
+              : Text(l10n.timecapsuleSaveRecord),
         ),
       ],
     );
@@ -577,6 +579,7 @@ class _MyRecordCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final event = events.where((e) => e.id == record.eventId).firstOrNull;
     final dateStr =
         '${record.observedAt.year}/${record.observedAt.month.toString().padLeft(2, '0')}/${record.observedAt.day.toString().padLeft(2, '0')} '
@@ -609,7 +612,7 @@ class _MyRecordCard extends StatelessWidget {
                   ),
                   if (record.meteorCount > 0)
                     Text(
-                      '流れ星: ${record.meteorCount}個',
+                      l10n.timecapsuleMeteorCountRecord(record.meteorCount),
                       style: TextStyle(
                         color: Colors.amber.shade700,
                         fontSize: 12,
@@ -643,8 +646,9 @@ class _PastEventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateStr =
-        '${event.openTime.year}年${event.openTime.month}月${event.openTime.day}日';
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
+    final dateStr = DateFormat.yMMMMd(lang).format(event.openTime);
 
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
@@ -668,10 +672,10 @@ class _PastEventCard extends StatelessWidget {
         trailing: OutlinedButton(
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('過去の記録を表示（プレミアム機能）')),
+              SnackBar(content: Text(l10n.timecapsulePastRecordPremium)),
             );
           },
-          child: const Text('記録を見る'),
+          child: Text(l10n.timecapsuleViewRecord),
         ),
       ),
     );
@@ -684,6 +688,8 @@ class _ConstellationCapsuleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       color: capsule.isUnlocked ? Colors.green.shade50 : Colors.orange.shade50,
@@ -705,13 +711,15 @@ class _ConstellationCapsuleCard extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    '保存: ${DateFormat('y/M/d').format(capsule.recordedAt)}',
+                    l10n.timecapsuleSavedLabel(
+                      DateFormat.yMd(lang).format(capsule.recordedAt),
+                    ),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: Colors.grey.shade600,
                         ),
                   ),
                   Text(
-                    '解放: ${capsule.getFormattedReleaseDate()}',
+                    l10n.timecapsuleReleaseLabel(capsule.getFormattedReleaseDate()),
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: capsule.isUnlocked ? Colors.green.shade700 : Colors.orange.shade700,
                           fontWeight: FontWeight.bold,

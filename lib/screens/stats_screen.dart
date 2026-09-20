@@ -6,28 +6,32 @@ import '../providers/observation_provider.dart';
 import '../providers/achievement_provider.dart';
 import '../models/observation.dart';
 import '../services/bortle_service.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class StatsScreen extends ConsumerWidget {
   const StatsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
     final favoriteCount = ref.watch(favoriteIdsProvider).length;
     final observations = ref.watch(observationListProvider);
     final constellationsAsync = ref.watch(constellationListProvider);
     final earnedCount = ref.watch(unlockedAchievementCountProvider);
-    final userTitle = ref.watch(userTitleProvider);
+    final userTitleId = ref.watch(userTitleProvider);
+    final userTitle = userTitleLabel(userTitleId, lang);
     final totalAchievements = ref.watch(achievementsProvider).length;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('詳細統計'),
+        title: Text(l10n.statsTitle),
         centerTitle: true,
       ),
       body: constellationsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, _) => Center(child: Text('エラー: $e')),
+        error: (e, _) => Center(child: Text(l10n.statsLoadError(e.toString()))),
         data: (constellations) {
           final progress = unlockedCount / 88;
           final dark = observations.where((o) => o.bortleScale <= 3).length;
@@ -68,7 +72,7 @@ class StatsScreen extends ConsumerWidget {
                                       ),
                                 ),
                                 Text(
-                                  '実績 $earnedCount / $totalAchievements 解除',
+                                  l10n.statsAchievementsUnlocked(earnedCount, totalAchievements),
                                   style: Theme.of(context).textTheme.labelSmall,
                                 ),
                               ],

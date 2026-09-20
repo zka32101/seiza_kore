@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/constellation_provider.dart';
 import '../models/constellation.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class CatalogTab extends ConsumerStatefulWidget {
   const CatalogTab({super.key});
@@ -22,6 +23,7 @@ class _CatalogTabState extends ConsumerState<CatalogTab> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final filter = ref.watch(catalogFilterProvider);
     final sort = ref.watch(catalogSortProvider);
     final constellationsAsync = ref.watch(filteredConstellationsProvider);
@@ -39,7 +41,7 @@ class _CatalogTabState extends ConsumerState<CatalogTab> {
                 child: TextField(
                   controller: _searchController,
                   decoration: InputDecoration(
-                    hintText: '星座を検索...',
+                    hintText: l10n.catalogSearchHint,
                     prefixIcon: const Icon(Icons.search, size: 20),
                     suffixIcon: _searchController.text.isNotEmpty
                         ? IconButton(
@@ -88,7 +90,7 @@ class _CatalogTabState extends ConsumerState<CatalogTab> {
         Expanded(
           child: constellationsAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text('エラー: $e')),
+            error: (e, _) => Center(child: Text(l10n.catalogErrorMessage('$e'))),
             data: (constellations) => constellations.isEmpty
                 ? const _EmptySearchResult()
                 : _ConstellationGrid(
@@ -108,6 +110,7 @@ class _FilterButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final minDiff = ref.watch(catalogMinDifficultyProvider);
     final maxDiff = ref.watch(catalogMaxDifficultyProvider);
     final visibility = ref.watch(catalogVisibilityProvider);
@@ -141,7 +144,7 @@ class _FilterButton extends ConsumerWidget {
             builder: (_) => _FilterModal(),
           );
         },
-        tooltip: 'フィルタ',
+        tooltip: l10n.catalogFilterTooltip,
       ),
     );
   }
@@ -152,6 +155,7 @@ class _FilterModal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final minDiff = ref.watch(catalogMinDifficultyProvider);
     final maxDiff = ref.watch(catalogMaxDifficultyProvider);
     final visibility = ref.watch(catalogVisibilityProvider);
@@ -164,7 +168,7 @@ class _FilterModal extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            '詳細フィルタ',
+            l10n.catalogAdvancedFilterTitle,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -173,7 +177,7 @@ class _FilterModal extends ConsumerWidget {
 
           // 難易度フィルタ
           Text(
-            '難易度（★）',
+            l10n.catalogDifficultyLabel,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -194,7 +198,7 @@ class _FilterModal extends ConsumerWidget {
 
           // 可視性フィルタ
           Text(
-            '可視性',
+            l10n.catalogVisibilityLabel,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -204,13 +208,13 @@ class _FilterModal extends ConsumerWidget {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('全て'),
+                label: Text(l10n.catalogAll),
                 selected: visibility == 'all',
                 onSelected: (_) =>
                     ref.read(catalogVisibilityProvider.notifier).state = 'all',
               ),
               FilterChip(
-                label: const Text('今月の見頃'),
+                label: Text(l10n.catalogVisibilityCurrent),
                 selected: visibility == 'current',
                 onSelected: (_) =>
                     ref.read(catalogVisibilityProvider.notifier).state = 'current',
@@ -221,7 +225,7 @@ class _FilterModal extends ConsumerWidget {
 
           // 解放状況フィルタ
           Text(
-            '解放状況',
+            l10n.catalogUnlockedStatusLabel,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -231,20 +235,20 @@ class _FilterModal extends ConsumerWidget {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('全て'),
+                label: Text(l10n.catalogAll),
                 selected: unlockedFilter == 'all',
                 onSelected: (_) =>
                     ref.read(catalogUnlockedFilterProvider.notifier).state = 'all',
               ),
               FilterChip(
-                label: const Text('解放済み'),
+                label: Text(l10n.catalogUnlockedYes),
                 selected: unlockedFilter == 'unlocked',
                 onSelected: (_) => ref
                     .read(catalogUnlockedFilterProvider.notifier)
                     .state = 'unlocked',
               ),
               FilterChip(
-                label: const Text('未解放'),
+                label: Text(l10n.catalogUnlockedNo),
                 selected: unlockedFilter == 'locked',
                 onSelected: (_) =>
                     ref.read(catalogUnlockedFilterProvider.notifier).state = 'locked',
@@ -263,7 +267,7 @@ class _FilterModal extends ConsumerWidget {
                 ref.read(catalogVisibilityProvider.notifier).state = 'all';
                 ref.read(catalogUnlockedFilterProvider.notifier).state = 'all';
               },
-              child: const Text('フィルタをリセット'),
+              child: Text(l10n.catalogResetFilter),
             ),
           ),
         ],
@@ -278,10 +282,11 @@ class _SortButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final options = [
-      ('name', '登録順', Icons.sort),
-      ('difficulty', '易しい順', Icons.star_outline),
-      ('difficulty_desc', '難しい順', Icons.star),
+      ('name', l10n.catalogSortName, Icons.sort),
+      ('difficulty', l10n.catalogSortEasy, Icons.star_outline),
+      ('difficulty_desc', l10n.catalogSortHard, Icons.star),
     ];
 
     return PopupMenuButton<String>(
@@ -291,7 +296,7 @@ class _SortButton extends ConsumerWidget {
         isLabelVisible: currentSort != 'name',
         child: const Icon(Icons.sort),
       ),
-      tooltip: 'ソート',
+      tooltip: l10n.catalogSortTooltip,
       itemBuilder: (_) => options
           .map(
             (o) => PopupMenuItem(
@@ -336,12 +341,13 @@ class _CategoryFilter extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final categories = [
-      ('all', '全て', null),
-      (ConstellationCategory.zodiac, '黄道12', null),
-      (ConstellationCategory.northern, '北天', null),
-      (ConstellationCategory.southern, '南天', null),
-      ('favorites', '♥ お気に入り', favoriteCount > 0 ? favoriteCount : null),
+      ('all', l10n.catalogAll, null),
+      (ConstellationCategory.zodiac, l10n.categoryZodiac, null),
+      (ConstellationCategory.northern, l10n.categoryNorthern, null),
+      (ConstellationCategory.southern, l10n.categorySouthern, null),
+      ('favorites', '♥ ${l10n.catalogFavorites}', favoriteCount > 0 ? favoriteCount : null),
     ];
 
     return SingleChildScrollView(
@@ -395,13 +401,14 @@ class _ProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final progress = unlocked / total;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: Row(
         children: [
           Text(
-            '取得数: $unlocked/$total',
+            l10n.catalogUnlockedCount(unlocked, total),
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -467,6 +474,7 @@ class _EmptySearchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -474,7 +482,7 @@ class _EmptySearchResult extends StatelessWidget {
           Icon(Icons.search_off, size: 56, color: Colors.grey.shade300),
           const SizedBox(height: 12),
           Text(
-            '見つかりませんでした',
+            l10n.catalogNoResults,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Colors.grey.shade500,
                 ),
@@ -550,6 +558,7 @@ class _ConstellationCardState extends ConsumerState<_ConstellationCard>
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final lang = Localizations.localeOf(context).languageCode;
 
     return GestureDetector(
       onTapDown: (_) => _tapCtrl.forward(),
@@ -598,7 +607,9 @@ class _ConstellationCardState extends ConsumerState<_ConstellationCard>
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6),
                       child: Text(
-                        widget.constellation.nameJa,
+                        lang == 'en'
+                            ? widget.constellation.nameEn
+                            : widget.constellation.nameJa,
                         textAlign: TextAlign.center,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

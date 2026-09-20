@@ -491,10 +491,13 @@ class _RecentObservationTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final lang = Localizations.localeOf(context).languageCode;
     final constellationAsync =
         ref.watch(constellationByIdProvider(observation.constellationId));
     final constName = constellationAsync.when(
-      data: (c) => c?.nameJa ?? observation.constellationId,
+      data: (c) => c == null
+          ? observation.constellationId
+          : (lang == 'en' ? c.nameEn : c.nameJa),
       loading: () => '...',
       error: (_, __) => observation.constellationId,
     );
@@ -538,6 +541,7 @@ class _RecentObservationTile extends ConsumerWidget {
 class _EmptyObservations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -549,8 +553,8 @@ class _EmptyObservations extends StatelessWidget {
               color: Colors.grey.shade300,
             ),
             const SizedBox(height: 12),
-            const Text(
-              'まだ観測記録がありません\nAR観測ボタンから始めてみよう！',
+            Text(
+              l10n.observationTabEmptyMessage,
               textAlign: TextAlign.center,
             ),
           ],
@@ -563,6 +567,7 @@ class _EmptyObservations extends StatelessWidget {
 class _QuizButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () => context.push('/quiz'),
       child: Container(
@@ -586,33 +591,33 @@ class _QuizButton extends StatelessWidget {
             ),
           ],
         ),
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              Text('❓', style: TextStyle(fontSize: 32)),
-              SizedBox(width: 12),
+              const Text('❓', style: TextStyle(fontSize: 32)),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '今日の星座クイズ',
-                      style: TextStyle(
+                      l10n.observationTabQuizTitle,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      '5問チャレンジで星座博士を目指そう',
-                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                      l10n.observationTabQuizSubtitle,
+                      style: const TextStyle(color: Colors.white70, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white70, size: 16),
             ],
           ),
         ),

@@ -7,6 +7,7 @@ import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/bortle_service.dart';
 import '../widgets/unlock_celebration.dart';
+import '../l10n/generated/app_localizations.dart';
 
 class AddObservationScreen extends ConsumerStatefulWidget {
   final String constellationId;
@@ -30,16 +31,35 @@ class _AddObservationScreenState
   int _bortle = 5;
   String _weather = '晴れ';
   bool _isSaving = false;
+  bool _locationInitialized = false;
 
   final List<String> _weatherOptions = [
     '晴れ', '薄曇り', '曇り', '快晴',
   ];
 
+  static const Map<String, String> _weatherLabelsEn = {
+    '晴れ': 'Sunny',
+    '薄曇り': 'Slightly Cloudy',
+    '曇り': 'Cloudy',
+    '快晴': 'Clear',
+  };
+
+  String _weatherLabel(String value, String languageCode) =>
+      languageCode == 'en' ? (_weatherLabelsEn[value] ?? value) : value;
+
   @override
   void initState() {
     super.initState();
     _bortle = widget.initialBortle;
-    _locationController.text = '（現在地取得中...）';
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_locationInitialized) {
+      _locationInitialized = true;
+      _locationController.text = AppLocalizations.of(context)!.addObsFetchingLocation;
+    }
   }
 
   @override
@@ -50,6 +70,7 @@ class _AddObservationScreenState
   }
 
   Future<void> _save() async {
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _isSaving = true);
 
     final isNewUnlock =
@@ -62,7 +83,7 @@ class _AddObservationScreenState
       constellationId: widget.constellationId,
       timestamp: DateTime.now(),
       locationName: _locationController.text.isEmpty
-          ? '場所未設定'
+          ? l10n.addObsNoLocationSet
           : _locationController.text,
       bortleScale: _bortle,
       weather: _weather,
@@ -90,8 +111,8 @@ class _AddObservationScreenState
 
     if (!isNewUnlock) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('観測記録を保存しました！'),
+        SnackBar(
+          content: Text(l10n.addObsSavedSnackbar),
           backgroundColor: Colors.green,
         ),
       );
@@ -100,13 +121,15 @@ class _AddObservationScreenState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final constellationAsync =
         ref.watch(constellationByIdProvider(widget.constellationId));
     final bortleInfo = BortleService.instance.getBortleInfo(_bortle);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('観測記録を追加'),
+        title: Text(l10n.addObsTitle),
         leading: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () => context.pop(),
@@ -120,7 +143,7 @@ class _AddObservationScreenState
                     height: 16,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : const Text('保存', style: TextStyle(fontWeight: FontWeight.bold)),
+                : Text(l10n.commonSave, style: const TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -150,7 +173,7 @@ class _AddObservationScreenState
             const SizedBox(height: 20),
 
             // Bortle scale (City Light Challenge)
-            _SectionLabel('シティ・ライト・チャレンジ（光害スケール）'),
+            _SectionLabel(l10n.addObsBortleSectionTitle),
             const SizedBox(height: 8),
             Card(
               child: Padding(
@@ -162,7 +185,7 @@ class _AddObservationScreenState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Bortle $_bortle: ${bortleInfo.label}',
+                          l10n.addObsBortleLabel(_bortle, bortleInfo.label),
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
@@ -193,13 +216,13 @@ class _AddObservationScreenState
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('1\n暗い',
+                        Text(l10n.addObsScaleDark,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.labelSmall),
-                        Text('5\n郊外',
+                        Text(l10n.addObsScaleSuburb,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.labelSmall),
-                        Text('9\n都市',
+                        Text(l10n.addObsScaleCity,
                             textAlign: TextAlign.center,
                             style: Theme.of(context).textTheme.labelSmall),
                       ],
@@ -219,7 +242,7 @@ class _AddObservationScreenState
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                '都市部でのレア観測！高難易度クリアで称号「シティハンター」に近づく',
+                                l10n.addObsCityRareBadge,
                                 style: TextStyle(
                                   color: Colors.amber.shade800,
                                   fontSize: 12,
@@ -238,26 +261,26 @@ class _AddObservationScreenState
             const SizedBox(height: 20),
 
             // Location
-            _SectionLabel('観測場所'),
+            _SectionLabel(l10n.addObsLocationSectionTitle),
             const SizedBox(height: 8),
             TextField(
               controller: _locationController,
-              decoration: const InputDecoration(
-                hintText: '例: 東京都新宿区、長野県諏訪市',
-                prefixIcon: Icon(Icons.location_on),
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: l10n.addObsLocationHint,
+                prefixIcon: const Icon(Icons.location_on),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
 
             // Weather
-            _SectionLabel('天気'),
+            _SectionLabel(l10n.addObsWeatherSectionTitle),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               children: _weatherOptions.map((w) {
                 return ChoiceChip(
-                  label: Text(w),
+                  label: Text(_weatherLabel(w, lang)),
                   selected: _weather == w,
                   onSelected: (_) => setState(() => _weather = w),
                 );
@@ -266,14 +289,14 @@ class _AddObservationScreenState
             const SizedBox(height: 20),
 
             // Notes
-            _SectionLabel('メモ'),
+            _SectionLabel(l10n.addObsNotesSectionTitle),
             const SizedBox(height: 8),
             TextField(
               controller: _notesController,
               maxLines: 4,
-              decoration: const InputDecoration(
-                hintText: '今夜の観測の感想や気づいたことを書こう...',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                hintText: l10n.addObsNotesHint,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 24),
@@ -285,9 +308,9 @@ class _AddObservationScreenState
               child: ElevatedButton.icon(
                 onPressed: _isSaving ? null : _save,
                 icon: const Icon(Icons.save),
-                label: const Text(
-                  '記録を保存',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                label: Text(
+                  l10n.addObsSaveRecord,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,

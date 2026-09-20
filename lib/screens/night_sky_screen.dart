@@ -204,7 +204,6 @@ class _NightSkyScreenState extends ConsumerState<NightSkyScreen> {
                   onTimeTap: _pickTime,
                   onCityChanged: _selectCity,
                   onUseCurrentLocation: _useCurrentLocation,
-                  l10n: l10n,
                 ),
                 const SizedBox(height: 16),
                 NightSkyMap(
@@ -293,7 +292,11 @@ class _ControlPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateStr = DateFormat('yyyy年M月d日').format(date);
+    final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
+    final dateStr = lang == 'ja'
+        ? DateFormat('yyyy年M月d日').format(date)
+        : DateFormat('MMMM d, yyyy', 'en').format(date);
     final timeStr = time.format(context);
 
     return Container(
@@ -338,10 +341,13 @@ class _ControlPanel extends StatelessWidget {
                   items: [
                     DropdownMenuItem(
                       value: _useCurrentLocationIndex,
-                      child: Text(loadingLocation ? '📍 取得中...' : '📍 現在地を使う'),
+                      child: Text(loadingLocation
+                          ? l10n.nightSkyLocationLoading
+                          : l10n.nightSkyUseCurrentLocation),
                     ),
                     for (var i = 0; i < _cities.length; i++)
-                      DropdownMenuItem(value: i, child: Text(_cities[i].name)),
+                      DropdownMenuItem(
+                          value: i, child: Text(_localizedCityName(l10n, i))),
                   ],
                   onChanged: loadingLocation
                       ? null
@@ -423,29 +429,32 @@ class _InfoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Row(
       children: [
         Expanded(
           child: _StatCard(
             emoji: moonEmoji,
             value: moonPhaseName,
-            label: '月齢${moonAge.toStringAsFixed(1)}日',
+            label: l10n.nightSkyMoonAgeLabel(moonAge.toStringAsFixed(1)),
           ),
         ),
         const SizedBox(width: 10),
         Expanded(
           child: _StatCard(
             emoji: '✨',
-            value: '$visibleCount個',
-            label: '見えている星座',
+            value: l10n.nightSkyVisibleCountValue(visibleCount),
+            label: l10n.nightSkyVisibleConstellationsLabel,
           ),
         ),
         const SizedBox(width: 10),
         Expanded(
           child: _StatCard(
             emoji: isDaytime ? '☀️' : '🌌',
-            value: isDaytime ? '昼間' : '夜間',
-            label: isDaytime ? '観測には不向き' : '観測チャンス',
+            value: isDaytime ? l10n.nightSkyDaytime : l10n.nightSkyNighttime,
+            label: isDaytime
+                ? l10n.nightSkyNotSuitableForObservation
+                : l10n.nightSkyObservationChance,
           ),
         ),
       ],
@@ -502,6 +511,7 @@ class _TappedConstellationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).languageCode;
     return InkWell(
       onTap: onOpenDetail,
       borderRadius: BorderRadius.circular(14),
@@ -520,7 +530,7 @@ class _TappedConstellationCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    constellation.nameJa,
+                    constellation.localizedShortName(lang),
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,

@@ -149,7 +149,7 @@ class _BortleStatsBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '観測環境の分布',
+                l10n.recordsBortleDistributionTitle,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,
@@ -157,21 +157,21 @@ class _BortleStatsBar extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               _StatBar(
-                label: '🌌 暗い空（1-3）',
+                label: l10n.recordsBortleDark,
                 count: dark,
                 total: total,
                 color: Colors.green.shade600,
               ),
               const SizedBox(height: 4),
               _StatBar(
-                label: '🌆 郊外（4-6）',
+                label: l10n.recordsBortleSuburb,
                 count: suburb,
                 total: total,
                 color: Colors.orange.shade500,
               ),
               const SizedBox(height: 4),
               _StatBar(
-                label: '🏙️ 都市（7-9）',
+                label: l10n.recordsBortleCity,
                 count: city,
                 total: total,
                 color: Colors.red.shade600,
@@ -219,7 +219,7 @@ class _StatBar extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          '$count回',
+          AppLocalizations.of(context)!.recordsCountTimes(count),
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: color,
@@ -257,6 +257,7 @@ class _ObservationCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final date =
         '${observation.timestamp.year}-${observation.timestamp.month.toString().padLeft(2, '0')}-${observation.timestamp.day.toString().padLeft(2, '0')}';
     final time =
@@ -306,7 +307,7 @@ class _ObservationCard extends ConsumerWidget {
                     IconButton(
                       icon: const Icon(Icons.share_outlined, size: 18),
                       visualDensity: VisualDensity.compact,
-                      tooltip: 'シェア',
+                      tooltip: l10n.recordsShareTooltip,
                       onPressed: constellationAsync.value == null
                           ? null
                           : () => ShareService.shareObservation(
@@ -337,7 +338,7 @@ class _ObservationCard extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '天気: ${observation.weather}',
+                  l10n.weatherLabel(observation.weather),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ],
@@ -372,6 +373,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -383,14 +385,14 @@ class _EmptyState extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'まだ観測記録がありません',
+            l10n.recordsEmptyTitle,
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge
                 ?.copyWith(color: Colors.grey),
           ),
           const SizedBox(height: 8),
-          const Text('AR観測ボタンで夜空を観測してみよう'),
+          Text(l10n.recordsEmptySubtitle),
         ],
       ),
     );

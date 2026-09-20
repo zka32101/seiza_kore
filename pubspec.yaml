@@ -47,6 +47,9 @@ dependencies:
   # 3D太陽系ビュー
   webview_flutter: ^4.7.0
 
+  # 観測記録のシェア機能
+  share_plus: ^10.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

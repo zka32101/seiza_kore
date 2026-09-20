@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/observation_provider.dart';
+import '../providers/constellation_provider.dart';
 import '../models/observation.dart';
+import '../services/share_service.dart';
 
 class RecordsTab extends ConsumerWidget {
   const RecordsTab({super.key});
@@ -246,18 +248,20 @@ class _FilterChip extends ConsumerWidget {
   }
 }
 
-class _ObservationCard extends StatelessWidget {
+class _ObservationCard extends ConsumerWidget {
   final Observation observation;
   const _ObservationCard({required this.observation});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final date =
         '${observation.timestamp.year}-${observation.timestamp.month.toString().padLeft(2, '0')}-${observation.timestamp.day.toString().padLeft(2, '0')}';
     final time =
         '${observation.timestamp.hour.toString().padLeft(2, '0')}:${observation.timestamp.minute.toString().padLeft(2, '0')}';
     final diffStr =
         '★' * observation.difficultyStars + '☆' * (3 - observation.difficultyStars);
+    final constellationAsync =
+        ref.watch(constellationByIdProvider(observation.constellationId));
 
     return Card(
       child: Padding(
@@ -274,23 +278,40 @@ class _ObservationCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                 ),
-                // Bortle badge
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(
-                    color: _bortleColor(observation.bortleScale).withAlpha(30),
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                        color: _bortleColor(observation.bortleScale)),
-                  ),
-                  child: Text(
-                    'Bortle ${observation.bortleScale}',
-                    style: TextStyle(
-                      color: _bortleColor(observation.bortleScale),
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
+                Row(
+                  children: [
+                    // Bortle badge
+                    Container(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: _bortleColor(observation.bortleScale).withAlpha(30),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                            color: _bortleColor(observation.bortleScale)),
+                      ),
+                      child: Text(
+                        'Bortle ${observation.bortleScale}',
+                        style: TextStyle(
+                          color: _bortleColor(observation.bortleScale),
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(width: 4),
+                    IconButton(
+                      icon: const Icon(Icons.share_outlined, size: 18),
+                      visualDensity: VisualDensity.compact,
+                      tooltip: 'シェア',
+                      onPressed: constellationAsync.value == null
+                          ? null
+                          : () => ShareService.shareObservation(
+                                observation: observation,
+                                constellation: constellationAsync.value!,
+                              ),
+                    ),
+                  ],
                 ),
               ],
             ),

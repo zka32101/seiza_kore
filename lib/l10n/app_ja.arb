@@ -462,5 +462,9 @@
   "arObsRetry": "やり直す",
   "arObsRecord": "記録する",
   "arObsRedModeOn": "赤色 ON",
-  "arObsRedModeOff": "赤色 OFF"
+  "arObsRedModeOff": "赤色 OFF",
+  "statsWeeklyActivityTitle": "今週のアクティビティ",
+  "statsWeeklyObservations": "今週の観測",
+  "statsStreakDays": "連続観測日数",
+  "statsDaysCount": "{count}日"
 }

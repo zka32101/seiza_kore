@@ -380,5 +380,9 @@
   "arObsRetry": "Retry",
   "arObsRecord": "Record",
   "arObsRedModeOn": "Red ON",
-  "arObsRedModeOff": "Red OFF"
+  "arObsRedModeOff": "Red OFF",
+  "statsWeeklyActivityTitle": "This Week's Activity",
+  "statsWeeklyObservations": "Observations This Week",
+  "statsStreakDays": "Day Streak",
+  "statsDaysCount": "{count} days"
 }

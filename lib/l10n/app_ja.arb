@@ -480,5 +480,12 @@
   "researchReportNoteLabel": "まとめ・感想",
   "researchReportNoteHint": "観測してみて気づいたことや感想を書こう",
   "researchReportShareButton": "レポートを共有する",
-  "researchReportShareTitle": "自由研究レポート ― ほしぞら大百科"
+  "researchReportShareTitle": "自由研究レポート ― ほしぞら大百科",
+  "settingsRestorePurchasesTitle": "購入を復元",
+  "settingsPurchaseNotAvailable": "現在ご利用いただけません",
+  "settingsRestoreSuccess": "購入を復元しました",
+  "settingsRestoreNothingFound": "復元できる購入が見つかりませんでした",
+  "settingsPurchaseError": "エラーが発生しました。時間をおいて再度お試しください",
+  "settingsPurchaseSuccess": "プレミアムへのアップグレードが完了しました！",
+  "settingsPremiumViewButton": "詳しく見る"
 }

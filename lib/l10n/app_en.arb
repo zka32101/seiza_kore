@@ -398,5 +398,12 @@
   "researchReportNoteLabel": "Summary & Thoughts",
   "researchReportNoteHint": "Write what you noticed or felt while observing",
   "researchReportShareButton": "Share Report",
-  "researchReportShareTitle": "Research Report - HoshizoraDaihyakka"
+  "researchReportShareTitle": "Research Report - HoshizoraDaihyakka",
+  "settingsRestorePurchasesTitle": "Restore Purchases",
+  "settingsPurchaseNotAvailable": "Not available right now",
+  "settingsRestoreSuccess": "Purchases restored",
+  "settingsRestoreNothingFound": "No purchases found to restore",
+  "settingsPurchaseError": "Something went wrong. Please try again later",
+  "settingsPurchaseSuccess": "You've upgraded to Premium!",
+  "settingsPremiumViewButton": "Learn More"
 }

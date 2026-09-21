@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../providers/locale_provider.dart';
@@ -9,6 +10,8 @@ import '../providers/constellation_provider.dart';
 import '../providers/observation_provider.dart';
 import '../providers/achievement_provider.dart';
 import '../providers/update_notes_provider.dart';
+import '../providers/purchase_provider.dart';
+import '../services/purchase_service.dart';
 import '../data/update_notes_data.dart';
 
 class SettingsTab extends ConsumerWidget {
@@ -20,6 +23,7 @@ class SettingsTab extends ConsumerWidget {
     final lang = Localizations.localeOf(context).languageCode;
     final settings = ref.watch(settingsProvider);
     final notifier = ref.read(settingsProvider.notifier);
+    final isPremium = ref.watch(isPremiumProvider);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
     final obsCount = ref.watch(observationListProvider).length;
     final userTitle = userTitleLabel(ref.watch(userTitleProvider), lang);
@@ -34,7 +38,7 @@ class SettingsTab extends ConsumerWidget {
           // Profile card
           _ProfileCard(
             isGuest: settings.isGuest,
-            isPremium: settings.isPremium,
+            isPremium: isPremium,
             userTitle: userTitle,
           ),
 
@@ -66,10 +70,11 @@ class SettingsTab extends ConsumerWidget {
           ),
 
           // Premium
-          if (!settings.isPremium)
+          if (!isPremium)
             _PremiumBanner(
               title: l10n.settingsPremiumUpgradeTitle,
               subtitle: l10n.settingsPremiumUpgradeSubtitle,
+              onTap: () => _showPaywall(context, ref),
             ),
 
           // Display settings (language)
@@ -257,6 +262,13 @@ class SettingsTab extends ConsumerWidget {
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => context.push('/feedback'),
               ),
+              if (!isPremium)
+                ListTile(
+                  leading: const Icon(Icons.restore),
+                  title: Text(l10n.settingsRestorePurchasesTitle),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => _restorePurchases(context, ref, l10n),
+                ),
             ],
           ),
 
@@ -377,6 +389,149 @@ class SettingsTab extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _showPaywall(BuildContext context, WidgetRef ref) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) => const _PaywallSheet(),
+    );
+  }
+
+  Future<void> _restorePurchases(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations l10n,
+  ) async {
+    final service = ref.read(purchaseServiceProvider);
+    if (!service.isConfigured) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.settingsPurchaseNotAvailable)),
+      );
+      return;
+    }
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator()),
+    );
+
+    try {
+      final info = await service.restorePurchases();
+      ref.read(customerInfoProvider.notifier).setCustomerInfo(info);
+      if (!context.mounted) return;
+      Navigator.pop(context);
+      final restored = service.isPremiumActive(info);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            restored
+                ? l10n.settingsRestoreSuccess
+                : l10n.settingsRestoreNothingFound,
+          ),
+        ),
+      );
+    } catch (_) {
+      if (!context.mounted) return;
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.settingsPurchaseError)),
+      );
+    }
+  }
+}
+
+class _PaywallSheet extends ConsumerWidget {
+  const _PaywallSheet();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final offeringAsync = ref.watch(currentOfferingProvider);
+    final service = ref.watch(purchaseServiceProvider);
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.settingsPremiumUpgradeTitle,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Text(l10n.settingsPremiumUpgradeSubtitle),
+            const SizedBox(height: 20),
+            if (!service.isConfigured)
+              Text(
+                l10n.settingsPurchaseNotAvailable,
+                style: TextStyle(color: Colors.grey.shade600),
+              )
+            else
+              offeringAsync.when(
+                loading: () =>
+                    const Center(child: CircularProgressIndicator()),
+                error: (_, __) => Text(l10n.settingsPurchaseError),
+                data: (offering) {
+                  final packages = offering?.availablePackages ?? [];
+                  if (packages.isEmpty) {
+                    return Text(l10n.settingsPurchaseNotAvailable);
+                  }
+                  return Column(
+                    children: packages
+                        .map(
+                          (p) => Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: FilledButton(
+                                onPressed: () => _purchase(context, ref, p),
+                                child: Text(
+                                  '${p.storeProduct.title} - ${p.storeProduct.priceString}',
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _purchase(
+    BuildContext context,
+    WidgetRef ref,
+    Package package,
+  ) async {
+    final l10n = AppLocalizations.of(context)!;
+    final service = ref.read(purchaseServiceProvider);
+    try {
+      final info = await service.purchase(package);
+      ref.read(customerInfoProvider.notifier).setCustomerInfo(info);
+      if (!context.mounted) return;
+      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.settingsPurchaseSuccess)),
+      );
+    } on PurchaseCancelledException {
+      // ユーザーがキャンセルした場合は何もしない
+    } catch (_) {
+      if (!context.mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(l10n.settingsPurchaseError)),
+      );
+    }
   }
 }
 
@@ -691,10 +846,16 @@ class _AchievementTile extends StatelessWidget {
 class _PremiumBanner extends StatelessWidget {
   final String title;
   final String subtitle;
-  const _PremiumBanner({required this.title, required this.subtitle});
+  final VoidCallback onTap;
+  const _PremiumBanner({
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       clipBehavior: Clip.hardEdge,
@@ -729,12 +890,12 @@ class _PremiumBanner extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: onTap,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.amber,
                 foregroundColor: Colors.black,
               ),
-              child: const Text('¥600'),
+              child: Text(l10n.settingsPremiumViewButton),
             ),
           ],
         ),

@@ -221,6 +221,7 @@ class _ActiveEventCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final hoursLeft = event.closeTime.difference(DateTime.now()).inHours;
 
     return Card(
@@ -275,7 +276,7 @@ class _ActiveEventCard extends ConsumerWidget {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        event.name,
+                        event.localizedName(lang),
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),
@@ -287,7 +288,7 @@ class _ActiveEventCard extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              event.description,
+              event.localizedDescription(lang),
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 12),
@@ -359,7 +360,7 @@ class _UpcomingEventCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        event.name,
+                        event.localizedName(lang),
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -469,10 +470,11 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
     await ref.read(timecapsuleRecordListProvider.notifier).addRecord(record);
     if (!mounted) return;
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     Navigator.of(context).pop();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(l10n.timecapsuleRecordSaved(widget.event.name)),
+        content: Text(l10n.timecapsuleRecordSaved(widget.event.localizedName(lang))),
         backgroundColor: Colors.green,
       ),
     );
@@ -481,6 +483,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final isMeteor = widget.event.type == TimecapsuleEventType.meteor;
     return AlertDialog(
       title: Row(
@@ -489,7 +492,7 @@ class _RecordDialogState extends ConsumerState<_RecordDialog> {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              widget.event.name,
+              widget.event.localizedName(lang),
               style: const TextStyle(fontSize: 16),
             ),
           ),
@@ -580,6 +583,7 @@ class _MyRecordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final lang = Localizations.localeOf(context).languageCode;
     final event = events.where((e) => e.id == record.eventId).firstOrNull;
     final dateStr =
         '${record.observedAt.year}/${record.observedAt.month.toString().padLeft(2, '0')}/${record.observedAt.day.toString().padLeft(2, '0')} '
@@ -601,7 +605,7 @@ class _MyRecordCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    event?.name ?? record.eventId,
+                    event?.localizedName(lang) ?? record.eventId,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   Text(
@@ -662,7 +666,7 @@ class _PastEventCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          event.name,
+          event.localizedName(lang),
           style: TextStyle(color: Colors.grey.shade700),
         ),
         subtitle: Text(

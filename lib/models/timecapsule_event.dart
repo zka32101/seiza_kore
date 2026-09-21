@@ -1,21 +1,31 @@
 class TimecapsuleEvent {
   final String id;
   final String name;
+  final String nameEn;
   final String type;
   final DateTime openTime;
   final DateTime closeTime;
   final String description;
+  final String descriptionEn;
   final String emoji;
 
   const TimecapsuleEvent({
     required this.id,
     required this.name,
+    required this.nameEn,
     required this.type,
     required this.openTime,
     required this.closeTime,
     required this.description,
+    required this.descriptionEn,
     required this.emoji,
   });
+
+  /// [languageCode]が'en'の場合は英語、それ以外は日本語を返す。
+  String localizedName(String languageCode) => languageCode == 'en' ? nameEn : name;
+
+  String localizedDescription(String languageCode) =>
+      languageCode == 'en' ? descriptionEn : description;
 
   bool get isActive {
     final now = DateTime.now();

@@ -491,5 +491,9 @@
   "settingsRestoreNothingFound": "復元できる購入が見つかりませんでした",
   "settingsPurchaseError": "エラーが発生しました。時間をおいて再度お試しください",
   "settingsPurchaseSuccess": "プレミアムへのアップグレードが完了しました！",
-  "settingsPremiumViewButton": "詳しく見る"
+  "settingsPremiumViewButton": "詳しく見る",
+  "dailyMissionTitle": "今日のお題",
+  "dailyMissionProgress": "{done}/{total}",
+  "dailyMissionObserve": "星座をひとつ観測しよう",
+  "dailyMissionQuiz": "今日のクイズに挑戦しよう"
 }

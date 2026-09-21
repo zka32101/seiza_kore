@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/constellation_provider.dart';
+import '../providers/daily_mission_provider.dart';
 import '../models/quiz_question.dart';
 import '../services/quiz_service.dart';
 import '../l10n/generated/app_localizations.dart';
@@ -30,6 +31,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
   }
 
   void _next(int total) {
+    if (_currentIndex + 1 >= total) {
+      ref.read(quizCompletionProvider.notifier).markCompletedToday();
+    }
     setState(() {
       _currentIndex++;
       _selectedChoice = null;

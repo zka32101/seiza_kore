@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/timecapsule_provider.dart';
+import '../providers/daily_mission_provider.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
@@ -84,6 +85,10 @@ class ObservationTab extends ConsumerWidget {
                   unlockedCount: unlockedCount,
                   recommendedAsync: recommendedAsync,
                 ),
+                const SizedBox(height: 12),
+
+                // Daily mission card
+                const _DailyMissionCard(),
                 const SizedBox(height: 20),
 
                 // AR observation button (main CTA)
@@ -252,6 +257,90 @@ class _TodayCard extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _DailyMissionCard extends ConsumerWidget {
+  const _DailyMissionCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final observedToday = ref.watch(observedTodayProvider);
+    final quizDone = ref.watch(quizCompletedTodayProvider);
+    final (done, total) = ref.watch(dailyMissionProgressProvider);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  l10n.dailyMissionTitle,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                ),
+                Text(
+                  l10n.dailyMissionProgress(done, total),
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            _MissionRow(
+              done: observedToday,
+              label: l10n.dailyMissionObserve,
+              onTap: observedToday ? null : () => context.push('/ar'),
+            ),
+            _MissionRow(
+              done: quizDone,
+              label: l10n.dailyMissionQuiz,
+              onTap: quizDone ? null : () => context.push('/quiz'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MissionRow extends StatelessWidget {
+  final bool done;
+  final String label;
+  final VoidCallback? onTap;
+  const _MissionRow({required this.done, required this.label, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Row(
+          children: [
+            Icon(
+              done ? Icons.check_circle : Icons.radio_button_unchecked,
+              color: done ? Colors.green : Colors.grey.shade400,
+              size: 20,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                label,
+                style: TextStyle(
+                  decoration: done ? TextDecoration.lineThrough : null,
+                  color: done ? Colors.grey : null,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

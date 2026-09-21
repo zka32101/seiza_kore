@@ -409,5 +409,9 @@
   "settingsRestoreNothingFound": "No purchases found to restore",
   "settingsPurchaseError": "Something went wrong. Please try again later",
   "settingsPurchaseSuccess": "You've upgraded to Premium!",
-  "settingsPremiumViewButton": "Learn More"
+  "settingsPremiumViewButton": "Learn More",
+  "dailyMissionTitle": "Today's Missions",
+  "dailyMissionProgress": "{done}/{total}",
+  "dailyMissionObserve": "Observe a constellation",
+  "dailyMissionQuiz": "Try today's quiz"
 }

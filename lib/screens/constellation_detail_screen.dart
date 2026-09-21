@@ -10,6 +10,7 @@ import '../services/constellation_art.dart';
 import '../data/stars_data.dart';
 import '../providers/constellation_nickname_provider.dart';
 import '../models/constellation_nickname.dart';
+import '../widgets/read_aloud_button.dart';
 import '../l10n/generated/app_localizations.dart';
 
 class ConstellationDetailScreen extends ConsumerWidget {
@@ -99,7 +100,11 @@ class _DetailContent extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // Mythology
-                  _SectionTitle(l10n.sectionMythology),
+                  _SectionTitle(
+                    l10n.sectionMythology,
+                    readAloudText: constellation.localizedMythology(lang),
+                    languageCode: lang,
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     constellation.localizedMythology(lang),
@@ -117,7 +122,11 @@ class _DetailContent extends StatelessWidget {
 
                   // Observation tips
                   if (constellation.localizedObservationTips(lang).isNotEmpty) ...[
-                    _SectionTitle(l10n.sectionObservationTips),
+                    _SectionTitle(
+                      l10n.sectionObservationTips,
+                      readAloudText: constellation.localizedObservationTips(lang),
+                      languageCode: lang,
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       constellation.localizedObservationTips(lang),
@@ -130,7 +139,11 @@ class _DetailContent extends StatelessWidget {
 
                   // Scientific data
                   if (constellation.localizedScientificData(lang).isNotEmpty) ...[
-                    _SectionTitle(l10n.sectionScientificData),
+                    _SectionTitle(
+                      l10n.sectionScientificData,
+                      readAloudText: constellation.localizedScientificData(lang),
+                      languageCode: lang,
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       constellation.localizedScientificData(lang),
@@ -143,7 +156,11 @@ class _DetailContent extends StatelessWidget {
 
                   // Fun facts
                   if (constellation.localizedFunFacts(lang).isNotEmpty) ...[
-                    _SectionTitle(l10n.sectionFunFacts),
+                    _SectionTitle(
+                      l10n.sectionFunFacts,
+                      readAloudText: constellation.localizedFunFacts(lang),
+                      languageCode: lang,
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       constellation.localizedFunFacts(lang),
@@ -409,16 +426,26 @@ class _StatDivider extends StatelessWidget {
 
 class _SectionTitle extends StatelessWidget {
   final String title;
-  const _SectionTitle(this.title);
+  final String? readAloudText;
+  final String? languageCode;
+  const _SectionTitle(this.title, {this.readAloudText, this.languageCode});
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    final text = Text(
       title,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.primary,
           ),
+    );
+    if (readAloudText == null || languageCode == null) return text;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        text,
+        ReadAloudButton(text: readAloudText!, languageCode: languageCode!),
+      ],
     );
   }
 }

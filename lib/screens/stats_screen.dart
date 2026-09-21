@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/observation_provider.dart';
 import '../providers/achievement_provider.dart';
+import '../providers/streak_provider.dart';
 import '../models/observation.dart';
 import '../services/bortle_service.dart';
 import '../l10n/generated/app_localizations.dart';
@@ -24,7 +25,7 @@ class StatsScreen extends ConsumerWidget {
     final userTitle = userTitleLabel(userTitleId, lang);
     final totalAchievements = ref.watch(achievementsProvider).length;
     final weeklyCount = ref.watch(weeklyObservationCountProvider);
-    final streak = ref.watch(observationStreakProvider);
+    final streak = ref.watch(protectedStreakProvider);
 
     return Scaffold(
       appBar: AppBar(

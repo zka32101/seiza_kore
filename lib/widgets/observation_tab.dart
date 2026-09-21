@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
 import '../providers/timecapsule_provider.dart';
+import '../providers/streak_provider.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
@@ -20,6 +21,10 @@ class ObservationTab extends ConsumerWidget {
     final activeEvents = ref.watch(activeEventsProvider);
     final unlockedCount = ref.watch(unlockedIdsProvider).length;
     final recommendedAsync = ref.watch(recommendedConstellationProvider);
+
+    ref.listen<int>(protectedStreakProvider, (previous, next) {
+      ref.read(streakProvider.notifier).maybeGrantFreeze(next);
+    });
 
     return SingleChildScrollView(
       child: Column(
@@ -84,6 +89,10 @@ class ObservationTab extends ConsumerWidget {
                   unlockedCount: unlockedCount,
                   recommendedAsync: recommendedAsync,
                 ),
+                const SizedBox(height: 12),
+
+                // Streak card
+                const _StreakCard(),
                 const SizedBox(height: 20),
 
                 // AR observation button (main CTA)
@@ -252,6 +261,69 @@ class _TodayCard extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StreakCard extends ConsumerWidget {
+  const _StreakCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final streak = ref.watch(protectedStreakProvider);
+    final freezeCount = ref.watch(streakProvider).freezeCount;
+    final canUseFreeze = ref.watch(canUseFreezeTodayProvider);
+
+    if (streak == 0 && freezeCount == 0) return const SizedBox.shrink();
+
+    return Card(
+      color: Colors.orange.shade50,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Row(
+          children: [
+            const Text('🔥', style: TextStyle(fontSize: 28)),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    l10n.streakDaysLabel(streak),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.deepOrange,
+                    ),
+                  ),
+                  if (freezeCount > 0)
+                    Text(
+                      l10n.streakFreezeCount(freezeCount),
+                      style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                    ),
+                ],
+              ),
+            ),
+            if (canUseFreeze)
+              OutlinedButton(
+                onPressed: () async {
+                  final yesterday =
+                      DateTime.now().subtract(const Duration(days: 1));
+                  final used = await ref
+                      .read(streakProvider.notifier)
+                      .useFreezeForDate(yesterday);
+                  if (used && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.streakFreezeUsed)),
+                    );
+                  }
+                },
+                child: Text(l10n.streakUseFreezeButton),
+              ),
+          ],
         ),
       ),
     );

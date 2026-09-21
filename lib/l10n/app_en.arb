@@ -409,5 +409,9 @@
   "settingsRestoreNothingFound": "No purchases found to restore",
   "settingsPurchaseError": "Something went wrong. Please try again later",
   "settingsPurchaseSuccess": "You've upgraded to Premium!",
-  "settingsPremiumViewButton": "Learn More"
+  "settingsPremiumViewButton": "Learn More",
+  "streakDaysLabel": "{count}-day streak!",
+  "streakFreezeCount": "Streak freezes: {count}",
+  "streakUseFreezeButton": "Save my streak",
+  "streakFreezeUsed": "Used a streak freeze — your streak is safe!"
 }

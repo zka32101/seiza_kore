@@ -420,5 +420,15 @@
   "parentDashboardAchievements": "Badges Earned",
   "parentDashboardCurrentTitleLabel": "Current Title",
   "parentDashboardRecentActivityTitle": "Recent Observations",
-  "parentDashboardNoActivity": "No observation records yet."
+  "parentDashboardNoActivity": "No observation records yet.",
+  "commonOr": "or",
+  "rankingJoinIntroTitle": "Rank with your group",
+  "rankingJoinIntroSubtitle": "Only people who know the code can compare observation counts — this is not an open, public leaderboard.",
+  "rankingCreateGroupButton": "Create a new group",
+  "rankingCodeFieldLabel": "Group code (6 characters)",
+  "rankingJoinGroupButton": "Join with code",
+  "rankingGroupCodeLabel": "Group code: {code}",
+  "rankingCopyCodeTooltip": "Copy code",
+  "rankingCodeCopied": "Code copied",
+  "rankingLeaveGroupButton": "Leave group"
 }

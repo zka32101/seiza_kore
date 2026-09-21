@@ -502,5 +502,15 @@
   "parentDashboardAchievements": "獲得バッジ",
   "parentDashboardCurrentTitleLabel": "現在の称号",
   "parentDashboardRecentActivityTitle": "最近の観測記録",
-  "parentDashboardNoActivity": "まだ観測記録がありません。"
+  "parentDashboardNoActivity": "まだ観測記録がありません。",
+  "commonOr": "または",
+  "rankingJoinIntroTitle": "グループでランキングを楽しもう",
+  "rankingJoinIntroSubtitle": "コードを知っている人同士だけで観測数を競えます。誰でも見られる全体公開ランキングではありません。",
+  "rankingCreateGroupButton": "新しいグループを作る",
+  "rankingCodeFieldLabel": "グループコード（6文字）",
+  "rankingJoinGroupButton": "コードで参加する",
+  "rankingGroupCodeLabel": "グループコード: {code}",
+  "rankingCopyCodeTooltip": "コードをコピー",
+  "rankingCodeCopied": "コードをコピーしました",
+  "rankingLeaveGroupButton": "グループを抜ける"
 }

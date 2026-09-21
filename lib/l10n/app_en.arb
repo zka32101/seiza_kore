@@ -413,5 +413,7 @@
   "streakDaysLabel": "{count}-day streak!",
   "streakFreezeCount": "Streak freezes: {count}",
   "streakUseFreezeButton": "Save my streak",
-  "streakFreezeUsed": "Used a streak freeze — your streak is safe!"
+  "streakFreezeUsed": "Used a streak freeze — your streak is safe!",
+  "readAloudTooltip": "Read aloud",
+  "readAloudStopTooltip": "Stop reading"
 }

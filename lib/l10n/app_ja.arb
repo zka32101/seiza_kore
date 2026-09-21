@@ -495,5 +495,7 @@
   "streakDaysLabel": "{count}日連続観測中！",
   "streakFreezeCount": "ストリークフリーズ: {count}個",
   "streakUseFreezeButton": "ストリークを守る",
-  "streakFreezeUsed": "ストリークフリーズを使いました。連続記録が守られました！"
+  "streakFreezeUsed": "ストリークフリーズを使いました。連続記録が守られました！",
+  "readAloudTooltip": "読み上げる",
+  "readAloudStopTooltip": "読み上げを止める"
 }

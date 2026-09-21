@@ -55,6 +55,9 @@ dependencies:
   # 観測記録のシェア機能
   share_plus: ^10.1.2
 
+  # 読み上げ機能
+  flutter_tts: ^4.2.5
+
   # プレミアム課金（RevenueCat）
   purchases_flutter: ^10.13.1
 

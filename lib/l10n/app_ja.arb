@@ -497,5 +497,9 @@
   "streakUseFreezeButton": "ストリークを守る",
   "streakFreezeUsed": "ストリークフリーズを使いました。連続記録が守られました！",
   "readAloudTooltip": "読み上げる",
-  "readAloudStopTooltip": "読み上げを止める"
+  "readAloudStopTooltip": "読み上げを止める",
+  "dailyMissionTitle": "今日のお題",
+  "dailyMissionProgress": "{done}/{total}",
+  "dailyMissionObserve": "星座をひとつ観測しよう",
+  "dailyMissionQuiz": "今日のクイズに挑戦しよう"
 }

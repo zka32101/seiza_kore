@@ -415,5 +415,9 @@
   "streakUseFreezeButton": "Save my streak",
   "streakFreezeUsed": "Used a streak freeze — your streak is safe!",
   "readAloudTooltip": "Read aloud",
-  "readAloudStopTooltip": "Stop reading"
+  "readAloudStopTooltip": "Stop reading",
+  "dailyMissionTitle": "Today's Missions",
+  "dailyMissionProgress": "{done}/{total}",
+  "dailyMissionObserve": "Observe a constellation",
+  "dailyMissionQuiz": "Try today's quiz"
 }

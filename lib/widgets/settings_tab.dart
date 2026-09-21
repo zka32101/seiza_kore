@@ -239,6 +239,13 @@ class SettingsTab extends ConsumerWidget {
             title: l10n.settingsSectionSupport,
             children: [
               ListTile(
+                leading: const Icon(Icons.family_restroom_outlined),
+                title: Text(l10n.settingsParentDashboardTitle),
+                subtitle: Text(l10n.settingsParentDashboardSubtitle),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => context.push('/parent-dashboard'),
+              ),
+              ListTile(
                 leading: const Icon(Icons.help_outline),
                 title: Text(l10n.settingsHelpTitle),
                 trailing: const Icon(Icons.chevron_right),

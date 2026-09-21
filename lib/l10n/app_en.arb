@@ -409,5 +409,16 @@
   "settingsRestoreNothingFound": "No purchases found to restore",
   "settingsPurchaseError": "Something went wrong. Please try again later",
   "settingsPurchaseSuccess": "You've upgraded to Premium!",
-  "settingsPremiumViewButton": "Learn More"
+  "settingsPremiumViewButton": "Learn More",
+  "settingsParentDashboardTitle": "Parent Dashboard",
+  "settingsParentDashboardSubtitle": "See your child's learning progress",
+  "parentDashboardTitle": "Parent Dashboard",
+  "parentDashboardIntro": "See a summary of your child's observation records, progress, and achievements.",
+  "parentDashboardTotalObservations": "Total Observations",
+  "parentDashboardWeeklyObservations": "This Week",
+  "parentDashboardCollectionProgress": "Collection",
+  "parentDashboardAchievements": "Badges Earned",
+  "parentDashboardCurrentTitleLabel": "Current Title",
+  "parentDashboardRecentActivityTitle": "Recent Observations",
+  "parentDashboardNoActivity": "No observation records yet."
 }

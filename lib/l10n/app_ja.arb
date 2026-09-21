@@ -491,5 +491,11 @@
   "settingsRestoreNothingFound": "復元できる購入が見つかりませんでした",
   "settingsPurchaseError": "エラーが発生しました。時間をおいて再度お試しください",
   "settingsPurchaseSuccess": "プレミアムへのアップグレードが完了しました！",
-  "settingsPremiumViewButton": "詳しく見る"
+  "settingsPremiumViewButton": "詳しく見る",
+  "streakDaysLabel": "{count}日連続観測中！",
+  "streakFreezeCount": "ストリークフリーズ: {count}個",
+  "streakUseFreezeButton": "ストリークを守る",
+  "streakFreezeUsed": "ストリークフリーズを使いました。連続記録が守られました！",
+  "readAloudTooltip": "読み上げる",
+  "readAloudStopTooltip": "読み上げを止める"
 }

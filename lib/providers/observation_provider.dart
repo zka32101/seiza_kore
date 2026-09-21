@@ -100,29 +100,6 @@ final weeklyObservationCountProvider = Provider<int>((ref) {
   return observations.where((o) => o.timestamp.isAfter(weekAgo)).length;
 });
 
-// 連続観測日数（今日または昨日から遡って観測がある日数）
-final observationStreakProvider = Provider<int>((ref) {
-  final observations = ref.watch(observationListProvider);
-  if (observations.isEmpty) return 0;
-
-  final days = observations
-      .map((o) => DateTime(o.timestamp.year, o.timestamp.month, o.timestamp.day))
-      .toSet();
-
-  final today = DateTime.now();
-  var cursor = DateTime(today.year, today.month, today.day);
-  if (!days.contains(cursor)) {
-    cursor = cursor.subtract(const Duration(days: 1));
-  }
-
-  var streak = 0;
-  while (days.contains(cursor)) {
-    streak++;
-    cursor = cursor.subtract(const Duration(days: 1));
-  }
-  return streak;
-});
-
 final filteredObservationsProvider = Provider<List<Observation>>((ref) {
   final all = ref.watch(observationListProvider);
   final filter = ref.watch(observationFilterProvider);

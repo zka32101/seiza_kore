@@ -27,7 +27,7 @@ class NotificationService {
     const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosSettings = DarwinInitializationSettings();
     await _plugin.initialize(
-      const InitializationSettings(android: androidSettings, iOS: iosSettings),
+      settings: const InitializationSettings(android: androidSettings, iOS: iosSettings),
     );
     _initialized = true;
   }
@@ -79,11 +79,11 @@ class NotificationService {
       if (event.openTime.isBefore(now)) continue;
       final scheduled = tz.TZDateTime.from(event.openTime, tz.local);
       await _plugin.zonedSchedule(
-        id++,
-        event.localizedName(languageCode),
-        event.localizedDescription(languageCode),
-        scheduled,
-        details,
+        id: id++,
+        title: event.localizedName(languageCode),
+        body: event.localizedDescription(languageCode),
+        scheduledDate: scheduled,
+        notificationDetails: details,
         androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       );
     }

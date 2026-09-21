@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 import 'firebase_setup.dart';
+import 'services/purchase_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,6 +12,13 @@ void main() async {
     await initializeFirebase();
   } catch (e) {
     debugPrint('Firebase initialization error: $e');
+  }
+
+  // Initialize RevenueCat
+  try {
+    await const PurchaseService().initialize();
+  } catch (e) {
+    debugPrint('RevenueCat initialization error: $e');
   }
 
   runApp(

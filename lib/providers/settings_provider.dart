@@ -5,7 +5,6 @@ class AppSettings {
   final bool nightModeEnabled;
   final bool locationSharingEnabled;
   final bool nightSkyConnectEnabled;
-  final bool isPremium;
   final bool isGuest;
   final bool timecapsuleNotificationsEnabled;
   final bool unlockedNotificationsEnabled;
@@ -14,7 +13,6 @@ class AppSettings {
     this.nightModeEnabled = false,
     this.locationSharingEnabled = false,
     this.nightSkyConnectEnabled = false,
-    this.isPremium = false,
     this.isGuest = true,
     this.timecapsuleNotificationsEnabled = true,
     this.unlockedNotificationsEnabled = true,
@@ -24,7 +22,6 @@ class AppSettings {
     bool? nightModeEnabled,
     bool? locationSharingEnabled,
     bool? nightSkyConnectEnabled,
-    bool? isPremium,
     bool? isGuest,
     bool? timecapsuleNotificationsEnabled,
     bool? unlockedNotificationsEnabled,
@@ -35,7 +32,6 @@ class AppSettings {
           locationSharingEnabled ?? this.locationSharingEnabled,
       nightSkyConnectEnabled:
           nightSkyConnectEnabled ?? this.nightSkyConnectEnabled,
-      isPremium: isPremium ?? this.isPremium,
       isGuest: isGuest ?? this.isGuest,
       timecapsuleNotificationsEnabled:
           timecapsuleNotificationsEnabled ?? this.timecapsuleNotificationsEnabled,

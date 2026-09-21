@@ -162,6 +162,18 @@ flutter test
 flutter test --coverage
 ```
 
+## 💳 課金機能のセットアップ（RevenueCat）
+
+プレミアム課金は [RevenueCat](https://app.revenuecat.com) を利用しています。動作させるには以下が必要です。
+
+1. RevenueCatダッシュボードでプロジェクトを作成し、iOS/Androidアプリを追加
+2. Project settings > API keys から、プラットフォームごとの公開SDKキーを取得
+3. Entitlements で `premium` という名前のentitlementを作成
+4. App Store Connect / Google Play Consoleの課金アイテムと紐づけたOfferingsを作成
+5. 取得したAPIキーを `lib/purchase_setup.dart` の `revenueCatApiKeyAndroid` / `revenueCatApiKeyIOS` に設定
+
+APIキーが未設定の場合、課金機能は自動的に無効化され（購入ボタンから「現在ご利用いただけません」と案内）、アプリの他の機能には影響しません。
+
 ## 📱 デバイスサポート
 
 | OS | 最小バージョン | 推奨バージョン |

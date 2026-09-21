@@ -484,5 +484,12 @@
   "statsWeeklyActivityTitle": "今週のアクティビティ",
   "statsWeeklyObservations": "今週の観測",
   "statsStreakDays": "連続観測日数",
-  "statsDaysCount": "{count}日"
+  "statsDaysCount": "{count}日",
+  "settingsRestorePurchasesTitle": "購入を復元",
+  "settingsPurchaseNotAvailable": "現在ご利用いただけません",
+  "settingsRestoreSuccess": "購入を復元しました",
+  "settingsRestoreNothingFound": "復元できる購入が見つかりませんでした",
+  "settingsPurchaseError": "エラーが発生しました。時間をおいて再度お試しください",
+  "settingsPurchaseSuccess": "プレミアムへのアップグレードが完了しました！",
+  "settingsPremiumViewButton": "詳しく見る"
 }

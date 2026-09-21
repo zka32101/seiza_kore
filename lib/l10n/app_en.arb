@@ -402,5 +402,12 @@
   "statsWeeklyActivityTitle": "This Week's Activity",
   "statsWeeklyObservations": "Observations This Week",
   "statsStreakDays": "Day Streak",
-  "statsDaysCount": "{count} days"
+  "statsDaysCount": "{count} days",
+  "settingsRestorePurchasesTitle": "Restore Purchases",
+  "settingsPurchaseNotAvailable": "Not available right now",
+  "settingsRestoreSuccess": "Purchases restored",
+  "settingsRestoreNothingFound": "No purchases found to restore",
+  "settingsPurchaseError": "Something went wrong. Please try again later",
+  "settingsPurchaseSuccess": "You've upgraded to Premium!",
+  "settingsPremiumViewButton": "Learn More"
 }

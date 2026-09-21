@@ -23,6 +23,8 @@ class StatsScreen extends ConsumerWidget {
     final userTitleId = ref.watch(userTitleProvider);
     final userTitle = userTitleLabel(userTitleId, lang);
     final totalAchievements = ref.watch(achievementsProvider).length;
+    final weeklyCount = ref.watch(weeklyObservationCountProvider);
+    final streak = ref.watch(observationStreakProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -44,6 +46,42 @@ class StatsScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // 今週のアクティビティ（ダッシュボード）
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.statsWeeklyActivityTitle,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            _StatCol(
+                              l10n.statsWeeklyObservations,
+                              l10n.statsCountTimes(weeklyCount),
+                              Colors.indigo,
+                            ),
+                            _StatCol(
+                              l10n.statsStreakDays,
+                              l10n.statsDaysCount(streak),
+                              Colors.deepOrange,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+
                 // 実績バナー
                 GestureDetector(
                   onTap: () => context.push('/achievements'),

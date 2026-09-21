@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../l10n/generated/app_localizations.dart';
 import '../providers/timecapsule_provider.dart';
+import '../providers/settings_provider.dart';
+import '../services/notification_service.dart';
 import '../widgets/observation_tab.dart';
 import '../widgets/catalog_tab.dart';
 import '../widgets/records_tab.dart';
@@ -26,10 +28,38 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _syncEventNotifications());
+  }
+
+  Future<void> _syncEventNotifications() async {
+    if (!mounted) return;
+    final enabled = ref.read(settingsProvider).timecapsuleNotificationsEnabled;
+    if (!enabled) {
+      await NotificationService.instance.cancelAll();
+      return;
+    }
+    final granted = await NotificationService.instance.requestPermission();
+    if (!granted) return;
+    final events = ref.read(timecapsuleEventsProvider);
+    final lang = mounted ? Localizations.localeOf(context).languageCode : 'ja';
+    await NotificationService.instance.scheduleEventNotifications(
+      events,
+      languageCode: lang,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final activeEvents = ref.watch(activeEventsProvider);
     final hasActive = activeEvents.isNotEmpty;
     final l10n = AppLocalizations.of(context)!;
+
+    ref.listen<bool>(
+      settingsProvider.select((s) => s.timecapsuleNotificationsEnabled),
+      (previous, next) => _syncEventNotifications(),
+    );
 
     return Scaffold(
       appBar: AppBar(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 import 'firebase_setup.dart';
 import 'services/purchase_service.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +20,13 @@ void main() async {
     await const PurchaseService().initialize();
   } catch (e) {
     debugPrint('RevenueCat initialization error: $e');
+  }
+
+  // Initialize local notifications
+  try {
+    await NotificationService.instance.initialize();
+  } catch (e) {
+    debugPrint('Notification initialization error: $e');
   }
 
   runApp(

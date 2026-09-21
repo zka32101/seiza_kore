@@ -54,4 +54,9 @@ class ShareService {
 
     await Share.share(text.toString());
   }
+
+  /// 自由研究レポートを共有する。本文は呼び出し側で言語別に組み立て済みのものを渡す。
+  static Future<void> shareResearchReport(String reportText) async {
+    await Share.share(reportText);
+  }
 }

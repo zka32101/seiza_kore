@@ -398,5 +398,9 @@
   "researchReportNoteLabel": "Summary & Thoughts",
   "researchReportNoteHint": "Write what you noticed or felt while observing",
   "researchReportShareButton": "Share Report",
-  "researchReportShareTitle": "Research Report - HoshizoraDaihyakka"
+  "researchReportShareTitle": "Research Report - HoshizoraDaihyakka",
+  "statsWeeklyActivityTitle": "This Week's Activity",
+  "statsWeeklyObservations": "Observations This Week",
+  "statsStreakDays": "Day Streak",
+  "statsDaysCount": "{count} days"
 }

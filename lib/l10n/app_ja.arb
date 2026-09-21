@@ -480,5 +480,9 @@
   "researchReportNoteLabel": "まとめ・感想",
   "researchReportNoteHint": "観測してみて気づいたことや感想を書こう",
   "researchReportShareButton": "レポートを共有する",
-  "researchReportShareTitle": "自由研究レポート ― ほしぞら大百科"
+  "researchReportShareTitle": "自由研究レポート ― ほしぞら大百科",
+  "statsWeeklyActivityTitle": "今週のアクティビティ",
+  "statsWeeklyObservations": "今週の観測",
+  "statsStreakDays": "連続観測日数",
+  "statsDaysCount": "{count}日"
 }

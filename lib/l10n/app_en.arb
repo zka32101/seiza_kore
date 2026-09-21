@@ -430,5 +430,11 @@
   "rankingGroupCodeLabel": "Group code: {code}",
   "rankingCopyCodeTooltip": "Copy code",
   "rankingCodeCopied": "Code copied",
-  "rankingLeaveGroupButton": "Leave group"
+  "rankingLeaveGroupButton": "Leave group",
+  "streakDaysLabel": "{count}-day streak!",
+  "streakFreezeCount": "Streak freezes: {count}",
+  "streakUseFreezeButton": "Save my streak",
+  "streakFreezeUsed": "Used a streak freeze — your streak is safe!",
+  "readAloudTooltip": "Read aloud",
+  "readAloudStopTooltip": "Stop reading"
 }

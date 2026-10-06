@@ -9,6 +9,7 @@ import '../providers/daily_mission_provider.dart';
 import '../providers/streak_provider.dart';
 import '../providers/co_observation_provider.dart';
 import '../providers/ranking_group_provider.dart';
+import '../services/co_observation_service.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';

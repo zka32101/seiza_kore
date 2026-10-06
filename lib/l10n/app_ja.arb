@@ -292,6 +292,8 @@
   "addObsLocationSectionTitle": "観測場所",
   "addObsLocationHint": "例: 東京都新宿区、長野県諏訪市",
   "addObsWeatherSectionTitle": "天気",
+  "addObsPhotosSectionTitle": "写真",
+  "addObsPhotosHint": "望遠鏡やカメラで撮影した写真をギャラリーから選んで追加できます",
   "addObsNotesSectionTitle": "メモ",
   "addObsNotesHint": "今夜の観測の感想や気づいたことを書こう...",
   "statsTitle": "詳細統計",

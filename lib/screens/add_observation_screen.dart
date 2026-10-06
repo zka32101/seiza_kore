@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,7 @@ import '../providers/constellation_provider.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/bortle_service.dart';
+import '../services/photo_import_service.dart';
 import '../widgets/unlock_celebration.dart';
 import '../l10n/generated/app_localizations.dart';
 
@@ -32,6 +34,8 @@ class _AddObservationScreenState
   String _weather = '晴れ';
   bool _isSaving = false;
   bool _locationInitialized = false;
+  bool _isImportingPhotos = false;
+  final List<String> _photoPaths = [];
 
   final List<String> _weatherOptions = weatherOptions;
 
@@ -60,6 +64,22 @@ class _AddObservationScreenState
     super.dispose();
   }
 
+  Future<void> _importPhotos() async {
+    setState(() => _isImportingPhotos = true);
+    try {
+      final paths = await PhotoImportService.instance.pickAndImportPhotos();
+      if (mounted && paths.isNotEmpty) {
+        setState(() => _photoPaths.addAll(paths));
+      }
+    } finally {
+      if (mounted) setState(() => _isImportingPhotos = false);
+    }
+  }
+
+  void _removePhoto(int index) {
+    setState(() => _photoPaths.removeAt(index));
+  }
+
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context)!;
     setState(() => _isSaving = true);
@@ -79,7 +99,7 @@ class _AddObservationScreenState
       bortleScale: _bortle,
       weather: _weather,
       notes: _notesController.text,
-      photoUrls: [],
+      photoUrls: _photoPaths,
     );
 
     await ref.read(observationListProvider.notifier).addObservation(obs);
@@ -279,6 +299,33 @@ class _AddObservationScreenState
             ),
             const SizedBox(height: 20),
 
+            // Photos (望遠鏡等で撮影した写真のインポート)
+            _SectionLabel(l10n.addObsPhotosSectionTitle),
+            const SizedBox(height: 4),
+            Text(
+              l10n.addObsPhotosHint,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Colors.grey.shade600,
+                  ),
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (var i = 0; i < _photoPaths.length; i++)
+                  _PhotoThumbnail(
+                    path: _photoPaths[i],
+                    onRemove: () => _removePhoto(i),
+                  ),
+                _AddPhotoButton(
+                  isLoading: _isImportingPhotos,
+                  onTap: _isImportingPhotos ? null : _importPhotos,
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+
             // Notes
             _SectionLabel(l10n.addObsNotesSectionTitle),
             const SizedBox(height: 8),
@@ -329,6 +376,76 @@ class _SectionLabel extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Theme.of(context).colorScheme.primary,
           ),
+    );
+  }
+}
+
+class _PhotoThumbnail extends StatelessWidget {
+  final String path;
+  final VoidCallback onRemove;
+
+  const _PhotoThumbnail({required this.path, required this.onRemove});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.file(
+            File(path),
+            width: 80,
+            height: 80,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Positioned(
+          top: 2,
+          right: 2,
+          child: GestureDetector(
+            onTap: onRemove,
+            child: Container(
+              padding: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.black54,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.close, color: Colors.white, size: 14),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _AddPhotoButton extends StatelessWidget {
+  final bool isLoading;
+  final VoidCallback? onTap;
+
+  const _AddPhotoButton({required this.isLoading, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 80,
+        height: 80,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: Colors.grey.shade400),
+        ),
+        child: Center(
+          child: isLoading
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
+              : Icon(Icons.add_a_photo, color: Colors.grey.shade600),
+        ),
+      ),
     );
   }
 }

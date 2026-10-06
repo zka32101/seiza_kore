@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/observation.dart';
+import '../services/photo_import_service.dart';
 
 class ObservationNotifier extends StateNotifier<List<Observation>> {
   static const _key = 'observations';
@@ -33,8 +35,12 @@ class ObservationNotifier extends StateNotifier<List<Observation>> {
   }
 
   Future<void> deleteObservation(String id) async {
+    final target = state.firstWhereOrNull((o) => o.id == id);
     state = state.where((o) => o.id != id).toList();
     await _save();
+    if (target != null && target.photoUrls.isNotEmpty) {
+      await PhotoImportService.instance.deletePhotos(target.photoUrls);
+    }
   }
 
   Future<void> _save() async {

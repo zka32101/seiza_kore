@@ -210,6 +210,8 @@
   "addObsLocationSectionTitle": "Observation Location",
   "addObsLocationHint": "e.g. Shinjuku, Tokyo; Suwa, Nagano",
   "addObsWeatherSectionTitle": "Weather",
+  "addObsPhotosSectionTitle": "Photos",
+  "addObsPhotosHint": "Add photos taken with a telescope or camera from your gallery",
   "addObsNotesSectionTitle": "Notes",
   "addObsNotesHint": "Write down your thoughts or observations from tonight...",
   "statsTitle": "Detailed Statistics",

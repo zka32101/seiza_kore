@@ -66,6 +66,10 @@ dependencies:
   timezone: ^0.11.1
   flutter_timezone: ^5.1.0
 
+  # 望遠鏡等で撮影した写真の観測記録へのインポート
+  image_picker: ^1.2.4
+  path_provider: ^2.1.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -671,17 +672,32 @@ class _RecentObservationTile extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 8),
       child: ListTile(
         onTap: () => context.push('/constellation/${observation.constellationId}'),
-        leading: CircleAvatar(
-          backgroundColor: _bortleColor(observation.bortleScale).withAlpha(30),
-          child: Text(
-            constellationAsync.when(
-              data: (c) => c?.emoji ?? '⭐',
-              loading: () => '⭐',
-              error: (_, __) => '⭐',
-            ),
-            style: const TextStyle(fontSize: 18),
-          ),
-        ),
+        leading: observation.photoUrls.isNotEmpty
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.file(
+                  File(observation.photoUrls.first),
+                  width: 40,
+                  height: 40,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => CircleAvatar(
+                    backgroundColor:
+                        _bortleColor(observation.bortleScale).withAlpha(30),
+                    child: const Text('⭐', style: TextStyle(fontSize: 18)),
+                  ),
+                ),
+              )
+            : CircleAvatar(
+                backgroundColor: _bortleColor(observation.bortleScale).withAlpha(30),
+                child: Text(
+                  constellationAsync.when(
+                    data: (c) => c?.emoji ?? '⭐',
+                    loading: () => '⭐',
+                    error: (_, __) => '⭐',
+                  ),
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
         title: Text(constName, style: const TextStyle(fontWeight: FontWeight.bold)),
         subtitle: Text('$date  ${observation.locationName}'),
         trailing: Text(

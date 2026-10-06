@@ -30,6 +30,8 @@
 	<string>現在地の星空・光害の状況を正確に表示するために位置情報を使用します</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>望遠鏡やカメラで撮影した写真を観測記録に追加するために使用します</string>
+	<key>NSMotionUsageDescription</key>
+	<string>太陽系ウォークスルーで、スマホを傾けて周りの景色を見渡すために使用します</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

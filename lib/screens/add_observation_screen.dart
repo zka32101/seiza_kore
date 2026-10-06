@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../providers/observation_provider.dart';
 import '../providers/constellation_provider.dart';
+import '../providers/co_observation_provider.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/bortle_service.dart';
@@ -46,6 +47,7 @@ class _AddObservationScreenState
   void initState() {
     super.initState();
     _bortle = widget.initialBortle;
+    startCoObserving(ref, widget.constellationId);
   }
 
   @override
@@ -61,6 +63,7 @@ class _AddObservationScreenState
   void dispose() {
     _notesController.dispose();
     _locationController.dispose();
+    stopCoObserving(ref);
     super.dispose();
   }
 
@@ -104,6 +107,7 @@ class _AddObservationScreenState
 
     await ref.read(observationListProvider.notifier).addObservation(obs);
     await ref.read(unlockedIdsProvider.notifier).unlock(widget.constellationId);
+    await stopCoObserving(ref);
 
     if (!mounted) return;
 

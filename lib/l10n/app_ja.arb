@@ -312,6 +312,7 @@
   "statsNorthernLabel": "北天の星座",
   "statsSouthernLabel": "南天の星座",
   "statsCountTimes": "{count}回",
+  "coObservingTitle": "{count}人が今観測中！",
   "nightSkyMapNorth": "北",
   "nightSkyMapEast": "東",
   "nightSkyMapSouth": "南",

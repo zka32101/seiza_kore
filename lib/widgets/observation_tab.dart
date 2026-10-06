@@ -7,6 +7,8 @@ import '../providers/constellation_provider.dart';
 import '../providers/timecapsule_provider.dart';
 import '../providers/daily_mission_provider.dart';
 import '../providers/streak_provider.dart';
+import '../providers/co_observation_provider.dart';
+import '../providers/ranking_group_provider.dart';
 import '../models/observation.dart';
 import '../models/constellation.dart';
 import '../services/moon_service.dart';
@@ -99,6 +101,10 @@ class ObservationTab extends ConsumerWidget {
 
                 // Daily mission card
                 const _DailyMissionCard(),
+                const SizedBox(height: 12),
+
+                // Co-observation card (友達と同時観測)
+                const _CoObservingCard(),
                 const SizedBox(height: 20),
 
                 // AR observation button (main CTA)
@@ -315,6 +321,78 @@ class _DailyMissionCard extends ConsumerWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _CoObservingCard extends ConsumerWidget {
+  const _CoObservingCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final groupCode = ref.watch(rankingGroupProvider);
+    if (groupCode == null) return const SizedBox.shrink();
+
+    final observersAsync = ref.watch(coObserversProvider);
+    return observersAsync.when(
+      data: (observers) {
+        if (observers.isEmpty) return const SizedBox.shrink();
+        final l10n = AppLocalizations.of(context)!;
+        return Card(
+          color: Colors.teal.shade50,
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Text('🔭', style: TextStyle(fontSize: 18)),
+                    const SizedBox(width: 6),
+                    Text(
+                      l10n.coObservingTitle(observers.length),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
+                for (final o in observers) _CoObserverRow(observer: o),
+              ],
+            ),
+          ),
+        );
+      },
+      loading: () => const SizedBox.shrink(),
+      error: (_, __) => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _CoObserverRow extends ConsumerWidget {
+  final CoObserver observer;
+  const _CoObserverRow({required this.observer});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final lang = Localizations.localeOf(context).languageCode;
+    final constellationId = observer.constellationId;
+    final constName = constellationId == null
+        ? null
+        : ref.watch(constellationByIdProvider(constellationId)).when(
+            data: (c) =>
+                c == null ? constellationId : (lang == 'en' ? c.nameEn : c.nameJa),
+            loading: () => '...',
+            error: (_, __) => constellationId,
+          );
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Text(
+        constName == null
+            ? observer.displayName
+            : '${observer.displayName} ・ $constName',
+        style: const TextStyle(fontSize: 13),
       ),
     );
   }

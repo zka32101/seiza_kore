@@ -230,6 +230,7 @@
   "statsNorthernLabel": "Northern Constellations",
   "statsSouthernLabel": "Southern Constellations",
   "statsCountTimes": "{count} times",
+  "coObservingTitle": "{count} friends observing now!",
   "nightSkyMapNorth": "North",
   "nightSkyMapEast": "East",
   "nightSkyMapSouth": "South",

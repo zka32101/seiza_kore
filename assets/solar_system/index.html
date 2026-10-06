@@ -79,6 +79,26 @@
     top: 96px; text-align: center; color: rgba(255,255,255,0.55);
     font-size: 11px; padding: 0 20px;
   }
+
+  /* ウォークスルーモード用UI */
+  #walk-bar {
+    bottom: 10px; display: none; flex-direction: column; gap: 8px;
+    padding: 10px 14px 12px; align-items: center;
+    background: linear-gradient(to top, rgba(5,8,24,0.85), rgba(5,8,24,0));
+  }
+  #walk-spot-label {
+    color: #fff; font-size: 14px; font-weight: bold;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+  #walk-nav { display: flex; gap: 14px; align-items: center; }
+  .walk-nav-btn {
+    width: 44px; height: 44px; border-radius: 22px;
+    background: rgba(120, 100, 255, 0.85);
+    border: none; color: #fff; font-size: 18px;
+  }
+  #walk-gyro-status {
+    color: rgba(255,255,255,0.55); font-size: 10px;
+  }
 </style>
 </head>
 <body>
@@ -87,6 +107,7 @@
 <div class="ui-layer" id="top-bar">
   <button class="pill-btn active" id="btn-view-free" onclick="setViewMode('free')">🛰️ 宇宙から見る</button>
   <button class="pill-btn" id="btn-view-earth" onclick="setViewMode('earth')">🌃 地球から見上げる</button>
+  <button class="pill-btn" id="btn-view-walk" onclick="setViewMode('walk')">🚶 歩いて回る</button>
 </div>
 
 <div class="ui-layer" id="body-bar">
@@ -106,6 +127,15 @@
     <input id="speed-slider" type="range" min="0" max="60" value="6" oninput="onSpeedChange(this.value)" />
     <div id="speed-label">1秒=<span id="speed-value">6</span>日</div>
   </div>
+</div>
+
+<div class="ui-layer" id="walk-bar">
+  <div id="walk-spot-label">☀️ 太陽のすぐそば</div>
+  <div id="walk-nav">
+    <button class="walk-nav-btn" onclick="walkToSpot(-1)">◀</button>
+    <button class="walk-nav-btn" onclick="walkToSpot(1)">▶</button>
+  </div>
+  <div id="walk-gyro-status">スマホを傾けると周りを見渡せます</div>
 </div>
 
 <script src="lib/three.min.js"></script>
@@ -412,18 +442,153 @@
   controls.maxDistance = 900;
   controls.target.set(0, 0, 0);
 
-  let viewMode = 'free'; // 'free' | 'earth'
+  let viewMode = 'free'; // 'free' | 'earth' | 'walk'
 
   window.setViewMode = function (mode) {
     viewMode = mode;
     document.getElementById('btn-view-free').classList.toggle('active', mode === 'free');
     document.getElementById('btn-view-earth').classList.toggle('active', mode === 'earth');
+    document.getElementById('btn-view-walk').classList.toggle('active', mode === 'walk');
+    document.getElementById('bottom-bar').style.display = mode === 'walk' ? 'none' : 'flex';
+    document.getElementById('walk-bar').style.display = mode === 'walk' ? 'flex' : 'none';
+    document.getElementById('hint').style.display = mode === 'walk' ? 'none' : 'block';
+
     if (mode === 'free') {
       controls.enabled = true;
       controls.minDistance = 8;
       controls.maxDistance = 900;
+      camera.position.set(0, 90, 220);
+      camera.quaternion.identity();
+      controls.target.set(0, 0, 0);
+    } else if (mode === 'walk') {
+      controls.enabled = false;
+      enterWalkMode();
     }
   };
+
+  // ------------------------------------------------------------------
+  // ウォークスルーモード: 各天体のすぐそばにワープし、
+  // ジャイロ（スマホの傾き）または手動ドラッグで周りを見渡す
+  // ------------------------------------------------------------------
+  const WALK_SPOTS = [
+    { label: '☀️ 太陽のすぐそば', getBody: function () { return sun; }, offset: new THREE.Vector3(SUN_RADIUS * 2.4, SUN_RADIUS * 0.4, SUN_RADIUS * 2.4) },
+    { label: '🌍 地球のすぐそば', getBody: function () { return earth; }, offset: new THREE.Vector3(EARTH_RADIUS * 3.5, EARTH_RADIUS * 1.2, EARTH_RADIUS * 3.5) },
+    { label: '🌕 月のすぐそば', getBody: function () { return moon; }, offset: new THREE.Vector3(MOON_RADIUS * 4, MOON_RADIUS * 1.5, MOON_RADIUS * 4) },
+    { label: '☄️ 小惑星帯', getBody: null, fixedPosition: new THREE.Vector3(140, 8, 0) },
+    { label: '🪐 木星のすぐそば', getBody: function () { return planets.filter(function (p) { return p.def.id === 'jupiter'; })[0].mesh; }, offset: new THREE.Vector3(30, 10, 30) },
+    { label: '🪐 土星の環の近く', getBody: function () { return planets.filter(function (p) { return p.def.id === 'saturn'; })[0].mesh; }, offset: new THREE.Vector3(26, 10, 26) },
+  ];
+  let walkSpotIndex = 0;
+  const walkTargetPos = new THREE.Vector3();
+
+  function enterWalkMode() {
+    moveToWalkSpot(walkSpotIndex, true);
+    requestOrientationPermission();
+  }
+
+  window.walkToSpot = function (delta) {
+    walkSpotIndex = (walkSpotIndex + delta + WALK_SPOTS.length) % WALK_SPOTS.length;
+    moveToWalkSpot(walkSpotIndex, false);
+  };
+
+  function moveToWalkSpot(index, immediate) {
+    const spot = WALK_SPOTS[index];
+    document.getElementById('walk-spot-label').textContent = spot.label;
+    if (spot.getBody) {
+      const body = spot.getBody();
+      const bodyPos = new THREE.Vector3();
+      body.getWorldPosition(bodyPos);
+      walkTargetPos.copy(bodyPos).add(spot.offset);
+    } else {
+      walkTargetPos.copy(spot.fixedPosition);
+    }
+    if (immediate) {
+      camera.position.copy(walkTargetPos);
+    }
+  }
+
+  // デバイスの向き（ジャイロ）でカメラの向きを制御する。
+  // iOS13+はユーザー操作内でrequestPermission()を呼ぶ必要がある。
+  // 許可されない/非対応の場合はタッチドラッグでの見回しにフォールバックする。
+  let gyroAvailable = false;
+  let latestOrientation = { alpha: 0, beta: 0, gamma: 0 };
+  const WALK_ZEE = new THREE.Vector3(0, 0, 1);
+  const walkEuler = new THREE.Euler();
+  const walkQ0 = new THREE.Quaternion();
+  const walkQ1 = new THREE.Quaternion(-Math.sqrt(0.5), 0, 0, Math.sqrt(0.5));
+
+  function onDeviceOrientation(event) {
+    if (event.alpha === null) return;
+    gyroAvailable = true;
+    latestOrientation.alpha = event.alpha || 0;
+    latestOrientation.beta = event.beta || 0;
+    latestOrientation.gamma = event.gamma || 0;
+    document.getElementById('walk-gyro-status').textContent = 'スマホを傾けると周りを見渡せます';
+  }
+
+  function requestOrientationPermission() {
+    if (typeof DeviceOrientationEvent !== 'undefined' &&
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission().then(function (state) {
+        if (state === 'granted') {
+          window.addEventListener('deviceorientation', onDeviceOrientation);
+        } else {
+          document.getElementById('walk-gyro-status').textContent = 'ドラッグで周りを見渡せます';
+        }
+      }).catch(function () {
+        document.getElementById('walk-gyro-status').textContent = 'ドラッグで周りを見渡せます';
+      });
+    } else if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', onDeviceOrientation);
+    } else {
+      document.getElementById('walk-gyro-status').textContent = 'ドラッグで周りを見渡せます';
+    }
+  }
+
+  function applyOrientationToCamera() {
+    const alphaRad = THREE.MathUtils.degToRad(latestOrientation.alpha);
+    const betaRad = THREE.MathUtils.degToRad(latestOrientation.beta);
+    const gammaRad = THREE.MathUtils.degToRad(latestOrientation.gamma);
+    walkEuler.set(betaRad, alphaRad, -gammaRad, 'YXZ');
+    camera.quaternion.setFromEuler(walkEuler);
+    camera.quaternion.multiply(walkQ1);
+    camera.quaternion.multiply(walkQ0.setFromAxisAngle(WALK_ZEE, 0));
+  }
+
+  // ジャイロ非対応時のタッチドラッグによる見回しフォールバック
+  let walkDragYaw = 0;
+  let walkDragPitch = 0;
+  let walkDragging = false;
+  let walkLastX = 0;
+  let walkLastY = 0;
+  renderer.domElement.addEventListener('pointerdown', function (e) {
+    if (viewMode !== 'walk' || gyroAvailable) return;
+    walkDragging = true;
+    walkLastX = e.clientX;
+    walkLastY = e.clientY;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!walkDragging) return;
+    walkDragYaw -= (e.clientX - walkLastX) * 0.005;
+    walkDragPitch = Math.max(-1.3, Math.min(1.3, walkDragPitch - (e.clientY - walkLastY) * 0.005));
+    walkLastX = e.clientX;
+    walkLastY = e.clientY;
+  });
+  window.addEventListener('pointerup', function () { walkDragging = false; });
+
+  function applyDragToCamera() {
+    walkEuler.set(walkDragPitch, walkDragYaw, 0, 'YXZ');
+    camera.quaternion.setFromEuler(walkEuler);
+  }
+
+  function updateWalkMode() {
+    camera.position.lerp(walkTargetPos, 0.15);
+    if (gyroAvailable) {
+      applyOrientationToCamera();
+    } else {
+      applyDragToCamera();
+    }
+  }
 
   let focusedBody = null;
   window.focusBody = function (id) {
@@ -538,6 +703,12 @@
     document.getElementById('moon-age').textContent = moonAge.toFixed(1);
     document.getElementById('moon-phase-name').textContent = phaseNameForAge(moonAge);
 
+    // ウォークスルーモード: 天体のすぐそばに立ち、ジャイロ/ドラッグで見渡す
+    if (viewMode === 'walk') {
+      updateWalkMode();
+      return;
+    }
+
     // 地球視点モード: 地球表面から月と太陽がある夜空を見上げる構図
     if (viewMode === 'earth') {
       const surfaceDir = toMoon.clone().negate(); // 月と反対側=夜側に立ち、月のほうを向く
@@ -563,7 +734,9 @@
     const delta = Math.min((now - last) / 1000, 0.1);
     last = now;
     updateSim(delta);
-    controls.update();
+    if (viewMode !== 'walk') {
+      controls.update();
+    }
     renderer.render(scene, camera);
   }
   requestAnimationFrame(animate);
